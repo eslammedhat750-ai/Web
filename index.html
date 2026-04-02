@@ -3,39 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>متجر إيم ميديكال | Em Medical</title>
+    
+    <title>متجر إيم ميديكال | أفضل الأجهزة الطبية ومعدات المساج في مصر</title>
+    <meta name="description" content="تسوق الآن من متجر إيم ميديكال (Em Medical) لأجهزة الضغط، القرب الحرارية، وأجهزة المساج الاحترافية بأفضل الأسعار في القاهرة والجيزة. شحن سريع وضمان جودة.">
+    <meta name="keywords" content="اجهزة طبية, جهاز ضغط اومرون, جهاز مساج, قربة كهربائية, Em Medical, متجر طبي, القاهرة, مصر">
+    <meta name="author" content="Em Medical">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --p: #0062cc; --s: #28a745; --bg: #f4f7f6; }
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; background: var(--bg); padding-bottom: 100px; }
-        
         header { background: #fff; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
         .cart-trigger { position: relative; cursor: pointer; }
         #badge { position: absolute; top: -5px; right: -8px; background: #ff3b30; color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 10px; border: 2px solid #fff; }
-
         .container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; }
         .card { background: #fff; border-radius: 15px; overflow: hidden; display: flex; flex-direction: column; border: 1px solid #eee; }
         .img-box { width: 100%; height: 140px; display: flex; align-items: center; justify-content: center; padding: 10px; }
         .img-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
-        
         .details { padding: 10px; flex: 1; }
-        .details h3 { font-size: 12px; margin: 0 0 8px; height: 34px; overflow: hidden; color: #333; }
-        
-        .desc-box { background: #f8f9fa; padding: 8px; border-radius: 10px; border-right: 3px solid var(--p); margin-bottom: 8px; min-height: 80px; }
-        .desc-line { font-size: 9px; color: #666; display: block; line-height: 1.4; margin-bottom: 2px; }
+        .details h3 { font-size: 13px; margin: 0 0 8px; height: 38px; overflow: hidden; color: #333; font-weight: bold; }
+        .desc-box { background: #f8f9fa; padding: 8px; border-radius: 10px; border-right: 3px solid var(--p); margin-bottom: 8px; min-height: 85px; }
+        .desc-line { font-size: 9.5px; color: #555; display: block; line-height: 1.4; margin-bottom: 3px; }
         .desc-label { font-weight: bold; color: var(--p); }
-
-        .price { font-weight: bold; color: var(--p); font-size: 15px; display: block; text-align: center; margin-bottom: 8px; }
-        
-        /* الزرار الذكي - بدون رسائل */
-        .btn { background: var(--p); color: #fff; border: none; width: 100%; padding: 12px; border-radius: 10px; font-weight: bold; font-size: 12px; cursor: pointer; transition: 0.3s; }
-        .btn.added { background: var(--s) !important; transform: scale(1.03); }
-
+        .price { font-weight: bold; color: var(--p); font-size: 16px; display: block; text-align: center; margin-bottom: 8px; }
+        .btn { background: var(--p); color: #fff; border: none; width: 100%; padding: 12px; border-radius: 10px; font-weight: bold; font-size: 13px; cursor: pointer; transition: 0.3s; }
+        .btn.added { background: var(--s) !important; }
         #cart-ui { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 2000; }
         .cart-content { background: #fff; width: 100%; position: absolute; bottom: 0; border-radius: 20px 20px 0 0; padding: 20px; animation: slideUp 0.3s ease-out; }
         @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-        
         .item { display: flex; justify-content: space-between; align-items: center; padding: 12px; border-bottom: 1px solid #eee; }
         .nav { position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 12px; border-top: 1px solid #eee; z-index: 1000; }
         .nav-link { text-align: center; color: #888; font-size: 10px; text-decoration: none; flex: 1; }
@@ -47,71 +43,78 @@
 <body>
 
 <header>
-    <div class="logo"><img src="logo.png" style="height:30px" onerror="this.src='https://via.placeholder.com/100x30?text=Em+Medical'"></div>
+    <div class="logo">
+        <h1 style="display:none">متجر إيم ميديكال - Em Medical</h1>
+        <img src="logo.png" style="height:35px" alt="شعار إيم ميديكال" onerror="this.src='https://via.placeholder.com/120x35?text=Em+Medical'">
+    </div>
     <div class="cart-trigger" onclick="toggleCart()">
         <i class="fas fa-shopping-bag" style="font-size:24px; color:var(--p)"></i>
         <span id="badge">0</span>
     </div>
 </header>
 
-<a href="https://wa.me/201153951440" class="wa-float"><i class="fab fa-whatsapp"></i></a>
+<a href="https://wa.me/201153951440" class="wa-float" title="اتصل بنا عبر واتساب"><i class="fab fa-whatsapp"></i></a>
 
 <div class="container">
     <div class="card">
-        <div class="img-box"><img src="1.PNG"></div>
+        <div class="img-box"><img src="1.PNG" alt="قربة حرارية كهربائية"></div>
         <div class="details">
-            <h3>قربة حرارية كهربائية متطورة</h3>
+            <h3>قربة حرارية كهربائية للآلام - شحن سريع</h3>
             <div class="desc-box">
-                <span class="desc-line"><span class="desc-label">المواصفات:</span> تسخين سريع، أمان كامل.</span>
-                <span class="desc-line"><span class="desc-label">العلبة:</span> القربة + كابل الشحن الكهربائي.</span>
+                <span class="desc-line"><span class="desc-label">الوصف:</span> أفضل قربة لتخفيف آلام الظهر والمفاصل بسرعة.</span>
+                <span class="desc-line"><span class="desc-label">العلبة:</span> قربة أصلية + كابل أمان حراري.</span>
             </div>
             <span class="price">850 ج.م</span>
             <button class="btn" onclick="addToCart(this, 'قربة حرارية', 850)">أضف للسلة</button>
         </div>
     </div>
+
     <div class="card">
-        <div class="img-box"><img src="2.PNG"></div>
+        <div class="img-box"><img src="2.PNG" alt="جهاز ضغط اومرون Omron M1"></div>
         <div class="details">
-            <h3>جهاز ضغط Omron M1 الأصلي</h3>
+            <h3>جهاز ضغط Omron M1 الأصلي - دقة يابانية</h3>
             <div class="desc-box">
-                <span class="desc-line"><span class="desc-label">المواصفات:</span> دقة يابانية، قياس النبض.</span>
-                <span class="desc-line"><span class="desc-label">العلبة:</span> الجهاز + الكفة + البطاريات.</span>
+                <span class="desc-line"><span class="desc-label">الوصف:</span> أدق جهاز قياس ضغط دم للاستخدام المنزلي.</span>
+                <span class="desc-line"><span class="desc-label">العلبة:</span> الجهاز + كفة مريحة + 4 بطاريات.</span>
             </div>
             <span class="price">2100 ج.م</span>
             <button class="btn" onclick="addToCart(this, 'جهاز ضغط Omron', 2100)">أضف للسلة</button>
         </div>
     </div>
+
     <div class="card">
-        <div class="img-box"><img src="3.PNG"></div>
+        <div class="img-box"><img src="3.PNG" alt="جهاز مساج Thrive 717"></div>
         <div class="details">
-            <h3>جهاز مساج Thrive 717 الاحترافي</h3>
+            <h3>جهاز مساج Thrive 717 الياباني للتدليك</h3>
             <div class="desc-box">
-                <span class="desc-line"><span class="desc-label">المواصفات:</span> موتور ياباني جبار، مساج عميق.</span>
-                <span class="desc-line"><span class="desc-label">العلبة:</span> الجهاز + 3 رؤوس تدليك.</span>
+                <span class="desc-line"><span class="desc-label">الوصف:</span> مساج احترافي للجسم لتحسين الدورة الدموية.</span>
+                <span class="desc-line"><span class="desc-label">العلبة:</span> جهاز ثرايف + 3 رؤوس تدليك منوعة.</span>
             </div>
             <span class="price">1100 ج.م</span>
             <button class="btn" onclick="addToCart(this, 'مساج Thrive', 1100)">أضف للسلة</button>
         </div>
     </div>
+
     <div class="card">
-        <div class="img-box"><img src="4.PNG"></div>
+        <div class="img-box"><img src="4.PNG" alt="شنطة مساج MDHL"></div>
         <div class="details">
-            <h3>شنطة مساج MDHL المتكاملة</h3>
+            <h3>شنطة مساج MDHL المتكاملة - 6 سرعات</h3>
             <div class="desc-box">
-                <span class="desc-line"><span class="desc-label">المواصفات:</span> 6 سرعات، بطارية ليثيوم.</span>
-                <span class="desc-line"><span class="desc-label">العلبة:</span> الجهاز + 4 رؤوس + شنطة.</span>
+                <span class="desc-line"><span class="desc-label">الوصف:</span> مساج عميق للعضلات، مثالي للرياضيين والراحة.</span>
+                <span class="desc-line"><span class="desc-label">العلبة:</span> مسدس مساج + 4 رؤوس + شنطة هارد.</span>
             </div>
             <span class="price">3200 ج.م</span>
             <button class="btn" onclick="addToCart(this, 'مساج MDHL', 3200)">أضف للسلة</button>
         </div>
     </div>
+
     <div class="card">
-        <div class="img-box"><img src="5.PNG"></div>
+        <div class="img-box"><img src="5.PNG" alt="جهاز مساج وجه"></div>
         <div class="details">
-            <h3>جهاز مساج وتدليك الوجه</h3>
+            <h3>جهاز مساج الوجه وشد البشرة - العناية</h3>
             <div class="desc-box">
-                <span class="desc-line"><span class="desc-label">المواصفات:</span> شد البشرة، اهتزاز مريح.</span>
-                <span class="desc-line"><span class="desc-label">العلبة:</span> جهاز المساج + قاعدة الشحن.</span>
+                <span class="desc-line"><span class="desc-label">الوصف:</span> تنشيط الكولاجين الطبيعي والحفاظ على نضارة الوجه.</span>
+                <span class="desc-line"><span class="desc-label">العلبة:</span> جهاز التدليك + قاعدة شحن لاسلكية.</span>
             </div>
             <span class="price">750 ج.م</span>
             <button class="btn" onclick="addToCart(this, 'مساج وجه', 750)">أضف للسلة</button>
@@ -129,8 +132,8 @@
                 <span><span id="total">0</span> ج.م</span>
             </div>
         </div>
-        <button onclick="checkout()" style="width:100%; background:var(--s); color:#fff; border:none; padding:16px; border-radius:12px; font-weight:bold; margin-top:10px; font-size:16px">إتمام الطلب (واتساب)</button>
-        <button onclick="toggleCart()" style="width:100%; background:none; border:none; color:#999; margin-top:10px">إغلاق</button>
+        <button onclick="checkout()" style="width:100%; background:var(--s); color:#fff; border:none; padding:16px; border-radius:12px; font-weight:bold; margin-top:10px; font-size:16px">إرسال الطلب عبر واتساب</button>
+        <button onclick="toggleCart()" style="width:100%; background:none; border:none; color:#999; margin-top:10px">إغلاق السلة</button>
     </div>
 </div>
 
@@ -142,24 +145,16 @@
 </div>
 
 <script>
-    // منع أي رسائل تنبيه (alert) قديمة تماماً
-    window.alert = function() { console.log("Alert blocked"); return true; };
-
+    window.alert = function() { return true; };
     let cart = [];
     
     function addToCart(btn, name, price) {
         cart.push({name, price, id: Date.now()});
         document.getElementById('badge').innerText = cart.length;
-        
-        // تغيير شكل الزرار بطريقة لطيفة
         const oldText = btn.innerText;
         btn.innerHTML = "تمت الإضافة ✅";
         btn.classList.add('added');
-        
-        setTimeout(() => {
-            btn.innerText = oldText;
-            btn.classList.remove('added');
-        }, 1000);
+        setTimeout(() => { btn.innerText = oldText; btn.classList.remove('added'); }, 1000);
     }
 
     function toggleCart() {
@@ -171,15 +166,10 @@
     function renderCart() {
         const container = document.getElementById('cart-items');
         let total = 0;
-        container.innerHTML = cart.length === 0 ? "<p style='text-align:center; color:#999'>سلتك فارغة حالياً</p>" : "";
-        
+        container.innerHTML = cart.length === 0 ? "<p style='text-align:center; color:#999'>السلة فارغة</p>" : "";
         cart.forEach(item => {
             total += item.price;
-            container.innerHTML += `
-                <div class="item">
-                    <span>${item.name}</span>
-                    <span style="font-weight:bold">${item.price} ج.م <i class="fas fa-trash-alt" style="color:#ff3b30; margin-right:10px" onclick="removeItem(${item.id})"></i></span>
-                </div>`;
+            container.innerHTML += `<div class="item"><span>${item.name}</span><span style="font-weight:bold">${item.price} ج.م <i class="fas fa-trash-alt" style="color:#ff3b30; margin-right:10px" onclick="removeItem(${item.id})"></i></span></div>`;
         });
         document.getElementById('total').innerText = total;
     }
