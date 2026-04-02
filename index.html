@@ -19,28 +19,13 @@
         body { font-family: 'Segoe UI', Roboto, sans-serif; margin: 0; background: var(--bg); padding-bottom: 80px; color: var(--dark); }
         
         header { 
-            background: var(--light); 
-            color: var(--primary); 
-            padding: 10px 20px; 
-            position: sticky; 
-            top: 0; 
-            z-index: 1000; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
+            background: var(--light); color: var(--primary); 
+            padding: 10px 20px; position: sticky; top: 0; z-index: 1000; 
+            display: flex; justify-content: space-between; align-items: center; 
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         
         .logo-container img { height: 45px; width: auto; }
-
-        .bottom-nav {
-            position: fixed; bottom: 0; left: 0; right: 0;
-            background: var(--light); display: flex; justify-content: space-around;
-            padding: 10px 0; border-top: 1px solid #ddd; z-index: 1000;
-        }
-        .nav-item { text-align: center; color: #666; text-decoration: none; font-size: 12px; cursor: pointer; }
-        .nav-item i { font-size: 20px; display: block; margin-bottom: 3px; }
-        .nav-item.active { color: var(--primary); }
 
         .container { 
             display: grid; 
@@ -54,22 +39,39 @@
             display: flex; flex-direction: column; justify-content: space-between;
             border: 1px solid #eee;
         }
-        
-        .product-card:hover { transform: translateY(-5px); }
 
         .slider { position: relative; width: 100%; height: 160px; background: #fff; }
         .slider img { width: 100%; height: 100%; object-fit: contain; }
 
-        .product-info { padding: 10px; text-align: center; }
-        .product-info h3 { font-size: 14px; margin: 5px 0; height: 40px; overflow: hidden; }
-        .product-info p { font-size: 11px; color: #666; margin: 8px 0; line-height: 1.4; height: 32px; overflow: hidden; }
-        .price { color: var(--primary); font-weight: bold; font-size: 16px; margin-bottom: 10px; display: block; }
+        .product-info { padding: 12px; text-align: right; }
+        .product-info h3 { font-size: 14px; margin: 0 0 8px 0; color: var(--dark); font-weight: bold; }
+        
+        /* تنسيق الوصف الجديد ليكون واضحاً */
+        .product-info p { 
+            font-size: 11px; 
+            color: #555; 
+            margin: 5px 0; 
+            line-height: 1.5; 
+            height: auto; /* السماح بظهور كل الكلام */
+        }
+        .specs-title { color: var(--primary); font-weight: bold; display: block; margin-top: 5px; }
+
+        .price { color: var(--primary); font-weight: bold; font-size: 16px; margin: 10px 0; display: block; text-align: center; }
 
         .add-btn { 
             background: var(--primary); color: white; border: none; 
-            padding: 10px; border-radius: 8px; cursor: pointer; 
+            padding: 12px; border-radius: 8px; cursor: pointer; 
             width: 100%; font-weight: bold; font-size: 13px;
         }
+
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: var(--light); display: flex; justify-content: space-around;
+            padding: 10px 0; border-top: 1px solid #ddd; z-index: 1000;
+        }
+        .nav-item { text-align: center; color: #666; text-decoration: none; font-size: 11px; cursor: pointer; flex: 1; }
+        .nav-item i { font-size: 20px; display: block; margin-bottom: 3px; }
+        .nav-item.active { color: var(--primary); }
 
         #cart-modal { 
             display: none; position: fixed; top: 0; left: 0; 
@@ -78,7 +80,7 @@
         }
         .modal-content { 
             background: white; width: 90%; max-width: 400px; 
-            margin: 100px auto; padding: 25px; border-radius: 20px; 
+            margin: 80px auto; padding: 25px; border-radius: 20px; 
         }
 
         .whatsapp-float {
@@ -114,8 +116,9 @@
     <div class="product-card">
         <div class="slider"><img src="1.PNG"></div>
         <div class="product-info">
-            <h3>قربة حرارية كهربائية</h3>
-            <p>تسخين سريع وآمن لتخفيف آلام الظهر والمفاصل.</p>
+            <h3>قربة حرارية كهربائية متطورة</h3>
+            <p><span class="specs-title">المواصفات:</span> تسخين سريع، حماية من الحرارة الزائدة، قماش مخملي ناعم.</p>
+            <p><span class="specs-title">محتويات العلبة:</span> القربة، كابل الشحن الكهربائي.</p>
             <span class="price">850 ج.م</span>
             <button class="add-btn" onclick="addToCart('قربة حرارية', 850)">أضف للسلة</button>
         </div>
@@ -123,8 +126,9 @@
     <div class="product-card">
         <div class="slider"><img src="2.PNG"></div>
         <div class="product-info">
-            <h3>جهاز ضغط Omron M1</h3>
-            <p>دقة يابانية عالية لقياس ضغط الدم في المنزل.</p>
+            <h3>جهاز ضغط Omron M1 الأصلي</h3>
+            <p><span class="specs-title">المواصفات:</span> دقة طبية يابانية، شاشة كبيرة، ذاكرة لحفظ القراءات.</p>
+            <p><span class="specs-title">محتويات العلبة:</span> الجهاز، الكفة (الرباط)، البطاريات، دليل الاستخدام.</p>
             <span class="price">2100 ج.م</span>
             <button class="add-btn" onclick="addToCart('جهاز ضغط Omron', 2100)">أضف للسلة</button>
         </div>
@@ -132,8 +136,9 @@
     <div class="product-card">
         <div class="slider"><img src="3.PNG"></div>
         <div class="product-info">
-            <h3>جهاز مساج Thrive 717</h3>
-            <p>تدليك عميق واحترافي لتحسين الدورة الدموية.</p>
+            <h3>جهاز مساج Thrive 717 الياباني</h3>
+            <p><span class="specs-title">المواصفات:</span> تدليك احترافي قوي، محرك ياباني، تحكم في السرعة.</p>
+            <p><span class="specs-title">محتويات العلبة:</span> الجهاز، 3 رؤوس تدليك (خشن، ناعم، دائري).</p>
             <span class="price">1100 ج.م</span>
             <button class="add-btn" onclick="addToCart('مساج Thrive', 1100)">أضف للسلة</button>
         </div>
@@ -141,8 +146,9 @@
     <div class="product-card">
         <div class="slider"><img src="4.PNG"></div>
         <div class="product-info">
-            <h3>شنطة مساج MDHL</h3>
-            <p>مجموعة رؤوس متعددة لكل عضلات الجسم.</p>
+            <h3>شنطة مساج MDHL المتكاملة</h3>
+            <p><span class="specs-title">المواصفات:</span> بطارية قوية، 6 مستويات سرعة، شحن USB.</p>
+            <p><span class="specs-title">محتويات العلبة:</span> مسدس المساج، 4 رؤوس مختلفة، شاحن، شنطة فاخرة.</p>
             <span class="price">3200 ج.م</span>
             <button class="add-btn" onclick="addToCart('شنطة مساج MDHL', 3200)">أضف للسلة</button>
         </div>
@@ -151,7 +157,8 @@
         <div class="slider"><img src="5.PNG"></div>
         <div class="product-info">
             <h3>جهاز مساج وتدليك الوجه</h3>
-            <p>شد البشرة وتحفيز الكولاجين لنضارة دائمة.</p>
+            <p><span class="specs-title">المواصفات:</span> شد البشرة، تقليل التجاعيد، اهتزاز لطيف لزيادة النضارة.</p>
+            <p><span class="specs-title">محتويات العلبة:</span> الجهاز، قاعدة الشحن/البطارية، غطاء حماية.</p>
             <span class="price">750 ج.م</span>
             <button class="add-btn" onclick="addToCart('مساج وجه بنك', 750)">أضف للسلة</button>
         </div>
@@ -222,4 +229,3 @@
 </script>
 </body>
 </html>
-
