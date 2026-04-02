@@ -8,24 +8,51 @@
     <style>
         :root { --primary: #0056b3; --secondary: #28a745; --light: #f8f9fa; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background: #eee; padding-bottom: 50px; }
+        
+        /* الهيدر والقائمة */
         header { background: var(--primary); color: white; padding: 1rem; text-align: center; position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; }
+        .menu-icon { font-size: 1.5rem; cursor: pointer; margin-right: 15px; }
         .cart-icon { position: relative; cursor: pointer; font-size: 1.5rem; margin-left: 20px; }
         #cart-count { position: absolute; top: -10px; right: -10px; background: #ff3b30; color: white; border-radius: 50%; padding: 2px 8px; font-size: 12px; }
+
+        /* القائمة الجانبية */
+        .sidebar { height: 100%; width: 0; position: fixed; z-index: 1001; top: 0; right: 0; background-color: #111; overflow-x: hidden; transition: 0.5s; padding-top: 60px; }
+        .sidebar a { padding: 15px 32px; text-decoration: none; font-size: 20px; color: #818181; display: block; transition: 0.3s; text-align: right; }
+        .sidebar a:hover { color: #f1f1f1; }
+        .sidebar .closebtn { position: absolute; top: 0; left: 25px; font-size: 36px; margin-right: 50px; }
+
+        /* المنتجات */
         .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 20px; }
         .product-card { background: white; border-radius: 15px; padding: 15px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .product-card img { width: 100%; height: 250px; object-fit: contain; border-radius: 10px; margin-bottom: 10px; }
+        
+        /* سلايدر الصور */
+        .slider { position: relative; overflow: hidden; border-radius: 10px; height: 250px; margin-bottom: 10px; }
+        .slider img { width: 100%; height: 100%; object-fit: contain; display: none; }
+        .slider img.active { display: block; }
+        .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.3); color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 50%; }
+        .prev { left: 5px; }
+        .next { right: 5px; }
+
         .price { color: var(--secondary); font-weight: bold; font-size: 1.4rem; margin: 10px 0; }
         .add-btn { background: var(--primary); color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; }
+        
         #cart-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; }
         .modal-content { background: white; width: 90%; max-width: 450px; margin: 40px auto; padding: 25px; border-radius: 20px; }
-        .checkout-btn { background: #25d366; color: white; border: none; padding: 15px; width: 100%; border-radius: 10px; font-size: 1.2rem; font-weight: bold; margin-top: 20px; cursor: pointer; }
     </style>
 </head>
 <body>
 
+<div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  <a href="#"><i class="fas fa-home"></i> الرئيسية</a>
+  <a href="#"><i class="fas fa-pills"></i> مستلزمات طبية</a>
+  <a href="#"><i class="fas fa-spa"></i> أجهزة مساج</a>
+  <a href="#"><i class="fas fa-phone"></i> تواصل معنا</a>
+</div>
+
 <header>
-    <div style="width: 50px;"></div>
-    <h1>Em Medical</h1>
+    <div class="menu-icon" onclick="openNav()"><i class="fas fa-bars"></i> قائمة</div>
+    <h1 style="margin:0; font-size: 1.5rem;">Em Medical</h1>
     <div class="cart-icon" onclick="toggleCart()">
         <i class="fas fa-shopping-cart"></i>
         <span id="cart-count">0</span>
@@ -34,36 +61,28 @@
 
 <div class="container">
     <div class="product-card">
-        <img src="1.PNG">
+        <div class="slider" id="slider1">
+            <img src="1.PNG" class="active">
+            <img src="1-1.PNG"> <button class="slider-btn prev" onclick="moveSlide(-1, 'slider1')">&#10094;</button>
+            <button class="slider-btn next" onclick="moveSlide(1, 'slider1')">&#10095;</button>
+        </div>
         <h3>قربة حرارية كهربائية</h3>
         <p class="price">850 ج.م</p>
         <button class="add-btn" onclick="addToCart('قربة حرارية', 850)">أضف للسلة</button>
     </div>
+
     <div class="product-card">
-        <img src="2.PNG">
+        <div class="slider" id="slider2">
+            <img src="2.PNG" class="active">
+            <img src="2-1.PNG"> <button class="slider-btn prev" onclick="moveSlide(-1, 'slider2')">&#10094;</button>
+            <button class="slider-btn next" onclick="moveSlide(1, 'slider2')">&#10095;</button>
+        </div>
         <h3>جهاز ضغط Omron M1</h3>
         <p class="price">2100 ج.م</p>
         <button class="add-btn" onclick="addToCart('جهاز ضغط Omron', 2100)">أضف للسلة</button>
     </div>
-    <div class="product-card">
-        <img src="3.PNG">
-        <h3>جهاز مساج Thrive 717</h3>
-        <p class="price">1100 ج.م</p>
-        <button class="add-btn" onclick="addToCart('مساج Thrive', 1100)">أضف للسلة</button>
+    
     </div>
-    <div class="product-card">
-        <img src="4.PNG">
-        <h3>شنطة مساج MDHL</h3>
-        <p class="price">3200 ج.م</p>
-        <button class="add-btn" onclick="addToCart('شنطة مساج MDHL', 3200)">أضف للسلة</button>
-    </div>
-    <div class="product-card">
-        <img src="5.PNG">
-        <h3>جهاز مساج الوجه</h3>
-        <p class="price">750 ج.م</p>
-        <button class="add-btn" onclick="addToCart('مساج وجه بنك', 750)">أضف للسلة</button>
-    </div>
-</div>
 
 <div id="cart-modal">
     <div class="modal-content">
@@ -74,14 +93,34 @@
             <span>الإجمالي:</span>
             <span><span id="total-price">0</span> ج.م</span>
         </div>
-        <button class="checkout-btn" onclick="sendToWhatsapp()">إتمام الطلب عبر واتساب</button>
+        <button onclick="sendToWhatsapp()" style="background:#25d366; color:white; width:100%; padding:15px; border:none; border-radius:10px; font-weight:bold; margin-top:10px;">إتمام الطلب عبر واتساب</button>
         <button onclick="toggleCart()" style="width:100%; margin-top:10px; background:#eee; border:none; padding:10px; border-radius:10px;">إغلاق</button>
     </div>
 </div>
 
 <script>
     let cart = [];
-    let phone = "201153951440"; 
+    let phone = "201153951440";
+
+    // وظائف القائمة الجانبية
+    function openNav() { document.getElementById("mySidebar").style.width = "250px"; }
+    function closeNav() { document.getElementById("mySidebar").style.width = "0"; }
+
+    // وظيفة سلايدر الصور
+    function moveSlide(n, sliderId) {
+        let slider = document.getElementById(sliderId);
+        let imgs = slider.getElementsByTagName('img');
+        let activeIdx = 0;
+        for(let i=0; i<imgs.length; i++) {
+            if(imgs[i].className === 'active') {
+                activeIdx = i;
+                imgs[i].className = '';
+                break;
+            }
+        }
+        activeIdx = (activeIdx + n + imgs.length) % imgs.length;
+        imgs[activeIdx].className = 'active';
+    }
 
     function addToCart(name, price) {
         cart.push({name, price});
