@@ -3,33 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>متجر إيم ميديكال | Em Medical Store</title>
+    <title>Em Medical | متجر إيم ميديكال</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --p: #0062cc; --s: #28a745; --bg: #f4f7f6; }
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; background: var(--bg); padding-bottom: 100px; overflow-x: hidden; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; background: var(--bg); padding-bottom: 100px; }
         header { background: #fff; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
         .logo img { height: 40px; display: block; }
         .cart-trigger { position: relative; cursor: pointer; padding: 5px; }
-        #badge { position: absolute; top: -2px; right: -5px; background: #ff3b30; color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 10px; border: 2px solid #fff; font-weight: bold; }
+        #badge { position: absolute; top: -2px; right: -5px; background: #ff3b30; color: #fff; font-size: 11px; padding: 2px 6px; border-radius: 10px; border: 2px solid #fff; font-weight: bold; }
         .container { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 12px; }
-        .card { background: #fff; border-radius: 15px; overflow: hidden; display: flex; flex-direction: column; border: 1px solid #eee; box-shadow: 0 4px 12px rgba(0,0,0,0.05); position: relative; }
+        .card { background: #fff; border-radius: 15px; overflow: hidden; display: flex; flex-direction: column; border: 1px solid #eee; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
         .img-box { width: 100%; height: 160px; display: flex; align-items: center; justify-content: center; padding: 10px; position: relative; background: #fff; }
         .img-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
-        .slide-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: #fff; border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; }
+        .slide-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.6); color: #fff; border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; z-index: 20; display: flex; align-items: center; justify-content: center; }
         .prev { left: 5px; } .next { right: 5px; }
         .details { padding: 10px; flex: 1; text-align: center; }
-        .details h3 { font-size: 13px; margin: 0 0 8px; color: #333; height: 35px; overflow: hidden; font-weight: 600; }
-        .price { font-weight: bold; color: var(--p); font-size: 16px; display: block; margin-bottom: 10px; }
-        .btn { background: var(--p); color: #fff; border: none; width: 100%; padding: 12px; border-radius: 10px; font-weight: bold; cursor: pointer; transition: 0.2s; -webkit-appearance: none; }
-        .btn:active { background: #004a99; transform: scale(0.96); }
-        #cart-ui { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; }
-        .cart-content { background: #fff; width: 100%; position: absolute; bottom: 0; border-radius: 25px 25px 0 0; padding: 25px; max-height: 85vh; overflow-y: auto; box-shadow: 0 -5px 20px rgba(0,0,0,0.2); }
-        .cart-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #eee; font-size: 14px; }
-        .wa-float { position: fixed; bottom: 85px; right: 20px; background: #25d366; color: #fff; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; z-index: 999; box-shadow: 0 4px 15px rgba(0,0,0,0.3); text-decoration: none; }
-        .nav { position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 12px; border-top: 1px solid #eee; z-index: 1000; box-shadow: 0 -2px 10px rgba(0,0,0,0.05); }
-        .nav-link { text-align: center; color: #888; font-size: 11px; text-decoration: none; flex: 1; cursor: pointer; background: none; border: none; padding: 0; }
+        .details h3 { font-size: 13px; margin: 0 0 8px; color: #333; height: 35px; overflow: hidden; font-weight: bold; }
+        .price { font-weight: bold; color: var(--p); font-size: 17px; display: block; margin-bottom: 10px; }
+        .btn { background: var(--p); color: #fff; border: none; width: 100%; padding: 12px; border-radius: 10px; font-weight: bold; cursor: pointer; }
+        #cart-ui { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 9999; }
+        .cart-content { background: #fff; width: 100%; position: absolute; bottom: 0; border-radius: 25px 25px 0 0; padding: 25px; max-height: 80vh; overflow-y: auto; }
+        .cart-item { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #eee; }
+        .wa-float { position: fixed; bottom: 85px; right: 20px; background: #25d366; color: #fff; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; z-index: 998; box-shadow: 0 4px 15px rgba(0,0,0,0.3); text-decoration: none; }
+        .nav { position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 12px; border-top: 1px solid #eee; z-index: 1000; }
+        .nav-link { text-align: center; color: #888; font-size: 12px; text-decoration: none; flex: 1; background: none; border: none; cursor: pointer; }
         .nav-link i { font-size: 22px; display: block; margin-bottom: 4px; }
         .nav-link.active { color: var(--p); }
     </style>
@@ -38,7 +37,7 @@
 
 <header>
     <div class="logo"><img src="logo.png" alt="Em Medical"></div>
-    <div class="cart-trigger" onclick="toggleCart()">
+    <div class="cart-trigger" id="cartBtnTop">
         <i class="fas fa-shopping-bag" style="font-size:26px; color:var(--p)"></i>
         <span id="badge">0</span>
     </div>
@@ -49,27 +48,27 @@
 <div class="container">
     <div class="card">
         <div class="img-box">
-            <button class="slide-btn prev" onclick="slide('p1', '1.PNG')"><i class="fas fa-chevron-left"></i></button>
+            <button class="slide-btn prev" data-target="p1" data-src="1.PNG"><i class="fas fa-chevron-left"></i></button>
             <img src="1.PNG" id="p1">
-            <button class="slide-btn next" onclick="slide('p1', '1-1.PNG')"><i class="fas fa-chevron-right"></i></button>
+            <button class="slide-btn next" data-target="p1" data-src="1-1.PNG"><i class="fas fa-chevron-right"></i></button>
         </div>
         <div class="details">
             <h3>قربة حرارية كهربائية متطورة</h3>
             <span class="price">850 ج.م</span>
-            <button class="btn" onclick="addToCart('قربة حرارية', 850)">أضف للسلة</button>
+            <button class="btn buy-btn" data-name="قربة حرارية" data-price="850">أضف للسلة</button>
         </div>
     </div>
 
     <div class="card">
         <div class="img-box">
-            <button class="slide-btn prev" onclick="slide('p2', '2.PNG')"><i class="fas fa-chevron-left"></i></button>
+            <button class="slide-btn prev" data-target="p2" data-src="2.PNG"><i class="fas fa-chevron-left"></i></button>
             <img src="2.PNG" id="p2">
-            <button class="slide-btn next" onclick="slide('p2', '2-2.PNG')"><i class="fas fa-chevron-right"></i></button>
+            <button class="slide-btn next" data-target="p2" data-src="2-2.PNG"><i class="fas fa-chevron-right"></i></button>
         </div>
         <div class="details">
             <h3>جهاز ضغط Omron M1 الأصلي</h3>
             <span class="price">2100 ج.م</span>
-            <button class="btn" onclick="addToCart('جهاز ضغط Omron', 2100)">أضف للسلة</button>
+            <button class="btn buy-btn" data-name="جهاز ضغط Omron" data-price="2100">أضف للسلة</button>
         </div>
     </div>
 
@@ -78,7 +77,7 @@
         <div class="details">
             <h3>جهاز مساج Thrive 717</h3>
             <span class="price">1100 ج.م</span>
-            <button class="btn" onclick="addToCart('مساج Thrive', 1100)">أضف للسلة</button>
+            <button class="btn buy-btn" data-name="مساج Thrive" data-price="1100">أضف للسلة</button>
         </div>
     </div>
 
@@ -87,13 +86,13 @@
         <div class="details">
             <h3>شنطة مساج MDHL المتكاملة</h3>
             <span class="price">3200 ج.م</span>
-            <button class="btn" onclick="addToCart('مساج MDHL', 3200)">أضف للسلة</button>
+            <button class="btn buy-btn" data-name="مساج MDHL" data-price="3200">أضف للسلة</button>
         </div>
     </div>
 </div>
 
-<div id="cart-ui" onclick="toggleCart()">
-    <div class="cart-content" onclick="event.stopPropagation()">
+<div id="cart-ui">
+    <div class="cart-content">
         <h3 style="text-align:center; color:var(--p); margin-top:0">سلة المشتريات</h3>
         <div id="cart-items"></div>
         <div style="margin-top:20px; padding:15px; background:#f4f7f6; border-radius:12px;">
@@ -102,52 +101,62 @@
                 <span><span id="total">0</span> ج.م</span>
             </div>
         </div>
-        <button onclick="checkout()" style="width:100%; background:var(--s); color:#fff; border:none; padding:16px; border-radius:12px; font-weight:bold; margin-top:10px; font-size:16px; cursor:pointer;">إرسال الطلب عبر واتساب</button>
-        <button onclick="toggleCart()" style="width:100%; background:#eee; color:#333; border:none; padding:12px; border-radius:12px; margin-top:10px; font-weight:bold; cursor:pointer;">إغلاق السلة</button>
+        <button id="sendWhatsapp" style="width:100%; background:var(--s); color:#fff; border:none; padding:16px; border-radius:12px; font-weight:bold; margin-top:10px; font-size:16px; cursor:pointer;">إرسال الطلب (واتساب)</button>
+        <button id="closeCart" style="width:100%; background:#eee; color:#333; border:none; padding:12px; border-radius:12px; margin-top:10px; font-weight:bold; cursor:pointer;">إغلاق</button>
     </div>
 </div>
 
 <div class="nav">
-    <div class="nav-link active" onclick="location.reload()"><i class="fas fa-home"></i>الرئيسية</div>
+    <div class="nav-link active" onclick="window.scrollTo(0,0)"><i class="fas fa-home"></i>الرئيسية</div>
     <a href="https://t.me/emmedical7" target="_blank" class="nav-link"><i class="fab fa-telegram"></i>المجتمع</a>
-    <button class="nav-link" onclick="toggleCart()"><i class="fas fa-shopping-basket"></i>سلتك</button>
+    <button class="nav-link" id="cartBtnBottom"><i class="fas fa-shopping-basket"></i>سلتك</button>
 </div>
 
 <script>
+document.addEventListener('DOMContentLoaded', function() {
     let cart = [];
-    function slide(id, src) { document.getElementById(id).src = src; }
-    
-    function addToCart(name, price) {
-        cart.push({name, price});
-        document.getElementById('badge').innerText = cart.length;
-        alert("تمت إضافة " + name + " بنجاح! ✅");
-    }
-
+    document.querySelectorAll('.slide-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const targetId = this.getAttribute('data-target');
+            const newSrc = this.getAttribute('data-src');
+            document.getElementById(targetId).src = newSrc;
+        });
+    });
+    document.querySelectorAll('.buy-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const name = this.getAttribute('data-name');
+            const price = parseInt(this.getAttribute('data-price'));
+            cart.push({name, price});
+            document.getElementById('badge').innerText = cart.length;
+            alert("تمت إضافة " + name + " ✅");
+        });
+    });
+    const cartUI = document.getElementById('cart-ui');
     function toggleCart() {
-        const ui = document.getElementById('cart-ui');
-        if (ui.style.display === 'block') {
-            ui.style.display = 'none';
-        } else {
-            ui.style.display = 'block';
-            const container = document.getElementById('cart-items');
-            const totalEl = document.getElementById('total');
-            let total = 0;
-            container.innerHTML = cart.length === 0 ? '<p style="text-align:center; color:#888;">السلة فارغة</p>' : '';
-            cart.forEach(item => {
-                total += item.price;
-                container.innerHTML += `<div class="cart-item"><span>${item.name}</span><span>${item.price} ج.م</span></div>`;
-            });
-            totalEl.innerText = total;
-        }
+        if (cartUI.style.display === 'block') { cartUI.style.display = 'none'; } 
+        else { renderCart(); cartUI.style.display = 'block'; }
     }
-
-    function checkout() {
-        if (cart.length === 0) { alert("السلة فارغة!"); return; }
-        let msg = "طلب جديد من متجر إيم ميديكال:%0A";
+    document.getElementById('cartBtnTop').onclick = toggleCart;
+    document.getElementById('cartBtnBottom').onclick = toggleCart;
+    document.getElementById('closeCart').onclick = toggleCart;
+    function renderCart() {
+        const container = document.getElementById('cart-items');
+        let total = 0;
+        container.innerHTML = cart.length === 0 ? '<p style="text-align:center; color:#888;">السلة فارغة</p>' : '';
+        cart.forEach(item => {
+            total += item.price;
+            container.innerHTML += `<div class="cart-item"><span>${item.name}</span><span>${item.price} ج.م</span></div>`;
+        });
+        document.getElementById('total').innerText = total;
+    }
+    document.getElementById('sendWhatsapp').onclick = function() {
+        if (cart.length === 0) return alert("السلة فارغة!");
+        let msg = "طلب جديد من Em Medical:%0A";
         cart.forEach(i => msg += `- ${i.name} (${i.price} ج.م)%0A`);
-        msg += "%0Aالإجمالي: " + document.getElementById('total').innerText + " ج.م";
+        msg += "%0A💰 الإجمالي: " + document.getElementById('total').innerText + " ج.م";
         window.open("https://wa.me/201153951440?text=" + msg, "_blank");
-    }
+    };
+});
 </script>
 </body>
 </html>
