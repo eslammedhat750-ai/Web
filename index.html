@@ -29,6 +29,7 @@
         .details h3 { font-size: 13px; margin: 0 0 8px; color: #333; height: 35px; overflow: hidden; font-weight: bold; }
         .price { font-weight: bold; color: var(--p); font-size: 17px; display: block; margin-bottom: 10px; }
 
+        /* تأثير التوهج والضغط */
         .btn { background: var(--p); color: #fff; border: none; width: 100%; padding: 12px; border-radius: 10px; font-weight: bold; cursor: pointer; transition: all 0.2s ease; }
         .btn:active { transform: scale(0.92); background: #004a99; box-shadow: 0 0 20px rgba(0,98,204,0.6); }
         
@@ -136,6 +137,7 @@
 <script>
     let cart = [];
 
+    // دالة التقليب
     function doSlide(imgId, mainImg, altImg) {
         const img = document.getElementById(imgId);
         const current = img.getAttribute('data-current');
