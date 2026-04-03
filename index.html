@@ -3,166 +3,211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Em Medical | إيم ميديكال</title>
+    <title>متجر إيم ميديكال | Em Medical</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --p: #0062cc; --s: #28a745; --bg: #f8f9fa; }
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; background: var(--bg); padding-bottom: 80px; }
+        :root { --p: #0062cc; --s: #28a745; --bg: #f4f7f6; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; background: var(--bg); padding-bottom: 100px; }
         
-        header { background: #fff; padding: 15px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
-        .logo img { height: 40px; }
-        .cart-trigger { position: relative; cursor: pointer; transition: 0.3s; }
-        .cart-bounce { transform: scale(1.3) rotate(10deg); }
-        #badge { position: absolute; top: -5px; right: -8px; background: #ff3b30; color: #fff; font-size: 11px; padding: 2px 6px; border-radius: 50%; border: 2px solid #fff; }
+        header { background: #fff; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
+        
+        /* تأثير تنوير السلة */
+        .cart-trigger { position: relative; cursor: pointer; transition: 0.3s; padding: 5px; border-radius: 50%; }
+        .glow-cart { animation: cart-shine 0.6s ease-in-out; }
+        @keyframes cart-shine {
+            0% { box-shadow: 0 0 0px var(--p); transform: scale(1); }
+            50% { box-shadow: 0 0 20px var(--p); transform: scale(1.2); background: rgba(0,98,204,0.1); }
+            100% { box-shadow: 0 0 0px var(--p); transform: scale(1); }
+        }
+        #badge { position: absolute; top: -5px; right: -8px; background: #ff3b30; color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 10px; border: 2px solid #fff; }
 
-        .container { padding: 12px; display: flex; flex-direction: column; gap: 15px; }
-        .card { background: #fff; border-radius: 15px; overflow: hidden; border: 1px solid #eee; display: flex; flex-direction: column; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; }
+        .card { background: #fff; border-radius: 15px; overflow: hidden; display: flex; flex-direction: column; border: 1px solid #eee; }
+        .img-box { width: 100%; height: 140px; display: flex; align-items: center; justify-content: center; padding: 10px; }
+        .img-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
         
-        .img-box { width: 100%; height: 220px; position: relative; background: #fff; display: flex; align-items: center; justify-content: center; padding: 10px; }
-        .img-box img { max-width: 100%; max-height: 100%; object-fit: contain; transition: 0.3s; }
+        .details { padding: 10px; flex: 1; }
+        .details h3 { font-size: 12px; margin: 0 0 8px; height: 34px; overflow: hidden; color: #333; text-align: center; }
         
-        .slide-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: #fff; border: none; width: 35px; height: 35px; border-radius: 50%; z-index: 10; cursor: pointer; }
-        .prev { left: 10px; } .next { right: 10px; }
+        .desc-box { background: #f8f9fa; padding: 8px; border-radius: 10px; border-right: 3px solid var(--p); margin-bottom: 8px; min-height: 80px; }
+        .desc-line { font-size: 9px; color: #666; display: block; line-height: 1.4; margin-bottom: 2px; }
+        .desc-label { font-weight: bold; color: var(--p); }
 
-        .details { padding: 15px; text-align: right; }
-        .details h3 { margin: 0 0 8px; font-size: 17px; color: var(--p); }
-        .desc { font-size: 13px; color: #666; line-height: 1.5; margin-bottom: 12px; }
-        .price { font-size: 19px; font-weight: bold; color: #333; display: block; margin-bottom: 12px; }
-
-        .btn { background: var(--p); color: #fff; border: none; width: 100%; padding: 14px; border-radius: 10px; font-weight: bold; cursor: pointer; transition: 0.2s; }
-        .btn:active { transform: scale(0.94); background: #004a99; box-shadow: 0 0 15px rgba(0,98,204,0.5); }
+        .price { font-weight: bold; color: var(--p); font-size: 15px; display: block; text-align: center; margin-bottom: 8px; }
         
-        #toast { position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.8); color: #fff; padding: 10px 20px; border-radius: 50px; font-size: 14px; opacity: 0; transition: 0.4s; z-index: 10000; pointer-events: none; }
+        /* تأثير تنوير الزرار عند الضغط */
+        .btn { background: var(--p); color: #fff; border: none; width: 100%; padding: 12px; border-radius: 10px; font-weight: bold; font-size: 12px; cursor: pointer; transition: 0.2s; }
+        .btn:active { 
+            transform: scale(0.95); 
+            box-shadow: 0 0 20px var(--p); 
+            background: #004a99;
+        }
+        .btn.added { background: var(--s) !important; }
 
-        #cart-ui { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 9999; }
-        .cart-content { background: #fff; position: absolute; bottom: 0; width: 100%; border-radius: 20px 20px 0 0; padding: 20px; max-height: 80vh; overflow-y: auto; }
+        #cart-ui { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 2000; }
+        .cart-content { background: #fff; width: 100%; position: absolute; bottom: 0; border-radius: 20px 20px 0 0; padding: 20px; animation: slideUp 0.3s ease-out; }
+        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
         
-        .nav { position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 10px; border-top: 1px solid #eee; z-index: 1000; }
-        .nav-link { color: #888; font-size: 11px; text-decoration: none; text-align: center; background: none; border: none; flex: 1; }
-        .nav-link i { font-size: 20px; display: block; margin-bottom: 2px; }
+        .item { display: flex; justify-content: space-between; align-items: center; padding: 12px; border-bottom: 1px solid #eee; }
+        .nav { position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 12px; border-top: 1px solid #eee; z-index: 1000; }
+        .nav-link { text-align: center; color: #888; font-size: 10px; text-decoration: none; flex: 1; }
+        .nav-link i { font-size: 20px; display: block; margin-bottom: 4px; }
+        .nav-link.active { color: var(--p); }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="logo"><img src="logo.png"></div>
-    <div class="cart-trigger" id="cartBtnTop" onclick="toggleCart()">
+    <div class="logo"><img src="logo.png" style="height:30px" onerror="this.src='https://via.placeholder.com/100x30?text=Em+Medical'"></div>
+    <div class="cart-trigger" id="cartBtn" onclick="toggleCart()">
         <i class="fas fa-shopping-bag" style="font-size:24px; color:var(--p)"></i>
         <span id="badge">0</span>
     </div>
 </header>
 
-<div id="toast"></div>
-
 <div class="container">
     <div class="card">
-        <div class="img-box">
-            <button class="slide-btn prev" onclick="slide('p1','1.PNG','1-1.PNG')"><i class="fas fa-chevron-left"></i></button>
-            <img src="1.PNG" id="p1" data-s="1">
-            <button class="slide-btn next" onclick="slide('p1','1.PNG','1-1.PNG')"><i class="fas fa-chevron-right"></i></button>
-        </div>
+        <div class="img-box"><img src="1.PNG"></div>
         <div class="details">
             <h3>قربة حرارية كهربائية متطورة</h3>
-            <p class="desc">قربة مخملية ناعمة توفر تدفئة سريعة وآمنة لتخفيف آلام الظهر والمفاصل بفاعلية.</p>
+            <div class="desc-box">
+                <span class="desc-line"><span class="desc-label">المواصفات:</span> تسخين سريع، أمان كامل.</span>
+                <span class="desc-line"><span class="desc-label">العلبة:</span> القربة + كابل الشحن الكهربائي.</span>
+            </div>
             <span class="price">850 ج.م</span>
-            <button class="btn" onclick="add('قربة حرارية', 850)">أضف للسلة</button>
+            <button class="btn" onclick="addToCart(this, 'قربة حرارية', 850)">أضف للسلة</button>
         </div>
     </div>
     <div class="card">
-        <div class="img-box">
-            <button class="slide-btn prev" onclick="slide('p2','2.PNG','2-2.PNG')"><i class="fas fa-chevron-left"></i></button>
-            <img src="2.PNG" id="p2" data-s="1">
-            <button class="slide-btn next" onclick="slide('p2','2.PNG','2-2.PNG')"><i class="fas fa-chevron-right"></i></button>
-        </div>
+        <div class="img-box"><img src="2.PNG"></div>
         <div class="details">
             <h3>جهاز ضغط Omron M1 الأصلي</h3>
-            <p class="desc">جهاز قياس ضغط الدم والنبض بدقة يابانية، شاشة واضحة وسهل الاستخدام لكبار السن.</p>
+            <div class="desc-box">
+                <span class="desc-line"><span class="desc-label">المواصفات:</span> دقة يابانية، قياس النبض.</span>
+                <span class="desc-line"><span class="desc-label">العلبة:</span> الجهاز + الكفة + البطاريات.</span>
+            </div>
             <span class="price">2100 ج.م</span>
-            <button class="btn" onclick="add('جهاز ضغط Omron', 2100)">أضف للسلة</button>
+            <button class="btn" onclick="addToCart(this, 'جهاز ضغط Omron', 2100)">أضف للسلة</button>
         </div>
     </div>
     <div class="card">
         <div class="img-box"><img src="3.PNG"></div>
         <div class="details">
-            <h3>جهاز مساج Thrive 717</h3>
-            <p class="desc">المساج الياباني الاحترافي لتدليك العضلات العميقة وتخفيف التوتر والإجهاد اليومي.</p>
+            <h3>جهاز مساج Thrive 717 الاحترافي</h3>
+            <div class="desc-box">
+                <span class="desc-line"><span class="desc-label">المواصفات:</span> موتور ياباني جبار، مساج عميق.</span>
+                <span class="desc-line"><span class="desc-label">العلبة:</span> الجهاز + 3 رؤوس تدليك.</span>
+            </div>
             <span class="price">1100 ج.م</span>
-            <button class="btn" onclick="add('مساج Thrive', 1100)">أضف للسلة</button>
+            <button class="btn" onclick="addToCart(this, 'مساج Thrive', 1100)">أضف للسلة</button>
         </div>
     </div>
     <div class="card">
         <div class="img-box"><img src="4.PNG"></div>
         <div class="details">
             <h3>شنطة مساج MDHL المتكاملة</h3>
-            <p class="desc">جهاز مساج Gun بـ 6 سرعات ورؤوس متعددة، مثالي للرياضيين ولعلاج التشنجات العضلية.</p>
+            <div class="desc-box">
+                <span class="desc-line"><span class="desc-label">المواصفات:</span> 6 سرعات، بطارية ليثيوم.</span>
+                <span class="desc-line"><span class="desc-label">العلبة:</span> الجهاز + 4 رؤوس + شنطة.</span>
+            </div>
             <span class="price">3200 ج.م</span>
-            <button class="btn" onclick="add('مساج MDHL', 3200)">أضف للسلة</button>
+            <button class="btn" onclick="addToCart(this, 'مساج MDHL', 3200)">أضف للسلة</button>
         </div>
     </div>
     <div class="card">
         <div class="img-box"><img src="5.PNG"></div>
         <div class="details">
-            <h3>ميزان ديجيتال زجاجي</h3>
-            <p class="desc">ميزان لقياس الوزن بدقة متناهية، تصميم زجاجي قوي وشاشة LCD ديجيتال واضحة.</p>
-            <span class="price">450 ج.م</span>
-            <button class="btn" onclick="add('ميزان ديجيتال', 450)">أضف للسلة</button>
+            <h3>جهاز مساج وتدليك الوجه</h3>
+            <div class="desc-box">
+                <span class="desc-line"><span class="desc-label">المواصفات:</span> شد البشرة، اهتزاز مريح.</span>
+                <span class="desc-line"><span class="desc-label">العلبة:</span> جهاز المساج + قاعدة الشحن.</span>
+            </div>
+            <span class="price">750 ج.م</span>
+            <button class="btn" onclick="addToCart(this, 'مساج وجه', 750)">أضف للسلة</button>
         </div>
     </div>
 </div>
 
 <div id="cart-ui" onclick="toggleCart()">
     <div class="cart-content" onclick="event.stopPropagation()">
-        <h3 style="text-align:center; color:var(--p)">مشترياتك</h3>
-        <div id="items-list"></div>
-        <div style="display:flex; justify-content:space-between; font-weight:bold; padding:15px 0; border-top:2px solid #eee">
-            <span>الإجمالي:</span><span id="total-val">0</span> ج.م
+        <h3 style="text-align:center; color:var(--p); margin-top:0">سلة المشتريات</h3>
+        <div id="cart-items"></div>
+        <div style="margin-top:20px; padding:15px; background:#f4f7f6; border-radius:12px;">
+            <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:18px;">
+                <span>الإجمالي:</span>
+                <span><span id="total">0</span> ج.م</span>
+            </div>
         </div>
-        <button class="btn" style="background:var(--s)" onclick="send()">تأكيد عبر واتساب</button>
-        <button class="btn" style="background:#eee; color:#333; margin-top:10px" onclick="toggleCart()">إغلاق</button>
+        <button onclick="checkout()" style="width:100%; background:var(--s); color:#fff; border:none; padding:16px; border-radius:12px; font-weight:bold; margin-top:10px; font-size:16px">إتمام الطلب (واتساب)</button>
+        <button onclick="toggleCart()" style="width:100%; background:none; border:none; color:#999; margin-top:10px">إغلاق</button>
     </div>
 </div>
 
 <div class="nav">
-    <button class="nav-link" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-home"></i>الرئيسية</button>
-    <a href="https://t.me/emmedical7" target="_blank" class="nav-link"><i class="fab fa-telegram"></i>تليجرام</a>
-    <button class="nav-link" onclick="toggleCart()"><i class="fas fa-shopping-basket"></i>السلة</button>
+    <a href="#" class="nav-link active"><i class="fas fa-home"></i>الرئيسية</a>
+    <a href="https://t.me/emmedical7" class="nav-link"><i class="fab fa-telegram"></i>المجتمع</a>
+    <a href="javascript:void(0)" class="nav-link" onclick="toggleCart()"><i class="fas fa-shopping-basket"></i>سلتك</a>
+    <a href="https://wa.me/201153951440" class="nav-link"><i class="fas fa-headset"></i>الدعم</a>
 </div>
 
 <script>
     let cart = [];
-    function slide(id, m, a) {
-        const i = document.getElementById(id);
-        const s = i.getAttribute('data-s');
-        i.src = (s === '1') ? a : m;
-        i.setAttribute('data-s', (s === '1') ? '2' : '1');
-    }
-    function add(n, p) {
-        cart.push({n, p});
+    
+    function addToCart(btn, name, price) {
+        cart.push({name, price, id: Date.now()});
         document.getElementById('badge').innerText = cart.length;
-        const icon = document.getElementById('cartBtnTop');
-        icon.classList.add('cart-bounce'); setTimeout(() => icon.classList.remove('cart-bounce'), 300);
-        const t = document.getElementById('toast');
-        t.innerText = "تمت إضافة " + n + " ✅"; t.style.opacity = "1";
-        setTimeout(() => t.style.opacity = "0", 1500);
+        
+        // تنوير السلة
+        const cb = document.getElementById('cartBtn');
+        cb.classList.add('glow-cart');
+        setTimeout(() => cb.classList.remove('glow-cart'), 600);
+
+        // تغيير شكل الزرار
+        const oldText = btn.innerText;
+        btn.innerHTML = "تمت الإضافة ✅";
+        btn.classList.add('added');
+        
+        setTimeout(() => {
+            btn.innerText = oldText;
+            btn.classList.remove('added');
+        }, 1000);
     }
+
     function toggleCart() {
-        const u = document.getElementById('cart-ui');
-        if(u.style.display === 'block') u.style.display = 'none';
-        else {
-            let h = "", t = 0;
-            cart.forEach(i => { h += `<div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #eee"><span>${i.n}</span><span>${i.p} ج.م</span></div>`; t += i.p; });
-            document.getElementById('items-list').innerHTML = h || '<p style="text-align:center; color:#999">السلة فارغة</p>';
-            document.getElementById('total-val').innerText = t;
-            u.style.display = 'block';
-        }
+        const ui = document.getElementById('cart-ui');
+        ui.style.display = ui.style.display === "block" ? "none" : "block";
+        renderCart();
     }
-    function send() {
+
+    function renderCart() {
+        const container = document.getElementById('cart-items');
+        let total = 0;
+        container.innerHTML = cart.length === 0 ? "<p style='text-align:center; color:#999'>سلتك فارغة حالياً</p>" : "";
+        
+        cart.forEach(item => {
+            total += item.price;
+            container.innerHTML += `
+                <div class="item">
+                    <span>${item.name}</span>
+                    <span style="font-weight:bold">${item.price} ج.م <i class="fas fa-trash-alt" style="color:#ff3b30; margin-right:10px" onclick="removeItem(${item.id})"></i></span>
+                </div>`;
+        });
+        document.getElementById('total').innerText = total;
+    }
+
+    function removeItem(id) {
+        cart = cart.filter(i => i.id !== id);
+        document.getElementById('badge').innerText = cart.length;
+        renderCart();
+    }
+
+    function checkout() {
         if(cart.length === 0) return;
-        let m = "طلب جديد من Em Medical:%0A";
-        cart.forEach(i => m += `- ${i.n} (${i.p} ج.م)%0A`);
-        m += "%0Aالإجمالي: " + document.getElementById('total-val').innerText + " ج.م";
-        window.open("https://wa.me/201153951440?text=" + m);
+        let msg = "طلب جديد من Em Medical:%0A";
+        cart.forEach(i => msg += `• ${i.name} (${i.price} ج.م)%0A`);
+        msg += "%0A💰 الإجمالي: " + document.getElementById('total').innerText + " ج.م";
+        window.open("https://wa.me/201153951440?text=" + msg);
     }
 </script>
 </body>
