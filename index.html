@@ -1,4 +1,4 @@
-DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -10,95 +10,139 @@ DOCTYPE html>
         body { font-family: sans-serif; margin: 0; background: var(--bg); padding-bottom: 80px; overflow-x: hidden; }
         header { background: #fff; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
         .cart-trigger { position: relative; cursor: pointer; }
-        #badge { position: absolute; top: -5px; right: -8px; background: red; color: #fff; font-size: 10px; padding: 2px 5px; border-radius: 10px; }
+        #badge { position: absolute; top: -5px; right: -8px; background: red; color: #fff; font-size: 10px; padding: 2px 5px; border-radius: 10px; font-weight: bold; }
         .container { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 8px; }
-        .card { background: #fff; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; border: 1px solid #eee; }
-        .slider { position: relative; height: 150px; overflow: hidden; touch-action: pan-y; }
-        .slides { display: flex; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); width: 100%; height: 100%; }
-        .slides img { width: 100%; height: 100%; object-fit: contain; flex-shrink: 0; pointer-events: none; }
-        .details { padding: 8px; text-align: center; flex: 1; }
-        .details h3 { font-size: 11px; margin: 5px 0; height: 30px; color: #333; }
+        .card { background: #fff; border-radius: 12px; overflow: hidden; border: 1px solid #eee; display: flex; flex-direction: column; }
+        .slider { position: relative; height: 150px; overflow: hidden; }
+        .slides { display: flex; transition: 0.4s; width: 100%; height: 100%; }
+        .slides img { width: 100%; height: 100%; object-fit: contain; flex-shrink: 0; }
+        .details { padding: 8px; text-align: center; flex: 1; display: flex; flex-direction: column; }
+        .details h3 { font-size: 11px; margin: 5px 0; height: 30px; color: #333; overflow: hidden; }
         .price { color: var(--p); font-weight: bold; display: block; margin-bottom: 8px; font-size: 14px; }
-        .btn { background: var(--p); color: #fff; border: none; width: 100%; padding: 10px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 12px; }
+        .btn { background: var(--p); color: #fff; border: none; width: 100%; padding: 12px 5px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 12px; margin-top: auto; transition: 0.3s; }
         #cart-ui { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 200; }
-        .cart-content { background: #fff; width: 100%; position: absolute; bottom: 0; border-radius: 20px 20px 0 0; padding: 20px; }
-        .cart-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee; align-items: center; }
-        .nav { position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 10px; border-top: 1px solid #eee; }
+        .cart-content { background: #fff; width: 100%; position: absolute; bottom: 0; border-radius: 20px 20px 0 0; padding: 20px; max-height: 70vh; overflow-y: auto; }
+        .cart-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #eee; align-items: center; }
+        .nav { position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 10px; border-top: 1px solid #eee; z-index: 100; }
+        .nav a { color: #999; text-decoration: none; font-size: 20px; }
     </style>
 </head>
 <body>
+
 <header>
     <img src="logo.png" style="height:30px;">
-    <div class="cart-trigger" onclick="showCart()"><i class="fas fa-shopping-cart" style="font-size:20px;color:var(--p)"></i><span id="badge">0</span></div>
+    <div class="cart-trigger" onclick="showCart()">
+        <i class="fas fa-shopping-cart" style="font-size:22px;color:var(--p)"></i>
+        <span id="badge">0</span>
+    </div>
 </header>
+
 <div class="container">
     <div class="card">
         <div class="slider"><div class="slides"><img src="6.PNG"></div></div>
-        <div class="details"><h3>جهاز STAR للتنفس</h3><span class="price">1100 ج.م</span><button class="btn" onclick="add('نيبولايزر STAR',1100)">أضف للسلة</button></div>
+        <div class="details"><h3>جهاز STAR للتنفس</h3><span class="price">1100 ج.م</span><button class="btn" onclick="addItem(this,'نيبولايزر STAR',1100)">أضف للسلة</button></div>
     </div>
     <div class="card">
-        <div class="slider" ontouchstart="start(event)" ontouchend="end(event, this)"><div class="slides auto-v"><img src="2.PNG"><img src="2-2.PNG"></div></div>
-        <div class="details"><h3>شاشة القياس الرقمية</h3><span class="price">2100 ج.م</span><button class="btn" onclick="add('شاشة قياس',2100)">أضف للسلة</button></div>
+        <div class="slider" onclick="slide(this)"><div class="slides auto-v"><img src="2.PNG"><img src="2-2.PNG"></div></div>
+        <div class="details"><h3>شاشة القياس الرقمية</h3><span class="price">2100 ج.م</span><button class="btn" onclick="addItem(this,'شاشة قياس',2100)">أضف للسلة</button></div>
     </div>
     <div class="card">
         <div class="slider"><div class="slides"><img src="1.PNG"></div></div>
-        <div class="details"><h3>وسادة الاسترخاء</h3><span class="price">850 ج.م</span><button class="btn" onclick="add('وسادة الاسترخاء',850)">أضف للسلة</button></div>
+        <div class="details"><h3>وسادة الاسترخاء</h3><span class="price">850 ج.م</span><button class="btn" onclick="addItem(this,'وسادة الاسترخاء',850)">أضف للسلة</button></div>
     </div>
     <div class="card">
-        <div class="slider" ontouchstart="start(event)" ontouchend="end(event, this)"><div class="slides auto-v"><img src="3.PNG"><img src="3-2.PNG"></div></div>
-        <div class="details"><h3>جهاز Thrive المنزلي</h3><span class="price">1100 ج.م</span><button class="btn" onclick="add('جهاز Thrive',1100)">أضف للسلة</button></div>
+        <div class="slider" onclick="slide(this)"><div class="slides auto-v"><img src="3.PNG"><img src="3-2.PNG"></div></div>
+        <div class="details"><h3>جهاز Thrive المنزلي</h3><span class="price">1100 ج.م</span><button class="btn" onclick="addItem(this,'جهاز Thrive',1100)">أضف للسلة</button></div>
     </div>
 </div>
+
 <div id="cart-ui" onclick="showCart()">
     <div class="cart-content" onclick="event.stopPropagation()">
-        <h4 style="text-align:center;margin:0 0 15px">سلتك</h4>
+        <h4 style="text-align:center;margin:0 0 15px; color:var(--p)">سلتك الحالية</h4>
         <div id="list"></div>
-        <hr><div style="display:flex;justify-content:space-between;font-weight:bold"><span>الإجمالي:</span><span><span id="total">0</span> ج.م</span></div>
-        <button onclick="goWA()" style="width:100%;background:var(--s);color:#fff;border:none;padding:15px;border-radius:10px;margin-top:10px;font-weight:bold">تأكيد واتساب</button>
+        <div style="margin-top:15px; padding-top:10px; border-top:2px solid #eee; display:flex; justify-content:space-between; font-weight:bold; font-size:16px;">
+            <span>الإجمالي:</span><span><span id="total">0</span> ج.م</span>
+        </div>
+        <button onclick="goWA()" style="width:100%; background:var(--s); color:#fff; border:none; padding:15px; border-radius:10px; margin-top:15px; font-weight:bold; font-size:16px; cursor:pointer;">تأكيد عبر واتساب</button>
     </div>
 </div>
-<div class="nav"><a href="#" style="color:var(--p)"><i class="fas fa-home"></i></a><a href="https://t.me/emmedical7" style="color:#999"><i class="fab fa-telegram"></i></a></div>
+
+<div class="nav">
+    <a href="#" style="color:var(--p)"><i class="fas fa-home"></i></a>
+    <a href="https://t.me/emmedical7" target="_blank"><i class="fab fa-telegram"></i></a>
+    <a href="javascript:void(0)" onclick="showCart()"><i class="fas fa-shopping-basket"></i></a>
+</div>
+
 <script>
-    let cart = [], xS = 0;
-    // وظيفة اللمس (Swipe)
-    function start(e) { xS = e.touches[0].clientX; }
-    function end(e, el) {
-        let xE = e.changedTouches[0].clientX;
-        if (Math.abs(xS - xE) > 30) { 
-            const s = el.querySelector('.slides');
-            s.style.transform = s.style.transform === 'translateX(100%)' ? 'translateX(0)' : 'translateX(100%)';
-        }
+    let cart = [];
+
+    // وظيفة السلايدر
+    function slide(el) {
+        const s = el.querySelector('.slides');
+        s.style.transform = (s.style.transform === 'translateX(100%)') ? 'translateX(0)' : 'translateX(100%)';
     }
-    // الحركة التلقائية
+
+    // تقليب تلقائي كل 4 ثواني
     setInterval(() => {
-        document.querySelectorAll('.auto-v').forEach(s => {
-            s.style.transform = s.style.transform === 'translateX(100%)' ? 'translateX(0)' : 'translateX(100%)';
-        });
+        document.querySelectorAll('.auto-v').forEach(s => slide(s.parentElement));
     }, 4000);
 
-    function add(n, p) { cart.push({n, p}); update(); }
-    function update() { document.getElementById('badge').innerText = cart.length; }
+    // إضافة للسلة (شغالة 100%)
+    function addItem(btn, n, p) {
+        cart.push({n, p});
+        updateBadge();
+        btn.innerHTML = "تم ✅";
+        btn.style.background = "var(--s)";
+        setTimeout(() => {
+            btn.innerHTML = "أضف للسلة";
+            btn.style.background = "var(--p)";
+        }, 800);
+    }
+
+    function updateBadge() {
+        document.getElementById('badge').innerText = cart.length;
+    }
+
     function showCart() {
         const ui = document.getElementById('cart-ui');
-        ui.style.display = ui.style.display === 'block' ? 'none' : 'block';
-        if(ui.style.display === 'block') render();
+        ui.style.display = (ui.style.display === 'block') ? 'none' : 'block';
+        if(ui.style.display === 'block') renderCart();
     }
-    function render() {
-        let h = "", t = 0;
-        cart.forEach((i, x) => {
-            h += `<div class="cart-item"><span>${i.n}</span><button onclick="del(${x})" style="color:red;border:none;background:none"><i class="fas fa-trash"></i></button></div>`;
-            t += i.p;
-        });
-        document.getElementById('list').innerHTML = h || "السلة فارغة";
-        document.getElementById('total').innerText = t;
+
+    function renderCart() {
+        let html = "", total = 0;
+        if(cart.length === 0) {
+            html = "<p style='text-align:center; color:#999;'>السلة فارغة</p>";
+        } else {
+            cart.forEach((item, index) => {
+                html += `<div class="cart-item">
+                    <div style="flex:1;">
+                        <span style="font-size:13px; font-weight:bold;">${item.n}</span>
+                        <div style="color:var(--p); font-size:12px;">${item.p} ج.م</div>
+                    </div>
+                    <button onclick="deleteItem(${index})" style="color:red; border:none; background:none; font-size:18px; cursor:pointer;"><i class="fas fa-trash-alt"></i></button>
+                </div>`;
+                total += item.p;
+            });
+        }
+        document.getElementById('list').innerHTML = html;
+        document.getElementById('total').innerText = total;
     }
-    function del(x) { cart.splice(x, 1); update(); render(); }
+
+    function deleteItem(index) {
+        cart.splice(index, 1);
+        updateBadge();
+        renderCart();
+    }
+
     function goWA() {
-        if(!cart.length) return;
-        let m = "طلب جديد:%0A";
-        cart.forEach(i => m += `- ${i.n} (${i.p} ج.م)%0A`);
-        window.open(`https://wa.me/201153951440?text=${m}%0Aالإجمالي: ${document.getElementById('total').innerText} ج.م`);
+        if(cart.length === 0) { alert("السلة فارغة!"); return; }
+        let msg = "طلب جديد من Em Medical:%0A--------------------------%0A";
+        cart.forEach((item, i) => msg += `${i+1}- ${item.n} (${item.p} ج.م)%0A`);
+        msg += "--------------------------%0A💰 الإجمالي: " + document.getElementById('total').innerText + " ج.م";
+        window.open(`https://wa.me/201153951440?text=${msg}`);
     }
 </script>
+
 </body>
 </html>
