@@ -9,34 +9,24 @@
         :root { --p: #0062cc; --s: #28a745; --bg: #f4f7f6; --blue-light: rgba(0, 98, 204, 0.08); }
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background: var(--bg); padding-bottom: 90px; text-align: right; direction: rtl; }
-        
         header { background: #fff; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
-        
         .container { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 12px; }
         .card { background: #fff; border-radius: 15px; overflow: hidden; border: 1px solid #eee; display: flex; flex-direction: column; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        
         .slider { position: relative; height: 160px; overflow: hidden; background: #fff; }
         .slides { display: flex; transition: 0.5s ease-in-out; width: 100%; height: 100%; }
         .slides img { width: 100%; height: 100%; object-fit: contain; flex-shrink: 0; padding: 10px; }
-        
         .details { padding: 12px; text-align: center; flex: 1; display: flex; flex-direction: column; }
         .details h3 { font-size: 13px; margin: 0 0 8px; color: #222; font-weight: 800; }
-        
         .description { 
             font-size: 10px; color: #444; margin-bottom: 10px; line-height: 1.5; 
             background: var(--blue-light); padding: 8px; border-radius: 8px;
             border-right: 3px solid var(--p); text-align: justify;
         }
-
         .price { color: var(--p); font-weight: 900; display: block; margin-bottom: 10px; font-size: 16px; }
         .btn { background: var(--p); color: #fff; border: none; width: 100%; padding: 12px; border-radius: 12px; font-weight: bold; cursor: pointer; }
-        
-        /* ستايل أقسام السياسات أسفل المتجر */
         .policy-section { background: #fff; margin: 15px 12px; padding: 20px; border-radius: 15px; border: 1px solid #eee; font-size: 12px; line-height: 1.6; color: #555; }
         .policy-section h4 { color: var(--p); margin-top: 0; border-bottom: 1px solid #eee; padding-bottom: 8px; }
-        
         footer { background: #333; color: #ccc; padding: 20px; text-align: center; font-size: 11px; margin-top: 20px; }
-
         #badge { position: absolute; top: -5px; right: -8px; background: red; color: #fff; font-size: 11px; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: bold; border: 2px solid #fff; }
         #cart-ui { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 2000; backdrop-filter: blur(4px); }
         .cart-content { background: #fff; width: 100%; position: absolute; bottom: 0; border-radius: 25px 25px 0 0; padding: 25px; max-height: 80vh; overflow-y: auto; }
@@ -48,7 +38,7 @@
 
 <header>
     <img src="logo.png" style="height:35px;" alt="Em Medical Logo">
-    <div class="cart-trigger" onclick="showCart()" style="position:relative;">
+    <div onclick="showCart()" style="position:relative;">
         <i class="fas fa-shopping-basket" style="font-size:26px; color:var(--p)"></i>
         <span id="badge">0</span>
     </div>
@@ -79,7 +69,7 @@
         <div class="slider"><div class="slides"><img src="6.PNG"></div></div>
         <div class="details">
             <h3>جهاز نيبولايزر STAR المتطور</h3>
-            <div class="description">جهاز استنشاق البخار للعناية بالجهاز التنفسي، يتميز بضغط قوي وضوضاء منخفضة جداً، مناسب جداً للاستخدام المنزلي.</div>
+            <div class="description">جهاز استنشاق البخار للعناية بالجهاز التنفسي، يتميز بضوضاء منخفضة جداً وضغط قوي، مناسب للاستخدام المنزلي.</div>
             <span class="price">1100 ج.م</span>
             <button class="btn" onclick="addItem(this,'STAR Nebulizer',1100)">أضف للسلة</button>
         </div>
@@ -89,26 +79,36 @@
         <div class="slider"><div class="slides auto-v"><img src="2.PNG"><img src="2-2.PNG"></div></div>
         <div class="details">
             <h3>جهاز قياس ضغط الدم الرقمي</h3>
-            <div class="description">شاشة رقمية دقيقة لمراقبة ضغط الدم ونبضات القلب، مزود بذاكرة لحفظ القراءات وسهل الاستخدام بلمسة واحدة.</div>
+            <div class="description">شاشة رقمية دقيقة لمراقبة ضغط الدم ونبضات القلب، مزود بذاكرة وسهل الاستخدام بلمسة واحدة لضمان أدق النتائج.</div>
             <span class="price">2100 ج.م</span>
             <button class="btn" onclick="addItem(this,'Pressure Monitor',2100)">أضف للسلة</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="slider"><div class="slides auto-v"><img src="1.PNG"><img src="1-1.PNG"></div></div>
+        <div class="details">
+            <h3>وسادة التدفئة والاسترخاء</h3>
+            <div class="description">وسادة حرارية علاجية تساعد في تخفيف تشنجات العضلات وآلام المفاصل، مصنوعة من خامات ناعمة وآمنة تماماً.</div>
+            <span class="price">850 ج.م</span>
+            <button class="btn" onclick="addItem(this,'Heating Pad', 850)">أضف للسلة</button>
         </div>
     </div>
 </div>
 
 <div class="policy-section">
     <h4><i class="fas fa-shield-alt"></i> سياسة الخصوصية</h4>
-    <p>في <b>Em Medical</b>، نلتزم بحماية بياناتك الشخصية. نجمع فقط المعلومات الضرورية (الاسم، الهاتف، العنوان) لضمان توصيل طلبك بأمان، ولا يتم مشاركة بياناتك مع أي طرف ثالث وفقاً لمعايير فيسبوك وجوجل.</p>
+    <p>في <b>Em Medical</b>، نلتزم بحماية بياناتك الشخصية. نجمع المعلومات الضرورية فقط لضمان توصيل طلبك بأمان، ولا يتم مشاركتها وفقاً لمعايير فيسبوك وجوجل.</p>
 </div>
 
 <div class="policy-section">
     <h4><i class="fas fa-undo-alt"></i> سياسة الاستبدال والاسترجاع</h4>
-    <p>نوفر لك إمكانية فحص المنتج عند الاستلام. في حالة وجود عيب صناعة، يتم الاستبدال فوراً. لأسباب صحية، لا يتم استرجاع الأجهزة بعد الاستخدام إلا في حال وجود عطل فني واضح.</p>
+    <p>فحص المنتج عند الاستلام متاح. استبدال فوري في حال وجود عيوب صناعة لضمان رضاكم.</p>
 </div>
 
-<footer id="disclaimer">
-    <p><b>إخلاء مسؤولية:</b> جميع المنتجات المعروضة هي أدوات للعناية الشخصية والاسترخاء المنزلي وليست بديلاً عن الاستشارة الطبية المتخصصة.</p>
-    <p>&copy; 2026 جميع الحقوق محفوظة لمتجر Em Medical - القاهرة، مصر</p>
+<footer>
+    <p><b>إخلاء مسؤولية:</b> المنتجات للعناية الشخصية والاسترخاء المنزلي وليست بديلاً عن الاستشارة الطبية.</p>
+    <p>&copy; 2026 Em Medical - القاهرة، مصر</p>
 </footer>
 
 <div id="cart-ui" onclick="showCart()">
@@ -157,7 +157,7 @@
             cart.forEach((item, index) => {
                 html += `<div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #eee;">
                     <div style="text-align:right"><b>${item.n}</b><br><small>${item.p} ج.م</small></div>
-                    <button onclick="deleteItem(${index})" style="color:red; background:none; border:none; cursor:pointer;">حذف</button>
+                    <button onclick="deleteItem(${index})" style="color:red; background:none; border:none;">حذف</button>
                 </div>`;
                 total += item.p;
             });
