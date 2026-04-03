@@ -10,30 +10,29 @@
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { font-family: sans-serif; margin: 0; background: var(--bg); padding-bottom: 90px; text-align: right; direction: rtl; }
         header { background: #fff; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
-        .cart-trigger { position: relative; cursor: pointer; }
-        #badge { position: absolute; top: -5px; right: -8px; background: red; color: #fff; font-size: 11px; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: bold; border: 2px solid #fff; }
         .container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; }
         .card { background: #fff; border-radius: 15px; overflow: hidden; border: 1px solid #eee; display: flex; flex-direction: column; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-        .slider { position: relative; height: 160 :px; overflow: hidden; background: #fff; }
+        .slider { position: relative; height: 160px; overflow: hidden; background: #fff; }
         .slides { display: flex; transition: 0.5s ease-in-out; width: 100%; height: 100%; }
         .slides img { width: 100%; height: 100%; object-fit: contain; flex-shrink: 0; padding: 10px; }
-        .details { padding: 12px; text-align: center; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
-        .details h3 { font-size: 12px; margin: 0 0 8px; height: 34px; overflow: hidden; color: #333; line-height: 1.4; font-weight: bold; }
+        .details { padding: 12px; text-align: center; flex: 1; display: flex; flex-direction: column; }
+        .details h3 { font-size: 13px; margin: 0 0 5px; color: #333; font-weight: bold; }
+        /* ستايل الوصف الجديد */
+        .description { font-size: 10px; color: #666; margin-bottom: 8px; line-height: 1.3; height: 26px; overflow: hidden; }
         .price { color: var(--p); font-weight: 800; display: block; margin-bottom: 10px; font-size: 15px; }
-        .btn { background: var(--p); color: #fff; border: none; width: 100%; padding: 12px; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 13px; }
+        .btn { background: var(--p); color: #fff; border: none; width: 100%; padding: 10px; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 13px; }
         #cart-ui { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 2000; backdrop-filter: blur(4px); }
         .cart-content { background: #fff; width: 100%; position: absolute; bottom: 0; border-radius: 25px 25px 0 0; padding: 20px; max-height: 75vh; overflow-y: auto; }
-        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #eee; }
-        .del-btn { color: #ff3b30; background: #fff1f0; border: 1px solid #ffccc7; padding: 8px 12px; border-radius: 8px; cursor: pointer; }
         .nav { position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 15px; border-top: 1px solid #eee; z-index: 1000; }
         .nav a { color: #999; text-decoration: none; font-size: 24px; }
+        #badge { position: absolute; top: -5px; right: -8px; background: red; color: #fff; font-size: 11px; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: bold; border: 2px solid #fff; }
     </style>
 </head>
 <body>
 
 <header>
     <img src="logo.png" style="height:35px;">
-    <div class="cart-trigger" onclick="showCart()">
+    <div class="cart-trigger" onclick="showCart()" style="position:relative;">
         <i class="fas fa-shopping-basket" style="font-size:26px; color:var(--p)"></i>
         <span id="badge">0</span>
     </div>
@@ -41,60 +40,52 @@
 
 <div class="container">
     <div class="card">
-        <div class="slider">
-            <div class="slides">
-                <img src="4.PNG"> 
-            </div>
-        </div>
+        <div class="slider"><div class="slides"><img src="3.PNG"></div></div>
         <div class="details">
-            <h3>جهاز المساج الاحترافي (مشنطة)</h3>
+            <h3>جهاز Thrive للمساج</h3>
+            <p class="description">سرعة واحدة قوية، مثالي لتخفيف آلام الظهر والعضلات.</p>
+            <span class="price">1100 ج.م</span>
+            <button class="btn" onclick="addItem(this,'Thrive',1100)">أضف للسلة</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="slider"><div class="slides"><img src="4.PNG"></div></div>
+        <div class="details">
+            <h3>جهاز المساج الاحترافي (MAHL)</h3>
+            <p class="description">مجموعة كاملة في شنطة أنيقة، متعدد السرعات والرؤوس.</p>
             <span class="price">3300 ج.م</span>
             <button class="btn" onclick="addItem(this,'مساج مشنطة 3300',3300)">أضف للسلة</button>
         </div>
     </div>
 
     <div class="card">
-        <div class="slider">
-            <div class="slides">
-                <img src="3.PNG">
-            </div>
-        </div>
+        <div class="slider"><div class="slides"><img src="6.PNG"></div></div>
         <div class="details">
-            <h3>جهاز Thrive للمساج (سرعة واحدة)</h3>
+            <h3>جهاز STAR للعناية بالتنفس</h3>
+            <p class="description">نيبولايزر عالي الكفاءة، هادئ ومناسب للكبار والأطفال.</p>
             <span class="price">1100 ج.م</span>
-            <button class="btn" onclick="addItem(this,'Thrive 1100',1100)">أضف للسلة</button>
+            <button class="btn" onclick="addItem(this,'STAR',1100)">أضف للسلة</button>
         </div>
     </div>
 
     <div class="card">
-        <div class="slider" onclick="slide(this)">
+        <div class="slider">
             <div class="slides auto-v">
                 <img src="2.PNG">
                 <img src="2-2.PNG">
             </div>
         </div>
         <div class="details">
-            <h3>شاشة القياسات الرقمية</h3>
+            <h3>شاشة قياس الضغط الرقمية</h3>
+            <p class="description">قياس دقيق وسريع، ذاكرة داخلية لحفظ النتائج السابقة.</p>
             <span class="price">2100 ج.م</span>
-            <button class="btn" onclick="addItem(this,'شاشة قياس 2100',2100)">أضف للسلة</button>
+            <button class="btn" onclick="addItem(this,'Omron الضغط',2100)">أضف للسلة</button>
         </div>
     </div>
 
     <div class="card">
         <div class="slider">
-            <div class="slides">
-                <img src="6.PNG">
-            </div>
-        </div>
-        <div class="details">
-            <h3>جهاز STAR للعناية بالتنفس</h3>
-            <span class="price">1100 ج.م</span>
-            <button class="btn" onclick="addItem(this,'STAR 1100',1100)">أضف للسلة</button>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="slider" onclick="slide(this)">
             <div class="slides auto-v">
                 <img src="1.PNG">
                 <img src="1-1.PNG">
@@ -102,8 +93,9 @@
         </div>
         <div class="details">
             <h3>وسادة الاسترخاء الحرارية</h3>
+            <p class="description">تدفئة علاجية للعضلات، مريحة وآمنة للاستخدام المنزلي.</p>
             <span class="price">850 ج.م</span>
-            <button class="btn" onclick="addItem(this,'وسادة 850',850)">أضف للسلة</button>
+            <button class="btn" onclick="addItem(this,'وسادة',850)">أضف للسلة</button>
         </div>
     </div>
 </div>
@@ -127,27 +119,18 @@
 
 <script>
     let cart = [];
-
     function slide(el) {
         const s = el.querySelector('.slides');
         if(!s) return;
         s.style.transform = (s.style.transform === 'translateX(100%)') ? 'translateX(0)' : 'translateX(100%)';
     }
-
-    // تشغيل السلايدر التلقائي للصور المزدوجة
-    setInterval(() => { 
-        document.querySelectorAll('.auto-v').forEach(s => slide(s.parentElement)); 
-    }, 4000);
+    setInterval(() => { document.querySelectorAll('.auto-v').forEach(s => slide(s.parentElement)); }, 4000);
 
     function addItem(btn, n, p) {
         cart.push({n, p});
         document.getElementById('badge').innerText = cart.length;
-        btn.innerHTML = "تم ✅"; 
-        btn.style.background = "var(--s)";
-        setTimeout(() => { 
-            btn.innerHTML = "أضف للسلة"; 
-            btn.style.background = "var(--p)"; 
-        }, 800);
+        btn.innerHTML = "تم ✅"; btn.style.background = "var(--s)";
+        setTimeout(() => { btn.innerHTML = "أضف للسلة"; btn.style.background = "var(--p)"; }, 800);
     }
 
     function showCart() {
@@ -158,13 +141,12 @@
 
     function renderCart() {
         let html = "", total = 0;
-        if(cart.length === 0) { 
-            html = "<p style='text-align:center; padding:20px; color:#999;'>السلة فارغة</p>"; 
-        } else {
+        if(cart.length === 0) { html = "<p style='text-align:center; padding:20px; color:#999;'>السلة فارغة</p>"; } 
+        else {
             cart.forEach((item, index) => {
-                html += `<div class="cart-item">
-                    <div style="text-align:right"><b>${item.n}</b><br><small style="color:var(--p)">${item.p} ج.م</small></div>
-                    <button class="del-btn" onclick="deleteItem(${index})"><i class="fas fa-trash-can"></i> حذف</button>
+                html += `<div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid #eee;">
+                    <div style="text-align:right"><b>${item.n}</b><br><small>${item.p} ج.م</small></div>
+                    <button onclick="deleteItem(${index})" style="color:red; background:none; border:none; cursor:pointer;">حذف</button>
                 </div>`;
                 total += item.p;
             });
