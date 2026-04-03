@@ -21,10 +21,12 @@
         .details h3 { font-size: 12px; margin: 0 0 8px; height: 34px; overflow: hidden; color: #333; line-height: 1.4; font-weight: bold; }
         .price { color: var(--p); font-weight: 800; display: block; margin-bottom: 10px; font-size: 15px; }
         .btn { background: var(--p); color: #fff; border: none; width: 100%; padding: 12px; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 13px; }
+        
         #cart-ui { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 2000; backdrop-filter: blur(4px); }
         .cart-content { background: #fff; width: 100%; position: absolute; bottom: 0; border-radius: 25px 25px 0 0; padding: 20px; max-height: 75vh; overflow-y: auto; }
         .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #eee; }
         .del-btn { color: #ff3b30; background: #fff1f0; border: 1px solid #ffccc7; padding: 8px 12px; border-radius: 8px; cursor: pointer; }
+        
         .nav { position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 15px; border-top: 1px solid #eee; z-index: 1000; }
         .nav a { color: #999; text-decoration: none; font-size: 24px; }
     </style>
@@ -42,7 +44,7 @@
 <div class="container">
     <div class="card">
         <div class="slider" onclick="slide(this)"><div class="slides auto-v"><img src="5.PNG"><img src="5-2.PNG"></div></div>
-        <div class="details"><h3>جهاز القياس المتطور</h3><span class="price">3200 ج.م</span><button class="btn" onclick="addItem(this,'جهاز قياس 3200',3200)">أضف للسلة</button></div>
+        <div class="details"><h3>جهاز القياس الرقمي المتطور</h3><span class="price">3200 ج.م</span><button class="btn" onclick="addItem(this,'جهاز قياس 3200',3200)">أضف للسلة</button></div>
     </div>
     <div class="card">
         <div class="slider"><div class="slides"><img src="6.PNG"></div></div>
@@ -64,12 +66,12 @@
 
 <div id="cart-ui" onclick="showCart()">
     <div class="cart-content" onclick="event.stopPropagation()">
-        <h3 style="text-align:center; margin-bottom:20px;">سلتك</h3>
+        <h3 style="text-align:center; margin-bottom:20px; color:var(--p);">سلة المشتريات</h3>
         <div id="list"></div>
         <div style="margin-top:15px; padding:15px 0; border-top:2px solid #eee; display:flex; justify-content:space-between; font-weight:bold; font-size:18px;">
             <span>الإجمالي:</span><span><span id="total">0</span> ج.م</span>
         </div>
-        <button onclick="goWA()" style="width:100%; background:var(--s); color:#fff; border:none; padding:18px; border-radius:15px; margin-top:15px; font-weight:bold;">تأكيد عبر واتساب</button>
+        <button onclick="goWA()" style="width:100%; background:var(--s); color:#fff; border:none; padding:18px; border-radius:15px; margin-top:15px; font-weight:bold;">إتمام الطلب عبر واتساب</button>
     </div>
 </div>
 
@@ -103,12 +105,12 @@
 
     function renderCart() {
         let html = "", total = 0;
-        if(cart.length === 0) { html = "<p style='text-align:center; padding:20px;'>السلة فارغة</p>"; } 
+        if(cart.length === 0) { html = "<p style='text-align:center; padding:20px; color:#999;'>السلة فارغة حالياً</p>"; } 
         else {
             cart.forEach((item, index) => {
                 html += `<div class="cart-item">
                     <div style="text-align:right"><b>${item.n}</b><br><small style="color:var(--p)">${item.p} ج.م</small></div>
-                    <button class="del-btn" onclick="deleteItem(${index})"><i class="fas fa-trash-can"></i></button>
+                    <button class="del-btn" onclick="deleteItem(${index})"><i class="fas fa-trash-can"></i> حذف</button>
                 </div>`;
                 total += item.p;
             });
