@@ -14,7 +14,7 @@
         #badge { position: absolute; top: -5px; right: -8px; background: red; color: #fff; font-size: 11px; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: bold; border: 2px solid #fff; }
         .container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; }
         .card { background: #fff; border-radius: 15px; overflow: hidden; border: 1px solid #eee; display: flex; flex-direction: column; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-        .slider { position: relative; height: 160px; overflow: hidden; background: #fff; }
+        .slider { position: relative; height: 160 :px; overflow: hidden; background: #fff; }
         .slides { display: flex; transition: 0.5s ease-in-out; width: 100%; height: 100%; }
         .slides img { width: 100%; height: 100%; object-fit: contain; flex-shrink: 0; padding: 10px; }
         .details { padding: 12px; text-align: center; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
@@ -41,20 +41,70 @@
 
 <div class="container">
     <div class="card">
-        <div class="slider"><div class="slides"><img src="6.PNG"></div></div>
-        <div class="details"><h3>جهاز STAR للعناية بالتنفس</h3><span class="price">1100 ج.م</span><button class="btn" onclick="addItem(this,'STAR',1100)">أضف للسلة</button></div>
+        <div class="slider">
+            <div class="slides">
+                <img src="4.PNG"> 
+            </div>
+        </div>
+        <div class="details">
+            <h3>جهاز المساج الاحترافي (مشنطة)</h3>
+            <span class="price">3300 ج.م</span>
+            <button class="btn" onclick="addItem(this,'مساج مشنطة 3300',3300)">أضف للسلة</button>
+        </div>
     </div>
+
     <div class="card">
-        <div class="slider" onclick="slide(this)"><div class="slides auto-v"><img src="2.PNG"><img src="2-2.PNG"></div></div>
-        <div class="details"><h3>شاشة القياسات الرقمية</h3><span class="price">2100 ج.م</span><button class="btn" onclick="addItem(this,'شاشة قياس 2100',2100)">أضف للسلة</button></div>
+        <div class="slider">
+            <div class="slides">
+                <img src="3.PNG">
+            </div>
+        </div>
+        <div class="details">
+            <h3>جهاز Thrive للمساج (سرعة واحدة)</h3>
+            <span class="price">1100 ج.م</span>
+            <button class="btn" onclick="addItem(this,'Thrive 1100',1100)">أضف للسلة</button>
+        </div>
     </div>
+
     <div class="card">
-        <div class="slider" onclick="slide(this)"><div class="slides auto-v"><img src="3.PNG"><img src="3-2.PNG"></div></div>
-        <div class="details"><h3>جهاز Thrive للمساج</h3><span class="price">1100 ج.م</span><button class="btn" onclick="addItem(this,'Thrive',1100)">أضف للسلة</button></div>
+        <div class="slider" onclick="slide(this)">
+            <div class="slides auto-v">
+                <img src="2.PNG">
+                <img src="2-2.PNG">
+            </div>
+        </div>
+        <div class="details">
+            <h3>شاشة القياسات الرقمية</h3>
+            <span class="price">2100 ج.م</span>
+            <button class="btn" onclick="addItem(this,'شاشة قياس 2100',2100)">أضف للسلة</button>
+        </div>
     </div>
+
     <div class="card">
-        <div class="slider"><div class="slides"><img src="1.PNG"></div></div>
-        <div class="details"><h3>وسادة الاسترخاء الحرارية</h3><span class="price">850 ج.م</span><button class="btn" onclick="addItem(this,'وسادة',850)">أضف للسلة</button></div>
+        <div class="slider">
+            <div class="slides">
+                <img src="6.PNG">
+            </div>
+        </div>
+        <div class="details">
+            <h3>جهاز STAR للعناية بالتنفس</h3>
+            <span class="price">1100 ج.م</span>
+            <button class="btn" onclick="addItem(this,'STAR 1100',1100)">أضف للسلة</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="slider" onclick="slide(this)">
+            <div class="slides auto-v">
+                <img src="1.PNG">
+                <img src="1-1.PNG">
+            </div>
+        </div>
+        <div class="details">
+            <h3>وسادة الاسترخاء الحرارية</h3>
+            <span class="price">850 ج.م</span>
+            <button class="btn" onclick="addItem(this,'وسادة 850',850)">أضف للسلة</button>
+        </div>
     </div>
 </div>
 
@@ -77,18 +127,27 @@
 
 <script>
     let cart = [];
+
     function slide(el) {
         const s = el.querySelector('.slides');
         if(!s) return;
         s.style.transform = (s.style.transform === 'translateX(100%)') ? 'translateX(0)' : 'translateX(100%)';
     }
-    setInterval(() => { document.querySelectorAll('.auto-v').forEach(s => slide(s.parentElement)); }, 4000);
+
+    // تشغيل السلايدر التلقائي للصور المزدوجة
+    setInterval(() => { 
+        document.querySelectorAll('.auto-v').forEach(s => slide(s.parentElement)); 
+    }, 4000);
 
     function addItem(btn, n, p) {
         cart.push({n, p});
         document.getElementById('badge').innerText = cart.length;
-        btn.innerHTML = "تم ✅"; btn.style.background = "var(--s)";
-        setTimeout(() => { btn.innerHTML = "أضف للسلة"; btn.style.background = "var(--p)"; }, 800);
+        btn.innerHTML = "تم ✅"; 
+        btn.style.background = "var(--s)";
+        setTimeout(() => { 
+            btn.innerHTML = "أضف للسلة"; 
+            btn.style.background = "var(--p)"; 
+        }, 800);
     }
 
     function showCart() {
@@ -99,8 +158,9 @@
 
     function renderCart() {
         let html = "", total = 0;
-        if(cart.length === 0) { html = "<p style='text-align:center; padding:20px; color:#999;'>السلة فارغة</p>"; } 
-        else {
+        if(cart.length === 0) { 
+            html = "<p style='text-align:center; padding:20px; color:#999;'>السلة فارغة</p>"; 
+        } else {
             cart.forEach((item, index) => {
                 html += `<div class="cart-item">
                     <div style="text-align:right"><b>${item.n}</b><br><small style="color:var(--p)">${item.p} ج.م</small></div>
