@@ -14,27 +14,27 @@
         #badge { position: absolute; top: -5px; right: -8px; background: red; color: #fff; font-size: 11px; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: bold; border: 2px solid #fff; }
         .container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; }
         .card { background: #fff; border-radius: 15px; overflow: hidden; border: 1px solid #eee; display: flex; flex-direction: column; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-        .slider { position: relative; height: 150px; overflow: hidden; background: #fff; }
+        .slider { position: relative; height: 160px; overflow: hidden; background: #fff; }
         .slides { display: flex; transition: 0.5s ease-in-out; width: 100%; height: 100%; }
-        .slides img { width: 100%; height: 100%; object-fit: contain; flex-shrink: 0; padding: 5px; }
-        .details { padding: 10px; text-align: center; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
-        .details h3 { font-size: 12px; margin: 0 0 8px; height: 34px; overflow: hidden; color: #333; line-height: 1.4; }
-        .price { color: var(--p); font-weight: 800; display: block; margin-bottom: 10px; font-size: 14px; }
-        .btn { background: var(--p); color: #fff; border: none; width: 100%; padding: 12px; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 12px; }
+        .slides img { width: 100%; height: 100%; object-fit: contain; flex-shrink: 0; padding: 10px; }
+        .details { padding: 12px; text-align: center; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .details h3 { font-size: 12px; margin: 0 0 8px; height: 34px; overflow: hidden; color: #333; line-height: 1.4; font-weight: bold; }
+        .price { color: var(--p); font-weight: 800; display: block; margin-bottom: 10px; font-size: 15px; }
+        .btn { background: var(--p); color: #fff; border: none; width: 100%; padding: 12px; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 13px; }
         #cart-ui { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 2000; backdrop-filter: blur(4px); }
         .cart-content { background: #fff; width: 100%; position: absolute; bottom: 0; border-radius: 25px 25px 0 0; padding: 20px; max-height: 75vh; overflow-y: auto; }
         .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #eee; }
-        .del-btn { color: #ff3b30; background: #fff1f0; border: 1px solid #ffccc7; padding: 8px; border-radius: 8px; cursor: pointer; }
+        .del-btn { color: #ff3b30; background: #fff1f0; border: 1px solid #ffccc7; padding: 8px 12px; border-radius: 8px; cursor: pointer; }
         .nav { position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 15px; border-top: 1px solid #eee; z-index: 1000; }
-        .nav a { color: #999; text-decoration: none; font-size: 22px; }
+        .nav a { color: #999; text-decoration: none; font-size: 24px; }
     </style>
 </head>
 <body>
 
 <header>
-    <img src="logo.png" style="height:30px;">
+    <img src="logo.png" style="height:35px;">
     <div class="cart-trigger" onclick="showCart()">
-        <i class="fas fa-shopping-basket" style="font-size:24px; color:var(--p)"></i>
+        <i class="fas fa-shopping-basket" style="font-size:26px; color:var(--p)"></i>
         <span id="badge">0</span>
     </div>
 </header>
@@ -62,7 +62,7 @@
     </div>
     <div class="card">
         <div class="slider"><div class="slides"><img src="1.PNG"></div></div>
-        <div class="details"><h3>وسادة الاسترخاء</h3><span class="price">850 ج.م</span><button class="btn" onclick="addItem(this,'وسادة',850)">أضف للسلة</button></div>
+        <div class="details"><h3>وسادة الاسترخاء الحرارية</h3><span class="price">850 ج.م</span><button class="btn" onclick="addItem(this,'وسادة',850)">أضف للسلة</button></div>
     </div>
 </div>
 
@@ -73,7 +73,7 @@
         <div style="margin-top:15px; padding:15px 0; border-top:2px solid #eee; display:flex; justify-content:space-between; font-weight:bold; font-size:18px;">
             <span>الإجمالي:</span><span><span id="total">0</span> ج.م</span>
         </div>
-        <button onclick="goWA()" style="width:100%; background:var(--s); color:#fff; border:none; padding:18px; border-radius:15px; margin-top:15px; font-weight:bold;">تأكيد الطلب (واتساب)</button>
+        <button onclick="goWA()" style="width:100%; background:var(--s); color:#fff; border:none; padding:18px; border-radius:15px; margin-top:15px; font-weight:bold; font-size:16px;">تأكيد عبر واتساب</button>
     </div>
 </div>
 
@@ -107,11 +107,11 @@
 
     function renderCart() {
         let html = "", total = 0;
-        if(cart.length === 0) { html = "<p style='text-align:center; padding:20px;'>السلة فارغة</p>"; } 
+        if(cart.length === 0) { html = "<p style='text-align:center; padding:20px; color:#999;'>السلة فارغة</p>"; } 
         else {
             cart.forEach((item, index) => {
                 html += `<div class="cart-item">
-                    <div style="text-align:right"><b>${item.n}</b><br><small>${item.p} ج.م</small></div>
+                    <div style="text-align:right"><b>${item.n}</b><br><small style="color:var(--p)">${item.p} ج.م</small></div>
                     <button class="del-btn" onclick="deleteItem(${index})"><i class="fas fa-trash-can"></i></button>
                 </div>`;
                 total += item.p;
