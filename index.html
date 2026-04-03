@@ -6,31 +6,34 @@
     <title>إيم ميديكال | Em Medical</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --p: #0062cc; --s: #28a745; --bg: #f4f7f6; --danger: #dc3545; }
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; background: var(--bg); padding-bottom: 100px; overflow-x: hidden; }
-        header { background: #fff; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
+        :root { --p: #0062cc; --s: #28a745; --bg: #f4f7f6; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; background: var(--bg); padding-bottom: 100px; }
+        header { background: #fff; padding: 12px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
         .logo img { height: 35px; }
-        .cart-trigger { position: relative; cursor: pointer; padding: 5px; }
+        .cart-trigger { position: relative; cursor: pointer; }
         #badge { position: absolute; top: -5px; right: -8px; background: #ff3b30; color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 10px; border: 2px solid #fff; font-weight: bold; }
         .container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; }
-        .card { background: #fff; border-radius: 15px; overflow: hidden; display: flex; flex-direction: column; border: 1px solid #eee; position: relative; box-shadow: 0 4px 8px rgba(0,0,0,0.02); }
-        .img-box { width: 100%; height: 145px; display: flex; align-items: center; justify-content: center; padding: 10px; background: #fff; }
-        .img-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .card { background: #fff; border-radius: 15px; overflow: hidden; display: flex; flex-direction: column; border: 1px solid #eee; }
+        
+        /* كود السلايدر (الصور المتحركة) */
+        .slider { position: relative; width: 100%; height: 145px; overflow: hidden; background: #fff; }
+        .slides { display: flex; transition: transform 0.4s ease-in-out; height: 100%; }
+        .slides img { width: 100%; height: 100%; object-fit: contain; flex-shrink: 0; padding: 5px; }
+        .slide-dots { position: absolute; bottom: 5px; width: 100%; display: flex; justify-content: center; gap: 4px; }
+        .dot { width: 6px; height: 6px; background: #ddd; border-radius: 50%; }
+        .dot.active { background: var(--p); width: 12px; border-radius: 4px; }
+
         .details { padding: 10px; flex: 1; display: flex; flex-direction: column; }
-        .details h3 { font-size: 12px; margin: 0 0 8px; height: 34px; overflow: hidden; color: #333; text-align: center; line-height: 1.4; }
-        .desc-box { background: #f9fafb; padding: 8px; border-radius: 10px; border-right: 3px solid var(--p); margin-bottom: 8px; min-height: 80px; }
-        .desc-line { font-size: 9px; color: #555; display: block; line-height: 1.5; margin-bottom: 3px; }
-        .desc-label { font-weight: bold; color: var(--p); margin-left: 2px; }
-        .price { font-weight: 800; color: var(--p); font-size: 16px; display: block; text-align: center; margin-bottom: 10px; }
-        .btn { background: var(--p); color: #fff; border: none; width: 100%; padding: 12px; border-radius: 10px; font-weight: bold; font-size: 13px; cursor: pointer; transition: 0.3s; margin-top: auto; }
+        .details h3 { font-size: 12px; margin: 0 0 8px; height: 34px; color: #333; text-align: center; }
+        .price { font-weight: 800; color: var(--p); font-size: 16px; text-align: center; margin-bottom: 10px; }
+        .btn { background: var(--p); color: #fff; border: none; width: 100%; padding: 12px; border-radius: 10px; font-weight: bold; cursor: pointer; }
+        
         #cart-ui { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 2000; backdrop-filter: blur(3px); }
         .cart-content { background: #fff; width: 100%; position: absolute; bottom: 0; border-radius: 25px 25px 0 0; padding: 25px; max-height: 80vh; overflow-y: auto; }
         .nav { position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 12px 5px; border-top: 1px solid #eee; z-index: 1000; }
         .nav-link { text-align: center; color: #999; font-size: 11px; text-decoration: none; flex: 1; }
         .nav-link i { font-size: 22px; display: block; margin-bottom: 4px; }
         .nav-link.active { color: var(--p); }
-        .wa-float { position: fixed; bottom: 85px; right: 20px; background: #25d366; color: #fff; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; z-index: 999; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body>
@@ -43,113 +46,85 @@
     </div>
 </header>
 
-<a href="https://wa.me/201153951440" class="wa-float"><i class="fab fa-whatsapp"></i></a>
-
 <div class="container">
     <div class="card">
-        <div class="img-box"><img src="6.PNG"></div>
-        <div class="details">
-            <h3>جهاز STAR للعناية بالتنفس</h3>
-            <div class="desc-box">
-                <span class="desc-line"><span class="desc-label">المواصفات:</span> أداء هادئ، استخدام منزلي مريح.</span>
-                <span class="desc-line"><span class="desc-label">الضمان:</span> ضمان لمدة سنتين.</span>
-            </div>
-            <span class="price">1100 ج.م</span>
-            <button class="btn" onclick="add(this,'نيبولايزر STAR',1100)">أضف للسلة</button>
+        <div class="slider" onclick="nextSlide(this)">
+            <div class="slides">
+                <img src="2.PNG">
+                <img src="2-2.PNG"> </div>
+            <div class="slide-dots"><div class="dot active"></div><div class="dot"></div></div>
         </div>
-    </div>
-
-    <div class="card">
-        <div class="img-box"><img src="2.PNG"></div>
         <div class="details">
             <h3>شاشة القياسات الرقمية</h3>
-            <div class="desc-box">
-                <span class="desc-line"><span class="desc-label">المواصفات:</span> تصميم عصري، سهولة الاستخدام المنزلي.</span>
-            </div>
             <span class="price">2100 ج.م</span>
             <button class="btn" onclick="add(this,'شاشة قياسات',2100)">أضف للسلة</button>
         </div>
     </div>
 
     <div class="card">
-        <div class="img-box"><img src="1.PNG"></div>
-        <div class="details">
-            <h3>وسادة الاسترخاء الحرارية</h3>
-            <div class="desc-box">
-                <span class="desc-line"><span class="desc-label">المواصفات:</span> ملمس ناعم، توفر الدفء والراحة.</span>
-            </div>
-            <span class="price">850 ج.م</span>
-            <button class="btn" onclick="add(this,'وسادة الاسترخاء',850)">أضف للسلة</button>
+        <div class="slider">
+            <div class="slides"><img src="6.PNG"></div>
         </div>
-    </div>
-
-    <div class="card">
-        <div class="img-box"><img src="3.PNG"></div>
         <div class="details">
-            <h3>أداة الاستجمام Thrive</h3>
-            <div class="desc-box">
-                <span class="desc-line"><span class="desc-label">المواصفات:</span> جلسات منزلية هادئة للراحة التامة.</span>
-            </div>
+            <h3>جهاز STAR للتنفس</h3>
             <span class="price">1100 ج.م</span>
-            <button class="btn" onclick="add(this,'جهاز Thrive',1100)">أضف للسلة</button>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="img-box"><img src="4.PNG"></div>
-        <div class="details">
-            <h3>مجموعة الرفاهية MDHL</h3>
-            <div class="desc-box">
-                <span class="desc-line"><span class="desc-label">المواصفات:</span> مستويات متعددة، تصميم مريح.</span>
-            </div>
-            <span class="price">3200 ج.م</span>
-            <button class="btn" onclick="add(this,'مجموعة MDHL',3200)">أضف للسلة</button>
+            <button class="btn" onclick="add(this,'نيبولايزر STAR',1100)">أضف للسلة</button>
         </div>
     </div>
 </div>
 
 <div id="cart-ui" onclick="toggleCart()">
     <div class="cart-content" onclick="event.stopPropagation()">
-        <h3 style="text-align:center; color:var(--p); margin-top:0;">سلتك</h3>
+        <h3 style="text-align:center; color:var(--p);">سلتك</h3>
         <div id="cart-list"></div>
-        <div style="margin-top:20px; padding:15px; background:#f8f9fa; border-radius:12px;">
-            <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:18px;">
-                <span>الإجمالي:</span><span><span id="total">0</span> ج.م</span>
-            </div>
+        <div style="margin-top:20px; padding:15px; background:#f8f9fa; border-radius:12px; display:flex; justify-content:space-between; font-weight:bold;">
+            <span>الإجمالي:</span><span><span id="total">0</span> ج.م</span>
         </div>
-        <button onclick="checkout()" style="width:100%; background:var(--s); color:#fff; border:none; padding:18px; border-radius:12px; font-weight:bold; margin-top:15px; font-size:16px;">تأكيد عبر واتساب</button>
+        <button onclick="checkout()" style="width:100%; background:var(--s); color:#fff; border:none; padding:18px; border-radius:12px; font-weight:bold; margin-top:15px;">تأكيد عبر واتساب</button>
     </div>
 </div>
 
 <div class="nav">
     <a href="#" class="nav-link active"><i class="fas fa-home"></i>الرئيسية</a>
-    <a href="https://t.me/emmedical7" target="_blank" class="nav-link"><i class="fab fa-telegram"></i>المجتمع</a>
     <a href="javascript:void(0)" class="nav-link" onclick="toggleCart()"><i class="fas fa-shopping-basket"></i>سلتك</a>
 </div>
 
 <script>
     let cart = [];
+    
+    // وظيفة تحريك الصور عند اللمس
+    function nextSlide(el) {
+        const slides = el.querySelector('.slides');
+        const dots = el.querySelectorAll('.dot');
+        const isSecond = slides.style.transform === 'translateX(100%)';
+        slides.style.transform = isSecond ? 'translateX(0)' : 'translateX(100%)';
+        dots[0].classList.toggle('active');
+        dots[1].classList.toggle('active');
+    }
+
     function add(btn, n, p) {
         cart.push({n, p, id: Date.now()});
         updateUI();
         btn.innerHTML = "تم ✅";
-        btn.style.background = "var(--s)";
-        setTimeout(() => { btn.innerHTML = "أضف للسلة"; btn.style.background = "var(--p)"; }, 1000);
+        setTimeout(() => { btn.innerHTML = "أضف للسلة"; }, 1000);
     }
+
     function updateUI() { document.getElementById('badge').innerText = cart.length; }
+
     function toggleCart() {
         const ui = document.getElementById('cart-ui');
         ui.style.display = (ui.style.display === 'block') ? 'none' : 'block';
         if(ui.style.display === 'block') renderCart();
     }
+
     function renderCart() {
         let h = "", t = 0;
-        if(cart.length === 0) h = "<p style='text-align:center; color:#999;'>السلة فارغة</p>";
+        if(cart.length === 0) h = "<p style='text-align:center;'>السلة فارغة</p>";
         else {
             cart.forEach((i, idx) => {
-                h += `<div style="display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid #eee;">
-                    <div style="flex:1;"><span style="font-size:14px; font-weight:600; display:block;">${i.n}</span><span style="color:var(--p); font-size:13px;">${i.p} ج.م</span></div>
-                    <button onclick="removeItem(${idx})" style="background:#fff; border:1px solid #ff3b30; color:#ff3b30; padding:5px 10px; border-radius:8px; cursor:pointer; font-size:12px;"><i class="fas fa-trash-alt"></i> حذف</button>
+                h += `<div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #eee;">
+                    <span>${i.n}</span>
+                    <button onclick="removeItem(${idx})" style="background:none; border:1px solid red; color:red; border-radius:5px; padding:2px 8px;">حذف</button>
                 </div>`;
                 t += i.p;
             });
@@ -157,12 +132,14 @@
         document.getElementById('cart-list').innerHTML = h;
         document.getElementById('total').innerText = t;
     }
-    function removeItem(index) { cart.splice(index, 1); updateUI(); renderCart(); }
+
+    function removeItem(idx) { cart.splice(idx, 1); updateUI(); renderCart(); }
+
     function checkout() {
-        if(cart.length === 0) { alert("السلة فارغة!"); return; }
-        let m = "طلب جديد من Em Medical:%0A--------------------------%0A";
-        cart.forEach((i, idx) => m += `${idx+1}- ${i.n} (${i.p} ج.م)%0A`);
-        m += "--------------------------%0A💰 الإجمالي: " + document.getElementById('total').innerText + " ج.م";
+        if(cart.length === 0) return;
+        let m = "طلب جديد من Em Medical:%0A";
+        cart.forEach(i => m += `- ${i.n} (${i.p} ج.م)%0A`);
+        m += "%0A الإجمالي: " + document.getElementById('total').innerText + " ج.م";
         window.open("https://wa.me/201153951440?text=" + m);
     }
 </script>
