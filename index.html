@@ -42,7 +42,7 @@
 <div class="container">
     <div class="card">
         <div class="slider" onclick="slide(this)"><div class="slides auto-v"><img src="5.PNG"><img src="5-2.PNG"></div></div>
-        <div class="details"><h3>جهاز القياس الرقمي المتطور</h3><span class="price">3200 ج.م</span><button class="btn" onclick="addItem(this,'جهاز قياس 3200',3200)">أضف للسلة</button></div>
+        <div class="details"><h3>جهاز القياس المتطور</h3><span class="price">3200 ج.م</span><button class="btn" onclick="addItem(this,'جهاز قياس 3200',3200)">أضف للسلة</button></div>
     </div>
     <div class="card">
         <div class="slider"><div class="slides"><img src="6.PNG"></div></div>
@@ -64,7 +64,7 @@
 
 <div id="cart-ui" onclick="showCart()">
     <div class="cart-content" onclick="event.stopPropagation()">
-        <h3 style="text-align:center; margin-bottom:20px;">سلتك</h3>
+        <h3 style="text-align:center; margin-bottom:20px; color:var(--p);">سلة المشتريات</h3>
         <div id="list"></div>
         <div style="margin-top:15px; padding:15px 0; border-top:2px solid #eee; display:flex; justify-content:space-between; font-weight:bold; font-size:18px;">
             <span>الإجمالي:</span><span><span id="total">0</span> ج.م</span>
@@ -103,7 +103,7 @@
 
     function renderCart() {
         let html = "", total = 0;
-        if(cart.length === 0) { html = "<p style='text-align:center; padding:20px;'>السلة فارغة</p>"; } 
+        if(cart.length === 0) { html = "<p style='text-align:center; padding:20px; color:#999;'>السلة فارغة</p>"; } 
         else {
             cart.forEach((item, index) => {
                 html += `<div class="cart-item">
