@@ -4,41 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Em Medical</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root { --p: #0062cc; --s: #28a745; --bg: #f4f7f6; }
-        * { box-sizing: border-box; }
-        body { font-family: sans-serif; margin: 0; background: var(--bg); padding-bottom: 80px; overflow-x: hidden; text-align: right; }
-        header { background: #fff; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
-        .cart-trigger { position: relative; cursor: pointer; }
-        #badge { position: absolute; top: -5px; right: -8px; background: red; color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 10px; font-weight: bold; }
-        .container { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 8px; }
-        .card { background: #fff; border-radius: 12px; overflow: hidden; border: 1px solid #eee; display: flex; flex-direction: column; }
-        .slider { position: relative; height: 150px; overflow: hidden; }
-        .slides { display: flex; transition: 0.4s; width: 100%; height: 100%; }
-        .slides img { width: 100%; height: 100%; object-fit: contain; flex-shrink: 0; }
-        .details { padding: 10px; text-align: center; flex: 1; display: flex; flex-direction: column; }
-        .details h3 { font-size: 11px; margin: 5px 0; height: 32px; overflow: hidden; color: #333; line-height: 1.4; }
-        .price { color: var(--p); font-weight: bold; display: block; margin-bottom: 8px; font-size: 14px; }
-        .btn { background: var(--p); color: #fff; border: none; width: 100%; padding: 12px 5px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 12px; margin-top: auto; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { font-family: sans-serif; margin: 0; background: var(--bg); padding-bottom: 80px; text-align: right; direction: rtl; }
+        header { background: #fff; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+        .cart-trigger { position: relative; cursor: pointer; padding: 5px; }
+        #badge { position: absolute; top: -2px; right: -5px; background: red; color: #fff; font-size: 11px; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: bold; border: 2px solid #fff; }
         
-        /* تصليح شكل السلة */
-        #cart-ui { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 200; }
-        .cart-content { background: #fff; width: 100%; position: absolute; bottom: 0; border-radius: 20px 20px 0 0; padding: 20px; max-height: 70vh; overflow-y: auto; text-align: right; }
-        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #eee; direction: rtl; }
-        .item-info { flex: 1; text-align: right; }
-        .del-btn { color: #ff3b30; border: 1px solid #ff3b30; background: #fff; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 12px; margin-right: 10px; }
+        .container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; }
+        .card { background: #fff; border-radius: 15px; overflow: hidden; border: 1px solid #eee; display: flex; flex-direction: column; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .slider { position: relative; height: 160px; overflow: hidden; background: #fff; }
+        .slides { display: flex; transition: 0.5s ease-in-out; width: 100%; height: 100%; }
+        .slides img { width: 100%; height: 100%; object-fit: contain; flex-shrink: 0; padding: 10px; }
+        .details { padding: 12px; text-align: center; flex: 1; display: flex; flex-direction: column; }
+        .details h3 { font-size: 13px; margin: 0 0 10px; height: 36px; overflow: hidden; color: #333; line-height: 1.4; }
+        .price { color: var(--p); font-weight: 800; display: block; margin-bottom: 12px; font-size: 15px; }
+        .btn { background: var(--p); color: #fff; border: none; width: 100%; padding: 12px; border-radius: 10px; font-weight: bold; cursor: pointer; transition: 0.3s; }
         
-        .nav { position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 12px; border-top: 1px solid #eee; z-index: 100; }
-        .nav a { color: #999; text-decoration: none; font-size: 22px; }
+        /* تصليح السلة بالكامل */
+        #cart-ui { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 2000; backdrop-filter: blur(4px); }
+        .cart-content { background: #fff; width: 100%; position: absolute; bottom: 0; border-radius: 25px 25px 0 0; padding: 25px; max-height: 80vh; overflow-y: auto; }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #eee; }
+        .item-info { flex: 1; }
+        .item-name { font-weight: bold; font-size: 14px; color: #333; }
+        .item-price { color: var(--p); font-size: 13px; margin-top: 4px; }
+        .del-btn { color: #ff3b30; background: #fff1f0; border: 1px solid #ffccc7; padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 13px; display: flex; align-items: center; gap: 5px; }
+        
+        .nav { position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 15px; border-top: 1px solid #eee; z-index: 1000; }
+        .nav a { color: #999; text-decoration: none; font-size: 24px; transition: 0.3s; }
     </style>
 </head>
 <body>
 
 <header>
-    <img src="logo.png" style="height:30px;">
+    <img src="logo.png" style="height:35px;" onerror="this.src='https://via.placeholder.com/100x35?text=Logo'">
     <div class="cart-trigger" onclick="showCart()">
-        <i class="fas fa-shopping-basket" style="font-size:24px;color:var(--p)"></i>
+        <i class="fas fa-shopping-basket" style="font-size:26px; color:var(--p)"></i>
         <span id="badge">0</span>
     </div>
 </header>
@@ -64,12 +67,13 @@
 
 <div id="cart-ui" onclick="showCart()">
     <div class="cart-content" onclick="event.stopPropagation()">
-        <h3 style="text-align:center; margin:0 0 20px; color:var(--p);">سلتك</h3>
+        <div style="width: 40px; height: 5px; background: #ddd; border-radius: 10px; margin: -10px auto 20px;"></div>
+        <h3 style="text-align:center; margin-bottom:20px;">سلة المشتريات</h3>
         <div id="list"></div>
-        <div style="margin-top:20px; padding:15px 0; border-top:2px solid #eee; display:flex; justify-content:space-between; font-weight:bold; font-size:18px;">
+        <div style="margin-top:20px; padding:15px 0; border-top:2px solid #eee; display:flex; justify-content:space-between; font-weight:bold; font-size:20px;">
             <span>الإجمالي:</span><span><span id="total">0</span> ج.م</span>
         </div>
-        <button onclick="goWA()" style="width:100%; background:var(--s); color:#fff; border:none; padding:16px; border-radius:12px; margin-top:15px; font-weight:bold; font-size:16px;">تأكيد عبر واتساب</button>
+        <button onclick="goWA()" style="width:100%; background:var(--s); color:#fff; border:none; padding:18px; border-radius:15px; margin-top:15px; font-weight:bold; font-size:18px;">تأكيد الطلب (واتساب)</button>
     </div>
 </div>
 
@@ -85,13 +89,13 @@
         const s = el.querySelector('.slides');
         s.style.transform = (s.style.transform === 'translateX(100%)') ? 'translateX(0)' : 'translateX(100%)';
     }
-    setInterval(() => { document.querySelectorAll('.auto-v').forEach(s => slide(s.parentElement)); }, 4000);
+    setInterval(() => { document.querySelectorAll('.auto-v').forEach(s => slide(s.parentElement)); }, 4500);
 
     function addItem(btn, n, p) {
         cart.push({n, p});
         document.getElementById('badge').innerText = cart.length;
-        btn.innerHTML = "تم ✅"; btn.style.background = "var(--s)";
-        setTimeout(() => { btn.innerHTML = "أضف للسلة"; btn.style.background = "var(--p)"; }, 800);
+        btn.innerHTML = "تم الإضافة ✅"; btn.style.background = "var(--s)";
+        setTimeout(() => { btn.innerHTML = "أضف للسلة"; btn.style.background = "var(--p)"; }, 1000);
     }
 
     function showCart() {
@@ -103,15 +107,15 @@
     function renderCart() {
         let html = "", total = 0;
         if(cart.length === 0) {
-            html = "<p style='text-align:center; color:#999; padding:20px;'>السلة فارغة</p>";
+            html = "<div style='text-align:center; padding:30px; color:#999;'><i class='fas fa-shopping-cart' style='font-size:40px; margin-bottom:10px;'></i><p>السلة فارغة</p></div>";
         } else {
             cart.forEach((item, index) => {
                 html += `<div class="cart-item">
                     <div class="item-info">
-                        <div style="font-weight:bold; font-size:14px;">${item.n}</div>
-                        <div style="color:var(--p); font-size:13px;">${item.p} ج.م</div>
+                        <div class="item-name">${item.n}</div>
+                        <div class="item-price">${item.p} ج.م</div>
                     </div>
-                    <button class="del-btn" onclick="deleteItem(${index})"><i class="fas fa-trash"></i> حذف</button>
+                    <button class="del-btn" onclick="deleteItem(${index})"><i class="fas fa-trash-can"></i> حذف</button>
                 </div>`;
                 total += item.p;
             });
