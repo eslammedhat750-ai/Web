@@ -6,7 +6,7 @@
     <title>Em Medical | إم ميديكال للمستلزمات الطبية</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --p: #0062cc; --s: #28a745; --bg: #f4f7f6; --blue-light: rgba(0, 98, 204, 0.1); }
+        :root { --p: #0062cc; --s: #28a745; --bg: #f4f7f6; --blue-light: rgba(0, 98, 204, 0.08); }
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background: var(--bg); padding-bottom: 90px; text-align: right; direction: rtl; }
         
@@ -20,36 +20,39 @@
         .slides img { width: 100%; height: 100%; object-fit: contain; flex-shrink: 0; padding: 10px; }
         
         .details { padding: 12px; text-align: center; flex: 1; display: flex; flex-direction: column; }
-        .details h3 { font-size: 13px; margin: 0 0 8px; color: #222; font-weight: 800; min-height: 32px; }
+        .details h3 { font-size: 13px; margin: 0 0 8px; color: #222; font-weight: 800; min-height: 35px; display: flex; align-items: center; justify-content: center; }
         
-        /* تضليل المواصفات الاحترافي */
-        .specs { 
-            font-size: 10px; color: #444; margin-bottom: 10px; line-height: 1.6; 
+        /* تظليل المواصفات الاحترافي */
+        .specs-box { 
+            font-size: 10px; color: #444; margin-bottom: 12px; line-height: 1.5; 
             background: var(--blue-light); padding: 8px; border-radius: 8px;
             border-right: 3px solid var(--p); text-align: right;
         }
-        .specs i { color: var(--p); margin-left: 4px; font-size: 8px; }
+        .specs-box div { margin-bottom: 3px; }
+        .specs-box i { color: var(--p); margin-left: 5px; font-size: 9px; }
 
         .price { color: var(--p); font-weight: 900; display: block; margin-bottom: 10px; font-size: 16px; }
         
-        /* الزرار اللي بينور (Pulsing Effect) */
+        /* زرار ينبض باللون الأزرق (Pulsing Button) */
         .btn { 
             background: var(--p); color: #fff; border: none; width: 100%; padding: 12px; 
             border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 13px;
-            animation: pulse 2s infinite; 
             box-shadow: 0 0 0 0 rgba(0, 98, 204, 0.7);
+            animation: pulse-blue 2s infinite;
         }
 
-        @keyframes pulse {
+        @keyframes pulse-blue {
             0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 98, 204, 0.4); }
-            70% { transform: scale(0.98); box-shadow: 0 0 0 10px rgba(0, 98, 204, 0); }
+            70% { transform: scale(0.97); box-shadow: 0 0 0 10px rgba(0, 98, 204, 0); }
             100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 98, 204, 0); }
         }
 
-        .policy-section { background: #fff; margin: 15px 12px; padding: 20px; border-radius: 15px; border: 1px solid #eee; font-size: 12px; }
-        footer { background: #333; color: #ccc; padding: 20px; text-align: center; font-size: 11px; }
-        #badge { position: absolute; top: -5px; right: -8px; background: red; color: #fff; font-size: 11px; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: bold; border: 2px solid #fff; }
+        .policy-section { background: #fff; margin: 15px 12px; padding: 20px; border-radius: 15px; border: 1px solid #eee; font-size: 12px; line-height: 1.6; color: #555; }
+        .policy-section h4 { color: var(--p); margin-top: 0; border-bottom: 1px solid #eee; padding-bottom: 8px; }
         
+        footer { background: #333; color: #ccc; padding: 20px; text-align: center; font-size: 11px; margin-top: 20px; }
+
+        #badge { position: absolute; top: -5px; right: -8px; background: red; color: #fff; font-size: 11px; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: bold; border: 2px solid #fff; }
         #cart-ui { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 2000; backdrop-filter: blur(4px); }
         .cart-content { background: #fff; width: 100%; position: absolute; bottom: 0; border-radius: 25px 25px 0 0; padding: 25px; max-height: 80vh; overflow-y: auto; }
         .nav { position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 15px; border-top: 1px solid #eee; z-index: 1000; }
@@ -71,10 +74,10 @@
         <div class="slider"><div class="slides"><img src="4.PNG"></div></div>
         <div class="details">
             <h3>جهاز المساج الاحترافي MAHL</h3>
-            <div class="specs">
-                <i class="fas fa-check"></i> حقيبة فاخرة للحفظ<br>
-                <i class="fas fa-check"></i> 6 مستويات للسرعة<br>
-                <i class="fas fa-check"></i> تدليك عميق للعضلات
+            <div class="specs-box">
+                <div><i class="fas fa-check-circle"></i> 6 رؤوس تدليك متنوعة</div>
+                <div><i class="fas fa-check-circle"></i> بطارية تدوم طويلاً</div>
+                <div><i class="fas fa-check-circle"></i> حقيبة فاخرة للهدايا</div>
             </div>
             <span class="price">3300 ج.م</span>
             <button class="btn" onclick="addItem(this,'MAHL Massage',3300)">أضف للسلة</button>
@@ -85,10 +88,10 @@
         <div class="slider"><div class="slides"><img src="3.PNG"></div></div>
         <div class="details">
             <h3>جهاز Thrive الياباني</h3>
-            <div class="specs">
-                <i class="fas fa-check"></i> جودة يابانية أصلية<br>
-                <i class="fas fa-check"></i> محرك قوي للاستخدام الشاق<br>
-                <i class="fas fa-check"></i> تصميم مريح لليد
+            <div class="specs-box">
+                <div><i class="fas fa-check-circle"></i> جودة يابانية أصلية</div>
+                <div><i class="fas fa-check-circle"></i> محرك قوي جداً</div>
+                <div><i class="fas fa-check-circle"></i> مثالي لآلام الظهر</div>
             </div>
             <span class="price">1100 ج.م</span>
             <button class="btn" onclick="addItem(this,'Thrive',1100)">أضف للسلة</button>
@@ -99,10 +102,10 @@
         <div class="slider"><div class="slides"><img src="6.PNG"></div></div>
         <div class="details">
             <h3>جهاز نيبولايزر STAR</h3>
-            <div class="specs">
-                <i class="fas fa-check"></i> ضغط هواء قوي ومنتظم<br>
-                <i class="fas fa-check"></i> صوت هادئ جداً<br>
-                <i class="fas fa-check"></i> مناسب للأطفال والكبار
+            <div class="specs-box">
+                <div><i class="fas fa-check-circle"></i> ضغط هواء مستقر</div>
+                <div><i class="fas fa-check-circle"></i> صوت هادئ مريح</div>
+                <div><i class="fas fa-check-circle"></i> ملحقات كاملة مجانية</div>
             </div>
             <span class="price">1100 ج.م</span>
             <button class="btn" onclick="addItem(this,'STAR Nebulizer',1100)">أضف للسلة</button>
@@ -112,11 +115,11 @@
     <div class="card">
         <div class="slider"><div class="slides auto-v"><img src="2.PNG"><img src="2-2.PNG"></div></div>
         <div class="details">
-            <h3>جهاز ضغط الدم الرقمي</h3>
-            <div class="specs">
-                <i class="fas fa-check"></i> دقة قياس متناهية<br>
-                <i class="fas fa-check"></i> ذاكرة تخزين للقراءات<br>
-                <i class="fas fa-check"></i> شاشة واضحة وسهل الاستخدام
+            <h3>جهاز قياس الضغط الرقمي</h3>
+            <div class="specs-box">
+                <div><i class="fas fa-check-circle"></i> دقة قياس معتمدة</div>
+                <div><i class="fas fa-check-circle"></i> شاشة كبيرة واضحة</div>
+                <div><i class="fas fa-check-circle"></i> سهل بلمسة واحدة</div>
             </div>
             <span class="price">2100 ج.م</span>
             <button class="btn" onclick="addItem(this,'Pressure Monitor',2100)">أضف للسلة</button>
@@ -127,24 +130,24 @@
         <div class="slider"><div class="slides auto-v"><img src="1.PNG"><img src="1-1.PNG"></div></div>
         <div class="details">
             <h3>وسادة التدفئة والاسترخاء</h3>
-            <div class="specs">
-                <i class="fas fa-check"></i> تدفئة علاجية سريعة<br>
-                <i class="fas fa-check"></i> قماش ناعم ومريح<br>
-                <i class="fas fa-check"></i> نظام أمان ضد الحرارة الزائدة
+            <div class="specs-box">
+                <div><i class="fas fa-check-circle"></i> قماش ناعم قابل للغسل</div>
+                <div><i class="fas fa-check-circle"></i> مستويات حرارة أمان</div>
+                <div><i class="fas fa-check-circle"></i> مريحة للعضلات</div>
             </div>
             <span class="price">850 ج.م</span>
-            <button class="btn" onclick="addItem(this,'Heating Pad', 850)">أضف للسلة</button>
+            <button class="btn" onclick="addItem(this,'Heating Pad',850)">أضف للسلة</button>
         </div>
     </div>
 </div>
 
 <div class="policy-section">
-    <h4 style="color:var(--p)">سياسة الخصوصية والاسترجاع</h4>
-    <p>نحن في <b>Em Medical</b> نضمن لك خصوصية بياناتك وجودة منتجاتنا. يمكنك فحص المنتج عند الاستلام، وفي حال وجود عيب صناعة يتم الاستبدال فوراً وبدون تكاليف إضافية.</p>
+    <h4><i class="fas fa-shield-alt"></i> ضمان Em Medical</h4>
+    <p>ثقتكم هي رأس مالنا. نوفر سياسة استبدال فورية في حال وجود عيوب صناعة، مع إمكانية فحص المنتج عند الاستلام لضمان الجودة.</p>
 </div>
 
 <footer>
-    <p>إخلاء مسؤولية: المنتجات للعناية الشخصية والاسترخاء المنزلي.<br>&copy; 2026 Em Medical</p>
+    <p>إخلاء مسؤولية: المنتجات للعناية الشخصية والاسترخاء المنزلي.<br>&copy; 2026 Em Medical - القاهرة</p>
 </footer>
 
 <div id="cart-ui" onclick="showCart()">
@@ -154,7 +157,7 @@
         <div style="margin-top:15px; padding:15px 0; border-top:2px solid #eee; display:flex; justify-content:space-between; font-weight:bold;">
             <span>الإجمالي:</span><span><span id="total">0</span> ج.م</span>
         </div>
-        <button onclick="goWA()" style="width:100%; background:var(--s); color:#fff; border:none; padding:18px; border-radius:15px; font-weight:bold; cursor:pointer;">تأكيد الطلب عبر واتساب</button>
+        <button onclick="goWA()" style="width:100%; background:var(--s); color:#fff; border:none; padding:18px; border-radius:15px; font-weight:bold; cursor:pointer;">تأكيد الطلب واتساب</button>
     </div>
 </div>
 
@@ -176,13 +179,13 @@
     function addItem(btn, n, p) {
         cart.push({n, p});
         document.getElementById('badge').innerText = cart.length;
-        btn.innerHTML = "تم الإضافة ✅"; btn.style.background = "var(--s)";
-        btn.style.animation = "none"; // وقف النبض بعد الإضافة
+        btn.innerHTML = "تم ✅"; btn.style.background = "var(--s)";
+        btn.style.animation = "none";
         setTimeout(() => { 
             btn.innerHTML = "أضف للسلة"; 
             btn.style.background = "var(--p)"; 
-            btn.style.animation = "pulse 2s infinite"; 
-        }, 1500);
+            btn.style.animation = "pulse-blue 2s infinite"; 
+        }, 1200);
     }
 
     function showCart() {
