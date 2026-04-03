@@ -17,63 +17,50 @@
         .card { background: #fff; border-radius: 15px; overflow: hidden; display: flex; flex-direction: column; border: 1px solid #eee; position: relative; box-shadow: 0 4px 8px rgba(0,0,0,0.02); }
         .img-box { width: 100%; height: 145px; display: flex; align-items: center; justify-content: center; padding: 10px; position: relative; background: #fff; }
         .img-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
-        .slide-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.4); color: #fff; border: none; width: 30px; height: 30px; border-radius: 50%; z-index: 10; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-        .prev { left: 5px; } .next { right: 5px; }
         .details { padding: 10px; flex: 1; display: flex; flex-direction: column; }
         .details h3 { font-size: 12px; margin: 0 0 8px; height: 34px; overflow: hidden; color: #333; text-align: center; line-height: 1.4; }
-        .desc-box { background: #f9fafb; padding: 8px; border-radius: 10px; border-right: 3px solid var(--p); margin-bottom: 8px; min-height: 90px; }
+        .desc-box { background: #f9fafb; padding: 8px; border-radius: 10px; border-right: 3px solid var(--p); margin-bottom: 8px; min-height: 80px; }
         .desc-line { font-size: 9px; color: #555; display: block; line-height: 1.5; margin-bottom: 3px; }
         .desc-label { font-weight: bold; color: var(--p); margin-left: 2px; }
         .price { font-weight: 800; color: var(--p); font-size: 16px; display: block; text-align: center; margin-bottom: 10px; }
         .btn { background: var(--p); color: #fff; border: none; width: 100%; padding: 12px; border-radius: 10px; font-weight: bold; font-size: 13px; cursor: pointer; transition: 0.3s; margin-top: auto; }
-        .btn.added { background: var(--s) !important; }
         #cart-ui { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 2000; backdrop-filter: blur(3px); }
-        .cart-content { background: #fff; width: 100%; position: absolute; bottom: 0; border-radius: 25px 25px 0 0; padding: 25px; animation: slideUp 0.4s ease; }
-        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #f0f0f0; }
-        .del-btn { color: var(--danger); cursor: pointer; padding: 10px; font-size: 18px; }
+        .cart-content { background: #fff; width: 100%; position: absolute; bottom: 0; border-radius: 25px 25px 0 0; padding: 25px; }
         .nav { position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 12px 5px; border-top: 1px solid #eee; z-index: 1000; }
         .nav-link { text-align: center; color: #999; font-size: 11px; text-decoration: none; flex: 1; }
         .nav-link i { font-size: 22px; display: block; margin-bottom: 4px; }
         .nav-link.active { color: var(--p); }
-        .wa-float { position: fixed; bottom: 85px; right: 20px; background: #25d366; color: #fff; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; z-index: 999; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-decoration: none; }
+        .wa-float { position: fixed; bottom: 85px; right: 20px; background: #25d366; color: #fff; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; z-index: 999; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body>
 
 <header>
     <div class="logo"><img src="logo.png" alt="Em Medical"></div>
-    <div class="cart-trigger" id="cartBtn" onclick="toggleCart()">
+    <div class="cart-trigger" onclick="toggleCart()">
         <i class="fas fa-shopping-basket" style="font-size:24px; color:var(--p)"></i>
         <span id="badge">0</span>
     </div>
 </header>
 
-<a href="https://wa.me/201153951440" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<a href="https://wa.me/201153951440" class="wa-float"><i class="fab fa-whatsapp"></i></a>
 
 <div class="container">
     <div class="card">
-        <div class="img-box">
-            <button class="slide-btn prev" onclick="slide('p1','1.PNG','1-1.PNG')"><i class="fas fa-chevron-left"></i></button>
-            <img src="1.PNG" id="p1" data-curr="1.PNG">
-            <button class="slide-btn next" onclick="slide('p1','1.PNG','1-1.PNG')"><i class="fas fa-chevron-right"></i></button>
-        </div>
+        <div class="img-box"><img src="6.PNG"></div>
         <div class="details">
-            <h3>وسادة الاسترخاء الحرارية</h3>
+            <h3>جهاز STAR للعناية بالتنفس</h3>
             <div class="desc-box">
-                <span class="desc-line"><span class="desc-label">المواصفات:</span> ملمس ناعم، توفر الدفء والراحة.</span>
+                <span class="desc-line"><span class="desc-label">المواصفات:</span> أداء هادئ، استخدام منزلي مريح.</span>
+                <span class="desc-line"><span class="desc-label">الضمان:</span> ضمان لمدة سنتين.</span>
             </div>
-            <span class="price">850 ج.م</span>
-            <button class="btn" onclick="add(this,'وسادة الاسترخاء',850)">أضف للسلة</button>
+            <span class="price">1100 ج.م</span>
+            <button class="btn" onclick="add(this,'نيبولايزر STAR',1100)">أضف للسلة</button>
         </div>
     </div>
 
     <div class="card">
-        <div class="img-box">
-            <button class="slide-btn prev" onclick="slide('p2','2.PNG','2-2.PNG')"><i class="fas fa-chevron-left"></i></button>
-            <img src="2.PNG" id="p2" data-curr="2.PNG">
-            <button class="slide-btn next" onclick="slide('p2','2.PNG','2-2.PNG')"><i class="fas fa-chevron-right"></i></button>
-        </div>
+        <div class="img-box"><img src="2.PNG"></div>
         <div class="details">
             <h3>شاشة القياسات الرقمية</h3>
             <div class="desc-box">
@@ -81,6 +68,18 @@
             </div>
             <span class="price">2100 ج.م</span>
             <button class="btn" onclick="add(this,'شاشة قياسات',2100)">أضف للسلة</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="img-box"><img src="1.PNG"></div>
+        <div class="details">
+            <h3>وسادة الاسترخاء الحرارية</h3>
+            <div class="desc-box">
+                <span class="desc-line"><span class="desc-label">المواصفات:</span> ملمس ناعم، توفر الدفء والراحة.</span>
+            </div>
+            <span class="price">850 ج.م</span>
+            <button class="btn" onclick="add(this,'وسادة الاسترخاء',850)">أضف للسلة</button>
         </div>
     </div>
 
@@ -107,37 +106,12 @@
             <button class="btn" onclick="add(this,'مجموعة MDHL',3200)">أضف للسلة</button>
         </div>
     </div>
-
-    <div class="card">
-        <div class="img-box"><img src="5.PNG"></div>
-        <div class="details">
-            <h3>أداة مساج لطيف للوجه</h3>
-            <div class="desc-box">
-                <span class="desc-line"><span class="desc-label">المواصفات:</span> اهتزاز لطيف لروتين العناية اليومي.</span>
-            </div>
-            <span class="price">750 ج.م</span>
-            <button class="btn" onclick="add(this,'أداة مساج لطيف',750)">أضف للسلة</button>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="img-box"><img src="6.PNG"></div>
-        <div class="details">
-            <h3>جهاز STAR للعناية بالتنفس</h3>
-            <div class="desc-box">
-                <span class="desc-line"><span class="desc-label">المواصفات:</span> أداء هادئ، استخدام منزلي مريح.</span>
-                <span class="desc-line"><span class="desc-label">الضمان:</span> ضمان لمدة سنتين.</span>
-            </div>
-            <span class="price">1100 ج.م</span>
-            <button class="btn" onclick="add(this,'نيبولايزر STAR',1100)">أضف للسلة</button>
-        </div>
-    </div>
 </div>
 
 <div id="cart-ui" onclick="toggleCart()">
     <div class="cart-content" onclick="event.stopPropagation()">
         <h3 style="text-align:center; color:var(--p);">سلتك</h3>
-        <div id="cart-list" style="max-height: 250px; overflow-y: auto;"></div>
+        <div id="cart-list"></div>
         <div style="margin-top:20px; padding:15px; background:#f8f9fa; border-radius:12px;">
             <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:18px;">
                 <span>الإجمالي:</span><span><span id="total">0</span> ج.م</span>
@@ -155,27 +129,13 @@
 
 <script>
     let cart = [];
-    function slide(id, m, a) {
-        const i = document.getElementById(id);
-        const c = i.getAttribute('data-curr');
-        i.src = (c === m) ? a : m;
-        i.setAttribute('data-curr', (c === m) ? a : m);
-    }
     function add(btn, n, p) {
         cart.push({n, p, id: Date.now()});
         updateUI();
         btn.innerHTML = "تم ✅";
-        btn.classList.add('added');
-        setTimeout(() => { btn.innerHTML = "أضف للسلة"; btn.classList.remove('added'); }, 1000);
+        setTimeout(() => { btn.innerHTML = "أضف للسلة"; }, 1000);
     }
-    function removeItem(id) {
-        cart = cart.filter(i => i.id !== id);
-        updateUI();
-        renderCart();
-    }
-    function updateUI() {
-        document.getElementById('badge').innerText = cart.length;
-    }
+    function updateUI() { document.getElementById('badge').innerText = cart.length; }
     function toggleCart() {
         const ui = document.getElementById('cart-ui');
         ui.style.display = (ui.style.display === 'block') ? 'none' : 'block';
@@ -184,17 +144,16 @@
     function renderCart() {
         let h = "", t = 0;
         cart.forEach(i => {
-            h += `<div class="cart-item">
-                <div><b>${i.n}</b><br><small>${i.p} ج.م</small></div>
-                <div class="del-btn" onclick="removeItem(${i.id})"><i class="fas fa-trash-alt"></i></div>
+            h += `<div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #eee;">
+                <span>${i.n}</span><span>${i.p} ج.م</span>
             </div>`;
             t += i.p;
         });
-        document.getElementById('cart-list').innerHTML = h || "<p style='text-align:center;'>السلة فارغة</p>";
+        document.getElementById('cart-list').innerHTML = h || "السلة فارغة";
         document.getElementById('total').innerText = t;
     }
     function checkout() {
-        if(cart.length === 0) return alert("السلة فارغة!");
+        if(cart.length === 0) return;
         let m = "طلب جديد من Em Medical:%0A";
         cart.forEach((i, idx) => m += `${idx+1}- ${i.n} (${i.p} ج.م)%0A`);
         m += "%0A💰 الإجمالي: " + document.getElementById('total').innerText + " ج.م";
