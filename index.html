@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Em Medical | إم ميديكال للمستلزمات الطبية</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         :root {
             --p: #0062cc;
@@ -66,14 +67,14 @@
             justify-content: center;
         }
 
-        /* تأثير التبديل الاحترافي للمساج */
-        .hover-flip {
+        /* كود السلايدر التلقائي الاحترافي */
+        .auto-slider {
             position: relative;
             width: 100%;
             height: 100%;
         }
 
-        .hover-flip img {
+        .auto-slider img {
             position: absolute;
             top: 0;
             left: 0;
@@ -81,19 +82,12 @@
             height: 100%;
             object-fit: contain;
             padding: 10px;
-            transition: opacity 0.5s ease;
-        }
-
-        .img-back {
             opacity: 0;
+            transition: opacity 1s ease-in-out;
         }
 
-        .card:hover .img-back {
+        .auto-slider img.active {
             opacity: 1;
-        }
-
-        .card:hover .img-front {
-            opacity: 0;
         }
 
         .details {
@@ -151,33 +145,6 @@
             font-weight: bold;
             cursor: pointer;
             font-size: 13px;
-            animation: pulse-blue 2s infinite;
-        }
-
-        @keyframes pulse-blue {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 98, 204, 0.4); }
-            70% { transform: scale(0.97); box-shadow: 0 0 0 10px rgba(0, 98, 204, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 98, 204, 0); }
-        }
-
-        .policy-section {
-            background: #fff;
-            margin: 15px 12px;
-            padding: 20px;
-            border-radius: 15px;
-            border: 1px solid #eee;
-            font-size: 12px;
-            line-height: 1.6;
-            color: #555;
-        }
-
-        footer {
-            background: #333;
-            color: #ccc;
-            padding: 20px;
-            text-align: center;
-            font-size: 11px;
-            margin-top: 20px;
         }
 
         .nav {
@@ -239,7 +206,7 @@
 <body>
 
 <header>
-    <img src="logo.png" style="height:35px;" alt="Em Medical Logo">
+    <img src="logo.png" style="height:35px;" alt="Em Medical">
     <div onclick="showCart()" style="position:relative;">
         <i class="fas fa-shopping-basket" style="font-size:26px; color:var(--p)"></i>
         <span id="badge">0</span>
@@ -247,11 +214,12 @@
 </header>
 
 <div class="container">
+    
     <div class="card">
         <div class="slider">
-            <div class="hover-flip">
-                <img src="massage.png" class="img-front">
-                <img src="massage-2.png" class="img-back">
+            <div class="auto-slider" id="massage-slider">
+                <img src="massage" class="active">
+                <img src="massage-2.png">
             </div>
         </div>
         <div class="details">
@@ -267,7 +235,7 @@
 
     <div class="card">
         <div class="slider">
-            <img src="egg-sitter.png" style="width:100%; height:100%; object-fit:contain; padding:10px;">
+            <img src="egg-sitter" style="width:100%; height:100%; object-fit:contain; padding:10px;">
         </div>
         <div class="details">
             <h3>قاعدة Egg Sitter الطبية</h3>
@@ -281,89 +249,42 @@
     </div>
 
     <div class="card">
-        <div class="slider">
-            <img src="2.PNG" style="width:100%; height:100%; object-fit:contain; padding:10px;">
-        </div>
+        <div class="slider"><img src="2.PNG" style="width:100%; height:100%; object-fit:contain; padding:10px;"></div>
         <div class="details">
             <h3>جهاز قياس الضغط الرقمي</h3>
-            <div class="specs-box">
-                <div><i class="fas fa-check-circle"></i> دقة قياس معتمدة عالمياً</div>
-                <div><i class="fas fa-check-circle"></i> شاشة كبيرة واضحة للقراءة</div>
-            </div>
             <span class="price">2100 ج.م</span>
             <button class="btn" onclick="addItem(this,'Pressure Monitor',2100)">أضف للسلة</button>
         </div>
     </div>
 
     <div class="card">
-        <div class="slider">
-            <img src="1.PNG" style="width:100%; height:100%; object-fit:contain; padding:10px;">
-        </div>
+        <div class="slider"><img src="1.PNG" style="width:100%; height:100%; object-fit:contain; padding:10px;"></div>
         <div class="details">
             <h3>وسادة التدفئة والاسترخاء</h3>
-            <div class="specs-box">
-                <div><i class="fas fa-check-circle"></i> قماش ناعم قابل للغسل</div>
-                <div><i class="fas fa-check-circle"></i> مستويات حرارة آمنة تماماً</div>
-            </div>
             <span class="price">850 ج.م</span>
             <button class="btn" onclick="addItem(this,'Heating Pad',850)">أضف للسلة</button>
         </div>
     </div>
 
     <div class="card">
-        <div class="slider">
-            <img src="3.PNG" style="width:100%; height:100%; object-fit:contain; padding:10px;">
-        </div>
+        <div class="slider"><img src="3.PNG" style="width:100%; height:100%; object-fit:contain; padding:10px;"></div>
         <div class="details">
             <h3>جهاز Thrive الياباني</h3>
-            <div class="specs-box">
-                <div><i class="fas fa-check-circle"></i> جودة يابانية أصلية 100%</div>
-                <div><i class="fas fa-check-circle"></i> محرك قوي جداً للعضلات</div>
-            </div>
             <span class="price">1100 ج.م</span>
             <button class="btn" onclick="addItem(this,'Thrive',1100)">أضف للسلة</button>
         </div>
     </div>
 
     <div class="card">
-        <div class="slider">
-            <img src="6.PNG" style="width:100%; height:100%; object-fit:contain; padding:10px;">
-        </div>
+        <div class="slider"><img src="6.PNG" style="width:100%; height:100%; object-fit:contain; padding:10px;"></div>
         <div class="details">
             <h3>جهاز نيبولايزر STAR</h3>
-            <div class="specs-box">
-                <div><i class="fas fa-check-circle"></i> ضغط هواء مستقر وهادئ</div>
-                <div><i class="fas fa-check-circle"></i> ملحقات كاملة مجانية</div>
-            </div>
             <span class="price">1100 ج.م</span>
             <button class="btn" onclick="addItem(this,'STAR Nebulizer',1100)">أضف للسلة</button>
         </div>
     </div>
 
-    <div class="card">
-        <div class="slider">
-            <img src="4.PNG" style="width:100%; height:100%; object-fit:contain; padding:10px;">
-        </div>
-        <div class="details">
-            <h3>جهاز المساج الاحترافي MAHL</h3>
-            <div class="specs-box">
-                <div><i class="fas fa-check-circle"></i> 6 رؤوس تدليك متنوعة</div>
-                <div><i class="fas fa-check-circle"></i> حقيبة فاخرة للهدايا</div>
-            </div>
-            <span class="price">3300 ج.م</span>
-            <button class="btn" onclick="addItem(this,'MAHL Massage',3300)">أضف للسلة</button>
-        </div>
-    </div>
 </div>
-
-<div class="policy-section">
-    <h4><i class="fas fa-shield-alt"></i> ضمان Em Medical</h4>
-    <p>ثقتكم هي رأس مالنا. نوفر سياسة استبدال فورية في حال وجود عيوب صناعة، مع إمكانية فحص المنتج عند الاستلام لضمان الجودة.</p>
-</div>
-
-<footer>
-    <p>&copy; 2026 Em Medical - القاهرة للمستلزمات الطبية</p>
-</footer>
 
 <div id="cart-ui" onclick="showCart()">
     <div class="cart-content" onclick="event.stopPropagation()">
@@ -373,17 +294,32 @@
             <span>الإجمالي:</span>
             <span><span id="total">0</span> ج.م</span>
         </div>
-        <button onclick="goWA()" style="width:100%; background:var(--s); color:#fff; border:none; padding:18px; border-radius:15px; font-weight:bold; cursor:pointer;">تأكيد الطلب واتساب</button>
+        <button onclick="goWA()" style="width:100%; background:var(--s); color:#fff; border:none; padding:18px; border-radius:15px; font-weight:bold;">تأكيد الطلب واتساب</button>
     </div>
 </div>
 
 <div class="nav">
-    <a href="#" style="color:var(--p)"><i class="fas fa-home"></i></a>
+    <a href="#"><i class="fas fa-home"></i></a>
     <a href="https://t.me/emmedical7" target="_blank"><i class="fab fa-telegram"></i></a>
     <a href="javascript:void(0)" onclick="showCart()"><i class="fas fa-shopping-basket"></i></a>
 </div>
 
 <script>
+    // تشغيل السلايدر التلقائي
+    function initSlider() {
+        const slider = document.getElementById('massage-slider');
+        const images = slider.getElementsByTagName('img');
+        let current = 0;
+
+        setInterval(() => {
+            images[current].classList.remove('active');
+            current = (current + 1) % images.length;
+            images[current].classList.add('active');
+        }, 3000);
+    }
+    
+    window.onload = initSlider;
+
     let cart = [];
 
     function addItem(btn, n, p) {
@@ -394,17 +330,13 @@
         setTimeout(() => {
             btn.innerHTML = "أضف للسلة";
             btn.style.background = "var(--p)";
-        }, 1200);
+        }, 1000);
     }
 
     function showCart() {
         const ui = document.getElementById('cart-ui');
-        if (ui.style.display === 'block') {
-            ui.style.display = 'none';
-        } else {
-            ui.style.display = 'block';
-            renderCart();
-        }
+        ui.style.display = (ui.style.display === 'block') ? 'none' : 'block';
+        if (ui.style.display === 'block') renderCart();
     }
 
     function renderCart() {
@@ -416,11 +348,8 @@
             cart.forEach((item, index) => {
                 html += `
                 <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #eee;">
-                    <div style="text-align:right">
-                        <b>${item.n}</b><br>
-                        <small>${item.p} ج.م</small>
-                    </div>
-                    <button onclick="deleteItem(${index})" style="color:red; background:none; border:none; cursor:pointer;">حذف</button>
+                    <div><b>${item.n}</b></div>
+                    <button onclick="deleteItem(${index})" style="color:red; background:none; border:none;">حذف</button>
                 </div>`;
                 total += item.p;
             });
@@ -438,12 +367,10 @@
     function goWA() {
         if (cart.length === 0) return;
         let msg = "طلب جديد من Em Medical:%0A";
-        cart.forEach((item, i) => {
-            msg += `${i+1}- ${item.n} (${item.p} ج.م)%0A`;
-        });
-        let total = document.getElementById('total').innerText;
-        window.open(`https://wa.me/201153951440?text=${msg}%0A💰 الإجمالي: ${total} ج.م`);
+        cart.forEach((item, i) => msg += `${i+1}- ${item.n}%0A`);
+        window.open(`https://wa.me/201153951440?text=${msg}`);
     }
 </script>
+
 </body>
 </html>
