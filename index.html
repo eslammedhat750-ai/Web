@@ -206,7 +206,7 @@
 <body>
 
 <header>
-    <img src="logo.png" style="height:35px;" alt="Em Medical">
+    <img src="logo.png" style="height:35px;" alt="Logo">
     <div onclick="showCart()" style="position:relative;">
         <i class="fas fa-shopping-basket" style="font-size:26px; color:var(--p)"></i>
         <span id="badge">0</span>
@@ -305,6 +305,10 @@
 
 </div>
 
+<footer>
+    <p>&copy; 2026 Em Medical - القاهرة للمستلزمات الطبية</p>
+</footer>
+
 <div id="cart-ui" onclick="showCart()">
     <div class="cart-content" onclick="event.stopPropagation()">
         <h3 style="text-align:center; color:var(--p);">سلة المشتريات</h3>
@@ -313,7 +317,7 @@
             <span>الإجمالي:</span>
             <span><span id="total">0</span> ج.م</span>
         </div>
-        <button onclick="goWA()" style="width:100%; background:var(--s); color:#fff; border:none; padding:18px; border-radius:15px; font-weight:bold;">تأكيد الطلب واتساب</button>
+        <button onclick="goWA()" style="width:100%; background:var(--s); color:#fff; border:none; padding:18px; border-radius:15px; font-weight:bold; cursor:pointer;">تأكيد الطلب واتساب</button>
     </div>
 </div>
 
@@ -330,13 +334,17 @@
         const images = slider.getElementsByTagName('img');
         let current = 0;
 
+        // تبديل الصور كل 3 ثواني
         setInterval(() => {
-            images[current].classList.remove('active');
-            current = (current + 1) % images.length;
-            images[current].classList.add('active');
+            if (images.length > 1) {
+                images[current].classList.remove('active');
+                current = (current + 1) % images.length;
+                images[current].classList.add('active');
+            }
         }, 3000);
     }
     
+    // تشغيل السلايدر عند تحميل الصفحة
     window.onload = initSlider;
 
     let cart = [];
@@ -368,7 +376,7 @@
                 html += `
                 <div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #eee;">
                     <div><b>${item.n}</b><br><small>${item.p} ج.م</small></div>
-                    <button onclick="deleteItem(${index})" style="color:red; background:none; border:none;">حذف</button>
+                    <button onclick="deleteItem(${index})" style="color:red; background:none; border:none; cursor:pointer;">حذف</button>
                 </div>`;
                 total += item.p;
             });
