@@ -3,228 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Em Medical | إم ميديكال للمستلزمات الطبية</title>
+    <title>Em Medical | إم ميديكال</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
-        :root {
-            --p: #0062cc;
-            --s: #28a745;
-            --bg: #f4f7f6;
-            --blue-light: rgba(0, 98, 204, 0.08);
-        }
+        :root { --p: #0062cc; --s: #28a745; --bg: #f4f7f6; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; background: var(--bg); padding-bottom: 100px; text-align: right; direction: rtl; }
+        header { background: #fff; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+        
+        .container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; }
+        .card { background: #fff; border-radius: 12px; overflow: hidden; border: 1px solid #eee; display: flex; flex-direction: column; box-shadow: 0 4px 8px rgba(0,0,0,0.05); }
+        
+        /* السلايدر لكل الأجهزة */
+        .slider-box { position: relative; height: 150px; background: #fff; overflow: hidden; }
+        .slider-box img { position: absolute; width: 100%; height: 100%; object-fit: contain; padding: 8px; opacity: 0; transition: opacity 0.8s ease-in-out; }
+        .slider-box img.active { opacity: 1; }
 
-        * {
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
+        .details { padding: 10px; text-align: center; flex: 1; }
+        .details h3 { font-size: 12px; margin: 5px 0; color: #333; min-height: 32px; font-weight: bold; }
+        .price { color: var(--p); font-weight: 900; font-size: 15px; display: block; margin-bottom: 8px; }
+        .btn { background: var(--p); color: #fff; border: none; width: 100%; padding: 10px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 12px; }
+        
+        .policy-section { background: #fff; margin: 15px 10px; padding: 15px; border-radius: 12px; border-right: 4px solid var(--s); }
+        .policy-item { display: flex; align-items: center; margin-bottom: 6px; font-size: 11px; color: #555; }
+        .policy-item i { color: var(--s); margin-left: 8px; }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            background: var(--bg);
-            padding-bottom: 100px;
-            text-align: right;
-            direction: rtl;
-        }
-
-        header {
-            background: #fff;
-            padding: 10px 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            padding: 12px;
-        }
-
-        .card {
-            background: #fff;
-            border-radius: 15px;
-            overflow: hidden;
-            border: 1px solid #eee;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
-
-        /* السلايدر المتطور لكل الأجهزة */
-        .slider-box {
-            position: relative;
-            height: 160px;
-            overflow: hidden;
-            background: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .slider-box img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            padding: 10px;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-
-        .slider-box img.active {
-            opacity: 1;
-        }
-
-        .details {
-            padding: 12px;
-            text-align: center;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .details h3 {
-            font-size: 13px;
-            margin: 0 0 8px;
-            color: #222;
-            font-weight: 800;
-            min-height: 35px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .price {
-            color: var(--p);
-            font-weight: 900;
-            display: block;
-            margin-bottom: 10px;
-            font-size: 16px;
-        }
-
-        .btn {
-            background: var(--p);
-            color: #fff;
-            border: none;
-            width: 100%;
-            padding: 12px;
-            border-radius: 12px;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 13px;
-        }
-
-        /* قسم السياسات */
-        .policy-section {
-            background: #fff;
-            margin: 20px 12px;
-            padding: 18px;
-            border-radius: 15px;
-            border-right: 5px solid var(--s);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-
-        .policy-section h4 {
-            margin: 0 0 12px 0;
-            color: var(--p);
-            font-size: 15px;
-            display: flex;
-            align-items: center;
-        }
-
-        .policy-section h4 i { margin-left: 8px; }
-
-        .policy-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-            font-size: 12px;
-            color: #444;
-            line-height: 1.4;
-        }
-
-        .policy-item i {
-            color: var(--s);
-            margin-left: 10px;
-            font-size: 14px;
-        }
-
-        /* السلة والقائمة */
-        .nav {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background: #fff;
-            display: flex;
-            justify-content: space-around;
-            padding: 15px;
-            border-top: 1px solid #eee;
-            z-index: 1000;
-        }
-
-        .nav a { color: #999; font-size: 24px; }
-
-        #badge {
-            position: absolute;
-            top: -5px;
-            right: -8px;
-            background: red;
-            color: #fff;
-            font-size: 11px;
-            width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            font-weight: bold;
-        }
-
-        #cart-ui {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.7);
-            z-index: 2000;
-            backdrop-filter: blur(4px);
-        }
-
-        .cart-content {
-            background: #fff;
-            width: 100%;
-            position: absolute;
-            bottom: 0;
-            border-radius: 25px 25px 0 0;
-            padding: 25px;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
+        .nav { position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 15px; border-top: 1px solid #eee; z-index: 1000; }
+        #badge { position: absolute; top: -5px; right: -8px; background: red; color: #fff; font-size: 10px; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+        #cart-ui { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 2000; backdrop-filter: blur(4px); }
+        .cart-content { background: #fff; width: 100%; position: absolute; bottom: 0; border-radius: 20px 20px 0 0; padding: 20px; max-height: 70vh; overflow-y: auto; }
     </style>
 </head>
 <body>
 
 <header>
-    <img src="logo.png" style="height:35px;" alt="Logo">
-    <div onclick="showCart()" style="position:relative;">
-        <i class="fas fa-shopping-basket" style="font-size:26px; color:var(--p)"></i>
-        <span id="badge">0</span>
-    </div>
+    <img src="logo.png" style="height:30px;">
+    <div onclick="showCart()" style="position:relative;"><i class="fas fa-shopping-basket" style="font-size:24px; color:var(--p)"></i><span id="badge">0</span></div>
 </header>
 
 <div class="container">
-    
     <div class="card">
         <div class="slider-box">
-            <img src="massage" class="active">
+            <img src="massage.png" class="active">
             <img src="massage-2.png">
         </div>
         <div class="details">
@@ -248,6 +68,7 @@
     <div class="card">
         <div class="slider-box">
             <img src="1.PNG" class="active">
+            <img src="1-1.PNG">
         </div>
         <div class="details">
             <h3>وسادة التدفئة والاسترخاء</h3>
@@ -259,6 +80,7 @@
     <div class="card">
         <div class="slider-box">
             <img src="2.PNG" class="active">
+            <img src="2-2.PNG">
         </div>
         <div class="details">
             <h3>جهاز قياس الضغط الرقمي</h3>
@@ -299,40 +121,21 @@
             <button class="btn" onclick="addItem(this,'MAHL Massage',3300)">أضف للسلة</button>
         </div>
     </div>
-
 </div>
 
 <div class="policy-section">
-    <h4><i class="fas fa-shield-alt"></i> سياسات متجر Em Medical</h4>
-    <div class="policy-item">
-        <i class="fas fa-truck-fast"></i>
-        <span>شحن سريع لجميع المحافظات مع إمكانية فحص المنتج عند الاستلام.</span>
-    </div>
-    <div class="policy-item">
-        <i class="fas fa-sync"></i>
-        <span>سياسة استبدال فورية في حالة وجود عيوب صناعة.</span>
-    </div>
-    <div class="policy-item">
-        <i class="fas fa-certificate"></i>
-        <span>جميع المنتجات مختارة بعناية لضمان أعلى جودة طبية.</span>
-    </div>
+    <h4><i class="fas fa-shield-alt"></i> سياسات Em Medical</h4>
+    <div class="policy-item"><i class="fas fa-truck"></i> شحن سريع لجميع المحافظات.</div>
+    <div class="policy-item"><i class="fas fa-sync-alt"></i> ضمان استبدال ضد عيوب الصناعة.</div>
+    <div class="policy-item"><i class="fas fa-search-plus"></i> إمكانية المعاينة قبل الاستلام.</div>
 </div>
 
-<footer style="text-align: center; padding: 20px; color: #888; font-size: 12px;">
-    &copy; 2026 Em Medical - جميع الحقوق محفوظة
-</footer>
-
-<div id="cart-ui" onclick="showCart()">
-    <div class="cart-content" onclick="event.stopPropagation()">
-        <h3 style="text-align:center; color:var(--p); margin-bottom: 20px;">سلة المشتريات</h3>
-        <div id="list"></div>
-        <div style="margin-top:20px; padding:15px 0; border-top:2px solid #eee; display:flex; justify-content:space-between; font-weight:bold;">
-            <span>الإجمالي:</span>
-            <span><span id="total">0</span> ج.م</span>
-        </div>
-        <button onclick="goWA()" style="width:100%; background:var(--s); color:#fff; border:none; padding:18px; border-radius:15px; font-weight:bold; cursor:pointer; font-size: 16px;">تأكيد الطلب عبر واتساب</button>
-    </div>
-</div>
+<div id="cart-ui" onclick="showCart()"><div class="cart-content" onclick="event.stopPropagation()">
+    <h3 style="text-align:center; color:var(--p);">السلة</h3>
+    <div id="list"></div>
+    <hr><div style="display:flex; justify-content:space-between; font-weight:bold;"><span>الإجمالي:</span><span><span id="total">0</span> ج.م</span></div>
+    <button onclick="goWA()" style="width:100%; background:var(--s); color:#fff; border:none; padding:15px; border-radius:10px; margin-top:15px; font-weight:bold;">تأكيد واتساب</button>
+</div></div>
 
 <div class="nav">
     <a href="#"><i class="fas fa-home"></i></a>
@@ -341,80 +144,48 @@
 </div>
 
 <script>
-    // برمجة السلايدر لكل الأجهزة تلقائياً
-    function initAllSliders() {
-        const sliderBoxes = document.querySelectorAll('.slider-box');
-        
-        sliderBoxes.forEach(box => {
-            const images = box.querySelectorAll('img');
-            if (images.length > 1) {
-                let currentIndex = 0;
+    function startSliders() {
+        const boxes = document.querySelectorAll('.slider-box');
+        boxes.forEach(box => {
+            const imgs = box.querySelectorAll('img');
+            if (imgs.length > 1) {
+                let current = 0;
                 setInterval(() => {
-                    images[currentIndex].classList.remove('active');
-                    currentIndex = (currentIndex + 1) % images.length;
-                    images[currentIndex].classList.add('active');
+                    imgs[current].classList.remove('active');
+                    current = (current + 1) % imgs.length;
+                    imgs[current].classList.add('active');
                 }, 3000);
             }
         });
     }
-    
-    window.onload = initAllSliders;
+    window.onload = startSliders;
 
     let cart = [];
-
     function addItem(btn, n, p) {
         cart.push({n, p});
         document.getElementById('badge').innerText = cart.length;
-        btn.innerHTML = "تم ✅";
-        btn.style.background = "var(--s)";
-        setTimeout(() => {
-            btn.innerHTML = "أضف للسلة";
-            btn.style.background = "var(--p)";
-        }, 1000);
+        btn.innerHTML = "تم ✅"; setTimeout(() => btn.innerHTML = "أضف للسلة", 1000);
     }
-
-    function showCart() {
+    function showCart() { 
         const ui = document.getElementById('cart-ui');
         ui.style.display = (ui.style.display === 'block') ? 'none' : 'block';
-        if (ui.style.display === 'block') renderCart();
+        if(ui.style.display === 'block') renderCart();
     }
-
     function renderCart() {
-        let html = "";
-        let total = 0;
-        if (cart.length === 0) {
-            html = "<p style='text-align:center; padding:20px; color:#999;'>السلة فارغة حالياً</p>";
-        } else {
-            cart.forEach((item, index) => {
-                html += `
-                <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid #eee;">
-                    <div>
-                        <div style="font-weight:bold; font-size:14px;">${item.n}</div>
-                        <div style="color:var(--p); font-size:13px;">${item.p} ج.م</div>
-                    </div>
-                    <button onclick="deleteItem(${index})" style="color:red; background:none; border:none; cursor:pointer; font-size:18px;"><i class="fas fa-trash-alt"></i></button>
-                </div>`;
-                total += item.p;
-            });
-        }
-        document.getElementById('list').innerHTML = html;
-        document.getElementById('total').innerText = total;
+        let h = "", t = 0;
+        cart.forEach((i, idx) => {
+            h += `<div style="display:flex; justify-content:space-between; margin-bottom:10px;"><span>${i.n}</span><b>${i.p} ج.م</b></div>`;
+            t += i.p;
+        });
+        document.getElementById('list').innerHTML = h || "السلة فارغة";
+        document.getElementById('total').innerText = t;
     }
-
-    function deleteItem(index) {
-        cart.splice(index, 1);
-        document.getElementById('badge').innerText = cart.length;
-        renderCart();
-    }
-
     function goWA() {
-        if (cart.length === 0) return;
-        let msg = "طلب جديد من Em Medical:%0A%0A";
-        cart.forEach((item, i) => msg += `${i+1}- ${item.n} (${item.p} ج.م)%0A`);
-        msg += `%0A💰 الإجمالي: ${document.getElementById('total').innerText} ج.م`;
-        window.open(`https://wa.me/201153951440?text=${msg}`);
+        if(cart.length === 0) return;
+        let m = "طلب من Em Medical:%0A";
+        cart.forEach(i => m += `- ${i.n} (${i.p})%0A`);
+        window.open(`https://wa.me/201153951440?text=${m}%0Aالإجمالي: ${document.getElementById('total').innerText} ج.م`);
     }
 </script>
-
 </body>
 </html>
