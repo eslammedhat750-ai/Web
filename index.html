@@ -67,7 +67,6 @@
             justify-content: center;
         }
 
-        /* كود السلايدر التلقائي الاحترافي */
         .auto-slider {
             position: relative;
             width: 100%;
@@ -218,7 +217,7 @@
     <div class="card">
         <div class="slider">
             <div class="auto-slider" id="massage-slider">
-                <img src="massage" class="active">
+                <img src="massage.png" class="active">
                 <img src="massage-2.png">
             </div>
         </div>
@@ -249,16 +248,9 @@
     </div>
 
     <div class="card">
-        <div class="slider"><img src="2.PNG" style="width:100%; height:100%; object-fit:contain; padding:10px;"></div>
-        <div class="details">
-            <h3>جهاز قياس الضغط الرقمي</h3>
-            <span class="price">2100 ج.م</span>
-            <button class="btn" onclick="addItem(this,'Pressure Monitor',2100)">أضف للسلة</button>
+        <div class="slider">
+            <img src="1.PNG" style="width:100%; height:100%; object-fit:contain; padding:10px;">
         </div>
-    </div>
-
-    <div class="card">
-        <div class="slider"><img src="1.PNG" style="width:100%; height:100%; object-fit:contain; padding:10px;"></div>
         <div class="details">
             <h3>وسادة التدفئة والاسترخاء</h3>
             <span class="price">850 ج.م</span>
@@ -267,7 +259,20 @@
     </div>
 
     <div class="card">
-        <div class="slider"><img src="3.PNG" style="width:100%; height:100%; object-fit:contain; padding:10px;"></div>
+        <div class="slider">
+            <img src="2.PNG" style="width:100%; height:100%; object-fit:contain; padding:10px;">
+        </div>
+        <div class="details">
+            <h3>جهاز قياس الضغط الرقمي</h3>
+            <span class="price">2100 ج.م</span>
+            <button class="btn" onclick="addItem(this,'Pressure Monitor',2100)">أضف للسلة</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="slider">
+            <img src="3.PNG" style="width:100%; height:100%; object-fit:contain; padding:10px;">
+        </div>
         <div class="details">
             <h3>جهاز Thrive الياباني</h3>
             <span class="price">1100 ج.م</span>
@@ -276,7 +281,9 @@
     </div>
 
     <div class="card">
-        <div class="slider"><img src="6.PNG" style="width:100%; height:100%; object-fit:contain; padding:10px;"></div>
+        <div class="slider">
+            <img src="6.PNG" style="width:100%; height:100%; object-fit:contain; padding:10px;">
+        </div>
         <div class="details">
             <h3>جهاز نيبولايزر STAR</h3>
             <span class="price">1100 ج.م</span>
@@ -305,7 +312,6 @@
 </div>
 
 <script>
-    // تشغيل السلايدر التلقائي
     function initSlider() {
         const slider = document.getElementById('massage-slider');
         const images = slider.getElementsByTagName('img');
