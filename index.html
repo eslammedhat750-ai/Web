@@ -3,24 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Em Medical | إم ميديكال للمستلزمات الطبية</title>
+    <title>Em Medical | إم ميديكال للأجهزة الطبية</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         /* =========================================
-           1. التنسيق العام (Global Styles)
+           1. التنسيق الأساسي (Root & Reset)
            ========================================= */
         :root {
-            --primary-color: #0062cc;
-            --secondary-color: #004a99;
-            --success-color: #28a745;
-            --danger-color: #dc3545;
-            --bg-light: #f4f7f6;
+            --primary: #0062cc;
+            --primary-dark: #004a99;
+            --success: #28a745;
+            --danger: #dc3545;
+            --warning: #ffc107;
+            --light-bg: #f4f7f6;
             --white: #ffffff;
-            --text-main: #212529;
-            --shadow-soft: 0 4px 15px rgba(0,0,0,0.08);
-            --transition: all 0.3s ease;
+            --dark-text: #212529;
+            --muted-text: #6c757d;
+            --shadow: 0 10px 25px rgba(0,0,0,0.08);
+            --radius-lg: 25px;
+            --radius-sm: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
@@ -28,44 +32,45 @@
             padding: 0;
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-main);
+            background-color: var(--light-bg);
+            color: var(--dark-text);
             direction: rtl;
             text-align: right;
             line-height: 1.6;
-            padding-bottom: 100px;
+            overflow-x: hidden;
+            padding-bottom: 120px;
         }
 
         /* =========================================
-           2. الهيدر (Header)
+           2. الهيدر (Premium Header)
            ========================================= */
         header {
             background-color: var(--white);
-            height: 75px;
+            height: 80px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 0 25px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.04);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
 
-        .logo-area img {
-            height: 50px;
+        .logo-box img {
+            height: 55px;
             object-fit: contain;
         }
 
-        .cart-trigger {
+        .cart-icon-wrapper {
             position: relative;
-            background: #f8f9fa;
-            width: 48px;
-            height: 48px;
+            background: #f0f3f5;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -74,218 +79,262 @@
             transition: var(--transition);
         }
 
-        .cart-trigger i {
-            font-size: 22px;
-            color: var(--primary-color);
-        }
+        .cart-icon-wrapper:active { transform: scale(0.9); }
+        .cart-icon-wrapper i { font-size: 24px; color: var(--primary); }
 
         #cart-count-badge {
             position: absolute;
             top: -5px;
             right: -5px;
-            background-color: var(--danger-color);
+            background-color: var(--danger);
             color: var(--white);
             font-size: 11px;
             font-weight: bold;
             width: 22px;
             height: 22px;
             border-radius: 50%;
-            display: none; /* يظهر فقط عند إضافة منتج */
+            display: none; /* مخفي حتى تضاف منتجات */
             align-items: center;
             justify-content: center;
             border: 2px solid var(--white);
-            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        @keyframes popIn {
-            0% { transform: scale(0); }
-            100% { transform: scale(1); }
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
         /* =========================================
-           3. شبكة المنتجات (Products Grid)
+           3. شبكة المنتجات (Store Grid)
            ========================================= */
-        .content-wrapper {
-            padding: 15px;
-            max-width: 900px;
+        .main-container {
+            padding: 20px 15px;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
-        .products-grid {
+        .products-layout {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
+            gap: 18px;
         }
 
-        .product-card {
+        .item-card {
             background-color: var(--white);
-            border-radius: 20px;
-            border: 1px solid #eee;
+            border-radius: var(--radius-lg);
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            box-shadow: var(--shadow-soft);
-            transition: transform 0.2s;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0,0,0,0.03);
+            transition: var(--transition);
         }
 
-        .product-card:active {
-            transform: scale(0.97);
-        }
+        .item-card:hover { transform: translateY(-5px); }
 
-        .image-slider {
+        .image-view {
             position: relative;
             width: 100%;
-            height: 180px;
+            height: 190px;
             background: #fff;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
+            padding: 10px;
         }
 
-        .image-slider img {
+        .image-view img {
             position: absolute;
-            max-width: 85%;
-            max-height: 85%;
+            max-width: 88%;
+            max-height: 88%;
             object-fit: contain;
             opacity: 0;
             transition: opacity 0.8s ease-in-out;
         }
 
-        .image-slider img.active {
-            opacity: 1;
-        }
+        .image-view img.active { opacity: 1; }
 
-        .product-info {
+        .details-box {
             padding: 15px;
             text-align: center;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
         }
 
-        .product-info h3 {
+        .details-box h3 {
             font-size: 14px;
             font-weight: 700;
             color: #333;
             margin-bottom: 10px;
-            height: 40px;
+            height: 42px;
             overflow: hidden;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
         }
 
-        .product-price {
+        .price-tag {
             font-size: 18px;
             font-weight: 900;
-            color: var(--primary-color);
+            color: var(--primary);
             margin-bottom: 15px;
-            display: block;
         }
 
-        .add-to-cart-btn {
-            background-color: var(--primary-color);
+        .btn-buy {
+            background-color: var(--primary);
             color: var(--white);
             border: none;
-            border-radius: 12px;
-            padding: 12px 5px;
+            border-radius: var(--radius-sm);
+            padding: 14px 5px;
             font-size: 13px;
             font-weight: bold;
             cursor: pointer;
             width: 100%;
-            transition: background 0.3s;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
+
+        .btn-buy:active { background-color: var(--primary-dark); }
 
         /* =========================================
-           4. قسم السياسات (Policies)
+           4. قسم الثقة والسياسات (Compliance Area)
            ========================================= */
-        .policies-box {
+        .trust-badges {
             background-color: var(--white);
-            margin: 25px 0;
-            padding: 20px;
-            border-radius: 20px;
-            border-right: 6px solid var(--success-color);
-            box-shadow: var(--shadow-soft);
+            margin: 30px 0;
+            padding: 25px;
+            border-radius: var(--radius-lg);
+            border-right: 6px solid var(--success);
+            box-shadow: var(--shadow);
         }
 
-        .policy-row {
+        .badge-row {
             display: flex;
             align-items: center;
             margin-bottom: 15px;
         }
 
-        .policy-row:last-child { margin-bottom: 0; }
+        .badge-row:last-child { margin-bottom: 0; }
+        .badge-row i { color: var(--success); margin-left: 15px; font-size: 22px; }
+        .badge-row p { font-size: 14px; font-weight: 600; color: #444; }
 
-        .policy-row i {
-            color: var(--success-color);
-            margin-left: 12px;
-            font-size: 20px;
+        footer {
+            background-color: #1a252f;
+            color: #d5d8dc;
+            padding: 50px 25px;
+            margin-top: 60px;
+            border-radius: 35px 35px 0 0;
+            text-align: center;
         }
 
-        .policy-row p {
+        .footer-logo { height: 45px; margin-bottom: 25px; filter: brightness(0) invert(1); }
+        
+        .policy-links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 25px 0;
+            text-align: right;
+        }
+
+        .policy-links a {
+            color: #aab7b8;
+            text-decoration: none;
             font-size: 13px;
-            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .policy-links a:hover { color: var(--white); }
+
+        .footer-contact {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 25px;
+            font-size: 14px;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 95px;
+            left: 20px;
+            background-color: var(--success);
+            color: var(--white);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 6px 20px rgba(40,167,69,0.4);
+            z-index: 999;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         /* =========================================
-           5. السلة المتطورة (Cart System)
+           5. نظام السلة (Modern Cart System)
            ========================================= */
-        .cart-overlay {
+        .modal-overlay {
             display: none;
             position: fixed;
             inset: 0;
-            background-color: rgba(0,0,0,0.7);
+            background-color: rgba(0,0,0,0.75);
             z-index: 2000;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(8px);
         }
 
-        .cart-panel {
+        .cart-slide-panel {
             background-color: var(--white);
             width: 100%;
             position: absolute;
             bottom: 0;
-            border-radius: 30px 30px 0 0;
-            padding: 25px;
+            border-radius: 35px 35px 0 0;
+            padding: 30px 25px;
             max-height: 85vh;
             overflow-y: auto;
-            box-shadow: 0 -5px 25px rgba(0,0,0,0.2);
+            box-shadow: 0 -10px 40px rgba(0,0,0,0.3);
         }
 
-        .cart-panel h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: var(--primary-color);
-            font-size: 22px;
+        .cart-header {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 25px;
         }
 
-        .cart-item {
+        .cart-header h2 { font-size: 24px; color: var(--primary); }
+
+        .cart-listing { margin-bottom: 20px; }
+
+        .cart-item-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
-            border-bottom: 1px solid #f1f1f1;
+            padding: 18px 0;
+            border-bottom: 1px solid #f0f0f0;
         }
 
-        .cart-item-info { flex-grow: 1; padding-right: 10px; }
-        .cart-item-name { font-weight: bold; font-size: 14px; display: block; }
-        .cart-item-price { color: var(--primary-color); font-size: 13px; font-weight: 600; }
+        .item-main-info { flex-grow: 1; padding-right: 15px; }
+        .item-name-text { font-weight: 700; font-size: 15px; display: block; margin-bottom: 4px; }
+        .item-price-text { color: var(--primary); font-weight: 600; font-size: 14px; }
 
-        .qty-wrapper {
+        .qty-controls {
             display: flex;
             align-items: center;
             background: #f8f9fa;
-            border-radius: 10px;
-            padding: 5px;
+            border-radius: 12px;
+            padding: 6px;
             gap: 12px;
         }
 
-        .qty-btn {
+        .control-btn {
             background: var(--white);
             border: 1px solid #ddd;
-            width: 30px;
-            height: 30px;
+            width: 32px;
+            height: 32px;
             border-radius: 8px;
             font-weight: bold;
             cursor: pointer;
@@ -294,44 +343,46 @@
             justify-content: center;
         }
 
-        .remove-icon {
-            color: var(--danger-color);
+        .delete-item-btn {
+            color: var(--danger);
             margin-left: 15px;
             cursor: pointer;
-            font-size: 18px;
+            font-size: 20px;
+            padding: 5px;
         }
 
-        .total-box {
+        .summary-total {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             margin: 25px 0;
-            padding: 15px;
+            padding: 20px;
             background: #f0f7ff;
-            border-radius: 15px;
-            font-size: 19px;
+            border-radius: 20px;
+            font-size: 21px;
             font-weight: 800;
         }
 
-        .checkout-btn {
-            background-color: var(--success-color);
+        .order-now-whatsapp {
+            background-color: var(--success);
             color: var(--white);
             border: none;
             width: 100%;
-            padding: 18px;
-            border-radius: 15px;
-            font-weight: bold;
-            font-size: 17px;
+            padding: 20px;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            box-shadow: 0 4px 15px rgba(40,167,69,0.3);
+            gap: 12px;
+            box-shadow: 0 5px 15px rgba(40,167,69,0.3);
         }
 
         /* =========================================
-           6. التنقل السفلي (Bottom Nav)
+           6. شريط التنقل السفلي (App Navigation)
            ========================================= */
-        .bottom-nav {
+        .app-nav-bar {
             position: fixed;
             bottom: 0;
             width: 100%;
@@ -339,235 +390,301 @@
             display: flex;
             justify-content: space-around;
             align-items: center;
-            height: 75px;
-            box-shadow: 0 -4px 15px rgba(0,0,0,0.06);
+            height: 80px;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.08);
             z-index: 1000;
         }
 
-        .nav-link {
+        .nav-item {
             display: flex;
             flex-direction: column;
             align-items: center;
             text-decoration: none;
             color: #adb5bd;
             font-size: 12px;
-            font-weight: bold;
+            font-weight: 700;
         }
 
-        .nav-link.active { color: var(--primary-color); }
-        .nav-link i { font-size: 24px; margin-bottom: 4px; }
+        .nav-item.active { color: var(--primary); }
+        .nav-item i { font-size: 26px; margin-bottom: 5px; }
 
-        @media (max-width: 380px) { .products-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 400px) {
+            .products-layout { grid-template-columns: 1fr; }
+            .item-card { max-width: 350px; margin: 0 auto; }
+        }
     </style>
 </head>
 <body>
 
+    <a href="https://wa.me/201153951440" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
     <header>
-        <div class="logo-area"><img src="logo.png" alt="Em Medical"></div>
-        <div class="cart-trigger" onclick="toggleCartDisplay()">
+        <div class="logo-box">
+            <img src="logo.png" alt="Em Medical Shop">
+        </div>
+        <div class="cart-icon-wrapper" onclick="toggleCart()">
             <i class="fas fa-shopping-basket"></i>
             <span id="cart-count-badge"></span>
         </div>
     </header>
 
-    <div class="content-wrapper">
-        <div class="products-grid">
+    <div class="main-container">
+        <div class="products-layout">
             
-            <div class="product-card">
-                <div class="image-slider">
+            <div class="item-card">
+                <div class="image-view">
                     <img src="massage-1.PNG" class="active">
                     <img src="massage-2.png">
                 </div>
-                <div class="product-info">
-                    <h3>جهاز مساج Relax & Spin Tone</h3>
-                    <span class="product-price">450 ج.م</span>
-                    <button class="add-to-cart-btn" onclick="addToCart('جهاز مساج ريلاكس', 450, this)">أضف للسلة</button>
+                <div class="details-box">
+                    <h3>جهاز مساج Relax & Spin Tone للجسم</h3>
+                    <div class="price-tag">450 ج.م</div>
+                    <button class="btn-buy" onclick="handleAddToCart('جهاز مساج ريلاكس', 450, this)">
+                        <i class="fas fa-cart-plus"></i> أضف للسلة
+                    </button>
                 </div>
             </div>
 
-            <div class="product-card">
-                <div class="image-slider"><img src="egg-sitter" class="active"></div>
-                <div class="product-info">
-                    <h3>قاعدة Egg Sitter الطبية المريحة</h3>
-                    <span class="product-price">500 ج.م</span>
-                    <button class="add-to-cart-btn" onclick="addToCart('قاعدة Egg Sitter', 500, this)">أضف للسلة</button>
+            <div class="item-card">
+                <div class="image-view"><img src="egg-sitter" class="active"></div>
+                <div class="details-box">
+                    <h3>قاعدة Egg Sitter السيليكون الطبية</h3>
+                    <div class="price-tag">500 ج.م</div>
+                    <button class="btn-buy" onclick="handleAddToCart('قاعدة Egg Sitter', 500, this)">
+                        <i class="fas fa-cart-plus"></i> أضف للسلة
+                    </button>
                 </div>
             </div>
 
-            <div class="product-card">
-                <div class="image-slider">
+            <div class="item-card">
+                <div class="image-view">
                     <img src="1.PNG" class="active">
                     <img src="1-1.PNG">
                 </div>
-                <div class="product-info">
+                <div class="details-box">
                     <h3>وسادة التدفئة الكهربائية للاسترخاء</h3>
-                    <span class="product-price">850 ج.م</span>
-                    <button class="add-to-cart-btn" onclick="addToCart('وسادة تدفئة', 850, this)">أضف للسلة</button>
+                    <div class="price-tag">850 ج.م</div>
+                    <button class="btn-buy" onclick="handleAddToCart('وسادة تدفئة', 850, this)">
+                        <i class="fas fa-cart-plus"></i> أضف للسلة
+                    </button>
                 </div>
             </div>
 
-            <div class="product-card">
-                <div class="image-slider">
+            <div class="item-card">
+                <div class="image-view">
                     <img src="2.PNG" class="active">
                     <img src="2-2.PNG">
                 </div>
-                <div class="product-info">
-                    <h3>جهاز قياس الضغط الرقمي بالصوت</h3>
-                    <span class="product-price">2100 ج.م</span>
-                    <button class="add-to-cart-btn" onclick="addToCart('جهاز ضغط', 2100, this)">أضف للسلة</button>
+                <div class="details-box">
+                    <h3>جهاز قياس الضغط الرقمي الحديث</h3>
+                    <div class="price-tag">2100 ج.م</div>
+                    <button class="btn-buy" onclick="handleAddToCart('جهاز ضغط ديجيتال', 2100, this)">
+                        <i class="fas fa-cart-plus"></i> أضف للسلة
+                    </button>
                 </div>
             </div>
 
-            <div class="product-card">
-                <div class="image-slider">
+            <div class="item-card">
+                <div class="image-view">
                     <img src="3.PNG" class="active"> 
                     <img src="3-3.PNG"> 
                 </div>
-                <div class="product-info">
-                    <h3>جهاز Thrive السرافي الياباني</h3>
-                    <span class="product-price">1100 ج.م</span>
-                    <button class="add-to-cart-btn" onclick="addToCart('جهاز السرافي', 1100, this)">أضف للسلة</button>
+                <div class="details-box">
+                    <h3>جهاز Thrive السرافي الياباني الأصلي</h3>
+                    <div class="price-tag">1100 ج.م</div>
+                    <button class="btn-buy" onclick="handleAddToCart('جهاز السرافي', 1100, this)">
+                        <i class="fas fa-cart-plus"></i> أضف للسلة
+                    </button>
                 </div>
             </div>
 
-            <div class="product-card">
-                <div class="image-slider"><img src="6.PNG" class="active"></div>
-                <div class="product-info">
-                    <h3>جهاز نيبولايزر STAR المتطور</h3>
-                    <span class="product-price">1100 ج.م</span>
-                    <button class="add-to-cart-btn" onclick="addToCart('نيبولايزر STAR', 1100, this)">أضف للسلة</button>
+            <div class="item-card">
+                <div class="image-view"><img src="6.PNG" class="active"></div>
+                <div class="details-box">
+                    <h3>جهاز نيبولايزر STAR لجلسات التنفس</h3>
+                    <div class="price-tag">1100 ج.م</div>
+                    <button class="btn-buy" onclick="handleAddToCart('نيبولايزر STAR', 1100, this)">
+                        <i class="fas fa-cart-plus"></i> أضف للسلة
+                    </button>
                 </div>
             </div>
 
-            <div class="product-card">
-                <div class="image-slider"><img src="4.PNG" class="active"></div>
-                <div class="product-info">
-                    <h3>جهاز المساج الاحترافي MAHL</h3>
-                    <span class="product-price">3300 ج.م</span>
-                    <button class="add-to-cart-btn" onclick="addToCart('جهاز MAHL', 3300, this)">أضف للسلة</button>
+            <div class="item-card">
+                <div class="image-view"><img src="4.PNG" class="active"></div>
+                <div class="details-box">
+                    <h3>جهاز المساج الاحترافي MAHL القوي</h3>
+                    <div class="price-tag">3300 ج.م</div>
+                    <button class="btn-buy" onclick="handleAddToCart('جهاز MAHL', 3300, this)">
+                        <i class="fas fa-cart-plus"></i> أضف للسلة
+                    </button>
                 </div>
             </div>
+
         </div>
 
-        <div class="policies-box">
-            <div class="policy-row"><i class="fas fa-truck-fast"></i><p>توصيل سريع للقاهرة والجيزة فقط.</p></div>
-            <div class="policy-row"><i class="fas fa-check-double"></i><p>معاينة المنتج قبل الاستلام والدفع.</p></div>
+        <div class="trust-badges">
+            <div class="badge-row"><i class="fas fa-shipping-fast"></i><p>توصيل خلال 24-48 ساعة لمحافظتي القاهرة والجيزة.</p></div>
+            <div class="badge-row"><i class="fas fa-shield-alt"></i><p>معاينة المنتج واختباره بالكامل قبل دفع جنيه واحد.</p></div>
+            <div class="badge-row"><i class="fas fa-user-check"></i><p>دعم فني وضمان استبدال حقيقي ضد عيوب الصناعة.</p></div>
         </div>
+
+        <footer>
+            <img src="logo.png" class="footer-logo" alt="Em Medical">
+            <p style="margin-bottom: 25px; color: #aab7b8;">إم ميديكال: شريكك الموثوق لأجهزة الرعاية الصحية المنزلية. نجمع بين الجودة اليابانية والخدمة المصرية المتميزة.</p>
+            
+            <div class="policy-links">
+                <a href="javascript:void(0)"><i class="fas fa-lock"></i> سياسة الخصوصية</a>
+                <a href="javascript:void(0)"><i class="fas fa-check-square"></i> شروط الخدمة</a>
+                <a href="javascript:void(0)"><i class="fas fa-sync-alt"></i> الاستبدال والاسترجاع</a>
+                <a href="javascript:void(0)"><i class="fas fa-truck"></i> سياسة الشحن</a>
+            </div>
+
+            <div class="footer-contact">
+                <p><i class="fab fa-whatsapp"></i> تواصل معنا: 201153951440+</p>
+                <p style="margin-top: 15px; font-size: 11px; opacity: 0.6;">جميع الحقوق محفوظة لمتجر Em Medical © 2026</p>
+            </div>
+        </footer>
     </div>
 
-    <div id="cart-modal-overlay" class="cart-overlay" onclick="toggleCartDisplay()">
-        <div class="cart-panel" onclick="event.stopPropagation()">
-            <h2>سلة الطلبات</h2>
-            <div id="cart-items-list"></div>
-            <div class="total-box">
+    <div id="cart-overlay-bg" class="modal-overlay" onclick="toggleCart()">
+        <div class="cart-slide-panel" onclick="event.stopPropagation()">
+            <div class="cart-header"><h2>سلة المشتريات</h2></div>
+            <div id="cart-items-container" class="cart-listing"></div>
+            
+            <div class="summary-total">
                 <span>الإجمالي:</span>
-                <span><span id="final-price">0</span> ج.م</span>
+                <span><span id="cart-total-value">0</span> ج.م</span>
             </div>
-            <button class="checkout-btn" onclick="sendToWhatsApp()">
-                تأكيد عبر واتساب <i class="fab fa-whatsapp"></i>
+            
+            <button class="order-now-whatsapp" onclick="confirmOrder()">
+                تأكيد الطلب عبر واتساب <i class="fab fa-whatsapp"></i>
             </button>
         </div>
     </div>
 
-    <div class="bottom-nav">
-        <a href="#" class="nav-link active"><i class="fas fa-home"></i><span>الرئيسية</span></a>
-        <a href="https://t.me/emmedical7" target="_blank" class="nav-link"><i class="fab fa-telegram-plane"></i><span>تليجرام</span></a>
-        <a href="javascript:void(0)" onclick="toggleCartDisplay()" class="nav-link"><i class="fas fa-shopping-basket"></i><span>السلة</span></a>
-    </div>
+    <nav class="app-nav-bar">
+        <a href="#" class="nav-item active"><i class="fas fa-home"></i><span>المتجر</span></a>
+        <a href="https://t.me/emmedical7" target="_blank" class="nav-item"><i class="fab fa-telegram-plane"></i><span>تليجرام</span></a>
+        <a href="javascript:void(0)" onclick="toggleCart()" class="nav-item"><i class="fas fa-shopping-basket"></i><span>السلة</span></a>
+    </nav>
 
     <script>
-        let cart = [];
+        let myCart = [];
 
-        function addToCart(name, price, btn) {
-            const item = cart.find(i => i.name === name);
-            if (item) {
-                item.qty++;
+        function handleAddToCart(name, price, btn) {
+            const found = myCart.find(p => p.name === name);
+            if (found) {
+                found.count++;
             } else {
-                cart.push({ name, price, qty: 1 });
+                myCart.push({ name, price, count: 1 });
             }
-            updateBadge();
-            btn.innerText = "تمت الإضافة ✅";
-            setTimeout(() => btn.innerText = "أضف للسلة", 1000);
+            updateCartUI();
+            
+            // Animation for button
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check-circle"></i> تمت الإضافة';
+            btn.style.backgroundColor = 'var(--success)';
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.style.backgroundColor = 'var(--primary)';
+            }, 1000);
         }
 
-        function updateBadge() {
+        function updateCartUI() {
             const badge = document.getElementById('cart-count-badge');
-            const total = cart.reduce((s, i) => s + i.qty, 0);
-            if (total > 0) {
+            const totalCount = myCart.reduce((acc, item) => acc + item.count, 0);
+            
+            if (totalCount > 0) {
                 badge.style.display = 'flex';
-                badge.innerText = total;
+                badge.innerText = totalCount;
             } else {
                 badge.style.display = 'none';
             }
         }
 
-        function renderCart() {
-            const container = document.getElementById('cart-items-list');
-            let sum = 0;
-            if (cart.length === 0) {
-                container.innerHTML = "<p style='text-align:center; padding:30px; color:#999;'>سلتك فارغة حالياً</p>";
-                document.getElementById('final-price').innerText = 0;
+        function renderCartDetails() {
+            const container = document.getElementById('cart-items-container');
+            let sumPrice = 0;
+            
+            if (myCart.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align:center; padding:40px; color:#999;">
+                        <i class="fas fa-shopping-cart" style="font-size:50px; margin-bottom:15px; opacity:0.3;"></i>
+                        <p>سلتك فارغة.. جولة سريعة في المتجر؟</p>
+                    </div>`;
+                document.getElementById('cart-total-value').innerText = 0;
                 return;
             }
-            let html = "";
-            cart.forEach((item, index) => {
-                sum += (item.price * item.qty);
-                html += `
-                <div class="cart-item">
-                    <i class="fas fa-trash-alt remove-icon" onclick="deleteItem(${index})"></i>
-                    <div class="cart-item-info">
-                        <span class="cart-item-name">${item.name}</span>
-                        <span class="cart-item-price">${item.price} ج.م</span>
+
+            let cartHtml = "";
+            myCart.forEach((item, idx) => {
+                const subTotal = item.price * item.count;
+                sumPrice += subTotal;
+                cartHtml += `
+                <div class="cart-item-row">
+                    <i class="fas fa-trash delete-item-btn" onclick="removeItem(${idx})"></i>
+                    <div class="item-main-info">
+                        <span class="item-name-text">${item.name}</span>
+                        <span class="item-price-text">${item.price} ج.م</span>
                     </div>
-                    <div class="qty-wrapper">
-                        <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
-                        <span>${item.qty}</span>
-                        <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
+                    <div class="qty-controls">
+                        <button class="control-btn" onclick="changeQuantity(${idx}, 1)">+</button>
+                        <span style="font-weight:bold; min-width:15px; text-align:center;">${item.count}</span>
+                        <button class="control-btn" onclick="changeQuantity(${idx}, -1)">-</button>
                     </div>
                 </div>`;
             });
-            container.innerHTML = html;
-            document.getElementById('final-price').innerText = sum;
+            container.innerHTML = cartHtml;
+            document.getElementById('cart-total-value').innerText = sumPrice;
         }
 
-        function changeQty(index, val) {
-            cart[index].qty += val;
-            if (cart[index].qty < 1) cart.splice(index, 1);
-            updateBadge();
-            renderCart();
+        function changeQuantity(idx, val) {
+            myCart[idx].count += val;
+            if (myCart[idx].count < 1) myCart.splice(idx, 1);
+            updateCartUI();
+            renderCartDetails();
         }
 
-        function deleteItem(index) {
-            cart.splice(index, 1);
-            updateBadge();
-            renderCart();
+        function removeItem(idx) {
+            myCart.splice(idx, 1);
+            updateCartUI();
+            renderCartDetails();
         }
 
-        function toggleCartDisplay() {
-            const overlay = document.getElementById('cart-modal-overlay');
-            const isVisible = overlay.style.display === 'block';
-            overlay.style.display = isVisible ? 'none' : 'block';
-            if(!isVisible) renderCart();
+        function toggleCart() {
+            const overlay = document.getElementById('cart-overlay-bg');
+            const open = overlay.style.display === 'block';
+            overlay.style.display = open ? 'none' : 'block';
+            if (!open) renderCartDetails();
         }
 
-        function sendToWhatsApp() {
-            if (!cart.length) return alert("السلة فارغة");
-            let msg = "طلب جديد من Em Medical:%0A%0A";
-            cart.forEach(i => msg += `• ${i.name} (الكمية: ${i.qty})%0A`);
-            msg += `%0A💰 الإجمالي: ${document.getElementById('final-price').innerText} ج.م`;
-            window.open(`https://wa.me/201153951440?text=${msg}`);
+        function confirmOrder() {
+            if (myCart.length === 0) return alert("السلة فارغة!");
+            
+            let message = "طلب شراء جديد من Em Medical:%0A";
+            message += "--------------------------%0A";
+            myCart.forEach((item, i) => {
+                message += `${i+1}. ${item.name} | العدد: ${item.count}%0A`;
+            });
+            message += "--------------------------%0A";
+            message += `💰 الإجمالي: ${document.getElementById('cart-total-value').innerText} ج.م`;
+            
+            window.open(`https://wa.me/201153951440?text=${message}`);
         }
 
+        // Image Sliders Auto-play
         window.onload = function() {
-            document.querySelectorAll('.product-card').forEach(card => {
-                const imgs = card.querySelectorAll('.image-slider img');
-                if (imgs.length > 1) {
-                    let idx = 0;
+            document.querySelectorAll('.item-card').forEach(card => {
+                const images = card.querySelectorAll('.image-view img');
+                if (images.length > 1) {
+                    let current = 0;
                     setInterval(() => {
-                        imgs[idx].classList.remove('active');
-                        idx = (idx + 1) % imgs.length;
-                        imgs[idx].classList.add('active');
-                    }, 3500);
+                        images[current].classList.remove('active');
+                        current = (current + 1) % images.length;
+                        images[current].classList.add('active');
+                    }, 4000);
                 }
             });
         }
