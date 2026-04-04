@@ -9,47 +9,22 @@
         :root { --p: #0062cc; --s: #28a745; --bg: #f4f7f6; --blue-light: rgba(0, 98, 204, 0.08); }
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background: var(--bg); padding-bottom: 90px; text-align: right; direction: rtl; }
-        
         header { background: #fff; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
-        
         .container { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 12px; }
-        .card { background: #fff; border-radius: 15px; overflow: hidden; border: 1px solid #eee; display: flex; flex-direction: column; box-shadow: 0 4px 12px rgba(0,0,0,0.05); transition: 0.3s; }
-        
+        .card { background: #fff; border-radius: 15px; overflow: hidden; border: 1px solid #eee; display: flex; flex-direction: column; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
         .slider { position: relative; height: 160px; overflow: hidden; background: #fff; display: flex; align-items: center; justify-content: center; }
-        .slides { display: flex; transition: 0.5s ease-in-out; width: 100%; height: 100%; }
-        .slides img { width: 100%; height: 100%; object-fit: contain; flex-shrink: 0; padding: 10px; }
-        
-        /* تأثير التبديل بالماوس للمساج */
         .hover-flip { position: relative; width: 100%; height: 100%; }
-        .hover-flip img { position: absolute; top: 0; left: 0; transition: opacity 0.5s ease; }
+        .hover-flip img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; padding: 10px; transition: opacity 0.5s ease; }
         .img-back { opacity: 0; }
         .card:hover .img-back { opacity: 1; }
         .card:hover .img-front { opacity: 0; }
-
         .details { padding: 12px; text-align: center; flex: 1; display: flex; flex-direction: column; }
         .details h3 { font-size: 13px; margin: 0 0 8px; color: #222; font-weight: 800; min-height: 35px; display: flex; align-items: center; justify-content: center; }
-        
-        .specs-box { 
-            font-size: 10px; color: #444; margin-bottom: 12px; line-height: 1.5; 
-            background: var(--blue-light); padding: 8px; border-radius: 8px;
-            border-right: 3px solid var(--p); text-align: right;
-        }
+        .specs-box { font-size: 10px; color: #444; margin-bottom: 12px; line-height: 1.5; background: var(--blue-light); padding: 8px; border-radius: 8px; border-right: 3px solid var(--p); text-align: right; }
         .specs-box i { color: var(--p); margin-left: 5px; font-size: 9px; }
-
         .price { color: var(--p); font-weight: 900; display: block; margin-bottom: 10px; font-size: 16px; }
-        
-        .btn { 
-            background: var(--p); color: #fff; border: none; width: 100%; padding: 12px; 
-            border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 13px;
-            animation: pulse-blue 2s infinite;
-        }
-
-        @keyframes pulse-blue {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 98, 204, 0.4); }
-            70% { transform: scale(0.97); box-shadow: 0 0 0 10px rgba(0, 98, 204, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 98, 204, 0); }
-        }
-
+        .btn { background: var(--p); color: #fff; border: none; width: 100%; padding: 12px; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 13px; animation: pulse-blue 2s infinite; }
+        @keyframes pulse-blue { 0% { transform: scale(1); } 70% { transform: scale(0.97); } 100% { transform: scale(1); } }
         .nav { position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 15px; border-top: 1px solid #eee; z-index: 1000; }
         .nav a { color: #999; text-decoration: none; font-size: 24px; }
         #badge { position: absolute; top: -5px; right: -8px; background: red; color: #fff; font-size: 11px; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: bold; border: 2px solid #fff; }
@@ -68,55 +43,56 @@
 </header>
 
 <div class="container">
-    
     <div class="card">
         <div class="slider">
             <div class="hover-flip">
-                <img src="massage.png" class="img-front" style="width:100%; height:100%; object-fit:contain; padding:10px;">
-                <img src="massage-2.png" class="img-back" style="width:100%; height:100%; object-fit:contain; padding:10px;">
+                <img src="massage.png" class="img-front">
+                <img src="massage-2.png" class="img-back">
             </div>
         </div>
         <div class="details">
             <h3>جهاز مساج Relax & Spin Tone</h3>
             <div class="specs-box">
                 <div><i class="fas fa-check-circle"></i> تفتيت الدهون وشد الترهلات</div>
-                <div><i class="fas fa-check-circle"></i> ينشط الدورة الدموية</div>
                 <div><i class="fas fa-check-circle"></i> سرعات متعددة حسب الرغبة</div>
             </div>
             <span class="price">450 ج.م</span>
-            <button class="btn" onclick="addItem(this,'Relax & Spin Massage',450)">أضف للسلة</button>
+            <button class="btn" onclick="addItem(this,'Relax & Spin',450)">أضف للسلة</button>
         </div>
     </div>
 
     <div class="card">
-        <div class="slider"><div class="slides"><img src="egg-sitter.png"></div></div>
+        <div class="slider">
+            <img src="egg-sitter.png" style="width:100%; height:100%; object-fit:contain; padding:10px;">
+        </div>
         <div class="details">
             <h3>قاعدة Egg Sitter الطبية</h3>
             <div class="specs-box">
                 <div><i class="fas fa-check-circle"></i> مادة السيليكون المرن</div>
-                <div><i class="fas fa-check-circle"></i> تصميم خلية النحل للتهوية</div>
                 <div><i class="fas fa-check-circle"></i> تخفيف ضغط الظهر والعمود</div>
             </div>
             <span class="price">500 ج.م</span>
-            <button class="btn" onclick="addItem(this,'Egg Sitter Cushion',500)">أضف للسلة</button>
+            <button class="btn" onclick="addItem(this,'Egg Sitter',500)">أضف للسلة</button>
         </div>
     </div>
 
     <div class="card">
-        <div class="slider"><div class="slides"><img src="4.PNG"></div></div>
+        <div class="slider">
+            <img src="1.PNG" style="width:100%; height:100%; object-fit:contain; padding:10px;">
+        </div>
         <div class="details">
-            <h3>جهاز المساج الاحترافي MAHL</h3>
+            <h3>وسادة التدفئة والاسترخاء</h3>
             <div class="specs-box">
-                <div><i class="fas fa-check-circle"></i> 6 رؤوس تدليك متنوعة</div>
-                <div><i class="fas fa-check-circle"></i> حقيبة فاخرة للهدايا</div>
+                <div><i class="fas fa-check-circle"></i> قماش ناعم قابل للغسل</div>
+                <div><i class="fas fa-check-circle"></i> مستويات حرارة آمنة</div>
             </div>
-            <span class="price">3300 ج.م</span>
-            <button class="btn" onclick="addItem(this,'MAHL Massage',3300)">أضف للسلة</button>
+            <span class="price">850 ج.م</span>
+            <button class="btn" onclick="addItem(this,'Heating Pad',850)">أضف للسلة</button>
         </div>
     </div>
 
     <div class="card">
-        <div class="slider"><div class="slides"><img src="3.PNG"></div></div>
+        <div class="slider"><img src="3.PNG" style="width:100%; height:100%; object-fit:contain; padding:10px;"></div>
         <div class="details">
             <h3>جهاز Thrive الياباني</h3>
             <div class="specs-box">
@@ -129,7 +105,7 @@
     </div>
 
     <div class="card">
-        <div class="slider"><div class="slides"><img src="6.PNG"></div></div>
+        <div class="slider"><img src="6.PNG" style="width:100%; height:100%; object-fit:contain; padding:10px;"></div>
         <div class="details">
             <h3>جهاز نيبولايزر STAR</h3>
             <div class="specs-box">
@@ -142,18 +118,17 @@
     </div>
 
     <div class="card">
-        <div class="slider"><div class="slides"><img src="2.PNG"></div></div>
+        <div class="slider"><img src="4.PNG" style="width:100%; height:100%; object-fit:contain; padding:10px;"></div>
         <div class="details">
-            <h3>جهاز قياس الضغط الرقمي</h3>
+            <h3>جهاز المساج الاحترافي MAHL</h3>
             <div class="specs-box">
-                <div><i class="fas fa-check-circle"></i> دقة قياس معتمدة</div>
-                <div><i class="fas fa-check-circle"></i> شاشة كبيرة واضحة</div>
+                <div><i class="fas fa-check-circle"></i> 6 رؤوس تدليك متنوعة</div>
+                <div><i class="fas fa-check-circle"></i> حقيبة فاخرة للهدايا</div>
             </div>
-            <span class="price">2100 ج.م</span>
-            <button class="btn" onclick="addItem(this,'Pressure Monitor',2100)">أضف للسلة</button>
+            <span class="price">3300 ج.م</span>
+            <button class="btn" onclick="addItem(this,'MAHL Massage',3300)">أضف للسلة</button>
         </div>
     </div>
-
 </div>
 
 <div id="cart-ui" onclick="showCart()">
