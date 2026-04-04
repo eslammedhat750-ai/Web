@@ -15,7 +15,7 @@
         .c-icon { position: relative; background: var(--p); width: 45px; height: 45px; border-radius: 14px; display: flex; align-items: center; justify-content: center; color: white; cursor: pointer; box-shadow: 0 4px 12px rgba(0,82,204,0.3); }
         #c-badge { position: absolute; top: -8px; right: -8px; background: var(--d); color: white; font-size: 11px; font-weight: 900; min-width: 22px; height: 22px; border-radius: 50%; display: none; align-items: center; justify-content: center; border: 2px solid white; }
         .cnt { padding: 15px; max-width: 1100px; margin: 0 auto; }
-        .ship-note { background: linear-gradient(90deg, var(--p), #007bff); color: white; padding: 12px; border-radius: 15px; text-align: center; font-size: 13px; font-weight: 700; margin-bottom: 20px; }
+        .ship-note { background: linear-gradient(90deg, var(--p), #007bff); color: white; padding: 12px; border-radius: 15px; text-align: center; font-size: 13px; font-weight: 700; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,82,204,0.2); }
         .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
         .card { background: var(--w); border-radius: var(--r); padding: 12px; display: flex; flex-direction: column; transition: 0.3s; border: 1px solid rgba(0,0,0,0.03); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
         .img-h { width: 100%; height: 160px; position: relative; background: #f8f9fa; border-radius: 15px; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
@@ -23,7 +23,7 @@
         .img-h img.active { opacity: 1; }
         .card h3 { font-size: 14px; font-weight: 700; height: 44px; overflow: hidden; margin-bottom: 8px; line-height: 1.5; }
         .price { font-size: 18px; font-weight: 900; color: var(--p); margin-bottom: 15px; }
-        .add-btn { background: #eef3ff; color: var(--p); border: none; padding: 12px; border-radius: 12px; font-weight: 800; font-size: 13px; cursor: pointer; }
+        .add-btn { background: #eef3ff; color: var(--p); border: none; padding: 12px; border-radius: 12px; font-weight: 800; font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
         .pols { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 30px; }
         .pol-c { background: white; padding: 15px; border-radius: 18px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.02); }
         .pol-c i { font-size: 20px; color: var(--s); margin-bottom: 8px; }
@@ -52,76 +52,82 @@
 </header>
 
 <div class="cnt">
-    <div class="ship-note"><i class="fas fa-truck"></i> توصيل سريع للقاهرة والجيزة خلال 24 ساعة</div>
+    <div class="ship-note"><i class="fas fa-bolt"></i> شحن سريع للقاهرة والجيزة خلال 24 ساعة</div>
+
     <div class="grid">
         <div class="card">
             <div class="img-h"><img src="massage-1.PNG" class="active"><img src="massage-2.png"></div>
             <h3>جهاز مساج ريلاكس آند سبين</h3>
             <div class="price">450 ج.م</div>
-            <button class="add-btn" onclick="add('مساج ريلاكس', 450, this)">إضافة للسلة</button>
+            <button class="add-btn" onclick="add('جهاز مساج ريلاكس', 450, this)"><i class="fas fa-plus"></i> إضافة</button>
         </div>
         <div class="card">
             <div class="img-h"><img src="egg-sitter" class="active"></div>
             <h3>قاعدة Egg Sitter الطبية</h3>
             <div class="price">500 ج.م</div>
-            <button class="add-btn" onclick="add('قاعدة Egg Sitter', 500, this)">إضافة للسلة</button>
+            <button class="add-btn" onclick="add('قاعدة Egg Sitter', 500, this)"><i class="fas fa-plus"></i> إضافة</button>
         </div>
         <div class="card">
             <div class="img-h"><img src="1.PNG" class="active"><img src="1-1.PNG"></div>
             <h3>وسادة تدفئة كهربائية مريحة</h3>
             <div class="price">850 ج.م</div>
-            <button class="add-btn" onclick="add('وسادة تدفئة', 850, this)">إضافة للسلة</button>
+            <button class="add-btn" onclick="add('وسادة تدفئة', 850, this)"><i class="fas fa-plus"></i> إضافة</button>
         </div>
         <div class="card">
             <div class="img-h"><img src="2.PNG" class="active"><img src="2-2.PNG"></div>
             <h3>جهاز ضغط ديجيتال ناطق</h3>
             <div class="price">2100 ج.م</div>
-            <button class="add-btn" onclick="add('جهاز ضغط', 2100, this)">إضافة للسلة</button>
+            <button class="add-btn" onclick="add('جهاز ضغط', 2100, this)"><i class="fas fa-plus"></i> إضافة</button>
         </div>
         <div class="card">
             <div class="img-h"><img src="3.PNG" class="active"><img src="3-3.PNG"></div>
             <h3>جهاز Thrive الياباني الأصلي</h3>
             <div class="price">1100 ج.م</div>
-            <button class="add-btn" onclick="add('جهاز Thrive', 1100, this)">إضافة للسلة</button>
+            <button class="add-btn" onclick="add('جهاز Thrive', 1100, this)"><i class="fas fa-plus"></i> إضافة</button>
         </div>
         <div class="card">
             <div class="img-h"><img src="6.PNG" class="active"></div>
             <h3>جهاز نيبولايزر STAR طبي</h3>
             <div class="price">1100 ج.م</div>
-            <button class="add-btn" onclick="add('نيبولايزر STAR', 1100, this)">إضافة للسلة</button>
+            <button class="add-btn" onclick="add('نيبولايزر STAR', 1100, this)"><i class="fas fa-plus"></i> إضافة</button>
         </div>
         <div class="card">
             <div class="img-h"><img src="4.PNG" class="active"></div>
             <h3>جهاز مساج MAHL الألماني</h3>
             <div class="price">3300 ج.م</div>
-            <button class="add-btn" onclick="add('جهاز MAHL', 3300, this)">إضافة للسلة</button>
+            <button class="add-btn" onclick="add('جهاز MAHL', 3300, this)"><i class="fas fa-plus"></i> إضافة</button>
         </div>
     </div>
 
     <div class="pols">
         <div class="pol-c"><i class="fas fa-shield-alt"></i><p>ضمان لمدة عام</p></div>
-        <div class="pol-c"><i class="fas fa-hand-holding-usd"></i><p>دفع عند الاستلام</p></div>
+        <div class="pol-c"><i class="fas fa-truck"></i><p>دفع عند الاستلام</p></div>
         <div class="pol-c"><i class="fas fa-sync"></i><p>استبدال سهل</p></div>
-        <div class="pol-c"><i class="fas fa-certificate"></i><p>أصلي 100%</p></div>
+        <div class="pol-c"><i class="fas fa-check-circle"></i><p>أصلي 100%</p></div>
     </div>
-    <footer><p>Em Medical Shop © 2026</p></footer>
+
+    <footer>
+        <img src="logo.png" style="height:40px; filter:invert(1); margin-bottom:15px;">
+        <p>Em Medical Shop</p>
+        <p style="font-size:11px; margin-top:5px;">جميع الحقوق محفوظة © 2026</p>
+    </footer>
 </div>
 
 <div id="ov" class="ov" onclick="tgl()">
     <div class="pan" onclick="event.stopPropagation()">
-        <h2 id="mt" style="text-align:center; margin-bottom:20px;">السلة</h2>
+        <h2 id="mt" style="text-align:center; margin-bottom:20px; font-weight:900;">السلة</h2>
         <div id="cl"></div>
         <div id="cs">
             <div style="display:flex; justify-content:space-between; margin:25px 0; font-size:20px; font-weight:900;">
                 <span>الإجمالي</span><span style="color:var(--p)"><span id="tv">0</span> ج.م</span>
             </div>
-            <button class="f-btn" onclick="sf()">تكملة الطلب</button>
+            <button class="f-btn" onclick="sf()" style="background:var(--p)">تكملة الطلب</button>
         </div>
         <div id="ff" style="display:none;">
-            <div class="ig"><label>الاسم</label><input type="text" id="un" placeholder="اسمك"></div>
-            <div class="ig"><label>الموبايل</label><input type="tel" id="up" placeholder="01xxx"></div>
-            <div class="ig"><label>العنوان</label><textarea id="ua" rows="2" placeholder="العنوان"></textarea></div>
-            <button class="f-btn" onclick="sw()">تأكيد واتساب</button>
+            <div class="ig"><label>الاسم بالكامل</label><input type="text" id="un" placeholder="اسم المستلم"></div>
+            <div class="ig"><label>رقم الموبايل</label><input type="tel" id="up" placeholder="01xxxxxxxxx"></div>
+            <div class="ig"><label>العنوان بالتفصيل</label><textarea id="ua" rows="2" placeholder="المنطقة والشارع"></textarea></div>
+            <button class="f-btn" onclick="sw()">تأكيد الطلب عبر واتساب <i class="fab fa-whatsapp"></i></button>
             <p onclick="bc()" style="text-align:center; margin-top:15px; color:#999; cursor:pointer;">تعديل السلة</p>
         </div>
     </div>
@@ -138,8 +144,8 @@
     function add(n, p, b) {
         let i = cart.find(x => x.n === n);
         if(i) i.q++; else cart.push({n, p, q: 1});
-        upUI(); b.innerText = "تم ✅";
-        setTimeout(() => { b.innerText = "إضافة للسلة"; }, 800);
+        upUI(); b.innerText = "تمت الإضافة ✅"; b.style.background = "#00a884"; b.style.color="white";
+        setTimeout(() => { b.innerHTML = '<i class="fas fa-plus"></i> إضافة'; b.style.background = "#eef3ff"; b.style.color= "var(--p)"; }, 1000);
     }
     function upUI() {
         let b = document.getElementById('c-badge');
@@ -148,22 +154,23 @@
     }
     function ren() {
         let l = document.getElementById('cl'), sum = 0;
-        if(!cart.length) { l.innerHTML = "<p style='text-align:center; padding:30px;'>فاضية</p>"; document.getElementById('tv').innerText=0; return; }
+        if(!cart.length) { l.innerHTML = "<p style='text-align:center; padding:30px; color:#999;'>السلة فارغة</p>"; document.getElementById('tv').innerText=0; document.querySelector('#cs button').style.display='none'; return; }
+        document.querySelector('#cs button').style.display='block';
         let h = ""; cart.forEach((i, x) => {
             sum += (i.p * i.q);
-            h += `<div class="c-item"><div style="flex-grow:1;"><b>${i.n}</b><br><span>${i.p} ج.م</span></div><div class="qty"><button onclick="ch(${x},1)">+</button><span>${i.q}</span><button onclick="ch(${x},-1)">-</button></div></div>`;
+            h += `<div class="c-item"><div style="flex-grow:1;"><b>${i.n}</b><br><span style="color:var(--p); font-weight:900;">${i.p} ج.م</span></div><div class="qty"><button onclick="ch(${x},1)">+</button><span style="margin:0 12px; font-weight:bold;">${i.q}</span><button onclick="ch(${x},-1)">-</button></div></div>`;
         });
         l.innerHTML = h; document.getElementById('tv').innerText = sum;
     }
     function ch(x, v) { cart[x].q += v; if(cart[x].q < 1) cart.splice(x, 1); upUI(); ren(); }
     function tgl() { let m = document.getElementById('ov'), v = m.style.display === 'block'; m.style.display = v ? 'none' : 'block'; if(!v) { bc(); ren(); } }
-    function sf() { document.getElementById('cl').style.display='none'; document.getElementById('cs').style.display='none'; document.getElementById('ff').style.display='block'; }
-    function bc() { document.getElementById('cl').style.display='block'; document.getElementById('cs').style.display='block'; document.getElementById('ff').style.display='none'; }
+    function sf() { document.getElementById('cl').style.display='none'; document.getElementById('cs').style.display='none'; document.getElementById('ff').style.display='block'; document.getElementById('mt').innerText='بيانات الشحن'; }
+    function bc() { document.getElementById('cl').style.display='block'; document.getElementById('cs').style.display='block'; document.getElementById('ff').style.display='none'; document.getElementById('mt').innerText='السلة'; }
     function sw() {
         let n = document.getElementById('un').value, p = document.getElementById('up').value, a = document.getElementById('ua').value;
-        if(!n || !p || !a) return alert("كمل البيانات");
-        let msg = `طلب جديد:%0A👤 الاسم: ${n}%0A📞 الموبايل: ${p}%0A📍 العنوان: ${a}%0A🛒 المنتجات:%0A`;
-        cart.forEach(i => msg += `• ${i.n} (${i.q})%0A`);
+        if(!n || !p || !a) return alert("من فضلك كمل بياناتك");
+        let msg = `طلب جديد من Em Medical:%0A👤 الاسم: ${n}%0A📞 الموبايل: ${p}%0A📍 العنوان: ${a}%0A%0A🛒 المنتجات:%0A`;
+        cart.forEach(i => msg += `• ${i.n} (عدد: ${i.q})%0A`);
         msg += `%0A💰 الإجمالي: ${document.getElementById('tv').innerText} ج.م`;
         window.open(`https://wa.me/201153951440?text=${msg}`);
     }
