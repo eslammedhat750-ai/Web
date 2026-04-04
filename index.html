@@ -108,7 +108,6 @@
             gap: 15px;
         }
 
-        /* تنسيق كارت المنتج */
         .product-card {
             background-color: var(--white);
             border-radius: 20px;
@@ -122,7 +121,6 @@
 
         .product-card:active { transform: scale(0.97); }
 
-        /* منطقة السلايدر داخل الكارت */
         .image-slider {
             position: relative;
             width: 100%;
@@ -185,10 +183,7 @@
             font-weight: bold;
             cursor: pointer;
             width: 100%;
-            transition: 0.3s;
         }
-
-        .add-to-cart-btn:active { background-color: var(--secondary-color); }
 
         /* =========================================
            4. قسم السياسات والتوصيل
@@ -207,8 +202,6 @@
             align-items: center;
             margin-bottom: 15px;
         }
-
-        .policy-row:last-child { margin-bottom: 0; }
 
         .policy-row i {
             color: var(--success-color);
@@ -243,7 +236,6 @@
             padding: 25px;
             max-height: 80vh;
             overflow-y: auto;
-            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
         }
 
         .cart-panel h2 {
@@ -251,7 +243,6 @@
             font-size: 20px;
             color: var(--primary-color);
             margin-bottom: 20px;
-            padding-bottom: 10px;
             border-bottom: 1px solid #eee;
         }
 
@@ -287,15 +278,12 @@
             justify-content: center;
         }
 
-        .checkout-whatsapp i { margin-left: 10px; font-size: 22px; }
-
         /* =========================================
            6. الناف بار السفلي (Nav)
            ========================================= */
         .bottom-nav {
             position: fixed;
             bottom: 0;
-            left: 0;
             width: 100%;
             background-color: var(--white);
             display: flex;
@@ -319,7 +307,6 @@
         .nav-link.active { color: var(--primary-color); }
         .nav-link i { font-size: 24px; margin-bottom: 4px; }
 
-        /* للهواتف الصغيرة جداً */
         @media (max-width: 360px) {
             .products-grid { grid-template-columns: 1fr; }
         }
@@ -328,9 +315,7 @@
 <body>
 
     <header>
-        <div class="logo-area">
-            <img src="logo.png" alt="Em Medical">
-        </div>
+        <div class="logo-area"><img src="logo.png" alt="Em Medical"></div>
         <div class="cart-trigger" onclick="toggleCartDisplay()">
             <i class="fas fa-shopping-basket"></i>
             <span id="cart-count-badge">0</span>
@@ -338,25 +323,22 @@
     </header>
 
     <div class="content-wrapper">
-        
         <div class="products-grid">
             
             <div class="product-card">
                 <div class="image-slider">
-                    <img src="massage-1.PNG" class="active" alt="Relax 1">
-                    <img src="massage-2.png" alt="Relax 2">
+                    <img src="massage-1.PNG" class="active">
+                    <img src="massage-2.png">
                 </div>
                 <div class="product-info">
-                    <h3>جهاز مساج Relax & Spin Tone للجسم</h3>
+                    <h3>جهاز مساج Relax & Spin Tone</h3>
                     <span class="product-price">450 ج.م</span>
                     <button class="add-to-cart-btn" onclick="addToCart('جهاز مساج ريلاكس', 450, this)">أضف للسلة</button>
                 </div>
             </div>
 
             <div class="product-card">
-                <div class="image-slider">
-                    <img src="egg-sitter" class="active" alt="Egg Sitter">
-                </div>
+                <div class="image-slider"><img src="egg-sitter" class="active"></div>
                 <div class="product-info">
                     <h3>قاعدة Egg Sitter الطبية المريحة</h3>
                     <span class="product-price">500 ج.م</span>
@@ -366,8 +348,8 @@
 
             <div class="product-card">
                 <div class="image-slider">
-                    <img src="1.PNG" class="active" alt="Heating 1">
-                    <img src="1-1.PNG" alt="Heating 2">
+                    <img src="1.PNG" class="active">
+                    <img src="1-1.PNG">
                 </div>
                 <div class="product-info">
                     <h3>وسادة التدفئة والاسترخاء الكهربائية</h3>
@@ -378,8 +360,8 @@
 
             <div class="product-card">
                 <div class="image-slider">
-                    <img src="2.PNG" class="active" alt="Pressure 1">
-                    <img src="2-2.PNG" alt="Pressure 2">
+                    <img src="2.PNG" class="active">
+                    <img src="2-2.PNG">
                 </div>
                 <div class="product-info">
                     <h3>جهاز قياس الضغط الرقمي بالصوت</h3>
@@ -390,52 +372,38 @@
 
             <div class="product-card">
                 <div class="image-slider">
-                    <img src="3.PNG" class="active" alt="Thrive">
+                    <img src="3.PNG" class="active">
+                    <img src="3-3.png">
                 </div>
                 <div class="product-info">
-                    <h3>جهاز Thrive الياباني الأصلي للجسم</h3>
+                    <h3>جهاز Thrive الياباني الأصلي (السرافي)</h3>
                     <span class="product-price">1100 ج.م</span>
-                    <button class="add-to-cart-btn" onclick="addToCart('جهاز Thrive', 1100, this)">أضف للسلة</button>
+                    <button class="add-to-cart-btn" onclick="addToCart('جهاز Thrive السرافي', 1100, this)">أضف للسلة</button>
                 </div>
             </div>
 
             <div class="product-card">
-                <div class="image-slider">
-                    <img src="6.PNG" class="active" alt="Nebulizer">
-                </div>
+                <div class="image-slider"><img src="6.PNG" class="active"></div>
                 <div class="product-info">
-                    <h3>جهاز نيبولايزر STAR المتطور للأطفال</h3>
+                    <h3>جهاز نيبولايزر STAR المتطور</h3>
                     <span class="product-price">1100 ج.م</span>
                     <button class="add-to-cart-btn" onclick="addToCart('نيبولايزر STAR', 1100, this)">أضف للسلة</button>
                 </div>
             </div>
 
             <div class="product-card">
-                <div class="image-slider">
-                    <img src="4.PNG" class="active" alt="MAHL">
-                </div>
+                <div class="image-slider"><img src="4.PNG" class="active"></div>
                 <div class="product-info">
-                    <h3>جهاز المساج الاحترافي MAHL للقوة</h3>
+                    <h3>جهاز المساج الاحترافي MAHL</h3>
                     <span class="product-price">3300 ج.م</span>
                     <button class="add-to-cart-btn" onclick="addToCart('جهاز MAHL', 3300, this)">أضف للسلة</button>
                 </div>
             </div>
-
         </div>
 
         <div class="policies-box">
-            <div class="policy-row">
-                <i class="fas fa-truck-fast"></i>
-                <p>خدمة التوصيل متاحة لمحافظتي (القاهرة والجيزة) فقط.</p>
-            </div>
-            <div class="policy-row">
-                <i class="fas fa-check-circle"></i>
-                <p>ضمان استبدال فوري ضد عيوب الصناعة لجميع المنتجات.</p>
-            </div>
-            <div class="policy-row">
-                <i class="fas fa-eye"></i>
-                <p>إمكانية معاينة وتجربة المنتج مع المندوب قبل الاستلام.</p>
-            </div>
+            <div class="policy-row"><i class="fas fa-truck-fast"></i><p>التوصيل لمحافظتي (القاهرة والجيزة) فقط.</p></div>
+            <div class="policy-row"><i class="fas fa-check-circle"></i><p>ضمان استبدال ومعاينة كاملة قبل الاستلام.</p></div>
         </div>
     </div>
 
@@ -443,128 +411,61 @@
         <div class="cart-panel" onclick="event.stopPropagation()">
             <h2>سلة الطلبات</h2>
             <div id="cart-items-container"></div>
-            <div class="total-area">
-                <span>الإجمالي:</span>
-                <span><span id="cart-total-price">0</span> ج.م</span>
-            </div>
-            <button class="checkout-whatsapp" onclick="checkoutOrder()">
-                تأكيد الطلب عبر واتساب <i class="fab fa-whatsapp"></i>
-            </button>
+            <div class="total-area"><span>الإجمالي:</span><span><span id="cart-total-price">0</span> ج.م</span></div>
+            <button class="checkout-whatsapp" onclick="checkoutOrder()">تأكيد عبر واتساب <i class="fab fa-whatsapp"></i></button>
         </div>
     </div>
 
     <div class="bottom-nav">
-        <a href="#" class="nav-link active">
-            <i class="fas fa-home"></i>
-            <span>الرئيسية</span>
-        </a>
-        <a href="https://t.me/emmedical7" target="_blank" class="nav-link">
-            <i class="fab fa-telegram-plane"></i>
-            <span>تليجرام</span>
-        </a>
-        <a href="javascript:void(0)" onclick="toggleCartDisplay()" class="nav-link">
-            <i class="fas fa-shopping-basket"></i>
-            <span>السلة</span>
-        </a>
+        <a href="#" class="nav-link active"><i class="fas fa-home"></i><span>الرئيسية</span></a>
+        <a href="https://t.me/emmedical7" target="_blank" class="nav-link"><i class="fab fa-telegram-plane"></i><span>تليجرام</span></a>
+        <a href="javascript:void(0)" onclick="toggleCartDisplay()" class="nav-link"><i class="fas fa-shopping-basket"></i><span>السلة</span></a>
     </div>
 
     <script>
-        // 1. إدارة بيانات السلة
         let shoppingCart = [];
-
-        // 2. وظيفة إضافة المنتجات
-        function addToCart(name, price, btnElement) {
-            shoppingCart.push({ name: name, price: price });
-            updateBadge();
-            
-            // تغيير شكل الزر مؤقتاً
-            const originalText = btnElement.innerText;
-            btnElement.innerText = "تمت الإضافة ✅";
-            btnElement.style.backgroundColor = "#28a745";
-            
-            setTimeout(() => {
-                btnElement.innerText = originalText;
-                btnElement.style.backgroundColor = "#0062cc";
-            }, 800);
-        }
-
-        // 3. تحديث أيقونة العدد
-        function updateBadge() {
+        function addToCart(name, price, btn) {
+            shoppingCart.push({ name, price });
             document.getElementById('cart-count-badge').innerText = shoppingCart.length;
+            btn.innerText = "تمت الإضافة ✅";
+            setTimeout(() => { btn.innerText = "أضف للسلة"; }, 800);
         }
-
-        // 4. فتح وإغلاق السلة
         function toggleCartDisplay() {
             const overlay = document.getElementById('cart-modal-overlay');
-            if (overlay.style.display === 'block') {
-                overlay.style.display = 'none';
-            } else {
-                overlay.style.display = 'block';
-                renderCartContent();
-            }
+            overlay.style.display = (overlay.style.display === 'block') ? 'none' : 'block';
+            if(overlay.style.display === 'block') renderCart();
         }
-
-        // 5. بناء محتوى السلة
-        function renderCartContent() {
+        function renderCart() {
             const container = document.getElementById('cart-items-container');
             let sum = 0;
-            let htmlContent = "";
-
-            if (shoppingCart.length === 0) {
-                htmlContent = "<p style='text-align:center; padding:30px; color:#999;'>سلة الطلبات فارغة حالياً</p>";
-            } else {
-                shoppingCart.forEach((item, i) => {
-                    htmlContent += `
-                        <div class="item-row">
-                            <span style="font-weight:600; font-size:14px;">${i + 1}- ${item.name}</span>
-                            <span style="color:#0062cc; font-weight:bold;">${item.price} ج.م</span>
-                        </div>
-                    `;
-                    sum += item.price;
-                });
-            }
-            
-            container.innerHTML = htmlContent;
+            let html = shoppingCart.length ? "" : "<p style='text-align:center; padding:20px;'>السلة فارغة</p>";
+            shoppingCart.forEach((item, i) => {
+                html += `<div class='item-row'><span>${i+1}- ${item.name}</span><b>${item.price} ج.م</b></div>`;
+                sum += item.price;
+            });
+            container.innerHTML = html;
             document.getElementById('cart-total-price').innerText = sum;
         }
-
-        // 6. إنهاء الطلب عبر واتساب
         function checkoutOrder() {
-            if (shoppingCart.length === 0) {
-                alert("السلة فارغة، أضف بعض المنتجات أولاً.");
-                return;
-            }
-
-            let messageBody = "أرغب في طلب المنتجات التالية من Em Medical:%0A%0A";
-            shoppingCart.forEach((item, index) => {
-                messageBody += `${index + 1}- ${item.name} (${item.price} ج.م)%0A`;
-            });
-            
-            const totalVal = document.getElementById('cart-total-price').innerText;
-            messageBody += `%0A💰 الإجمالي: ${totalVal} ج.م`;
-            messageBody += `%0A📍 التوصيل المطلوب: (القاهرة / الجيزة)`;
-
-            window.open(`https://wa.me/201153951440?text=${messageBody}`);
+            if (!shoppingCart.length) return alert("السلة فارغة");
+            let msg = "طلب جديد من Em Medical:%0A";
+            shoppingCart.forEach((item, i) => msg += `${i+1}- ${item.name}%0A`);
+            msg += `%0Aالإجمالي: ${document.getElementById('cart-total-price').innerText} ج.م%0A📍 التوصيل: القاهرة والجيزة`;
+            window.open(`https://wa.me/201153951440?text=${msg}`);
         }
-
-        // 7. تشغيل السلايدر التلقائي
-        function startImageSliders() {
-            const cards = document.querySelectorAll('.product-card');
-            
-            cards.forEach(card => {
-                const imgElements = card.querySelectorAll('.image-slider img');
-                if (imgElements.length > 1) {
-                    let currentIdx = 0;
+        window.onload = function() {
+            document.querySelectorAll('.product-card').forEach(card => {
+                const imgs = card.querySelectorAll('.image-slider img');
+                if (imgs.length > 1) {
+                    let idx = 0;
                     setInterval(() => {
-                        imgElements[currentIdx].classList.remove('active');
-                        currentIdx = (currentIdx + 1) % imgElements.length;
-                        imgElements[currentIdx].classList.add('active');
+                        imgs[idx].classList.remove('active');
+                        idx = (idx + 1) % imgs.length;
+                        imgs[idx].classList.add('active');
                     }, 3000);
                 }
             });
         }
-
-        window.onload = startImageSliders;
     </script>
 </body>
 </html>
