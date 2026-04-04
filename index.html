@@ -3,189 +3,504 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Em Medical | إم ميديكال</title>
+    <title>Em Medical | إم ميديكال للمستلزمات الطبية</title>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        :root { --p: #0062cc; --s: #28a745; --bg: #f4f7f6; }
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; background: var(--bg); padding-bottom: 100px; text-align: right; direction: rtl; }
-        header { background: #fff; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
-        
-        .container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; }
-        .card { background: #fff; border-radius: 12px; overflow: hidden; border: 1px solid #eee; display: flex; flex-direction: column; box-shadow: 0 4px 8px rgba(0,0,0,0.05); }
-        
-        /* السلايدر لكل الأجهزة */
-        .slider-box { position: relative; height: 150px; background: #fff; overflow: hidden; }
-        .slider-box img { position: absolute; width: 100%; height: 100%; object-fit: contain; padding: 8px; opacity: 0; transition: opacity 0.8s ease-in-out; }
-        .slider-box img.active { opacity: 1; }
+        /* تعريف الألوان الأساسية */
+        :root {
+            --primary-color: #0062cc;
+            --success-color: #28a745;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-dark: #222222;
+            --text-light: #555555;
+        }
 
-        .details { padding: 10px; text-align: center; flex: 1; }
-        .details h3 { font-size: 12px; margin: 5px 0; color: #333; min-height: 32px; font-weight: bold; }
-        .price { color: var(--p); font-weight: 900; font-size: 15px; display: block; margin-bottom: 8px; }
-        .btn { background: var(--p); color: #fff; border: none; width: 100%; padding: 10px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 12px; }
-        
-        .policy-section { background: #fff; margin: 15px 10px; padding: 15px; border-radius: 12px; border-right: 4px solid var(--s); }
-        .policy-item { display: flex; align-items: center; margin-bottom: 6px; font-size: 11px; color: #555; }
-        .policy-item i { color: var(--s); margin-left: 8px; }
+        /* الإعدادات العامة للصفحة */
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            margin: 0;
+            padding: 0;
+        }
 
-        .nav { position: fixed; bottom: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 15px; border-top: 1px solid #eee; z-index: 1000; }
-        #badge { position: absolute; top: -5px; right: -8px; background: red; color: #fff; font-size: 10px; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
-        #cart-ui { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 2000; backdrop-filter: blur(4px); }
-        .cart-content { background: #fff; width: 100%; position: absolute; bottom: 0; border-radius: 20px 20px 0 0; padding: 20px; max-height: 70vh; overflow-y: auto; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            padding-bottom: 100px; /* مساحة للتنقل السفلي */
+            text-align: right;
+            direction: rtl;
+        }
+
+        /* الهيدر (رأس الصفحة) */
+        header {
+            background-color: #fff;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header img {
+            height: 40px;
+        }
+
+        .cart-icon-container {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart-icon-container i {
+            font-size: 28px;
+            color: var(--primary-color);
+        }
+
+        #badge {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background-color: #ff0000;
+            color: #fff;
+            font-size: 12px;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: bold;
+            border: 2px solid #fff;
+        }
+
+        /* شبكة المنتجات */
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            padding: 15px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+
+        /* السلايدر الخاص بالصور */
+        .slider-wrapper {
+            position: relative;
+            height: 170px;
+            background-color: #fff;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slider-wrapper img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 12px;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slider-wrapper img.active {
+            opacity: 1;
+        }
+
+        /* تفاصيل المنتج */
+        .details {
+            padding: 15px;
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .details h3 {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+            font-weight: 800;
+            line-height: 1.4;
+            min-height: 40px;
+        }
+
+        .price-tag {
+            color: var(--primary-color);
+            font-weight: 900;
+            font-size: 18px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .add-btn {
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        /* قسم السياسات */
+        .policy-box {
+            background-color: #fff;
+            margin: 20px 15px;
+            padding: 20px;
+            border-radius: 18px;
+            border-right: 6px solid var(--success-color);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .policy-box h4 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .policy-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        .policy-item i {
+            color: var(--success-color);
+            margin-left: 12px;
+            font-size: 16px;
+        }
+
+        /* واجهة السلة (Popup) */
+        #cart-ui {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+        }
+
+        .cart-panel {
+            background-color: #fff;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            border-radius: 30px 30px 0 0;
+            padding: 30px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .checkout-btn {
+            background-color: var(--success-color);
+            color: #fff;
+            border: none;
+            width: 100%;
+            padding: 18px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        /* شريط التنقل السفلي */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #fff;
+            display: flex;
+            justify-content: space-around;
+            padding: 15px;
+            border-top: 1px solid #eee;
+            z-index: 1000;
+        }
+
+        .bottom-nav a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 26px;
+        }
+
+        .bottom-nav a.active {
+            color: var(--primary-color);
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <img src="logo.png" style="height:30px;">
-    <div onclick="showCart()" style="position:relative;"><i class="fas fa-shopping-basket" style="font-size:24px; color:var(--p)"></i><span id="badge">0</span></div>
+    <img src="logo.png" alt="Em Medical Logo">
+    <div class="cart-icon-container" onclick="toggleCart()">
+        <i class="fas fa-shopping-basket"></i>
+        <span id="badge">0</span>
+    </div>
 </header>
 
 <div class="container">
+    
     <div class="card">
-        <div class="slider-box">
+        <div class="slider-wrapper">
             <img src="massage.png" class="active">
             <img src="massage-2.png">
         </div>
         <div class="details">
             <h3>جهاز مساج Relax & Spin Tone</h3>
-            <span class="price">450 ج.م</span>
-            <button class="btn" onclick="addItem(this,'Relax & Spin',450)">أضف للسلة</button>
+            <span class="price-tag">450 ج.م</span>
+            <button class="add-btn" onclick="addToCart(this, 'Relax & Spin', 450)">أضف للسلة</button>
         </div>
     </div>
 
     <div class="card">
-        <div class="slider-box">
+        <div class="slider-wrapper">
             <img src="egg-sitter" class="active">
         </div>
         <div class="details">
             <h3>قاعدة Egg Sitter الطبية</h3>
-            <span class="price">500 ج.م</span>
-            <button class="btn" onclick="addItem(this,'Egg Sitter',500)">أضف للسلة</button>
+            <span class="price-tag">500 ج.م</span>
+            <button class="add-btn" onclick="addToCart(this, 'Egg Sitter', 500)">أضف للسلة</button>
         </div>
     </div>
 
     <div class="card">
-        <div class="slider-box">
+        <div class="slider-wrapper">
             <img src="1.PNG" class="active">
             <img src="1-1.PNG">
         </div>
         <div class="details">
             <h3>وسادة التدفئة والاسترخاء</h3>
-            <span class="price">850 ج.م</span>
-            <button class="btn" onclick="addItem(this,'Heating Pad',850)">أضف للسلة</button>
+            <span class="price-tag">850 ج.م</span>
+            <button class="add-btn" onclick="addToCart(this, 'Heating Pad', 850)">أضف للسلة</button>
         </div>
     </div>
 
     <div class="card">
-        <div class="slider-box">
+        <div class="slider-wrapper">
             <img src="2.PNG" class="active">
             <img src="2-2.PNG">
         </div>
         <div class="details">
             <h3>جهاز قياس الضغط الرقمي</h3>
-            <span class="price">2100 ج.م</span>
-            <button class="btn" onclick="addItem(this,'Pressure Monitor',2100)">أضف للسلة</button>
+            <span class="price-tag">2100 ج.م</span>
+            <button class="add-btn" onclick="addToCart(this, 'Pressure Monitor', 2100)">أضف للسلة</button>
         </div>
     </div>
 
     <div class="card">
-        <div class="slider-box">
+        <div class="slider-wrapper">
             <img src="3.PNG" class="active">
         </div>
         <div class="details">
             <h3>جهاز Thrive الياباني</h3>
-            <span class="price">1100 ج.م</span>
-            <button class="btn" onclick="addItem(this,'Thrive',1100)">أضف للسلة</button>
+            <span class="price-tag">1100 ج.م</span>
+            <button class="add-btn" onclick="addToCart(this, 'Thrive', 1100)">أضف للسلة</button>
         </div>
     </div>
 
     <div class="card">
-        <div class="slider-box">
+        <div class="slider-wrapper">
             <img src="6.PNG" class="active">
         </div>
         <div class="details">
             <h3>جهاز نيبولايزر STAR</h3>
-            <span class="price">1100 ج.م</span>
-            <button class="btn" onclick="addItem(this,'STAR Nebulizer',1100)">أضف للسلة</button>
+            <span class="price-tag">1100 ج.م</span>
+            <button class="btn add-btn" onclick="addToCart(this, 'STAR Nebulizer', 1100)">أضف للسلة</button>
         </div>
     </div>
 
     <div class="card">
-        <div class="slider-box">
+        <div class="slider-wrapper">
             <img src="4.PNG" class="active">
         </div>
         <div class="details">
             <h3>جهاز المساج الاحترافي MAHL</h3>
-            <span class="price">3300 ج.م</span>
-            <button class="btn" onclick="addItem(this,'MAHL Massage',3300)">أضف للسلة</button>
+            <span class="price-tag">3300 ج.م</span>
+            <button class="add-btn" onclick="addToCart(this, 'MAHL Massage', 3300)">أضف للسلة</button>
         </div>
+    </div>
+
+</div>
+
+<div class="policy-box">
+    <h4><i class="fas fa-shield-alt"></i> سياسات متجر Em Medical</h4>
+    <div class="policy-item">
+        <i class="fas fa-truck-fast"></i>
+        <span>شحن سريع لجميع المحافظات مع إمكانية المعاينة قبل الاستلام.</span>
+    </div>
+    <div class="policy-item">
+        <i class="fas fa-sync-alt"></i>
+        <span>ضمان استبدال حقيقي في حالة وجود عيوب صناعة.</span>
+    </div>
+    <div class="policy-item">
+        <i class="fas fa-headset"></i>
+        <span>خدمة عملاء متوفرة عبر الواتساب لمتابعة طلبك خطوة بخطوة.</span>
     </div>
 </div>
 
-<div class="policy-section">
-    <h4><i class="fas fa-shield-alt"></i> سياسات Em Medical</h4>
-    <div class="policy-item"><i class="fas fa-truck"></i> شحن سريع لجميع المحافظات.</div>
-    <div class="policy-item"><i class="fas fa-sync-alt"></i> ضمان استبدال ضد عيوب الصناعة.</div>
-    <div class="policy-item"><i class="fas fa-search-plus"></i> إمكانية المعاينة قبل الاستلام.</div>
+<div id="cart-ui" onclick="toggleCart()">
+    <div class="cart-panel" onclick="event.stopPropagation()">
+        <h3 style="text-align:center; color:var(--primary-color); margin-bottom: 20px;">محتويات السلة</h3>
+        <div id="cart-items-list">
+            </div>
+        <div style="margin-top:20px; padding-top:15px; border-top:2px solid #eee; display:flex; justify-content:space-between; font-weight:bold; font-size: 18px;">
+            <span>الإجمالي:</span>
+            <span><span id="cart-total-price">0</span> ج.م</span>
+        </div>
+        <button class="checkout-btn" onclick="sendWhatsAppOrder()">إرسال الطلب عبر واتساب</button>
+    </div>
 </div>
 
-<div id="cart-ui" onclick="showCart()"><div class="cart-content" onclick="event.stopPropagation()">
-    <h3 style="text-align:center; color:var(--p);">السلة</h3>
-    <div id="list"></div>
-    <hr><div style="display:flex; justify-content:space-between; font-weight:bold;"><span>الإجمالي:</span><span><span id="total">0</span> ج.م</span></div>
-    <button onclick="goWA()" style="width:100%; background:var(--s); color:#fff; border:none; padding:15px; border-radius:10px; margin-top:15px; font-weight:bold;">تأكيد واتساب</button>
-</div></div>
-
-<div class="nav">
-    <a href="#"><i class="fas fa-home"></i></a>
+<div class="bottom-nav">
+    <a href="#" class="active"><i class="fas fa-home"></i></a>
     <a href="https://t.me/emmedical7" target="_blank"><i class="fab fa-telegram"></i></a>
-    <a href="javascript:void(0)" onclick="showCart()"><i class="fas fa-shopping-basket"></i></a>
+    <a href="javascript:void(0)" onclick="toggleCart()"><i class="fas fa-shopping-basket"></i></a>
 </div>
 
 <script>
-    function startSliders() {
-        const boxes = document.querySelectorAll('.slider-box');
-        boxes.forEach(box => {
-            const imgs = box.querySelectorAll('img');
-            if (imgs.length > 1) {
-                let current = 0;
+    /* مصفوفة السلة */
+    let shoppingCart = [];
+
+    /* وظيفة تشغيل السلايدر لكل المنتجات التي تحتوي على أكثر من صورة */
+    function initializeSliders() {
+        const wrappers = document.querySelectorAll('.slider-wrapper');
+        
+        wrappers.forEach(wrapper => {
+            const images = wrapper.querySelectorAll('img');
+            if (images.length > 1) {
+                let currentIdx = 0;
                 setInterval(() => {
-                    imgs[current].classList.remove('active');
-                    current = (current + 1) % imgs.length;
-                    imgs[current].classList.add('active');
-                }, 3000);
+                    images[currentIdx].classList.remove('active');
+                    currentIdx = (currentIdx + 1) % images.length;
+                    images[currentIdx].classList.add('active');
+                }, 3000); // تغيير الصورة كل 3 ثواني
             }
         });
     }
-    window.onload = startSliders;
 
-    let cart = [];
-    function addItem(btn, n, p) {
-        cart.push({n, p});
-        document.getElementById('badge').innerText = cart.length;
-        btn.innerHTML = "تم ✅"; setTimeout(() => btn.innerHTML = "أضف للسلة", 1000);
+    /* تشغيل السلايدر عند تحميل الصفحة */
+    window.onload = initializeSliders;
+
+    /* إضافة منتج للسلة */
+    function addToCart(btn, name, price) {
+        shoppingCart.push({ name: name, price: price });
+        updateBadge();
+        
+        // تغيير شكل الزر للتأكيد
+        const originalText = btn.innerHTML;
+        btn.innerHTML = "تمت الإضافة ✅";
+        btn.style.backgroundColor = "var(--success-color)";
+        
+        setTimeout(() => {
+            btn.innerHTML = originalText;
+            btn.style.backgroundColor = "var(--primary-color)";
+        }, 1000);
     }
-    function showCart() { 
+
+    /* تحديث رقم السلة */
+    function updateBadge() {
+        document.getElementById('badge').innerText = shoppingCart.length;
+    }
+
+    /* إظهار/إخفاء السلة */
+    function toggleCart() {
         const ui = document.getElementById('cart-ui');
-        ui.style.display = (ui.style.display === 'block') ? 'none' : 'block';
-        if(ui.style.display === 'block') renderCart();
+        if (ui.style.display === 'block') {
+            ui.style.display = 'none';
+        } else {
+            ui.style.display = 'block';
+            renderCartItems();
+        }
     }
-    function renderCart() {
-        let h = "", t = 0;
-        cart.forEach((i, idx) => {
-            h += `<div style="display:flex; justify-content:space-between; margin-bottom:10px;"><span>${i.n}</span><b>${i.p} ج.م</b></div>`;
-            t += i.p;
+
+    /* عرض المنتجات داخل السلة */
+    function renderCartItems() {
+        const listDiv = document.getElementById('cart-items-list');
+        let total = 0;
+        
+        if (shoppingCart.length === 0) {
+            listDiv.innerHTML = "<p style='text-align:center; padding: 20px; color: #999;'>السلة فارغة حالياً</p>";
+        } else {
+            let html = "";
+            shoppingCart.forEach((item, index) => {
+                html += `
+                <div class="cart-item">
+                    <div>
+                        <strong>${item.name}</strong><br>
+                        <span style="color: var(--primary-color);">${item.price} ج.م</span>
+                    </div>
+                    <button onclick="removeFromCart(${index})" style="background:none; border:none; color:red; cursor:pointer; font-size: 18px;">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
+                `;
+                total += item.price;
+            });
+            listDiv.innerHTML = html;
+        }
+        document.getElementById('cart-total-price').innerText = total;
+    }
+
+    /* حذف منتج من السلة */
+    function removeFromCart(index) {
+        shoppingCart.splice(index, 1);
+        updateBadge();
+        renderCartItems();
+    }
+
+    /* إرسال الطلب للواتساب */
+    function sendWhatsAppOrder() {
+        if (shoppingCart.length === 0) {
+            alert("السلة فارغة!");
+            return;
+        }
+        
+        let message = "أهلاً Em Medical، أريد طلب المنتجات التالية:%0A%0A";
+        shoppingCart.forEach((item, i) => {
+            message += `${i + 1}- ${item.name} (${item.price} ج.م)%0A`;
         });
-        document.getElementById('list').innerHTML = h || "السلة فارغة";
-        document.getElementById('total').innerText = t;
-    }
-    function goWA() {
-        if(cart.length === 0) return;
-        let m = "طلب من Em Medical:%0A";
-        cart.forEach(i => m += `- ${i.n} (${i.p})%0A`);
-        window.open(`https://wa.me/201153951440?text=${m}%0Aالإجمالي: ${document.getElementById('total').innerText} ج.م`);
+        
+        const total = document.getElementById('cart-total-price').innerText;
+        message += `%0A💰 الإجمالي: ${total} ج.م`;
+        
+        // رقم الواتساب الخاص بك
+        const phoneNumber = "201153951440";
+        window.open(`https://wa.me/${phoneNumber}?text=${message}`);
     }
 </script>
+
 </body>
 </html>
