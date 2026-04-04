@@ -23,7 +23,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             background: var(--bg);
-            padding-bottom: 90px;
+            padding-bottom: 100px;
             text-align: right;
             direction: rtl;
         }
@@ -57,7 +57,8 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
 
-        .slider {
+        /* السلايدر المتطور لكل الأجهزة */
+        .slider-box {
             position: relative;
             height: 160px;
             overflow: hidden;
@@ -67,13 +68,7 @@
             justify-content: center;
         }
 
-        .auto-slider {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-
-        .auto-slider img {
+        .slider-box img {
             position: absolute;
             top: 0;
             left: 0;
@@ -85,7 +80,7 @@
             transition: opacity 1s ease-in-out;
         }
 
-        .auto-slider img.active {
+        .slider-box img.active {
             opacity: 1;
         }
 
@@ -128,29 +123,42 @@
             font-size: 13px;
         }
 
-        /* قسم السياسات الجديد */
-        .policy-box {
+        /* قسم السياسات */
+        .policy-section {
             background: #fff;
-            margin: 15px 12px;
-            padding: 15px;
+            margin: 20px 12px;
+            padding: 18px;
             border-radius: 15px;
-            border: 1px dashed var(--p);
+            border-right: 5px solid var(--s);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
+
+        .policy-section h4 {
+            margin: 0 0 12px 0;
+            color: var(--p);
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .policy-section h4 i { margin-left: 8px; }
 
         .policy-item {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             margin-bottom: 10px;
             font-size: 12px;
             color: #444;
+            line-height: 1.4;
         }
 
         .policy-item i {
             color: var(--s);
-            margin-left: 8px;
-            margin-top: 3px;
+            margin-left: 10px;
+            font-size: 14px;
         }
 
+        /* السلة والقائمة */
         .nav {
             position: fixed;
             bottom: 0;
@@ -162,6 +170,8 @@
             border-top: 1px solid #eee;
             z-index: 1000;
         }
+
+        .nav a { color: #999; font-size: 24px; }
 
         #badge {
             position: absolute;
@@ -203,7 +213,7 @@
 <body>
 
 <header>
-    <img src="logo.png" style="height:35px;" alt="Em Medical">
+    <img src="logo.png" style="height:35px;" alt="Logo">
     <div onclick="showCart()" style="position:relative;">
         <i class="fas fa-shopping-basket" style="font-size:26px; color:var(--p)"></i>
         <span id="badge">0</span>
@@ -213,11 +223,9 @@
 <div class="container">
     
     <div class="card">
-        <div class="slider">
-            <div class="auto-slider" id="massage-slider">
-                <img src="massage" class="active">
-                <img src="massage-2.png">
-            </div>
+        <div class="slider-box">
+            <img src="massage" class="active">
+            <img src="massage-2.png">
         </div>
         <div class="details">
             <h3>جهاز مساج Relax & Spin Tone</h3>
@@ -227,7 +235,9 @@
     </div>
 
     <div class="card">
-        <div class="slider"><img src="egg-sitter" style="width:100%; height:100%; object-fit:contain; padding:10px;"></div>
+        <div class="slider-box">
+            <img src="egg-sitter" class="active">
+        </div>
         <div class="details">
             <h3>قاعدة Egg Sitter الطبية</h3>
             <span class="price">500 ج.م</span>
@@ -236,7 +246,9 @@
     </div>
 
     <div class="card">
-        <div class="slider"><img src="1.PNG" style="width:100%; height:100%; object-fit:contain; padding:10px;"></div>
+        <div class="slider-box">
+            <img src="1.PNG" class="active">
+        </div>
         <div class="details">
             <h3>وسادة التدفئة والاسترخاء</h3>
             <span class="price">850 ج.م</span>
@@ -245,7 +257,9 @@
     </div>
 
     <div class="card">
-        <div class="slider"><img src="2.PNG" style="width:100%; height:100%; object-fit:contain; padding:10px;"></div>
+        <div class="slider-box">
+            <img src="2.PNG" class="active">
+        </div>
         <div class="details">
             <h3>جهاز قياس الضغط الرقمي</h3>
             <span class="price">2100 ج.م</span>
@@ -254,7 +268,9 @@
     </div>
 
     <div class="card">
-        <div class="slider"><img src="3.PNG" style="width:100%; height:100%; object-fit:contain; padding:10px;"></div>
+        <div class="slider-box">
+            <img src="3.PNG" class="active">
+        </div>
         <div class="details">
             <h3>جهاز Thrive الياباني</h3>
             <span class="price">1100 ج.م</span>
@@ -263,7 +279,9 @@
     </div>
 
     <div class="card">
-        <div class="slider"><img src="6.PNG" style="width:100%; height:100%; object-fit:contain; padding:10px;"></div>
+        <div class="slider-box">
+            <img src="6.PNG" class="active">
+        </div>
         <div class="details">
             <h3>جهاز نيبولايزر STAR</h3>
             <span class="price">1100 ج.م</span>
@@ -272,7 +290,9 @@
     </div>
 
     <div class="card">
-        <div class="slider"><img src="4.PNG" style="width:100%; height:100%; object-fit:contain; padding:10px;"></div>
+        <div class="slider-box">
+            <img src="4.PNG" class="active">
+        </div>
         <div class="details">
             <h3>جهاز المساج الاحترافي MAHL</h3>
             <span class="price">3300 ج.م</span>
@@ -282,33 +302,35 @@
 
 </div>
 
-<div class="policy-box">
-    <div style="font-weight:bold; color:var(--p); margin-bottom:10px; border-bottom:1px solid #eee; padding-bottom:5px;">
-        <i class="fas fa-info-circle"></i> سياسات متجر Em Medical
-    </div>
+<div class="policy-section">
+    <h4><i class="fas fa-shield-alt"></i> سياسات متجر Em Medical</h4>
     <div class="policy-item">
-        <i class="fas fa-truck"></i>
+        <i class="fas fa-truck-fast"></i>
         <span>شحن سريع لجميع المحافظات مع إمكانية فحص المنتج عند الاستلام.</span>
     </div>
     <div class="policy-item">
-        <i class="fas fa-sync-alt"></i>
-        <span>سياسة استبدال واسترجاع مرنة في حالة وجود عيوب صناعة.</span>
+        <i class="fas fa-sync"></i>
+        <span>سياسة استبدال فورية في حالة وجود عيوب صناعة.</span>
     </div>
     <div class="policy-item">
-        <i class="fas fa-headset"></i>
-        <span>دعم فني وخدمة عملاء متاحة عبر الواتساب والتلجرام للرد على استفساراتكم.</span>
+        <i class="fas fa-certificate"></i>
+        <span>جميع المنتجات مختارة بعناية لضمان أعلى جودة طبية.</span>
     </div>
 </div>
 
+<footer style="text-align: center; padding: 20px; color: #888; font-size: 12px;">
+    &copy; 2026 Em Medical - جميع الحقوق محفوظة
+</footer>
+
 <div id="cart-ui" onclick="showCart()">
     <div class="cart-content" onclick="event.stopPropagation()">
-        <h3 style="text-align:center; color:var(--p);">سلة المشتريات</h3>
+        <h3 style="text-align:center; color:var(--p); margin-bottom: 20px;">سلة المشتريات</h3>
         <div id="list"></div>
-        <div style="margin-top:15px; padding:15px 0; border-top:2px solid #eee; display:flex; justify-content:space-between; font-weight:bold;">
+        <div style="margin-top:20px; padding:15px 0; border-top:2px solid #eee; display:flex; justify-content:space-between; font-weight:bold;">
             <span>الإجمالي:</span>
             <span><span id="total">0</span> ج.م</span>
         </div>
-        <button onclick="goWA()" style="width:100%; background:var(--s); color:#fff; border:none; padding:18px; border-radius:15px; font-weight:bold; cursor:pointer;">تأكيد الطلب عبر واتساب</button>
+        <button onclick="goWA()" style="width:100%; background:var(--s); color:#fff; border:none; padding:18px; border-radius:15px; font-weight:bold; cursor:pointer; font-size: 16px;">تأكيد الطلب عبر واتساب</button>
     </div>
 </div>
 
@@ -319,27 +341,36 @@
 </div>
 
 <script>
-    // تشغيل السلايدر التلقائي
-    function initSlider() {
-        const slider = document.getElementById('massage-slider');
-        const images = slider.getElementsByTagName('img');
-        let current = 0;
-        setInterval(() => {
-            if(images.length > 1) {
-                images[current].classList.remove('active');
-                current = (current + 1) % images.length;
-                images[current].classList.add('active');
+    // برمجة السلايدر لكل الأجهزة تلقائياً
+    function initAllSliders() {
+        const sliderBoxes = document.querySelectorAll('.slider-box');
+        
+        sliderBoxes.forEach(box => {
+            const images = box.querySelectorAll('img');
+            if (images.length > 1) {
+                let currentIndex = 0;
+                setInterval(() => {
+                    images[currentIndex].classList.remove('active');
+                    currentIndex = (currentIndex + 1) % images.length;
+                    images[currentIndex].classList.add('active');
+                }, 3000);
             }
-        }, 3000);
+        });
     }
-    window.onload = initSlider;
+    
+    window.onload = initAllSliders;
 
     let cart = [];
+
     function addItem(btn, n, p) {
         cart.push({n, p});
         document.getElementById('badge').innerText = cart.length;
         btn.innerHTML = "تم ✅";
-        setTimeout(() => { btn.innerHTML = "أضف للسلة"; }, 1000);
+        btn.style.background = "var(--s)";
+        setTimeout(() => {
+            btn.innerHTML = "أضف للسلة";
+            btn.style.background = "var(--p)";
+        }, 1000);
     }
 
     function showCart() {
@@ -349,16 +380,25 @@
     }
 
     function renderCart() {
-        let h = "", t = 0;
-        cart.forEach((item, index) => {
-            h += `<div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #eee;">
-                <div><b>${item.n}</b><br><small>${item.p} ج.م</small></div>
-                <button onclick="deleteItem(${index})" style="color:red; background:none; border:none; cursor:pointer;">حذف</button>
-            </div>`;
-            t += item.p;
-        });
-        document.getElementById('list').innerHTML = h || "<p style='text-align:center;'>السلة فارغة</p>";
-        document.getElementById('total').innerText = t;
+        let html = "";
+        let total = 0;
+        if (cart.length === 0) {
+            html = "<p style='text-align:center; padding:20px; color:#999;'>السلة فارغة حالياً</p>";
+        } else {
+            cart.forEach((item, index) => {
+                html += `
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid #eee;">
+                    <div>
+                        <div style="font-weight:bold; font-size:14px;">${item.n}</div>
+                        <div style="color:var(--p); font-size:13px;">${item.p} ج.م</div>
+                    </div>
+                    <button onclick="deleteItem(${index})" style="color:red; background:none; border:none; cursor:pointer; font-size:18px;"><i class="fas fa-trash-alt"></i></button>
+                </div>`;
+                total += item.p;
+            });
+        }
+        document.getElementById('list').innerHTML = html;
+        document.getElementById('total').innerText = total;
     }
 
     function deleteItem(index) {
@@ -369,10 +409,12 @@
 
     function goWA() {
         if (cart.length === 0) return;
-        let msg = "طلب جديد من Em Medical:%0A";
+        let msg = "طلب جديد من Em Medical:%0A%0A";
         cart.forEach((item, i) => msg += `${i+1}- ${item.n} (${item.p} ج.م)%0A`);
-        window.open(`https://wa.me/201153951440?text=${msg}%0Aالإجمالي: ${document.getElementById('total').innerText} ج.م`);
+        msg += `%0A💰 الإجمالي: ${document.getElementById('total').innerText} ج.م`;
+        window.open(`https://wa.me/201153951440?text=${msg}`);
     }
 </script>
+
 </body>
 </html>
