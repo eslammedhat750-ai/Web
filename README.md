@@ -15,4 +15,4 @@
 * **Telegram:** [EMmedical7](https://t.me/EMmedical7)
 
 ---
-© 2026 Em Medical - جميع الحقوق محفوظة لـ Eslam Medhat.
+© 2026 Em Medical - جميع الحقوق محفوظة لـ 
