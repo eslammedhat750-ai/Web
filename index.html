@@ -3,9 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="description" content="Em Medical المتجر الرسمي للأجهزة والمعدات الطبية في مصر. نوفر أجهزة قياس الضغط، النيبولايزر، ومستلزمات العناية الصحية بشحن سريع للقاهرة والجيزة.">
+    
+    <title>Em Medical | أجهزة طبية ومستلزمات عناية - القاهرة والجيزة</title>
+    <meta name="description" content="Em Medical المتجر الرسمي للأجهزة والمعدات الطبية في مصر. نوفر أجهزة قياس الضغط، نيبولايزر، وأجهزة مساج مع ضمان حقيقي وشحن سريع للقاهرة والجيزة.">
+    <meta name="keywords" content="أجهزة طبية, جهاز ضغط, نيبولايزر, جهاز مساج, مستلزمات طبية القاهرة, Em Medical">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "MedicalBusiness",
+      "name": "Em Medical",
+      "image": "logo.png",
+      "priceRange": "EGP",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Cairo",
+        "addressCountry": "EG"
+      }
+    }
+    </script>
 
-    <title>Em Medical | المتجر الرسمي</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
@@ -49,7 +66,7 @@
 <body>
 
 <header>
-    <div class="logo"><img src="logo.png"></div>
+    <div class="logo"><img src="logo.png" alt="Em Medical Logo"></div>
     <div class="c-icon" onclick="tgl()"><i class="fas fa-shopping-bag"></i><span id="c-badge">0</span></div>
 </header>
 
@@ -58,71 +75,71 @@
 
     <div class="grid">
         <div class="card">
-            <div class="img-h"><img src="massage-1.PNG" class="active"><img src="massage-2.png"></div>
-            <h3>جهاز مساج ريلاكس آند سبين</h3>
+            <div class="img-h"><img src="massage-1.PNG" class="active" alt="جهاز مساج ريلاكس"><img src="massage-2.png"></div>
+            <h3>جهاز مساج ريلاكس آند سبين المطور</h3>
             <div class="price">450 ج.م</div>
             <button class="add-btn" onclick="add('جهاز مساج ريلاكس', 450, this)"><i class="fas fa-plus"></i> إضافة</button>
         </div>
         <div class="card">
-            <div class="img-h"><img src="egg-sitter" class="active"></div>
-            <h3>قاعدة Egg Sitter الطبية</h3>
+            <div class="img-h"><img src="egg-sitter" class="active" alt="قاعدة ايج سيتر الطبية"></div>
+            <h3>قاعدة Egg Sitter الطبية الأصلية</h3>
             <div class="price">500 ج.م</div>
             <button class="add-btn" onclick="add('قاعدة Egg Sitter', 500, this)"><i class="fas fa-plus"></i> إضافة</button>
         </div>
         <div class="card">
-            <div class="img-h"><img src="1.PNG" class="active"><img src="1-1.PNG"></div>
-            <h3>وسادة تدفئة كهربائية مريحة</h3>
+            <div class="img-h"><img src="1.PNG" class="active" alt="وسادة تدفئة كهربائية"><img src="1-1.PNG"></div>
+            <h3>وسادة تدفئة كهربائية مريحة للجسم</h3>
             <div class="price">850 ج.م</div>
             <button class="add-btn" onclick="add('وسادة تدفئة', 850, this)"><i class="fas fa-plus"></i> إضافة</button>
         </div>
         <div class="card">
-            <div class="img-h"><img src="2.PNG" class="active"><img src="2-2.PNG"></div>
-            <h3>جهاز ضغط ديجيتال ناطق</h3>
+            <div class="img-h"><img src="2.PNG" class="active" alt="جهاز ضغط ديجيتال ناطق"><img src="2-2.PNG"></div>
+            <h3>جهاز قياس ضغط الدم ديجيتال ناطق</h3>
             <div class="price">2100 ج.م</div>
             <button class="add-btn" onclick="add('جهاز ضغط', 2100, this)"><i class="fas fa-plus"></i> إضافة</button>
         </div>
         <div class="card">
-            <div class="img-h"><img src="3.PNG" class="active"><img src="3-3.PNG"></div>
-            <h3>جهاز Thrive الياباني الأصلي</h3>
+            <div class="img-h"><img src="3.PNG" class="active" alt="جهاز Thrive الياباني"><img src="3-3.PNG"></div>
+            <h3>جهاز مساج Thrive الياباني الأصلي</h3>
             <div class="price">1100 ج.م</div>
             <button class="add-btn" onclick="add('جهاز Thrive', 1100, this)"><i class="fas fa-plus"></i> إضافة</button>
         </div>
         <div class="card">
-            <div class="img-h"><img src="6.PNG" class="active"></div>
-            <h3>جهاز نيبولايزر STAR طبي</h3>
+            <div class="img-h"><img src="6.PNG" class="active" alt="جهاز نيبولايزر طبي"></div>
+            <h3>جهاز استنشاق نيبولايزر STAR طبي</h3>
             <div class="price">1100 ج.م</div>
             <button class="add-btn" onclick="add('نيبولايزر STAR', 1100, this)"><i class="fas fa-plus"></i> إضافة</button>
         </div>
         <div class="card">
-            <div class="img-h"><img src="4.PNG" class="active"></div>
-            <h3>جهاز مساج MAHL الألماني</h3>
+            <div class="img-h"><img src="4.PNG" class="active" alt="جهاز مساج MAHL الألماني"></div>
+            <h3>جهاز مساج MAHL الألماني الاحترافي</h3>
             <div class="price">3300 ج.م</div>
             <button class="add-btn" onclick="add('جهاز MAHL', 3300, this)"><i class="fas fa-plus"></i> إضافة</button>
         </div>
     </div>
 
     <div class="pols">
-        <div class="pol-c"><i class="fas fa-shield-alt"></i><p>ضمان لمدة عام</p></div>
+        <div class="pol-c"><i class="fas fa-shield-alt"></i><p>ضمان معتمد</p></div>
         <div class="pol-c"><i class="fas fa-truck"></i><p>دفع عند الاستلام</p></div>
         <div class="pol-c"><i class="fas fa-sync"></i><p>استبدال سهل</p></div>
         <div class="pol-c"><i class="fas fa-check-circle"></i><p>أصلي 100%</p></div>
     </div>
 
     <div class="cnt" style="margin-top: 20px; margin-bottom: 20px; text-align: right; direction: rtl;">
-    <h3 style="color: #0052cc; margin-bottom: 10px; font-size: 18px;">📦 قسم الجملة والتعاقدات الطبية</h3>
-    <div style="background: #f9f9f9; border: 1px dashed #0052cc; padding: 15px; border-radius: 10px;">
-        <p style="font-size: 14px; line-height: 1.8; color: #333; margin: 0;">
-            🟢 <b>للصيدليات والموزعين:</b> متوفر أسعار خاصة للكميات وطلبات الجملة.<br>
-            👨‍⚕️ <b>السادة الأطباء:</b> نتشرف بتوفير كافة تجهيزات العيادات والمراكز الطبية.<br>
-            📲 <b>للتواصل المباشر:</b> 
-            <a href="https://wa.me/201153951440" style="color: #0052cc; font-weight: bold; text-decoration: none; border-bottom: 1px solid #0052cc;">اضغط هنا للمحادثة عبر واتساب</a>
-        </p>
+        <h3 style="color: #0052cc; margin-bottom: 10px; font-size: 18px;">📦 قسم الجملة والتعاقدات الطبية</h3>
+        <div style="background: #f9f9f9; border: 1px dashed #0052cc; padding: 15px; border-radius: 10px;">
+            <p style="font-size: 14px; line-height: 1.8; color: #333; margin: 0;">
+                🟢 <b>للصيدليات والموزعين:</b> متوفر أسعار خاصة للكميات وطلبات الجملة.<br>
+                👨‍⚕️ <b>السادة الأطباء:</b> نتشرف بتوفير كافة تجهيزات العيادات والمراكز الطبية.<br>
+                📲 <b>للتواصل المباشر:</b> 
+                <a href="https://wa.me/201153951440" style="color: #0052cc; font-weight: bold; text-decoration: none; border-bottom: 1px solid #0052cc;">اضغط هنا للمحادثة عبر واتساب</a>
+            </p>
+        </div>
     </div>
-</div>
 
     <footer>
-        <img src="logo.png" style="height:40px; filter:invert(1); margin-bottom:15px;">
-        <p>Em Medical Shop</p>
+        <img src="logo.png" style="height:40px; filter:invert(1); margin-bottom:15px;" alt="Em Medical Footer Logo">
+        <p>Em Medical Shop - الأجهزة الطبية في مصر</p>
         <p style="font-size:11px; margin-top:5px;">جميع الحقوق محفوظة © 2026</p>
     </footer>
 </div>
@@ -154,32 +171,84 @@
 </nav>
 
 <script>
-    let cart = [];
+    // قراءة السلة من ذاكرة المتصفح عند التحميل الأول
+    let cart = JSON.parse(localStorage.getItem('em_medical_cart')) || [];
+
+    // دالة لحفظ السلة في ذاكرة المتصفح
+    function saveCart() {
+        localStorage.setItem('em_medical_cart', JSON.stringify(cart));
+    }
+
     function add(n, p, b) {
         let i = cart.find(x => x.n === n);
         if(i) i.q++; else cart.push({n, p, q: 1});
-        upUI(); b.innerText = "تمت الإضافة ✅"; b.style.background = "#00a884"; b.style.color="white";
-        setTimeout(() => { b.innerHTML = '<i class="fas fa-plus"></i> إضافة'; b.style.background = "#eef3ff"; b.style.color= "var(--p)"; }, 1000);
+        saveCart(); // حفظ
+        upUI(); 
+        b.innerText = "تمت الإضافة ✅"; 
+        b.style.background = "#00a884"; 
+        b.style.color="white";
+        setTimeout(() => { 
+            b.innerHTML = '<i class="fas fa-plus"></i> إضافة'; 
+            b.style.background = "#eef3ff"; 
+            b.style.color= "var(--p)"; 
+        }, 1000);
     }
+
     function upUI() {
         let b = document.getElementById('c-badge');
         let t = cart.reduce((s, i) => s + i.q, 0);
-        b.style.display = t > 0 ? 'flex' : 'none'; b.innerText = t;
+        if(b) {
+            b.style.display = t > 0 ? 'flex' : 'none'; 
+            b.innerText = t;
+        }
     }
+
     function ren() {
         let l = document.getElementById('cl'), sum = 0;
-        if(!cart.length) { l.innerHTML = "<p style='text-align:center; padding:30px; color:#999;'>السلة فارغة</p>"; document.getElementById('tv').innerText=0; document.querySelector('#cs button').style.display='none'; return; }
+        if(!cart.length) { 
+            l.innerHTML = "<p style='text-align:center; padding:30px; color:#999;'>السلة فارغة</p>"; 
+            document.getElementById('tv').innerText=0; 
+            document.querySelector('#cs button').style.display='none'; 
+            return; 
+        }
         document.querySelector('#cs button').style.display='block';
-        let h = ""; cart.forEach((i, x) => {
+        let h = ""; 
+        cart.forEach((i, x) => {
             sum += (i.p * i.q);
             h += `<div class="c-item"><div style="flex-grow:1;"><b>${i.n}</b><br><span style="color:var(--p); font-weight:900;">${i.p} ج.م</span></div><div class="qty"><button onclick="ch(${x},1)">+</button><span style="margin:0 12px; font-weight:bold;">${i.q}</span><button onclick="ch(${x},-1)">-</button></div></div>`;
         });
-        l.innerHTML = h; document.getElementById('tv').innerText = sum;
+        l.innerHTML = h; 
+        document.getElementById('tv').innerText = sum;
     }
-    function ch(x, v) { cart[x].q += v; if(cart[x].q < 1) cart.splice(x, 1); upUI(); ren(); }
-    function tgl() { let m = document.getElementById('ov'), v = m.style.display === 'block'; m.style.display = v ? 'none' : 'block'; if(!v) { bc(); ren(); } }
-    function sf() { document.getElementById('cl').style.display='none'; document.getElementById('cs').style.display='none'; document.getElementById('ff').style.display='block'; document.getElementById('mt').innerText='بيانات الشحن'; }
-    function bc() { document.getElementById('cl').style.display='block'; document.getElementById('cs').style.display='block'; document.getElementById('ff').style.display='none'; document.getElementById('mt').innerText='السلة'; }
+
+    function ch(x, v) { 
+        cart[x].q += v; 
+        if(cart[x].q < 1) cart.splice(x, 1); 
+        saveCart(); // حفظ بعد التعديل
+        upUI(); 
+        ren(); 
+    }
+
+    function tgl() { 
+        let m = document.getElementById('ov'), v = m.style.display === 'block'; 
+        m.style.display = v ? 'none' : 'block'; 
+        if(!v) { bc(); ren(); } 
+    }
+
+    function sf() { 
+        document.getElementById('cl').style.display='none'; 
+        document.getElementById('cs').style.display='none'; 
+        document.getElementById('ff').style.display='block'; 
+        document.getElementById('mt').innerText='بيانات الشحن'; 
+    }
+
+    function bc() { 
+        document.getElementById('cl').style.display='block'; 
+        document.getElementById('cs').style.display='block'; 
+        document.getElementById('ff').style.display='none'; 
+        document.getElementById('mt').innerText='السلة'; 
+    }
+
     function sw() {
         let n = document.getElementById('un').value, p = document.getElementById('up').value, a = document.getElementById('ua').value;
         if(!n || !p || !a) return alert("من فضلك كمل بياناتك");
@@ -188,11 +257,18 @@
         msg += `%0A💰 الإجمالي: ${document.getElementById('tv').innerText} ج.م`;
         window.open(`https://wa.me/201153951440?text=${msg}`);
     }
+
     window.onload = function() {
+        upUI(); // تحديث الأيقونة عند فتح الصفحة
         document.querySelectorAll('.card').forEach(c => {
             let imgs = c.querySelectorAll('.img-h img');
             if(imgs.length > 1) {
-                let i = 0; setInterval(() => { imgs[i].classList.remove('active'); i = (i + 1) % imgs.length; imgs[i].classList.add('active'); }, 3000);
+                let i = 0; 
+                setInterval(() => { 
+                    imgs[i].classList.remove('active'); 
+                    i = (i + 1) % imgs.length; 
+                    imgs[i].classList.add('active'); 
+                }, 3000);
             }
         });
     }
