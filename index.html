@@ -4,30 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <title>Em Medical | أجهزة طبية ومستلزمات عناية - القاهرة والجيزة</title>
-    <meta name="description" content="Em Medical المتجر الرسمي للأجهزة والمعدات الطبية في مصر. نوفر أجهزة قياس الضغط، نيبولايزر، وأجهزة مساج أصلية بضمان حقيقي وشحن سريع للقاهرة والجيزة خلال 24 ساعة.">
-    <meta name="keywords" content="أجهزة طبية, جهاز ضغط ديجيتال ناطق, نيبولايزر STAR, جهاز مساج Thrive, مستلزمات طبية مصر, Em Medical, اجهزة طبية القاهرة">
-    
+    <title>Em Medical | المتجر الرسمي للأجهزة الطبية - القاهرة والجيزة</title>
+    <meta name="description" content="Em Medical المتجر الرسمي للأجهزة والمعدات الطبية في مصر. نوفر أجهزة قياس الضغط، النيبولايزر، ومستلزمات العناية الصحية بشحن سريع للقاهرة والجيزة.">
+    <meta name="keywords" content="أجهزة طبية، جهاز ضغط، نيبولايزر، مساج، Em Medical، مستلزمات طبية مصر">
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org/",
       "@type": "MedicalBusiness",
       "name": "Em Medical",
-      "alternateName": "إم ميديكال للأجهزة الطبية",
-      "url": "https://emmedical.shop",
-      "logo": "logo.png",
       "image": "logo.png",
-      "description": "متجر متخصص في الأجهزة الطبية المنزلية ومعدات العناية الصحية في مصر.",
+      "priceRange": "EGP",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Cairo",
         "addressCountry": "EG"
-      },
-      "openingHours": "Mo,Tu,We,Th,Fr,Sa,Su 09:00-23:00",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+201153951440",
-        "contactType": "customer service"
       }
     }
     </script>
@@ -38,75 +29,119 @@
         :root { --p: #0052cc; --s: #00a884; --d: #ff3b30; --bg: #f0f2f5; --w: #ffffff; --r: 22px; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; -webkit-tap-highlight-color: transparent; }
         body { background-color: var(--bg); color: #1c1e21; padding-bottom: 100px; line-height: 1.6; }
-        header { background: #fff; height: 75px; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .logo img { height: 45px; }
-        .c-icon { position: relative; background: #2b59ce; width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; cursor: pointer; }
-        #c-badge { position: absolute; top: -5px; right: -5px; background: var(--d); color: white; font-size: 11px; font-weight: 900; min-width: 20px; height: 20px; border-radius: 50%; display: none; align-items: center; justify-content: center; border: 2px solid white; }
+        header { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); height: 75px; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .logo img { height: 48px; }
+        .c-icon { position: relative; background: #2b59ce; width: 45px; height: 45px; border-radius: 14px; display: flex; align-items: center; justify-content: center; color: white; cursor: pointer; box-shadow: 0 4px 12px rgba(0,82,204,0.3); }
+        #c-badge { position: absolute; top: -8px; right: -8px; background: var(--d); color: white; font-size: 11px; font-weight: 900; min-width: 22px; height: 22px; border-radius: 50%; display: none; align-items: center; justify-content: center; border: 2px solid white; }
         .cnt { padding: 15px; max-width: 1100px; margin: 0 auto; }
-        .ship-note { background: #fff; color: #2b59ce; padding: 12px; border-radius: 15px; text-align: center; font-size: 13px; font-weight: 700; margin-bottom: 20px; border: 1px solid #eee; }
+        .ship-note { background: linear-gradient(90deg, var(--p), #007bff); color: white; padding: 12px; border-radius: 15px; text-align: center; font-size: 13px; font-weight: 700; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,82,204,0.2); }
         .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
-        .card { background: var(--w); border-radius: var(--r); padding: 12px; display: flex; flex-direction: column; border: 1px solid rgba(0,0,0,0.05); transition: 0.3s; }
-        .img-h { width: 100%; height: 160px; background: #f8f9fa; border-radius: 15px; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-        .img-h img { max-width: 90%; max-height: 90%; object-fit: contain; position: absolute; opacity: 0; transition: 0.5s; }
+        .card { background: var(--w); border-radius: var(--r); padding: 12px; display: flex; flex-direction: column; transition: 0.3s; border: 1px solid rgba(0,0,0,0.03); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+        .img-h { width: 100%; height: 160px; position: relative; background: #f8f9fa; border-radius: 15px; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .img-h img { max-width: 90%; max-height: 90%; object-fit: contain; position: absolute; opacity: 0; transition: 0.6s ease; }
         .img-h img.active { opacity: 1; }
-        .card h3 { font-size: 14px; font-weight: 700; height: 42px; overflow: hidden; margin-bottom: 5px; color: #333; }
-        .price { font-size: 18px; font-weight: 900; color: #2b59ce; margin-bottom: 12px; }
-        .add-btn { background: #ebf1ff; color: #2b59ce; border: none; padding: 12px; border-radius: 12px; font-weight: 800; font-size: 14px; cursor: pointer; }
-        .ov { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2000; backdrop-filter: blur(5px); }
-        .pan { background: #fff; width: 100%; position: absolute; bottom: 0; border-radius: 25px 25px 0 0; padding: 25px; max-height: 85vh; overflow-y: auto; }
-        .f-btn { background: #2b59ce; color: #fff; border: none; width: 100%; padding: 18px; border-radius: 15px; font-weight: 800; font-size: 16px; margin-top: 15px; cursor: pointer; }
-        .b-nav { position: fixed; bottom: 0; width: 100%; background: #fff; height: 75px; display: flex; justify-content: space-around; align-items: center; border-top: 1px solid #eee; z-index: 1000; }
-        .n-i { text-decoration: none; color: #8e8e93; text-align: center; font-size: 12px; font-weight: 700; }
-        .n-i.active { color: #2b59ce; }
-        .n-i i { font-size: 22px; display: block; margin-bottom: 3px; }
+        .card h3 { font-size: 14px; font-weight: 700; height: 44px; overflow: hidden; margin-bottom: 8px; line-height: 1.5; }
+        .price { font-size: 18px; font-weight: 900; color: var(--p); margin-bottom: 15px; }
+        .add-btn { background: #eef3ff; color: var(--p); border: none; padding: 12px; border-radius: 12px; font-weight: 800; font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .pols { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 30px; }
+        .pol-c { background: white; padding: 15px; border-radius: 18px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.02); }
+        .pol-c i { font-size: 20px; color: var(--s); margin-bottom: 8px; }
+        .pol-c p { font-size: 11px; font-weight: 700; color: #65676b; }
+        .ov { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); z-index: 2000; }
+        .pan { background: var(--w); width: 100%; position: absolute; bottom: 0; border-radius: 30px 30px 0 0; padding: 30px 20px; max-height: 90vh; overflow-y: auto; }
+        .c-item { display: flex; align-items: center; padding: 15px 0; border-bottom: 1px solid #f0f0f0; }
+        .qty { display: flex; align-items: center; background: #f0f2f5; border-radius: 10px; padding: 4px; }
+        .qty button { width: 32px; height: 32px; border: none; background: white; border-radius: 8px; font-weight: bold; }
+        .f-btn { background: var(--s); color: white; border: none; width: 100%; padding: 20px; border-radius: 20px; font-weight: 900; font-size: 18px; margin-top: 15px; cursor: pointer; }
+        .ig { margin-bottom: 15px; }
+        .ig label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+        .ig input, .ig textarea { width: 100%; padding: 15px; border: 2px solid #f0f2f5; border-radius: 14px; font-size: 15px; outline: none; }
+        .b-nav { position: fixed; bottom: 0; width: 100%; background: rgba(255,255,255,0.9); backdrop-filter: blur(15px); height: 85px; display: flex; justify-content: space-around; align-items: center; border-top: 1px solid rgba(0,0,0,0.05); z-index: 1000; }
+        .n-i { text-decoration: none; color: #999; text-align: center; font-size: 11px; font-weight: 700; }
+        .n-i.active { color: var(--p); }
+        .n-i i { font-size: 24px; display: block; margin-bottom: 4px; }
+        footer { background: #111; color: #777; padding: 40px 20px; text-align: center; margin-top: 50px; border-radius: 30px 30px 0 0; }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="logo"><img src="logo.png" alt="Em Medical متجر الأجهزة الطبية الرسمي"></div>
-    <div class="c-icon" onclick="tgl()"><i class="fas fa-shopping-basket"></i><span id="c-badge">0</span></div>
+    <div class="logo"><img src="logo.png" alt="Em Medical"></div>
+    <div class="c-icon" onclick="tgl()"><i class="fas fa-shopping-bag"></i><span id="c-badge">0</span></div>
 </header>
 
 <div class="cnt">
-    <div class="ship-note">📦 توصيل سريع للقاهرة والجيزة خلال 24 ساعة فقط</div>
+    <div class="ship-note"><i class="fas fa-bolt"></i> شحن سريع للقاهرة والجيزة خلال 24 ساعة</div>
 
     <div class="grid">
         <div class="card">
-            <div class="img-h"><img src="massage-1.PNG" class="active" alt="جهاز مساج ريلاكس آند سبين المطور الأصلي"><img src="massage-2.png" alt="ملحقات جهاز المساج ريلاكس"></div>
-            <h3>جهاز مساج ريلاكس آند سبين (الأصلي)</h3>
+            <div class="img-h"><img src="massage-1.PNG" class="active" alt="جهاز مساج ريلاكس"><img src="massage-2.png"></div>
+            <h3>جهاز مساج ريلاكس آند سبين</h3>
             <div class="price">450 ج.م</div>
-            <button class="add-btn" onclick="add('جهاز مساج ريلاكس', 450, this)">+ إضافة للسلة</button>
+            <button class="add-btn" onclick="add('جهاز مساج ريلاكس', 450, this)"><i class="fas fa-plus"></i> إضافة</button>
         </div>
-
         <div class="card">
-            <div class="img-h"><img src="egg-sitter" class="active" alt="قاعدة Egg Sitter الطبية السيليكون للظهر"></div>
-            <h3>قاعدة Egg Sitter الطبية المريحة</h3>
+            <div class="img-h"><img src="egg-sitter" class="active" alt="قاعدة ايج سيتر الطبية"></div>
+            <h3>قاعدة Egg Sitter الطبية</h3>
             <div class="price">500 ج.م</div>
-            <button class="add-btn" onclick="add('قاعدة Egg Sitter', 500, this)">+ إضافة للسلة</button>
+            <button class="add-btn" onclick="add('قاعدة Egg Sitter', 500, this)"><i class="fas fa-plus"></i> إضافة</button>
         </div>
-
         <div class="card">
-            <div class="img-h"><img src="2.PNG" class="active" alt="جهاز قياس ضغط الدم ديجيتال ناطق بضمان"></div>
-            <h3>جهاز قياس ضغط الدم ديجيتال ناطق</h3>
-            <div class="price">2100 ج.م</div>
-            <button class="add-btn" onclick="add('جهاز ضغط', 2100, this)">+ إضافة للسلة</button>
-        </div>
-
-        <div class="card">
-            <div class="img-h"><img src="1.PNG" class="active" alt="وسادة تدفئة كهربائية طبية للآلام"></div>
-            <h3>وسادة تدفئة كهربائية مريحة للجسم</h3>
+            <div class="img-h"><img src="1.PNG" class="active" alt="وسادة تدفئة كهربائية"><img src="1-1.PNG"></div>
+            <h3>وسادة تدفئة كهربائية مريحة</h3>
             <div class="price">850 ج.م</div>
-            <button class="add-btn" onclick="add('وسادة تدفئة', 850, this)">+ إضافة للسلة</button>
+            <button class="add-btn" onclick="add('وسادة تدفئة', 850, this)"><i class="fas fa-plus"></i> إضافة</button>
         </div>
-        
         <div class="card">
-            <div class="img-h"><img src="6.PNG" class="active" alt="جهاز نيبولايزر STAR طبي محمول"></div>
-            <h3>جهاز استنشاق نيبولايزر STAR طبي</h3>
+            <div class="img-h"><img src="2.PNG" class="active" alt="جهاز ضغط ديجيتال ناطق"><img src="2-2.PNG"></div>
+            <h3>جهاز ضغط ديجيتال ناطق</h3>
+            <div class="price">2100 ج.م</div>
+            <button class="add-btn" onclick="add('جهاز ضغط', 2100, this)"><i class="fas fa-plus"></i> إضافة</button>
+        </div>
+        <div class="card">
+            <div class="img-h"><img src="3.PNG" class="active" alt="جهاز Thrive الياباني"><img src="3-3.PNG"></div>
+            <h3>جهاز Thrive الياباني الأصلي</h3>
             <div class="price">1100 ج.م</div>
-            <button class="add-btn" onclick="add('نيبولايزر STAR', 1100, this)">+ إضافة للسلة</button>
+            <button class="add-btn" onclick="add('جهاز Thrive', 1100, this)"><i class="fas fa-plus"></i> إضافة</button>
+        </div>
+        <div class="card">
+            <div class="img-h"><img src="6.PNG" class="active" alt="جهاز نيبولايزر STAR"></div>
+            <h3>جهاز نيبولايزر STAR طبي</h3>
+            <div class="price">1100 ج.م</div>
+            <button class="add-btn" onclick="add('نيبولايزر STAR', 1100, this)"><i class="fas fa-plus"></i> إضافة</button>
+        </div>
+        <div class="card">
+            <div class="img-h"><img src="4.PNG" class="active" alt="جهاز مساج MAHL الألماني"></div>
+            <h3>جهاز مساج MAHL الألماني</h3>
+            <div class="price">3300 ج.م</div>
+            <button class="add-btn" onclick="add('جهاز MAHL', 3300, this)"><i class="fas fa-plus"></i> إضافة</button>
         </div>
     </div>
+
+    <div class="pols">
+        <div class="pol-c"><i class="fas fa-shield-alt"></i><p>ضمان لمدة عام</p></div>
+        <div class="pol-c"><i class="fas fa-truck"></i><p>دفع عند الاستلام</p></div>
+        <div class="pol-c"><i class="fas fa-sync"></i><p>استبدال سهل</p></div>
+        <div class="pol-c"><i class="fas fa-check-circle"></i><p>أصلي 100%</p></div>
+    </div>
+
+    <div class="cnt" style="margin-top: 20px; margin-bottom: 20px; text-align: right; direction: rtl;">
+        <h3 style="color: #0052cc; margin-bottom: 10px; font-size: 18px;">📦 قسم الجملة والتعاقدات الطبية</h3>
+        <div style="background: #f9f9f9; border: 1px dashed #0052cc; padding: 15px; border-radius: 10px;">
+            <p style="font-size: 14px; line-height: 1.8; color: #333; margin: 0;">
+                🟢 <b>للصيدليات والموزعين:</b> متوفر أسعار خاصة للكميات وطلبات الجملة.<br>
+                👨‍⚕️ <b>السادة الأطباء:</b> نتشرف بتوفير كافة تجهيزات العيادات والمراكز الطبية.<br>
+                📲 <b>للتواصل المباشر:</b> 
+                <a href="https://wa.me/201153951440" style="color: #0052cc; font-weight: bold; text-decoration: none; border-bottom: 1px solid #0052cc;">اضغط هنا للمحادثة عبر واتساب</a>
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <img src="logo.png" style="height:40px; filter:invert(1); margin-bottom:15px;">
+        <p>Em Medical Shop</p>
+        <p style="font-size:11px; margin-top:5px;">جميع الحقوق محفوظة © 2026</p>
+    </footer>
 </div>
 
 <div id="ov" class="ov" onclick="tgl()">
@@ -114,16 +149,17 @@
         <h2 id="mt" style="text-align:center; margin-bottom:20px; font-weight:900;">السلة</h2>
         <div id="cl"></div>
         <div id="cs">
-            <div style="display:flex; justify-content:space-between; margin:20px 0; font-size:20px; font-weight:900;">
-                <span>الإجمالي:</span><span style="color:#2b59ce;"><span id="tv">0</span> ج.م</span>
+            <div style="display:flex; justify-content:space-between; margin:25px 0; font-size:20px; font-weight:900;">
+                <span>الإجمالي</span><span style="color:var(--p)"><span id="tv">0</span> ج.م</span>
             </div>
-            <button class="f-btn" onclick="sf()">تكملة الطلب</button>
+            <button class="f-btn" onclick="sf()" style="background:var(--p)">تكملة الطلب</button>
         </div>
         <div id="ff" style="display:none;">
-            <div style="margin-bottom:15px;"><input type="text" id="un" style="width:100%; padding:15px; border-radius:12px; border:1px solid #eee;" placeholder="الاسم بالكامل"></div>
-            <div style="margin-bottom:15px;"><input type="tel" id="up" style="width:100%; padding:15px; border-radius:12px; border:1px solid #eee;" placeholder="رقم الموبايل"></div>
-            <div style="margin-bottom:15px;"><textarea id="ua" style="width:100%; padding:15px; border-radius:12px; border:1px solid #eee;" rows="2" placeholder="العنوان (المنطقة والشارع)"></textarea></div>
-            <button class="f-btn" style="background:#25d366;" onclick="sw()">تأكيد عبر واتساب <i class="fab fa-whatsapp"></i></button>
+            <div class="ig"><label>الاسم بالكامل</label><input type="text" id="un" placeholder="اسم المستلم"></div>
+            <div class="ig"><label>رقم الموبايل</label><input type="tel" id="up" placeholder="01xxxxxxxxx"></div>
+            <div class="ig"><label>العنوان بالتفصيل</label><textarea id="ua" rows="2" placeholder="المنطقة والشارع"></textarea></div>
+            <button class="f-btn" onclick="sw()">تأكيد الطلب عبر واتساب <i class="fab fa-whatsapp"></i></button>
+            <p onclick="bc()" style="text-align:center; margin-top:15px; color:#999; cursor:pointer;">تعديل السلة</p>
         </div>
     </div>
 </div>
@@ -131,10 +167,11 @@
 <nav class="b-nav">
     <a href="#" class="n-i active"><i class="fas fa-home"></i>المتجر</a>
     <a href="https://t.me/emmedical7" target="_blank" class="n-i"><i class="fab fa-telegram-plane"></i>تليجرام</a>
-    <a href="javascript:void(0)" onclick="tgl()" class="n-i"><i class="fas fa-shopping-basket"></i>السلة</a>
+    <a href="javascript:void(0)" onclick="tgl()" class="n-i"><i class="fas fa-shopping-bag"></i>السلة</a>
 </nav>
 
 <script>
+    // نظام حفظ السلة في الذاكرة (LocalStorage) لمنع المسح عند الريفرش
     let cart = JSON.parse(localStorage.getItem('em_medical_cart')) || [];
 
     function save() { localStorage.setItem('em_medical_cart', JSON.stringify(cart)); }
@@ -142,41 +179,36 @@
     function add(n, p, b) {
         let i = cart.find(x => x.n === n);
         if(i) i.q++; else cart.push({n, p, q: 1});
-        save(); upUI();
-        b.innerText = "تمت الإضافة ✅";
-        setTimeout(() => { b.innerText = "+ إضافة للسلة"; }, 1000);
+        save(); upUI(); 
+        b.innerText = "تمت الإضافة ✅"; b.style.background = "#00a884"; b.style.color="white";
+        setTimeout(() => { b.innerHTML = '<i class="fas fa-plus"></i> إضافة'; b.style.background = "#eef3ff"; b.style.color= "var(--p)"; }, 1000);
     }
 
     function upUI() {
         let b = document.getElementById('c-badge');
         let t = cart.reduce((s, i) => s + i.q, 0);
-        b.style.display = t > 0 ? 'flex' : 'none';
-        b.innerText = t;
+        b.style.display = t > 0 ? 'flex' : 'none'; b.innerText = t;
     }
 
     function ren() {
         let l = document.getElementById('cl'), sum = 0;
-        if(!cart.length) { l.innerHTML = "<p style='text-align:center; padding:30px; color:#999;'>السلة فارغة</p>"; document.getElementById('tv').innerText=0; return; }
+        if(!cart.length) { l.innerHTML = "<p style='text-align:center; padding:30px; color:#999;'>السلة فارغة</p>"; document.getElementById('tv').innerText=0; document.querySelector('#cs button').style.display='none'; return; }
+        document.querySelector('#cs button').style.display='block';
         let h = ""; cart.forEach((i, x) => {
             sum += (i.p * i.q);
-            h += `<div style="display:flex; justify-content:space-between; align-items:center; padding:15px 0; border-bottom:1px solid #eee;">
-                <div><b>${i.n}</b><br><span style="color:#2b59ce;">${i.p} ج.م</span></div>
-                <div style="background:#f0f2f5; padding:5px; border-radius:10px;">
-                    <button style="width:30px; border:none; background:#fff; border-radius:5px;" onclick="ch(${x},-1)">-</button>
-                    <span style="margin:0 10px; font-weight:bold;">${i.q}</span>
-                    <button style="width:30px; border:none; background:#fff; border-radius:5px;" onclick="ch(${x},1)">+</button>
-                </div>
-            </div>`;
+            h += `<div class="c-item"><div style="flex-grow:1;"><b>${i.n}</b><br><span style="color:var(--p); font-weight:900;">${i.p} ج.م</span></div><div class="qty"><button onclick="ch(${x},1)">+</button><span style="margin:0 12px; font-weight:bold;">${i.q}</span><button onclick="ch(${x},-1)">-</button></div></div>`;
         });
         l.innerHTML = h; document.getElementById('tv').innerText = sum;
     }
 
     function ch(x, v) { cart[x].q += v; if(cart[x].q < 1) cart.splice(x, 1); save(); upUI(); ren(); }
-    function tgl() { let m = document.getElementById('ov'); m.style.display = m.style.display === 'block' ? 'none' : 'block'; ren(); }
-    function sf() { if(!cart.length) return; document.getElementById('cl').style.display='none'; document.getElementById('cs').style.display='none'; document.getElementById('ff').style.display='block'; }
+    function tgl() { let m = document.getElementById('ov'), v = m.style.display === 'block'; m.style.display = v ? 'none' : 'block'; if(!v) { bc(); ren(); } }
+    function sf() { document.getElementById('cl').style.display='none'; document.getElementById('cs').style.display='none'; document.getElementById('ff').style.display='block'; document.getElementById('mt').innerText='بيانات الشحن'; }
+    function bc() { document.getElementById('cl').style.display='block'; document.getElementById('cs').style.display='block'; document.getElementById('ff').style.display='none'; document.getElementById('mt').innerText='السلة'; }
+    
     function sw() {
         let n = document.getElementById('un').value, p = document.getElementById('up').value, a = document.getElementById('ua').value;
-        if(!n || !p || !a) return alert("من فضلك كمل البيانات");
+        if(!n || !p || !a) return alert("من فضلك كمل بياناتك");
         let msg = `طلب جديد من Em Medical:%0A👤 الاسم: ${n}%0A📞 الموبايل: ${p}%0A📍 العنوان: ${a}%0A%0A🛒 المنتجات:%0A`;
         cart.forEach(i => msg += `• ${i.n} (عدد: ${i.q})%0A`);
         msg += `%0A💰 الإجمالي: ${document.getElementById('tv').innerText} ج.م`;
@@ -184,7 +216,7 @@
     }
 
     window.onload = function() {
-        upUI();
+        upUI(); // تحديث الأيقونة فور التحميل
         document.querySelectorAll('.card').forEach(c => {
             let imgs = c.querySelectorAll('.img-h img');
             if(imgs.length > 1) {
