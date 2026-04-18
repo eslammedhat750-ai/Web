@@ -58,7 +58,6 @@
             line-height: 1.6; 
         }
 
-        /* تنسيق الهيدر العلوي */
         header { 
             background: rgba(255, 255, 255, 0.95); 
             backdrop-filter: blur(10px); 
@@ -76,7 +75,6 @@
 
         .logo img { height: 48px; }
 
-        /* أيقونة السلة المطابقة للصورة */
         .c-icon { 
             position: relative; 
             background: #2b59ce; 
@@ -110,7 +108,6 @@
 
         .cnt { padding: 15px; max-width: 1100px; margin: 0 auto; }
 
-        /* نوتة الشحن السريع */
         .ship-note { 
             background: linear-gradient(90deg, #0052cc, #007bff); 
             color: white; 
@@ -123,7 +120,6 @@
             box-shadow: 0 4px 15px rgba(0,82,204,0.2); 
         }
 
-        /* شبكة المنتجات */
         .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
 
         .card { 
@@ -171,7 +167,6 @@
             line-height: 1.4; 
         }
 
-        /* وصف المنتج تحت العنوان */
         .card p.desc {
             font-size: 11px;
             color: #65676b;
@@ -209,13 +204,11 @@
 
         .add-btn:active { transform: scale(0.95); }
 
-        /* قسم السياسات */
         .pols { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 30px; }
         .pol-c { background: white; padding: 15px; border-radius: 18px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.02); border: 1px solid #f0f0f0; }
         .pol-c i { font-size: 20px; color: var(--s); margin-bottom: 8px; }
         .pol-c p { font-size: 11px; font-weight: 700; color: #65676b; }
 
-        /* قسم الجملة */
         .wholesale-box {
             margin-top: 30px;
             background: #fff;
@@ -225,7 +218,6 @@
             text-align: right;
         }
 
-        /* السلة المنبثقة */
         .ov { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); z-index: 2000; }
         .pan { 
             background: var(--w); 
@@ -283,7 +275,6 @@
             background: #f9f9f9;
         }
 
-        /* القائمة السفلية */
         .b-nav { 
             position: fixed; 
             bottom: 0; 
@@ -325,7 +316,7 @@
                 <img src="massage-2.png" alt="ملحقات جهاز المساج">
             </div>
             <h3>جهاز مساج ريلاكس آند سبين المطور</h3>
-            <p class="desc">لنحت الجسم وتفتيت الدهون وتنشيط الدورة الدموية بـ 4 رؤوس مختلفة.</p>
+            <p class="desc">مساج متعدد السرعات لراحة العضلات، الاسترخاء، وتجديد نشاط الجسم.</p>
             <div class="price">450 ج.م</div>
             <button class="add-btn" onclick="add('جهاز مساج ريلاكس', 450, this)"><i class="fas fa-plus"></i> إضافة</button>
         </div>
@@ -334,8 +325,8 @@
             <div class="img-h">
                 <img src="egg-sitter" class="active" alt="قاعدة Egg Sitter">
             </div>
-            <h3>قاعدة Egg Sitter الطبية المريحة</h3>
-            <p class="desc">وسادة سيليكون مريحة جداً لآلام الظهر والديسك والجلوس لفترات طويلة.</p>
+            <h3>قاعدة Egg Sitter المريحة</h3>
+            <p class="desc">وسادة سيليكون مرنة لتوفير أقصى درجات الراحة أثناء الجلوس لفترات طويلة.</p>
             <div class="price">500 ج.م</div>
             <button class="add-btn" onclick="add('قاعدة Egg Sitter', 500, this)"><i class="fas fa-plus"></i> إضافة</button>
         </div>
@@ -346,7 +337,7 @@
                 <img src="1-1.PNG">
             </div>
             <h3>وسادة تدفئة كهربائية للجسم</h3>
-            <p class="desc">مثالية لتخفيف آلام المفاصل والظهر في الشتاء مع مستويات حرارة أمنة.</p>
+            <p class="desc">وسادة مريحة توفر تدفئة لطيفة لدعم راحة العضلات في الأجواء الباردة.</p>
             <div class="price">850 ج.م</div>
             <button class="add-btn" onclick="add('وسادة تدفئة', 850, this)"><i class="fas fa-plus"></i> إضافة</button>
         </div>
@@ -357,18 +348,18 @@
                 <img src="2-2.PNG">
             </div>
             <h3>جهاز قياس ضغط الدم ناطق</h3>
-            <p class="desc">قياس دقيق وسهل مع خاصية النطق بالعربية لتسهيل الاستخدام لكبار السن.</p>
+            <p class="desc">متابعة يومية دقيقة وسهلة الاستخدام مع خاصية النطق بالعربية لكبار السن.</p>
             <div class="price">2100 ج.م</div>
             <button class="add-btn" onclick="add('جهاز ضغط', 2100, this)"><i class="fas fa-plus"></i> إضافة</button>
         </div>
 
         <div class="card">
             <div class="img-h">
-                <img src="3.PNG" class="active" alt="جهاز Thrive الياباني">
+                <img src="3.PNG" class="active" alt="جهاز Thrive">
                 <img src="3-3.PNG">
             </div>
             <h3>جهاز Thrive الياباني (الأصلي)</h3>
-            <p class="desc">الجهاز الياباني الأصلي للمساج القوي المخصص لآلام الرقبة والكتف.</p>
+            <p class="desc">جهاز تدليك احترافي بمستويات قوة قابلة للتحكم لراحة الرقبة والظهر.</p>
             <div class="price">1100 ج.م</div>
             <button class="add-btn" onclick="add('جهاز Thrive', 1100, this)"><i class="fas fa-plus"></i> إضافة</button>
         </div>
@@ -377,8 +368,8 @@
             <div class="img-h">
                 <img src="6.PNG" class="active" alt="جهاز نيبولايزر STAR">
             </div>
-            <h3>جهاز نيبولايزر STAR طبي</h3>
-            <p class="desc">جهاز استنشاق البخار المنزلي لمرضى الحساسية والجيوب الأنفية.</p>
+            <h3>جهاز نيبولايزر STAR المنزلي</h3>
+            <p class="desc">جهاز استنشاق بخار عملي وهادئ، مصمم لسهولة الاستخدام المنزلي للعائلة.</p>
             <div class="price">1100 ج.م</div>
             <button class="add-btn" onclick="add('نيبولايزر STAR', 1100, this)"><i class="fas fa-plus"></i> إضافة</button>
         </div>
@@ -388,7 +379,7 @@
                 <img src="4.PNG" class="active" alt="جهاز مساج MAHL الألماني">
             </div>
             <h3>جهاز مساج MAHL الألماني</h3>
-            <p class="desc">مساج احترافي عالي القوة للمتخصصين ولراحة العضلات العميقة.</p>
+            <p class="desc">مساج احترافي عالي القوة لتوفير الراحة للعضلات العميقة.</p>
             <div class="price">3300 ج.م</div>
             <button class="add-btn" onclick="add('جهاز MAHL', 3300, this)"><i class="fas fa-plus"></i> إضافة</button>
         </div>
@@ -441,7 +432,6 @@
 </nav>
 
 <script>
-    // نظام الحفظ الذكي (LocalStorage)
     let cart = JSON.parse(localStorage.getItem('em_medical_cart')) || [];
 
     function save() { localStorage.setItem('em_medical_cart', JSON.stringify(cart)); }
