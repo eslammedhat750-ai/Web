@@ -15,7 +15,6 @@
             --w: #ffffff; 
             --text: #1c1e21; 
             --gray: #65676b; 
-            --gold: #b8860b; 
             --shd: 0 8px 24px rgba(149, 157, 165, 0.2);
         }
 
@@ -88,7 +87,7 @@
         .viw-btn { background: #f8f9fa; color: var(--text); border: 1px solid #eee; flex: 1; padding: 12px; border-radius: 14px; font-weight: 700; font-size: 12px; }
         .add-btn-quick { background: var(--p); color: #fff; border: none; width: 45px; border-radius: 14px; cursor: pointer; transition: 0.3s; }
 
-        /* برواز الجملة السفلي (المطلوب) */
+        /* برواز الجملة السفلي (من الصورة) */
         .wholesale-footer-box {
             margin: 30px 20px;
             padding: 25px 20px;
@@ -98,21 +97,10 @@
             text-align: center;
         }
         .wholesale-footer-box h4 {
-            color: var(--p);
-            font-size: 18px;
-            font-weight: 900;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+            color: var(--p); font-size: 18px; font-weight: 900; margin-bottom: 10px;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
         }
-        .wholesale-footer-box p {
-            color: var(--gray);
-            font-size: 14px;
-            line-height: 1.6;
-            font-weight: 600;
-        }
+        .wholesale-footer-box p { color: var(--gray); font-size: 14px; line-height: 1.6; font-weight: 600; }
 
         .pop-ov { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 3000; backdrop-filter: blur(8px); justify-content: center; align-items: flex-end; }
         .pop-ov.active { display: flex; }
@@ -139,6 +127,7 @@
     <button class="cat-btn" onclick="filterProd('مساج', this)">مساج</button>
     <button class="cat-btn" onclick="filterProd('أجهزة ضغط', this)">أجهزة ضغط</button>
     <button class="cat-btn" onclick="filterProd('تنفس', this)">تنفس</button>
+    <button class="cat-btn" onclick="filterProd('كرسي متحرك', this)">كرسي متحرك</button>
 </div>
 
 <div class="cnt">
@@ -176,7 +165,7 @@
         <div id="ff" style="display:none;">
             <input type="text" id="un" placeholder="الاسم" style="width:100%; padding:18px; margin-bottom:12px; border:1px solid #eee; border-radius:16px;">
             <input type="tel" id="up" placeholder="الموبايل" style="width:100%; padding:18px; margin-bottom:12px; border:1px solid #eee; border-radius:16px;">
-            <textarea id="ua" placeholder="العنوان" style="width:100%; padding:18px; margin-bottom:12px; border:1px solid #eee; border-radius:16px; height:100px;"></textarea>
+            <textarea id="ua" placeholder="العنوان بالتفصيل" style="width:100%; padding:18px; margin-bottom:12px; border:1px solid #eee; border-radius:16px; height:100px;"></textarea>
             <button class="f-btn" style="background:var(--s)" onclick="sw()"><i class="fab fa-whatsapp"></i> إرسال الطلب</button>
         </div>
     </div>
@@ -247,9 +236,7 @@
         activeIntervals.set(id, interval);
     }
 
-    function stopSlider(id) {
-        if (activeIntervals.has(id)) { clearInterval(activeIntervals.get(id)); activeIntervals.delete(id); }
-    }
+    function stopSlider(id) { if (activeIntervals.has(id)) { clearInterval(activeIntervals.get(id)); activeIntervals.delete(id); } }
 
     function openPop(index) {
         const p = allProd[index];
