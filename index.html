@@ -3,53 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
     <title>Em Medical | متجر الأجهزة الطبية المعتمد</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
-        
         :root { --p: #0052cc; --s: #00a884; --d: #ff3b30; --bg: #f0f2f5; --w: #ffffff; --r: 22px; }
-
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; -webkit-tap-highlight-color: transparent; }
-        body { background-color: var(--bg); color: #1c1e21; padding-bottom: 100px; line-height: 1.6; }
-
+        body { background-color: var(--bg); color: #1c1e21; padding-bottom: 100px; line-height: 1.6; overflow-x: hidden; }
         header { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); height: 75px; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(0,0,0,0.05); }
         .logo img { height: 48px; }
-
-        .c-icon { position: relative; background: #2b59ce; width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; color: white; cursor: pointer; }
+        .c-icon { position: relative; background: #2b59ce; width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; color: white; cursor: pointer; box-shadow: 0 4px 12px rgba(43,89,206,0.3); }
         #c-badge { position: absolute; top: -8px; right: -8px; background: var(--d); color: white; font-size: 11px; font-weight: 900; min-width: 22px; height: 22px; border-radius: 50%; display: none; align-items: center; justify-content: center; border: 2px solid white; }
-
         .cnt { padding: 15px; max-width: 1100px; margin: 0 auto; }
         .ship-note { background: linear-gradient(90deg, #0052cc, #007bff); color: white; padding: 12px; border-radius: 15px; text-align: center; font-size: 13px; font-weight: 700; margin-bottom: 20px; }
-
         .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
-        .card { background: var(--w); border-radius: var(--r); padding: 12px; display: flex; flex-direction: column; border: 1px solid rgba(0,0,0,0.03); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
-
-        .img-h { width: 100%; height: 160px; position: relative; background: #f8f9fa; border-radius: 18px; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-        .img-h img { max-width: 90%; max-height: 90%; object-fit: contain; position: absolute; opacity: 0; transition: 0.6s ease; }
+        .card { background: var(--w); border-radius: var(--r); padding: 12px; display: flex; flex-direction: column; border: 1px solid rgba(0,0,0,0.03); box-shadow: 0 8px 24px rgba(0,0,0,0.06); transition: transform 0.2s; }
+        .img-h { width: 100%; height: 150px; position: relative; background: #f8f9fa; border-radius: 18px; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .img-h img { max-width: 90%; max-height: 90%; object-fit: contain; position: absolute; opacity: 0; transition: opacity 0.5s ease; }
         .img-h img.active { opacity: 1; }
-
-        .card h3 { font-size: 14px; font-weight: 800; height: 44px; overflow: hidden; margin-bottom: 4px; }
-        .card p.desc { font-size: 11px; color: #65676b; margin-bottom: 10px; height: 32px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
-        .price { font-size: 18px; font-weight: 900; color: #2b59ce; margin-bottom: 15px; }
-
-        .add-btn { background: #ebf1ff; color: #2b59ce; border: none; padding: 12px; border-radius: 12px; font-weight: 800; cursor: pointer; }
-
+        .card h3 { font-size: 13px; font-weight: 800; height: 40px; overflow: hidden; margin-bottom: 4px; color: #333; }
+        .card p.desc { font-size: 10px; color: #65676b; margin-bottom: 8px; height: 30px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+        .price { font-size: 16px; font-weight: 900; color: #2b59ce; margin-bottom: 12px; }
+        .add-btn { background: #ebf1ff; color: #2b59ce; border: none; padding: 10px; border-radius: 12px; font-weight: 800; font-size: 13px; cursor: pointer; transition: 0.2s; }
+        .add-btn:active { transform: scale(0.95); background: #2b59ce; color: white; }
         .ov { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); z-index: 2000; }
-        .pan { background: var(--w); width: 100%; position: absolute; bottom: 0; border-radius: 30px 30px 0 0; padding: 30px 20px; max-height: 90vh; overflow-y: auto; }
+        .pan { background: var(--w); width: 100%; position: absolute; bottom: 0; border-radius: 30px 30px 0 0; padding: 30px 20px; max-height: 85vh; overflow-y: auto; }
         .c-item { display: flex; align-items: center; padding: 15px 0; border-bottom: 1px solid #f0f2f5; }
         .qty { display: flex; align-items: center; background: #f0f2f5; border-radius: 10px; padding: 4px; }
-        .qty button { width: 32px; height: 32px; border: none; background: white; border-radius: 8px; font-weight: bold; }
-        
-        .f-btn { background: #2b59ce; color: white; border: none; width: 100%; padding: 20px; border-radius: 20px; font-weight: 900; font-size: 18px; margin-top: 15px; }
-        .ig input, .ig textarea { width: 100%; padding: 16px; border: 2px solid #f0f2f5; border-radius: 15px; margin-bottom: 12px; background: #f9f9f9; outline: none; }
-
-        .b-nav { position: fixed; bottom: 0; width: 100%; background: white; height: 85px; display: flex; justify-content: space-around; align-items: center; border-top: 1px solid #eee; z-index: 1000; }
-        .n-i { text-decoration: none; color: #999; text-align: center; font-size: 11px; }
+        .qty button { width: 30px; height: 30px; border: none; background: white; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        .f-btn { background: #2b59ce; color: white; border: none; width: 100%; padding: 18px; border-radius: 18px; font-weight: 900; font-size: 16px; margin-top: 15px; cursor: pointer; }
+        .ig input, .ig textarea { width: 100%; padding: 14px; border: 2px solid #f0f2f5; border-radius: 15px; margin-bottom: 10px; background: #f9f9f9; outline: none; font-size: 14px; }
+        .b-nav { position: fixed; bottom: 0; width: 100%; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); height: 75px; display: flex; justify-content: space-around; align-items: center; border-top: 1px solid #eee; z-index: 1000; }
+        .n-i { text-decoration: none; color: #999; text-align: center; font-size: 11px; font-weight: 700; }
         .n-i.active { color: #2b59ce; }
-        .n-i i { font-size: 24px; display: block; }
+        .n-i i { font-size: 22px; display: block; margin-bottom: 4px; }
     </style>
 </head>
 <body>
@@ -64,15 +51,16 @@
 
 <div class="cnt">
     <div class="ship-note"><i class="fas fa-bolt"></i> شحن سريع للقاهرة والجيزة خلال 24 ساعة</div>
-
-    <div class="grid" id="products-grid"></div>
+    <div class="grid" id="products-grid">
+        <p style="grid-column: span 2; text-align: center; padding: 20px; color: #999;">جاري تحميل المنتجات...</p>
+    </div>
 
     <div id="ov" class="ov" onclick="tgl()">
         <div class="pan" onclick="event.stopPropagation()">
-            <h2 id="mt" style="text-align:center; margin-bottom:20px;">سلة المشتريات</h2>
+            <h2 id="mt" style="text-align:center; margin-bottom:20px; font-weight:900;">سلة المشتريات</h2>
             <div id="cl"></div>
             <div id="cs">
-                <div style="display:flex; justify-content:space-between; margin:25px 0; font-size:20px; font-weight:900;">
+                <div style="display:flex; justify-content:space-between; margin:25px 0; font-size:18px; font-weight:900;">
                     <span>الإجمالي</span><span style="color:#2b59ce;"><span id="tv">0</span> ج.م</span>
                 </div>
                 <button class="f-btn" onclick="sf()">تكملة الطلب</button>
@@ -82,6 +70,7 @@
                 <div class="ig"><input type="tel" id="up" placeholder="رقم الموبايل"></div>
                 <div class="ig"><textarea id="ua" rows="2" placeholder="العنوان بالتفصيل"></textarea></div>
                 <button class="f-btn" style="background:#25d366;" onclick="sw()">إرسال عبر واتساب <i class="fab fa-whatsapp"></i></button>
+                <p onclick="bc()" style="text-align:center; margin-top:15px; color:#999; cursor:pointer; font-size:13px;">العودة لتعديل السلة</p>
             </div>
         </div>
     </div>
@@ -89,24 +78,24 @@
 
 <nav class="b-nav">
     <a href="#" class="n-i active"><i class="fas fa-home"></i>المتجر</a>
-    <a href="https://t.me/emmedical7" class="n-i"><i class="fab fa-telegram-plane"></i>تليجرام</a>
+    <a href="https://t.me/emmedical7" target="_blank" class="n-i"><i class="fab fa-telegram-plane"></i>تليجرام</a>
     <a href="javascript:void(0)" onclick="tgl()" class="n-i"><i class="fas fa-shopping-basket"></i>السلة</a>
 </nav>
 
 <script>
     let cart = JSON.parse(localStorage.getItem('em_medical_cart')) || [];
 
-    // 1. جلب المنتجات من ملف JSON
     async function loadProducts() {
         try {
-            const response = await fetch('products.json');
+            // إضافة التوقيت لمنع المتصفح من تخزين نسخة قديمة من الأسعار
+            const response = await fetch('products.json?v=' + Date.now());
             const products = await response.json();
             const grid = document.getElementById('products-grid');
             grid.innerHTML = ''; 
 
             products.forEach(prod => {
                 let imgsHtml = prod.imgs.map((img, index) => 
-                    `<img src="${img}" class="${index === 0 ? 'active' : ''}">`
+                    `<img src="${img}" class="${index === 0 ? 'active' : ''}" loading="lazy">`
                 ).join('');
 
                 grid.innerHTML += `
@@ -121,7 +110,9 @@
                     </div>`;
             });
             startImageSlider();
-        } catch (e) { console.error("خطأ في تحميل المنتجات"); }
+        } catch (e) { 
+            document.getElementById('products-grid').innerHTML = '<p style="grid-column: span 2; text-align: center;">عذراً، فشل تحميل المنتجات.</p>';
+        }
     }
 
     function startImageSlider() {
@@ -133,7 +124,7 @@
                     imgs[i].classList.remove('active'); 
                     i = (i + 1) % imgs.length; 
                     imgs[i].classList.add('active'); 
-                }, 3000);
+                }, 3500);
             }
         });
     }
@@ -143,7 +134,9 @@
         if(i) i.q++; else cart.push({n, p, q: 1});
         localStorage.setItem('em_medical_cart', JSON.stringify(cart));
         upUI(); 
-        b.innerText = "تم ✅"; setTimeout(() => { b.innerText = "إضافة"; }, 1000);
+        let old = b.innerText;
+        b.innerText = "تم ✅"; b.style.background = "#00a884"; b.style.color="white";
+        setTimeout(() => { b.innerText = old; b.style.background = "#ebf1ff"; b.style.color="#2b59ce"; }, 800);
     }
 
     function upUI() {
@@ -154,24 +147,33 @@
 
     function ren() {
         let l = document.getElementById('cl'), sum = 0;
-        if(!cart.length) { l.innerHTML = "<p style='text-align:center;'>السلة فارغة</p>"; return; }
+        if(!cart.length) { 
+            l.innerHTML = "<p style='text-align:center; padding:20px; color:#999;'>السلة فارغة</p>"; 
+            document.getElementById('tv').innerText = 0;
+            document.querySelector('#cs button').style.display = 'none';
+            return; 
+        }
+        document.querySelector('#cs button').style.display = 'block';
         let h = ""; 
         cart.forEach((i, x) => {
             sum += (i.p * i.q);
-            h += `<div class="c-item"><div style="flex-grow:1;"><b>${i.n}</b><br>${i.p} ج.م</div>
-                  <div class="qty"><button onclick="ch(${x},1)">+</button><span style="margin:0 10px;">${i.q}</span><button onclick="ch(${x},-1)">-</button></div></div>`;
+            h += `<div class="c-item"><div style="flex-grow:1; font-size:14px;"><b>${i.n}</b><br><span style="color:#2b59ce;">${i.p} ج.م</span></div>
+                  <div class="qty"><button onclick="ch(${x},1)">+</button><span style="margin:0 10px; font-weight:bold;">${i.q}</span><button onclick="ch(${x},-1)">-</button></div></div>`;
         });
         l.innerHTML = h; document.getElementById('tv').innerText = sum;
     }
 
     function ch(x, v) { cart[x].q += v; if(cart[x].q < 1) cart.splice(x, 1); localStorage.setItem('em_medical_cart', JSON.stringify(cart)); upUI(); ren(); }
-    function tgl() { let m = document.getElementById('ov'); m.style.display = m.style.display === 'block' ? 'none' : 'block'; ren(); }
-    function sf() { document.getElementById('cl').style.display='none'; document.getElementById('cs').style.display='none'; document.getElementById('ff').style.display='block'; }
+    function tgl() { let m = document.getElementById('ov'); m.style.display = m.style.display === 'block' ? 'none' : 'block'; bc(); ren(); }
+    function sf() { document.getElementById('cl').style.display='none'; document.getElementById('cs').style.display='none'; document.getElementById('ff').style.display='block'; document.getElementById('mt').innerText='بيانات الشحن'; }
+    function bc() { document.getElementById('cl').style.display='block'; document.getElementById('cs').style.display='block'; document.getElementById('ff').style.display='none'; document.getElementById('mt').innerText='السلة'; }
+    
     function sw() {
         let n = document.getElementById('un').value, p = document.getElementById('up').value, a = document.getElementById('ua').value;
-        if(!n || !p || !a) return alert("اكمل البيانات");
-        let msg = `طلب جديد:%0Aالاسم: ${n}%0Aالموبايل: ${p}%0Aالعنوان: ${a}%0A%0Aالطلبات:%0A`;
-        cart.forEach(i => msg += `• ${i.n} (${i.q})%0A`);
+        if(!n || !p || !a) return alert("من فضلك أكمل البيانات");
+        let msg = `طلب جديد من Em Medical:%0A👤 الاسم: ${n}%0A📞 الموبايل: ${p}%0A📍 العنوان: ${a}%0A%0A🛒 الطلبات:%0A`;
+        cart.forEach(i => msg += `• ${i.n} (العدد: ${i.q})%0A`);
+        msg += `%0A💰 الإجمالي: ${document.getElementById('tv').innerText} ج.م`;
         window.open(`https://wa.me/201153951440?text=${msg}`);
     }
 
