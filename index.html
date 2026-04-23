@@ -3,162 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Em Medical | المظهر الأصلي</title>
+    <title>Em Medical | المتجر الكامل</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
-        
-        :root { 
-            --p: #0052cc; 
-            --bg: #f8f9fa; 
-            --text: #1c1e21; 
-            --gray: #65676b; 
-            --gold: #b8860b;
-        }
-
+        :root { --p: #0052cc; --bg: #f8f9fa; --text: #1c1e21; --gray: #65676b; --gold: #b8860b; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; -webkit-tap-highlight-color: transparent; }
-        body { background-color: var(--bg); padding-bottom: 80px; overflow-x: hidden; color: var(--text); }
+        body { background-color: var(--bg); padding-bottom: 80px; color: var(--text); overflow-x: hidden; }
 
-        /* الهيدر بنفس الشكل اللي في صورتك */
-        header { 
-            background: #fff; 
-            height: 70px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            padding: 0 20px; 
-            position: sticky; 
-            top: 0; 
-            z-index: 1000; 
-            border-bottom: 1px solid #eee;
-        }
+        header { background: #fff; height: 70px; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #eee; }
         .logo img { height: 40px; }
+        .cart-btn-top { background: var(--p); color: #fff; width: 45px; height: 45px; border-radius: 12px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer; }
+        #badge-count { position: absolute; top: -5px; right: -5px; background: #ff3b30; color: #fff; font-size: 10px; width: 20px; height: 20px; border-radius: 50%; display: none; align-items: center; justify-content: center; border: 2px solid #fff; }
 
-        /* شريط الأقسام - ضفت لك الجملة بشكل احترافي */
-        .cats-bar { 
-            display: flex; gap: 10px; overflow-x: auto; padding: 15px; 
-            background: #fff; position: sticky; top: 70px; z-index: 999; 
-            border-bottom: 1px solid #eee; scrollbar-width: none;
-        }
+        .cats-bar { display: flex; gap: 10px; overflow-x: auto; padding: 15px; background: #fff; position: sticky; top: 70px; z-index: 999; border-bottom: 1px solid #eee; scrollbar-width: none; }
         .cats-bar::-webkit-scrollbar { display: none; }
-        .cat-btn { 
-            background: #f0f2f5; color: var(--gray); padding: 10px 20px; 
-            border-radius: 50px; border: none; font-weight: 700; 
-            white-space: nowrap; cursor: pointer; font-size: 13px;
-        }
+        .cat-btn { background: #f0f2f5; color: var(--gray); padding: 10px 20px; border-radius: 50px; border: none; font-weight: 700; white-space: nowrap; cursor: pointer; font-size: 13px; }
         .cat-btn.active { background: var(--p); color: #fff; }
-        
-        /* زر الجملة المميز */
-        .wholesale-btn { border: 1px solid var(--gold) !important; color: var(--gold) !important; }
-        .wholesale-btn.active { background: var(--gold) !important; color: #fff !important; }
+        .wholesale-btn { border: 1.5px solid var(--gold) !important; color: var(--gold) !important; background: #fffdf0; }
 
         .cnt { padding: 15px; max-width: 1100px; margin: 0 auto; }
         .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
         
-        /* الكارت بنفس استايل الصور بالضبط (نضيف وبسيط) */
-        .card { 
-            background: #fff; border-radius: 20px; padding: 15px; 
-            display: flex; flex-direction: column; 
-            position: relative; border: 1px solid #f0f0f0;
-            transition: transform 0.2s;
-        }
-        .card:active { transform: scale(0.97); }
-        
-        .badge { 
-            position: absolute; top: 10px; right: 10px; 
-            background: var(--p); color: #fff; font-size: 10px; 
-            padding: 4px 10px; border-radius: 8px; z-index: 10; font-weight: 800;
-        }
+        .card { background: #fff; border-radius: 20px; padding: 15px; display: flex; flex-direction: column; position: relative; border: 1px solid #f0f0f0; min-height: 320px; }
+        .badge { position: absolute; top: 10px; right: 10px; background: var(--p); color: #fff; font-size: 10px; padding: 4px 10px; border-radius: 8px; font-weight: 800; z-index: 5; }
 
-        .img-h { 
-            width: 100%; height: 130px; margin-bottom: 12px; 
-            display: flex; align-items: center; justify-content: center;
-        }
+        .img-h { width: 100%; height: 130px; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; }
         .img-h img { max-width: 100%; max-height: 100%; object-fit: contain; }
         
-        .card h3 { 
-            font-size: 14px; font-weight: 800; min-height: 40px; 
-            margin-bottom: 8px; line-height: 1.4; color: var(--text);
-            text-align: center;
-        }
-        .price { 
-            color: var(--p); font-weight: 900; font-size: 16px; 
-            margin-bottom: 12px; text-align: center;
-        }
+        .card h3 { font-size: 14px; font-weight: 800; min-height: 40px; text-align: center; margin-bottom: 8px; line-height: 1.4; }
+        .price { color: var(--p); font-weight: 900; font-size: 16px; text-align: center; margin-bottom: 15px; }
         
-        .card-btns { display: flex; gap: 8px; }
-        .viw-btn { 
-            background: #f8f9fa; color: var(--text); border: 1px solid #eee; 
-            flex: 1; padding: 10px; border-radius: 12px; font-weight: 700; font-size: 12px;
-        }
-        .add-btn { 
-            background: var(--p); color: #fff; border: none; 
-            padding: 10px 15px; border-radius: 12px; cursor: pointer;
-        }
+        .card-btns { display: flex; gap: 8px; margin-top: auto; }
+        .viw-btn { background: #f8f9fa; color: var(--text); border: 1px solid #eee; flex: 1; padding: 12px; border-radius: 12px; font-weight: 700; font-size: 12px; cursor: pointer; }
+        .add-btn { background: var(--p); color: #fff; border: none; padding: 12px 18px; border-radius: 12px; cursor: pointer; transition: 0.2s; }
+        .add-btn:active { transform: scale(0.9); }
 
-        /* النافيجيشن السفلي بنفس الشكل */
-        .b-nav { 
-            position: fixed; bottom: 0; width: 100%; background: #fff; 
-            height: 70px; display: flex; justify-content: space-around; 
-            align-items: center; border-top: 1px solid #eee; z-index: 1000; 
-        }
-        .n-i { text-decoration: none; color: #999; font-size: 11px; text-align: center; }
+        /* سلة المشتريات */
+        .cart-panel { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2000; }
+        .cart-content { background: #fff; width: 100%; position: absolute; bottom: 0; border-radius: 25px 25px 0 0; padding: 25px; max-height: 80vh; overflow-y: auto; }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #eee; }
+        
+        .b-nav { position: fixed; bottom: 0; width: 100%; background: #fff; height: 70px; display: flex; justify-content: space-around; align-items: center; border-top: 1px solid #eee; z-index: 1000; }
+        .n-i { text-decoration: none; color: #999; font-size: 11px; text-align: center; cursor: pointer; }
         .n-i.active { color: var(--p); }
         .n-i i { font-size: 20px; display: block; margin-bottom: 3px; }
 
-        /* أيقونة السلة العائمة */
-        .cart-icon-top {
-            background: var(--p); width: 45px; height: 45px; 
-            border-radius: 12px; display: flex; align-items: center; 
-            justify-content: center; color: #fff; font-size: 18px;
-        }
+        .btn-order { background: #25d366; color: #fff; border: none; width: 100%; padding: 15px; border-radius: 15px; font-weight: 800; font-size: 16px; margin-top: 20px; cursor: pointer; }
     </style>
 </head>
 <body>
 
 <header>
     <div class="logo"><img src="logo.png" alt="Em Medical"></div>
-    <div class="cart-icon-top"><i class="fas fa-shopping-basket"></i></div>
+    <div class="cart-btn-top" onclick="toggleCart()"><i class="fas fa-shopping-basket"></i><span id="badge-count">0</span></div>
 </header>
 
-<div class="cats-bar">
-    <button class="cat-btn active">الكل</button>
-    <button class="cat-btn wholesale-btn">📦 جملة</button>
-    <button class="cat-btn">مساج</button>
-    <button class="cat-btn">أجهزة ضغط</button>
-    <button class="cat-btn">تنفس</button>
+<div class="cats-bar" id="cats-bar">
+    <button class="cat-btn active" onclick="filter('الكل', this)">الكل</button>
+    <button class="cat-btn wholesale-btn" onclick="filter('جملة', this)">📦 جملة</button>
+    <button class="cat-btn" onclick="filter('مساج', this)">مساج</button>
+    <button class="cat-btn" onclick="filter('أجهزة ضغط', this)">أجهزة ضغط</button>
 </div>
 
 <div class="cnt">
-    <div class="grid" id="products-grid">
-        <div class="card">
-            <div class="badge">أكثر مبيعاً</div>
-            <div class="img-h"><img src="https://via.placeholder.com/150" alt="منتج"></div>
-            <h3>جهاز قياس ضغط الدم الناطق</h3>
-            <div class="price">2100 ج.م</div>
-            <div class="card-btns">
-                <button class="viw-btn">عرض</button>
-                <button class="add-btn"><i class="fas fa-plus"></i></button>
-            </div>
-        </div>
+    <div class="grid" id="products-grid"></div>
+</div>
 
-        <div class="card">
-            <div class="img-h"><img src="https://via.placeholder.com/150" alt="منتج"></div>
-            <h3>وسادة تدفئة كهربائية</h3>
-            <div class="price">850 ج.م</div>
-            <div class="card-btns">
-                <button class="viw-btn">عرض</button>
-                <button class="add-btn"><i class="fas fa-plus"></i></button>
-            </div>
+<div class="cart-panel" id="cart-panel" onclick="toggleCart()">
+    <div class="cart-content" onclick="event.stopPropagation()">
+        <h2 style="text-align:center; margin-bottom:20px;">سلة المشتريات</h2>
+        <div id="cart-items-list"></div>
+        <div style="display:flex; justify-content:space-between; margin-top:20px; font-weight:900; font-size:18px;">
+            <span>الإجمالي:</span>
+            <span><span id="total-price">0</span> ج.م</span>
         </div>
+        <button class="btn-order" onclick="sendWhatsApp()">طلب عبر واتساب <i class="fab fa-whatsapp"></i></button>
     </div>
 </div>
 
 <nav class="b-nav">
-    <a href="#" class="n-i active"><i class="fas fa-home"></i>المتجر</a>
+    <div class="n-i active" onclick="filter('الكل', this)"><i class="fas fa-home"></i>المتجر</div>
     <a href="https://t.me/emmedical7" class="n-i"><i class="fab fa-telegram-plane"></i>تليجرام</a>
-    <a href="#" class="n-i"><i class="fas fa-shopping-basket"></i>السلة</a>
+    <div class="n-i" onclick="toggleCart()"><i class="fas fa-shopping-basket"></i>السلة</div>
 </nav>
 
+<script>
+    // بيانات المنتجات مدمجة هنا عشان مفيش حاجة تقف
+    const products = [
+        { n: "جهاز قياس ضغط الدم الناطق", p: 2100, cat: "أجهزة ضغط", img: "press.png", b: "أكثر مبيعاً" },
+        { n: "وسادة تدفئة كهربائية", p: 850, cat: "مساج", img: "heat.png", b: "" },
+        { n: "جهاز مساج ريلاكس المطور", p: 450, cat: "مساج", img: "massage.png", b: "خصم" },
+        { n: "قاعدة Egg Sitter المريحة", p: 500, cat: "مساج", img: "egg.png", b: "" },
+        { n: "كرتونة أجهزة ضغط (جملة)", p: 15000, cat: "جملة", img: "wholesale.png", b: "سعر جملة" }
+    ];
+
+    let cart = [];
+
+    function render(list) {
+        const grid = document.getElementById('products-grid');
+        grid.innerHTML = list.map((p, i) => `
+            <div class="card">
+                ${p.b ? `<div class="badge">${p.b}</div>` : ''}
+                <div class="img-h"><img src="${p.img}" onerror="this.src='https://via.placeholder.com/150?text=Em+Medical'"></div>
+                <h3>${p.n}</h3>
+                <div class="price">${p.p} ج.م</div>
+                <div class="card-btns">
+                    <button class="viw-btn">عرض</button>
+                    <button class="add-btn" onclick="addToCart('${p.n}', ${p.p})"><i class="fas fa-plus"></i></button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function filter(cat, btn) {
+        document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+        if(btn.classList) btn.classList.add('active');
+        const filtered = cat === 'الكل' ? products : products.filter(p => p.cat === cat);
+        render(filtered);
+    }
+
+    function addToCart(name, price) {
+        const item = cart.find(i => i.name === name);
+        if(item) item.q++; else cart.push({name, price, q: 1});
+        updateUI();
+    }
+
+    function updateUI() {
+        const badge = document.getElementById('badge-count');
+        const total = cart.reduce((s, i) => s + i.q, 0);
+        badge.style.display = total > 0 ? 'flex' : 'none';
+        badge.innerText = total;
+        
+        const list = document.getElementById('cart-items-list');
+        let sum = 0;
+        list.innerHTML = cart.map((i, idx) => {
+            sum += (i.price * i.q);
+            return `<div class="cart-item">
+                <div><b>${i.name}</b><br><small>${i.price} ج.م</small></div>
+                <div>
+                    <button onclick="changeQty(${idx}, -1)" style="padding:5px 10px;">-</button>
+                    <span style="margin:0 10px;">${i.q}</span>
+                    <button onclick="changeQty(${idx}, 1)" style="padding:5px 10px;">+</button>
+                </div>
+            </div>`;
+        }).join('');
+        document.getElementById('total-price').innerText = sum;
+    }
+
+    function changeQty(idx, val) {
+        cart[idx].q += val;
+        if(cart[idx].q < 1) cart.splice(idx, 1);
+        updateUI();
+    }
+
+    function toggleCart() {
+        const p = document.getElementById('cart-panel');
+        p.style.display = p.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function sendWhatsApp() {
+        if(cart.length === 0) return alert("السلة فارغة!");
+        let msg = "طلب جديد من Em Medical:%0A";
+        cart.forEach(i => msg += `- ${i.name} (عدد: ${i.q})%0A`);
+        msg += `%0Aالإجمالي: ${document.getElementById('total-price').innerText} ج.م`;
+        window.open(`https://wa.me/201153951440?text=${msg}`);
+    }
+
+    window.onload = () => render(products);
+</script>
 </body>
 </html>
