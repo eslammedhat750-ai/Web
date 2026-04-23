@@ -3,103 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Em Medical | متجر الأجهزة الطبية</title>
+    <title>Em Medical | القوة في الرعاية الصحية</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
-        :root { --p: #0052cc; --bg: #f0f2f5; --w: #ffffff; --text: #1c1e21; --gray: #65676b; --gold: #b8860b; }
+        
+        :root { 
+            --p: #0052cc; 
+            --s: #00a884;
+            --bg: #f4f7fa; 
+            --w: #ffffff; 
+            --text: #1c1e21; 
+            --gray: #65676b; 
+            --gold: #b8860b; 
+            --shd: 0 8px 24px rgba(149, 157, 165, 0.2);
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; -webkit-tap-highlight-color: transparent; }
-        body { background-color: var(--bg); padding-bottom: 100px; overflow-x: hidden; color: var(--text); }
-        
-        header { background: #fff; height: 70px; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #eee; }
-        .logo img { height: 40px; }
-        
-        /* شريط أسعار الجملة الجديد */
-        .wholesale-banner { background: #fff9c4; color: #856404; text-align: center; padding: 8px; font-size: 13px; font-weight: 800; border-bottom: 1px solid #ffe082; }
+        body { background-color: var(--bg); padding-bottom: 80px; overflow-x: hidden; color: var(--text); }
 
-        .cats-bar { display: flex; gap: 10px; overflow-x: auto; padding: 15px; background: #fff; position: sticky; top: 70px; z-index: 999; border-bottom: 1px solid #eee; scrollbar-width: none; }
+        /* الهيدر الاحترافي */
+        header { 
+            background: rgba(255, 255, 255, 0.95); 
+            backdrop-filter: blur(10px);
+            height: 75px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 0 20px; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .logo img { height: 45px; transition: 0.3s; }
+        .logo img:hover { transform: scale(1.05); }
+
+        /* بانر الجملة المتحرك */
+        .wholesale-banner { 
+            background: linear-gradient(90deg, #fff3e0, #fff9c4); 
+            color: #856404; 
+            text-align: center; 
+            padding: 10px; 
+            font-size: 14px; 
+            font-weight: 800; 
+            border-bottom: 1px solid #ffe082;
+            animation: fadeInDown 0.5s ease;
+        }
+
+        /* شريط الأقسام المودرن */
+        .cats-bar { 
+            display: flex; gap: 12px; overflow-x: auto; padding: 15px 20px; 
+            background: var(--w); position: sticky; top: 75px; z-index: 999; 
+            scrollbar-width: none; border-bottom: 1px solid #eee;
+        }
         .cats-bar::-webkit-scrollbar { display: none; }
-        .cat-btn { background: #eee; color: #555; padding: 8px 20px; border-radius: 20px; border: none; font-weight: 700; white-space: nowrap; cursor: pointer; font-size: 13px; }
-        .cat-btn.active { background: var(--p); color: #fff; }
-        /* تمييز زرار الجملة */
-        .cat-btn.wholesale-btn { background: #fff3e0; color: var(--gold); border: 1px solid var(--gold); }
-        .cat-btn.wholesale-btn.active { background: var(--gold); color: #fff; }
+        .cat-btn { 
+            background: #f0f2f5; color: var(--gray); padding: 10px 22px; 
+            border-radius: 50px; border: none; font-weight: 700; 
+            white-space: nowrap; cursor: pointer; font-size: 13px; transition: 0.3s;
+        }
+        .cat-btn.active { background: var(--p); color: #fff; box-shadow: 0 4px 12px rgba(0, 82, 204, 0.3); }
+        .cat-btn.wholesale-btn { border: 1.5px solid var(--gold); color: var(--gold); }
 
-        .cnt { padding: 15px; max-width: 1100px; margin: 0 auto; }
-        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        /* شبكة المنتجات */
+        .cnt { padding: 20px; max-width: 1200px; margin: 0 auto; }
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
         
-        .card { background: #fff; border-radius: 20px; padding: 12px; display: flex; flex-direction: column; box-shadow: 0 4px 15px rgba(0,0,0,0.05); cursor: pointer; transition: transform 0.2s; position: relative; min-height: 270px; }
-        .card:active { transform: scale(0.98); }
+        /* كارت المنتج الفاخر */
+        .card { 
+            background: var(--w); border-radius: 24px; padding: 15px; 
+            display: flex; flex-direction: column; box-shadow: var(--shd); 
+            transition: 0.3s; position: relative; overflow: hidden; 
+            opacity: 0; transform: translateY(20px);
+        }
+        .card.visible { opacity: 1; transform: translateY(0); }
         
-        .img-h { width: 100%; height: 130px; position: relative; background: transparent; border-radius: 15px; margin-bottom: 10px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-        .img-h img { max-width: 100%; max-height: 100%; object-fit: contain; position: absolute; opacity: 0; transition: opacity 0.6s ease-in-out; z-index: 1; }
-        .img-h img.active { opacity: 1; z-index: 2; }
-        
-        .card h3 { font-size: 12px; font-weight: 800; height: 38px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; line-height: 1.4; color: var(--text); }
-        .price { color: var(--p); font-weight: 900; margin-top: auto; margin-bottom: 8px; font-size: 14px; }
-        .card-btns { display: flex; gap: 5px; margin-top: auto; }
-        .viw-btn { background: #f0f2f5; color: var(--text); border: none; flex: 1; padding: 10px; border-radius: 10px; font-weight: 700; font-size: 11px; cursor: pointer; }
-        .add-btn-quick { background: #ebf1ff; color: var(--p); border: none; width: 40px; height: 38px; border-radius: 10px; font-size: 14px; cursor: pointer; }
+        .badge { 
+            position: absolute; top: 12px; right: 12px; 
+            background: var(--p); color: #fff; font-size: 10px; 
+            padding: 4px 10px; border-radius: 8px; z-index: 10; font-weight: 800;
+        }
 
-        /* بوب أب التفاصيل */
-        .pop-ov { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 3000; backdrop-filter: blur(5px); justify-content: center; align-items: center; padding: 20px; }
+        .img-h { 
+            width: 100%; height: 150px; position: relative; 
+            background: transparent; margin-bottom: 12px; 
+            display: flex; align-items: center; justify-content: center;
+        }
+        .img-h img { 
+            max-width: 90%; max-height: 90%; object-fit: contain; 
+            position: absolute; opacity: 0; transition: opacity 0.8s ease;
+        }
+        .img-h img.active { opacity: 1; }
+        
+        .card h3 { 
+            font-size: 14px; font-weight: 800; min-height: 40px; 
+            margin-bottom: 8px; line-height: 1.4; color: var(--text);
+        }
+        .price { color: var(--p); font-weight: 900; font-size: 16px; margin-bottom: 12px; }
+        
+        .card-btns { display: flex; gap: 8px; }
+        .viw-btn { 
+            background: #f8f9fa; color: var(--text); border: 1px solid #eee; 
+            flex: 1; padding: 12px; border-radius: 14px; font-weight: 700; font-size: 12px;
+        }
+        .add-btn-quick { 
+            background: var(--p); color: #fff; border: none; 
+            width: 45px; border-radius: 14px; cursor: pointer; transition: 0.3s;
+        }
+        .add-btn-quick:active { transform: scale(0.9); }
+
+        /* بوب أب التفاصيل - تصميم زجاجي */
+        .pop-ov { 
+            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); 
+            z-index: 3000; backdrop-filter: blur(8px); justify-content: center; 
+            align-items: flex-end; padding: 0;
+        }
         .pop-ov.active { display: flex; }
-        .pop-pan { background: #fff; width: 100%; max-width: 500px; border-radius: 25px; padding: 25px; position: relative; max-height: 90vh; overflow-y: auto; }
-        .close-pop { position: absolute; top: 15px; left: 15px; background: #eee; border: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; z-index: 10; }
-        
-        .pop-img-h { width: 100%; height: 220px; background: transparent; border-radius: 15px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
-        .pop-img-h img { max-width: 100%; max-height: 100%; object-fit: contain; position: absolute; opacity: 0; transition: opacity 0.6s; }
-        .pop-img-h img.active { opacity: 1; }
-        
-        .pop-pan h2 { font-size: 16px; font-weight: 900; margin-bottom: 10px; }
-        .desc-text { font-size: 12px; color: var(--gray); line-height: 1.6; }
-        .desc-text ul { list-style: none; }
-        .desc-text li { position: relative; padding-right: 15px; margin-bottom: 5px; }
-        .desc-text li::before { content: "•"; color: var(--p); position: absolute; right: 0; font-weight: bold; }
-        
-        .pop-price-bar { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; padding-top: 15px; border-top: 1px solid #eee; }
-        .pop-price { font-size: 20px; font-weight: 900; color: var(--p); }
-        .pop-add-btn { background: var(--p); color: #fff; border: none; padding: 12px 25px; border-radius: 12px; font-weight: 800; cursor: pointer; }
+        .pop-pan { 
+            background: var(--w); width: 100%; max-width: 500px; 
+            border-radius: 30px 30px 0 0; padding: 30px; position: relative; 
+            transform: translateY(100%); transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            max-height: 85vh; overflow-y: auto;
+        }
+        .pop-ov.active .pop-pan { transform: translateY(0); }
 
-        /* السلة المحسنة */
-        .ov { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 2000; }
-        .pan { background: #fff; width: 100%; position: absolute; bottom: 0; border-radius: 25px 25px 0 0; padding: 25px; max-height: 80vh; overflow-y: auto; }
-        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #f0f2f5; }
-        .cart-item-info { flex: 1; }
-        .cart-item-name { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
-        .cart-item-price { font-size: 12px; color: var(--p); font-weight: 800; }
-        .cart-qty-ctrl { display: flex; align-items: center; background: #f0f2f5; border-radius: 10px; padding: 4px; }
-        .qty-btn { background: #fff; border: none; width: 28px; height: 28px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        /* سلة المشتريات Modern Slide */
+        .ov { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 2000; }
+        .pan { 
+            background: var(--w); width: 100%; position: absolute; bottom: 0; 
+            border-radius: 30px 30px 0 0; padding: 30px; box-shadow: 0 -10px 40px rgba(0,0,0,0.1);
+        }
         
-        .f-btn { background: var(--p); color: #fff; border: none; width: 100%; padding: 15px; border-radius: 15px; font-weight: 800; margin-top: 15px; cursor: pointer; }
-        
-        .c-icon { position: relative; background: var(--p); width: 45px; height: 45px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #fff; cursor: pointer; }
-        #c-badge { position: absolute; top: -5px; right: -5px; background: #ff3b30; color: #fff; font-size: 10px; width: 20px; height: 20px; border-radius: 50%; display: none; align-items: center; justify-content: center; border: 2px solid #fff; }
-        
-        .b-nav { position: fixed; bottom: 0; width: 100%; background: #fff; height: 70px; display: flex; justify-content: space-around; align-items: center; border-top: 1px solid #eee; z-index: 1000; }
-        .n-i { text-decoration: none; color: #999; font-size: 11px; text-align: center; }
-        .n-i.active { color: var(--p); }
-        .n-i i { font-size: 20px; display: block; margin-bottom: 3px; }
+        .f-btn { 
+            background: var(--p); color: #fff; border: none; width: 100%; 
+            padding: 18px; border-radius: 18px; font-weight: 900; 
+            font-size: 16px; margin-top: 15px; box-shadow: 0 10px 20px rgba(0, 82, 204, 0.2);
+        }
+        .f-btn.whatsapp-pulse {
+            background: var(--s);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 168, 132, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 168, 132, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 168, 132, 0); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* زر السلة العائم */
+        .c-icon { 
+            background: var(--p); width: 50px; height: 50px; border-radius: 16px; 
+            display: flex; align-items: center; justify-content: center; 
+            color: #fff; cursor: pointer; box-shadow: 0 8px 16px rgba(0, 82, 204, 0.3);
+        }
+
+        /* تحسينات الموبايل */
+        @media (max-width: 400px) {
+            .grid { gap: 10px; }
+            .card { padding: 10px; border-radius: 20px; }
+            .img-h { height: 120px; }
+        }
     </style>
 </head>
 <body>
 
 <header>
     <div class="logo"><img src="logo.png" alt="Em Medical"></div>
-    <div class="c-icon" onclick="tglCart()"><i class="fas fa-shopping-basket"></i><span id="c-badge">0</span></div>
+    <div class="c-icon" onclick="tglCart()"><i class="fas fa-shopping-cart"></i><span id="c-badge" style="position:absolute; top:-5px; right:-5px; background:#ff3b30; width:22px; height:22px; border-radius:50%; display:none; align-items:center; justify-content:center; font-size:10px; border:2px solid #fff;">0</span></div>
 </header>
 
 <div class="wholesale-banner">
-    <i class="fas fa-box-open"></i> أسعار خاصة جداً للتجار وللجملة
+    <i class="fas fa-star"></i> أسعار خاصة جداً للكميات والجملة <i class="fas fa-star"></i>
 </div>
 
 <div class="cats-bar" id="cats-bar">
     <button class="cat-btn active" onclick="filterProd('الكل', this)">الكل</button>
-    <button class="cat-btn wholesale-btn" onclick="filterProd('جملة', this)">📦 قسم الجملة</button>
+    <button class="cat-btn wholesale-btn" onclick="filterProd('جملة', this)">📦 طلبات الجملة</button>
     <button class="cat-btn" onclick="filterProd('مساج', this)">مساج</button>
     <button class="cat-btn" onclick="filterProd('أجهزة ضغط', this)">أجهزة ضغط</button>
     <button class="cat-btn" onclick="filterProd('تنفس', this)">تنفس</button>
-    <button class="cat-btn" onclick="filterProd('مستلزمات', this)">مستلزمات</button>
 </div>
 
 <div class="cnt">
@@ -108,38 +196,32 @@
 
 <div id="pop-ov" class="pop-ov" onclick="closePop()">
     <div class="pop-pan" onclick="event.stopPropagation()">
-        <button class="close-pop" onclick="closePop()"><i class="fas fa-times"></i></button>
-        <div class="pop-img-h" id="pop-img-grid"></div>
-        <h2 id="pop-title"></h2>
-        <div class="desc-text" id="pop-desc"></div>
-        <div class="pop-price-bar">
-            <div class="pop-price"><span id="pop-price">0</span> ج.م</div>
-            <button class="pop-add-btn" id="pop-add-btn">إضافة للسلة</button>
+        <div style="width:50px; height:5px; background:#eee; border-radius:10px; margin: -15px auto 20px;"></div>
+        <div class="pop-img-h" id="pop-img-grid" style="height:250px; margin-bottom:20px; display:flex; align-items:center; justify-content:center; position:relative;"></div>
+        <h2 id="pop-title" style="font-size:20px; margin-bottom:15px; font-weight:900;"></h2>
+        <div id="pop-desc" class="desc-text" style="color:var(--gray); font-size:14px; line-height:1.7;"></div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:30px; border-top:1px solid #eee; padding-top:20px;">
+            <div class="pop-price" style="font-size:24px; font-weight:900; color:var(--p);"><span id="pop-price">0</span> ج.م</div>
+            <button class="pop-add-btn" id="pop-add-btn" style="background:var(--p); color:#fff; border:none; padding:15px 30px; border-radius:18px; font-weight:900;">إضافة للسلة</button>
         </div>
     </div>
 </div>
 
-<nav class="b-nav">
-    <a href="#" class="n-i active"><i class="fas fa-home"></i>المتجر</a>
-    <a href="https://t.me/emmedical7" class="n-i"><i class="fab fa-telegram-plane"></i>تليجرام</a>
-    <a href="javascript:void(0)" onclick="tglCart()" class="n-i"><i class="fas fa-shopping-basket"></i>السلة</a>
-</nav>
-
 <div id="ov" class="ov" onclick="tglCart()">
     <div class="pan" onclick="event.stopPropagation()">
-        <h2 style="text-align:center; margin-bottom:20px; font-weight:900;">سلة المشتريات</h2>
+        <h2 style="margin-bottom:20px; font-weight:900;">🛒 سلة طلباتك</h2>
         <div id="cl"></div>
         <div id="cs">
-            <div style="display:flex; justify-content:space-between; margin:20px 0; font-weight:900; font-size:18px;">
-                <span>الإجمالي</span><span><span id="tv">0</span> ج.م</span>
+            <div style="display:flex; justify-content:space-between; margin:20px 0; font-weight:900; font-size:20px;">
+                <span>إجمالي المبلغ</span><span><span id="tv">0</span> ج.م</span>
             </div>
-            <button class="f-btn" onclick="sf()">تكملة الطلب</button>
+            <button class="f-btn" onclick="sf()">إتمام الطلب</button>
         </div>
         <div id="ff" style="display:none;">
-            <input type="text" id="un" placeholder="الاسم بالكامل" style="width:100%; padding:15px; margin-bottom:10px; border:1px solid #eee; border-radius:12px; outline:none; background:#f9f9f9;">
-            <input type="tel" id="up" placeholder="رقم الموبايل" style="width:100%; padding:15px; margin-bottom:10px; border:1px solid #eee; border-radius:12px; outline:none; background:#f9f9f9;">
-            <textarea id="ua" placeholder="العنوان بالتفصيل" style="width:100%; padding:15px; margin-bottom:10px; border:1px solid #eee; border-radius:12px; outline:none; background:#f9f9f9; height:80px;"></textarea>
-            <button class="f-btn" style="background:#25d366;" onclick="sw()">طلب عبر واتساب <i class="fab fa-whatsapp"></i></button>
+            <input type="text" id="un" placeholder="الاسم بالكامل" style="width:100%; padding:18px; margin-bottom:12px; border:1px solid #eee; border-radius:16px; background:#f9f9f9; outline:none;">
+            <input type="tel" id="up" placeholder="رقم الموبايل (واتساب)" style="width:100%; padding:18px; margin-bottom:12px; border:1px solid #eee; border-radius:16px; background:#f9f9f9; outline:none;">
+            <textarea id="ua" placeholder="العنوان بالتفصيل (المدينة - الشارع)" style="width:100%; padding:18px; margin-bottom:12px; border:1px solid #eee; border-radius:16px; background:#f9f9f9; outline:none; height:100px;"></textarea>
+            <button class="f-btn whatsapp-pulse" onclick="sw()"><i class="fab fa-whatsapp"></i> إرسال الطلب الآن</button>
         </div>
     </div>
 </div>
@@ -162,25 +244,36 @@
         grid.innerHTML = '';
         list.forEach((p, index) => {
             let imgs = p.imgs.map((img, i) => `<img src="${img}" class="${i===0?'active':''}" loading="lazy" decoding="async">`).join('');
+            let badge = p.cat === 'جملة' ? '<div class="badge" style="background:var(--gold)">سعر جملة</div>' : (index < 2 ? '<div class="badge">أكثر مبيعاً</div>' : '');
+            
             grid.innerHTML += `
-                <div class="card" onclick="openPop(${index})" data-id="${index}">
+                <div class="card" onclick="openPop(${allProd.indexOf(p)})" data-id="${index}">
+                    ${badge}
                     <div class="img-h">${imgs}</div>
                     <h3>${p.n}</h3>
                     <div class="price">${p.p} ج.م</div>
                     <div class="card-btns">
-                        <button class="viw-btn">التفاصيل</button>
-                        <button class="add-btn-quick" onclick="event.stopPropagation(); add('${p.n}', ${p.p}, this)"><i class="fas fa-plus"></i></button>
+                        <button class="viw-btn">عرض</button>
+                        <button class="add-btn-quick" onclick="event.stopPropagation(); add('${p.n}', ${p.p}, this)"><i class="fas fa-cart-plus"></i></button>
                     </div>
                 </div>`;
         });
+        
+        // تأثير الظهور التدريجي (Reveal)
+        setTimeout(() => {
+            document.querySelectorAll('.card').forEach((c, i) => {
+                setTimeout(() => c.classList.add('visible'), i * 100);
+            });
+        }, 100);
+
         initSmartSlider();
     }
 
     function filterProd(cat, btn) {
         document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        if(cat === 'الكل') render(allProd);
-        else render(allProd.filter(p => p.cat === cat));
+        const filtered = cat === 'الكل' ? allProd : allProd.filter(p => p.cat === cat);
+        render(filtered);
     }
 
     function initSmartSlider() {
@@ -195,14 +288,14 @@
     }
 
     function startSlider(container, id) {
-        if (activeIntervals.has(id)) return;
+        if (!container || activeIntervals.has(id)) return;
         const imgs = container.querySelectorAll('img');
         if (imgs.length <= 1) return;
         let i = 0;
         const interval = setInterval(() => {
-            if(imgs[i]) imgs[i].classList.remove('active');
+            imgs[i].classList.remove('active');
             i = (i + 1) % imgs.length;
-            if(imgs[i]) imgs[i].classList.add('active');
+            imgs[i].classList.add('active');
         }, 3000);
         activeIntervals.set(id, interval);
     }
@@ -217,9 +310,9 @@
     function openPop(index) {
         const p = allProd[index];
         const ov = document.getElementById('pop-ov');
-        document.getElementById('pop-img-grid').innerHTML = p.imgs.map((img, i) => `<img src="${img}" class="${i===0?'active':''}">`).join('');
+        document.getElementById('pop-img-grid').innerHTML = p.imgs.map((img, i) => `<img src="${img}" class="${i===0?'active':''}" style="max-width:100%; max-height:100%; object-fit:contain; position:absolute; transition:0.5s;">`).join('');
         document.getElementById('pop-title').innerText = p.n;
-        document.getElementById('pop-desc').innerHTML = p.desc.includes('،') ? `<ul><li>${p.desc.split('،').join('</li><li>')}</li></ul>` : p.desc;
+        document.getElementById('pop-desc').innerHTML = p.desc.includes('،') ? `<ul style="list-style:none;"><li><i class="fas fa-check-circle" style="color:var(--s); margin-left:8px;"></i>${p.desc.split('،').join('</li><li><i class="fas fa-check-circle" style="color:var(--s); margin-left:8px;"></i>')}</li></ul>` : p.desc;
         document.getElementById('pop-price').innerText = p.p;
         document.getElementById('pop-add-btn').onclick = () => { add(p.n, p.p, document.getElementById('pop-add-btn')); closePop(); };
         ov.classList.add('active');
@@ -236,8 +329,8 @@
         if(i) i.q++; else cart.push({n, p, q:1});
         localStorage.setItem('em_medical_cart', JSON.stringify(cart));
         upUI();
-        let old = b.innerHTML; b.innerHTML = "✅";
-        setTimeout(() => b.innerHTML = old, 800);
+        let old = b.innerHTML; b.innerHTML = "<i class='fas fa-check'></i>";
+        setTimeout(() => b.innerHTML = old, 1000);
     }
 
     function upUI() {
@@ -247,19 +340,19 @@
 
     function ren() {
         let l = document.getElementById('cl'), sum = 0;
-        if(!cart.length) { l.innerHTML = "<p style='text-align:center; padding:30px; color:#999;'>السلة فارغة</p>"; document.getElementById('tv').innerText=0; return; }
+        if(!cart.length) { l.innerHTML = "<div style='text-align:center; padding:40px;'><i class='fas fa-shopping-basket' style='font-size:50px; color:#eee; margin-bottom:15px; display:block;'></i> السلة فاضية يا بطل</div>"; document.getElementById('tv').innerText=0; return; }
         let h = "";
         cart.forEach((i, x) => {
             sum += (i.p * i.q);
-            h += `<div class="cart-item">
-                    <div class="cart-item-info">
-                        <div class="cart-item-name">${i.n}</div>
-                        <div class="cart-item-price">${i.p} ج.م</div>
+            h += `<div style="display:flex; justify-content:space-between; align-items:center; padding:15px 0; border-bottom:1px solid #f5f5f5;">
+                    <div style="flex:1;">
+                        <div style="font-weight:700; font-size:14px;">${i.n}</div>
+                        <div style="color:var(--p); font-weight:800; font-size:13px;">${i.p} ج.م</div>
                     </div>
-                    <div class="cart-qty-ctrl">
-                        <button class="qty-btn" onclick="ch(${x},-1)">-</button>
-                        <span style="margin:0 12px; font-weight:800;">${i.q}</span>
-                        <button class="qty-btn" onclick="ch(${x},1)">+</button>
+                    <div style="display:flex; align-items:center; background:#f0f2f5; border-radius:12px; padding:5px;">
+                        <button onclick="ch(${x},-1)" style="width:30px; height:30px; border:none; background:#fff; border-radius:8px; font-weight:bold;">-</button>
+                        <span style="margin:0 15px; font-weight:800;">${i.q}</span>
+                        <button onclick="ch(${x},1)" style="width:30px; height:30px; border:none; background:#fff; border-radius:8px; font-weight:bold;">+</button>
                     </div>
                   </div>`;
         });
@@ -268,13 +361,13 @@
 
     function ch(x, v) { cart[x].q += v; if(cart[x].q < 1) cart.splice(x,1); localStorage.setItem('em_medical_cart', JSON.stringify(cart)); upUI(); ren(); }
     function tglCart() { let m = document.getElementById('ov'); m.style.display = m.style.display === 'block' ? 'none' : 'block'; bc(); ren(); }
-    function sf() { document.getElementById('cs').style.display='none'; document.getElementById('ff').style.display='block'; }
+    function sf() { if(!cart.length) return; document.getElementById('cs').style.display='none'; document.getElementById('ff').style.display='block'; }
     function bc() { document.getElementById('cs').style.display='block'; document.getElementById('ff').style.display='none'; }
     
     function sw() {
         let n = document.getElementById('un').value, p = document.getElementById('up').value, a = document.getElementById('ua').value;
-        if(!n || !p || !a) return alert("من فضلك أكمل البيانات");
-        let msg = `طلب جديد من Em Medical:%0A👤 الاسم: ${n}%0A📞 الموبايل: ${p}%0A📍 العنوان: ${a}%0A%0A🛒 الطلبات:%0A`;
+        if(!n || !p || !a) return alert("البيانات ناقصة يا فنان");
+        let msg = `طلبية جديدة - Em Medical%0A👤 الاسم: ${n}%0A📞 الموبايل: ${p}%0A📍 العنوان: ${a}%0A%0A📦 المنتجات:%0A`;
         cart.forEach(i => msg += `• ${i.n} (العدد: ${i.q})%0A`);
         msg += `%0A💰 الإجمالي: ${document.getElementById('tv').innerText} ج.م`;
         window.open(`https://wa.me/201153951440?text=${msg}`);
