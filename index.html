@@ -7,17 +7,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
-        :root { --p: #0052cc; --bg: #f0f2f5; --w: #ffffff; --text: #1c1e21; --gray: #65676b; }
+        :root { --p: #0052cc; --bg: #f0f2f5; --w: #ffffff; --text: #1c1e21; --gray: #65676b; --gold: #b8860b; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; -webkit-tap-highlight-color: transparent; }
         body { background-color: var(--bg); padding-bottom: 100px; overflow-x: hidden; color: var(--text); }
         
         header { background: #fff; height: 70px; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #eee; }
         .logo img { height: 40px; }
         
+        /* شريط أسعار الجملة الجديد */
+        .wholesale-banner { background: #fff9c4; color: #856404; text-align: center; padding: 8px; font-size: 13px; font-weight: 800; border-bottom: 1px solid #ffe082; }
+
         .cats-bar { display: flex; gap: 10px; overflow-x: auto; padding: 15px; background: #fff; position: sticky; top: 70px; z-index: 999; border-bottom: 1px solid #eee; scrollbar-width: none; }
         .cats-bar::-webkit-scrollbar { display: none; }
         .cat-btn { background: #eee; color: #555; padding: 8px 20px; border-radius: 20px; border: none; font-weight: 700; white-space: nowrap; cursor: pointer; font-size: 13px; }
         .cat-btn.active { background: var(--p); color: #fff; }
+        /* تمييز زرار الجملة */
+        .cat-btn.wholesale-btn { background: #fff3e0; color: var(--gold); border: 1px solid var(--gold); }
+        .cat-btn.wholesale-btn.active { background: var(--gold); color: #fff; }
 
         .cnt { padding: 15px; max-width: 1100px; margin: 0 auto; }
         .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
@@ -83,9 +89,13 @@
     <div class="c-icon" onclick="tglCart()"><i class="fas fa-shopping-basket"></i><span id="c-badge">0</span></div>
 </header>
 
+<div class="wholesale-banner">
+    <i class="fas fa-box-open"></i> أسعار خاصة جداً للتجار وللجملة
+</div>
+
 <div class="cats-bar" id="cats-bar">
     <button class="cat-btn active" onclick="filterProd('الكل', this)">الكل</button>
-    <button class="cat-btn" onclick="filterProd('جملة', this)">📦 قسم الجملة</button>
+    <button class="cat-btn wholesale-btn" onclick="filterProd('جملة', this)">📦 قسم الجملة</button>
     <button class="cat-btn" onclick="filterProd('مساج', this)">مساج</button>
     <button class="cat-btn" onclick="filterProd('أجهزة ضغط', this)">أجهزة ضغط</button>
     <button class="cat-btn" onclick="filterProd('تنفس', this)">تنفس</button>
@@ -129,7 +139,7 @@
             <input type="text" id="un" placeholder="الاسم بالكامل" style="width:100%; padding:15px; margin-bottom:10px; border:1px solid #eee; border-radius:12px; outline:none; background:#f9f9f9;">
             <input type="tel" id="up" placeholder="رقم الموبايل" style="width:100%; padding:15px; margin-bottom:10px; border:1px solid #eee; border-radius:12px; outline:none; background:#f9f9f9;">
             <textarea id="ua" placeholder="العنوان بالتفصيل" style="width:100%; padding:15px; margin-bottom:10px; border:1px solid #eee; border-radius:12px; outline:none; background:#f9f9f9; height:80px;"></textarea>
-            <button class="f-btn" style="background:#25d366;" onclick="sw()">إرسال الطلب عبر واتساب <i class="fab fa-whatsapp"></i></button>
+            <button class="f-btn" style="background:#25d366;" onclick="sw()">طلب عبر واتساب <i class="fab fa-whatsapp"></i></button>
         </div>
     </div>
 </div>
@@ -177,11 +187,8 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 const cardId = entry.target.dataset.id;
-                if (entry.isIntersecting) {
-                    startSlider(entry.target.querySelector('.img-h'), cardId);
-                } else {
-                    stopSlider(cardId);
-                }
+                if (entry.isIntersecting) startSlider(entry.target.querySelector('.img-h'), cardId);
+                else stopSlider(cardId);
             });
         }, { threshold: 0.1 });
         document.querySelectorAll('.card').forEach(card => observer.observe(card));
@@ -240,7 +247,7 @@
 
     function ren() {
         let l = document.getElementById('cl'), sum = 0;
-        if(!cart.length) { l.innerHTML = "<p style='text-align:center; padding:30px; color:#999;'>السلة فارغة حالياً</p>"; document.getElementById('tv').innerText=0; return; }
+        if(!cart.length) { l.innerHTML = "<p style='text-align:center; padding:30px; color:#999;'>السلة فارغة</p>"; document.getElementById('tv').innerText=0; return; }
         let h = "";
         cart.forEach((i, x) => {
             sum += (i.p * i.q);
@@ -267,12 +274,9 @@
     function sw() {
         let n = document.getElementById('un').value, p = document.getElementById('up').value, a = document.getElementById('ua').value;
         if(!n || !p || !a) return alert("من فضلك أكمل البيانات");
-        
-        let hasWholesale = cart.some(i => i.n.includes("جملة"));
-        let msg = `طلب جديد من Em Medical ${hasWholesale ? '(قسم الجملة)' : ''}:%0A👤 الاسم: ${n}%0A📞 الموبايل: ${p}%0A📍 العنوان: ${a}%0A%0A🛒 الطلبات:%0A`;
+        let msg = `طلب جديد من Em Medical:%0A👤 الاسم: ${n}%0A📞 الموبايل: ${p}%0A📍 العنوان: ${a}%0A%0A🛒 الطلبات:%0A`;
         cart.forEach(i => msg += `• ${i.n} (العدد: ${i.q})%0A`);
         msg += `%0A💰 الإجمالي: ${document.getElementById('tv').innerText} ج.م`;
-        
         window.open(`https://wa.me/201153951440?text=${msg}`);
     }
 
