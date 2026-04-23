@@ -22,7 +22,7 @@
         .cnt { padding: 15px; max-width: 1100px; margin: 0 auto; }
         .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
         
-        .card { background: #fff; border-radius: 20px; padding: 12px; display: flex; flex-direction: column; box-shadow: 0 4px 15px rgba(0,0,0,0.05); cursor: pointer; transition: transform 0.2s; position: relative; min-height: 260px; }
+        .card { background: #fff; border-radius: 20px; padding: 12px; display: flex; flex-direction: column; box-shadow: 0 4px 15px rgba(0,0,0,0.05); cursor: pointer; transition: transform 0.2s; position: relative; min-height: 270px; }
         .card:active { transform: scale(0.98); }
         
         .img-h { width: 100%; height: 130px; position: relative; background: transparent; border-radius: 15px; margin-bottom: 10px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
@@ -55,12 +55,19 @@
         .pop-price { font-size: 20px; font-weight: 900; color: var(--p); }
         .pop-add-btn { background: var(--p); color: #fff; border: none; padding: 12px 25px; border-radius: 12px; font-weight: 800; cursor: pointer; }
 
-        /* السلة */
+        /* السلة المحسنة */
         .ov { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 2000; }
         .pan { background: #fff; width: 100%; position: absolute; bottom: 0; border-radius: 25px 25px 0 0; padding: 25px; max-height: 80vh; overflow-y: auto; }
-        .f-btn { background: var(--p); color: #fff; border: none; width: 100%; padding: 15px; border-radius: 15px; font-weight: 800; margin-top: 10px; cursor: pointer; }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #f0f2f5; }
+        .cart-item-info { flex: 1; }
+        .cart-item-name { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+        .cart-item-price { font-size: 12px; color: var(--p); font-weight: 800; }
+        .cart-qty-ctrl { display: flex; align-items: center; background: #f0f2f5; border-radius: 10px; padding: 4px; }
+        .qty-btn { background: #fff; border: none; width: 28px; height: 28px; border-radius: 8px; font-weight: bold; cursor: pointer; }
         
-        .c-icon { position: relative; background: var(--p); width: 45px; height: 45px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #fff; }
+        .f-btn { background: var(--p); color: #fff; border: none; width: 100%; padding: 15px; border-radius: 15px; font-weight: 800; margin-top: 15px; cursor: pointer; }
+        
+        .c-icon { position: relative; background: var(--p); width: 45px; height: 45px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #fff; cursor: pointer; }
         #c-badge { position: absolute; top: -5px; right: -5px; background: #ff3b30; color: #fff; font-size: 10px; width: 20px; height: 20px; border-radius: 50%; display: none; align-items: center; justify-content: center; border: 2px solid #fff; }
         
         .b-nav { position: fixed; bottom: 0; width: 100%; background: #fff; height: 70px; display: flex; justify-content: space-around; align-items: center; border-top: 1px solid #eee; z-index: 1000; }
@@ -78,6 +85,7 @@
 
 <div class="cats-bar" id="cats-bar">
     <button class="cat-btn active" onclick="filterProd('الكل', this)">الكل</button>
+    <button class="cat-btn" onclick="filterProd('جملة', this)">📦 قسم الجملة</button>
     <button class="cat-btn" onclick="filterProd('مساج', this)">مساج</button>
     <button class="cat-btn" onclick="filterProd('أجهزة ضغط', this)">أجهزة ضغط</button>
     <button class="cat-btn" onclick="filterProd('تنفس', this)">تنفس</button>
@@ -121,7 +129,7 @@
             <input type="text" id="un" placeholder="الاسم بالكامل" style="width:100%; padding:15px; margin-bottom:10px; border:1px solid #eee; border-radius:12px; outline:none; background:#f9f9f9;">
             <input type="tel" id="up" placeholder="رقم الموبايل" style="width:100%; padding:15px; margin-bottom:10px; border:1px solid #eee; border-radius:12px; outline:none; background:#f9f9f9;">
             <textarea id="ua" placeholder="العنوان بالتفصيل" style="width:100%; padding:15px; margin-bottom:10px; border:1px solid #eee; border-radius:12px; outline:none; background:#f9f9f9; height:80px;"></textarea>
-            <button class="f-btn" style="background:#25d366;" onclick="sw()">طلب عبر واتساب</button>
+            <button class="f-btn" style="background:#25d366;" onclick="sw()">إرسال الطلب عبر واتساب <i class="fab fa-whatsapp"></i></button>
         </div>
     </div>
 </div>
@@ -158,7 +166,13 @@
         initSmartSlider();
     }
 
-    // خاصية السلايدر الذكي: يعمل فقط للمنتجات الظاهرة على الشاشة لتوفير المعالج
+    function filterProd(cat, btn) {
+        document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        if(cat === 'الكل') render(allProd);
+        else render(allProd.filter(p => p.cat === cat));
+    }
+
     function initSmartSlider() {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -170,7 +184,6 @@
                 }
             });
         }, { threshold: 0.1 });
-
         document.querySelectorAll('.card').forEach(card => observer.observe(card));
     }
 
@@ -178,12 +191,11 @@
         if (activeIntervals.has(id)) return;
         const imgs = container.querySelectorAll('img');
         if (imgs.length <= 1) return;
-        
         let i = 0;
         const interval = setInterval(() => {
-            imgs[i].classList.remove('active');
+            if(imgs[i]) imgs[i].classList.remove('active');
             i = (i + 1) % imgs.length;
-            imgs[i].classList.add('active');
+            if(imgs[i]) imgs[i].classList.add('active');
         }, 3000);
         activeIntervals.set(id, interval);
     }
@@ -228,25 +240,40 @@
 
     function ren() {
         let l = document.getElementById('cl'), sum = 0;
-        if(!cart.length) { l.innerHTML = "<p style='text-align:center; padding:20px;'>السلة فارغة</p>"; document.getElementById('tv').innerText=0; return; }
+        if(!cart.length) { l.innerHTML = "<p style='text-align:center; padding:30px; color:#999;'>السلة فارغة حالياً</p>"; document.getElementById('tv').innerText=0; return; }
         let h = "";
         cart.forEach((i, x) => {
             sum += (i.p * i.q);
-            h += `<div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #eee;">
-                    <span>${i.n} (x${i.q})</span>
-                    <button onclick="ch(${x},-1)" style="border:none; padding:5px 10px;">-</button>
+            h += `<div class="cart-item">
+                    <div class="cart-item-info">
+                        <div class="cart-item-name">${i.n}</div>
+                        <div class="cart-item-price">${i.p} ج.م</div>
+                    </div>
+                    <div class="cart-qty-ctrl">
+                        <button class="qty-btn" onclick="ch(${x},-1)">-</button>
+                        <span style="margin:0 12px; font-weight:800;">${i.q}</span>
+                        <button class="qty-btn" onclick="ch(${x},1)">+</button>
+                    </div>
                   </div>`;
         });
         l.innerHTML = h; document.getElementById('tv').innerText = sum;
     }
 
     function ch(x, v) { cart[x].q += v; if(cart[x].q < 1) cart.splice(x,1); localStorage.setItem('em_medical_cart', JSON.stringify(cart)); upUI(); ren(); }
-    function tglCart() { let m = document.getElementById('ov'); m.style.display = m.style.display === 'block' ? 'none' : 'block'; ren(); }
+    function tglCart() { let m = document.getElementById('ov'); m.style.display = m.style.display === 'block' ? 'none' : 'block'; bc(); ren(); }
     function sf() { document.getElementById('cs').style.display='none'; document.getElementById('ff').style.display='block'; }
+    function bc() { document.getElementById('cs').style.display='block'; document.getElementById('ff').style.display='none'; }
+    
     function sw() {
-        let msg = `طلب جديد:%0A👤 الاسم: ${document.getElementById('un').value}%0A🛒 الطلبات:%0A`;
-        cart.forEach(i => msg += `• ${i.n} (${i.q})%0A`);
-        window.open(`https://wa.me/201153951440?text=${msg + '💰 الإجمالي: ' + document.getElementById('tv').innerText}`);
+        let n = document.getElementById('un').value, p = document.getElementById('up').value, a = document.getElementById('ua').value;
+        if(!n || !p || !a) return alert("من فضلك أكمل البيانات");
+        
+        let hasWholesale = cart.some(i => i.n.includes("جملة"));
+        let msg = `طلب جديد من Em Medical ${hasWholesale ? '(قسم الجملة)' : ''}:%0A👤 الاسم: ${n}%0A📞 الموبايل: ${p}%0A📍 العنوان: ${a}%0A%0A🛒 الطلبات:%0A`;
+        cart.forEach(i => msg += `• ${i.n} (العدد: ${i.q})%0A`);
+        msg += `%0A💰 الإجمالي: ${document.getElementById('tv').innerText} ج.م`;
+        
+        window.open(`https://wa.me/201153951440?text=${msg}`);
     }
 
     window.onload = () => { load(); upUI(); }
