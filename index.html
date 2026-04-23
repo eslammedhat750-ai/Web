@@ -3,108 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Em Medical | خفيف وسريع</title>
+    <title>Em Medical | المظهر الأصلي</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
-        :root { --p: #0052cc; --bg: #f8f9fa; --text: #1c1e21; --gray: #65676b; --gold: #b8860b; }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
-        body { background-color: var(--bg); padding-bottom: 70px; color: var(--text); }
+        
+        :root { 
+            --p: #0052cc; 
+            --bg: #f8f9fa; 
+            --text: #1c1e21; 
+            --gray: #65676b; 
+            --gold: #b8860b;
+        }
 
-        header { background: #fff; height: 60px; display: flex; justify-content: space-between; align-items: center; padding: 0 15px; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #eee; }
-        .logo img { height: 35px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; -webkit-tap-highlight-color: transparent; }
+        body { background-color: var(--bg); padding-bottom: 80px; overflow-x: hidden; color: var(--text); }
 
-        /* شريط الأقسام المحدث */
-        .cats-bar { display: flex; gap: 8px; overflow-x: auto; padding: 12px; background: #fff; scrollbar-width: none; border-bottom: 1px solid #eee; }
-        .cat-btn { background: #f0f2f5; color: var(--gray); padding: 8px 18px; border-radius: 12px; border: none; font-weight: 700; white-space: nowrap; font-size: 13px; cursor: pointer; transition: 0.2s; }
+        /* الهيدر بنفس الشكل اللي في صورتك */
+        header { 
+            background: #fff; 
+            height: 70px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 0 20px; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            border-bottom: 1px solid #eee;
+        }
+        .logo img { height: 40px; }
+
+        /* شريط الأقسام - ضفت لك الجملة بشكل احترافي */
+        .cats-bar { 
+            display: flex; gap: 10px; overflow-x: auto; padding: 15px; 
+            background: #fff; position: sticky; top: 70px; z-index: 999; 
+            border-bottom: 1px solid #eee; scrollbar-width: none;
+        }
+        .cats-bar::-webkit-scrollbar { display: none; }
+        .cat-btn { 
+            background: #f0f2f5; color: var(--gray); padding: 10px 20px; 
+            border-radius: 50px; border: none; font-weight: 700; 
+            white-space: nowrap; cursor: pointer; font-size: 13px;
+        }
         .cat-btn.active { background: var(--p); color: #fff; }
         
-        /* زرار الجملة - مميز بس شيك */
-        .wholesale-btn { border: 1px solid var(--gold); color: var(--gold); background: #fffdf0; }
-        .wholesale-btn.active { background: var(--gold); color: #fff; }
+        /* زر الجملة المميز */
+        .wholesale-btn { border: 1px solid var(--gold) !important; color: var(--gold) !important; }
+        .wholesale-btn.active { background: var(--gold) !important; color: #fff !important; }
 
-        .cnt { padding: 12px; }
-        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .cnt { padding: 15px; max-width: 1100px; margin: 0 auto; }
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
         
-        /* كارت "فلات" خفيف جداً على المعالج */
-        .card { background: #fff; border-radius: 15px; padding: 10px; border: 1px solid #eee; position: relative; display: flex; flex-direction: column; }
-        .badge { position: absolute; top: 8px; right: 8px; background: var(--p); color: #fff; font-size: 9px; padding: 2px 8px; border-radius: 5px; z-index: 5; font-weight: 800; }
-        .badge.wholesale { background: var(--gold); }
+        /* الكارت بنفس استايل الصور بالضبط (نضيف وبسيط) */
+        .card { 
+            background: #fff; border-radius: 20px; padding: 15px; 
+            display: flex; flex-direction: column; 
+            position: relative; border: 1px solid #f0f0f0;
+            transition: transform 0.2s;
+        }
+        .card:active { transform: scale(0.97); }
+        
+        .badge { 
+            position: absolute; top: 10px; right: 10px; 
+            background: var(--p); color: #fff; font-size: 10px; 
+            padding: 4px 10px; border-radius: 8px; z-index: 10; font-weight: 800;
+        }
 
-        .img-h { width: 100%; height: 120px; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-        .img-h img { max-width: 90%; max-height: 90%; object-fit: contain; }
+        .img-h { 
+            width: 100%; height: 130px; margin-bottom: 12px; 
+            display: flex; align-items: center; justify-content: center;
+        }
+        .img-h img { max-width: 100%; max-height: 100%; object-fit: contain; }
         
-        .card h3 { font-size: 13px; font-weight: 700; height: 36px; overflow: hidden; line-height: 1.4; margin-bottom: 5px; }
-        .price { color: var(--p); font-weight: 900; font-size: 15px; margin-bottom: 10px; }
+        .card h3 { 
+            font-size: 14px; font-weight: 800; min-height: 40px; 
+            margin-bottom: 8px; line-height: 1.4; color: var(--text);
+            text-align: center;
+        }
+        .price { 
+            color: var(--p); font-weight: 900; font-size: 16px; 
+            margin-bottom: 12px; text-align: center;
+        }
         
-        .card-btns { display: flex; gap: 5px; }
-        .viw-btn { background: #f0f2f5; border: none; flex: 1; padding: 10px; border-radius: 10px; font-weight: 700; font-size: 11px; color: var(--text); }
-        .add-btn { background: var(--p); color: #fff; border: none; width: 40px; border-radius: 10px; cursor: pointer; }
+        .card-btns { display: flex; gap: 8px; }
+        .viw-btn { 
+            background: #f8f9fa; color: var(--text); border: 1px solid #eee; 
+            flex: 1; padding: 10px; border-radius: 12px; font-weight: 700; font-size: 12px;
+        }
+        .add-btn { 
+            background: var(--p); color: #fff; border: none; 
+            padding: 10px 15px; border-radius: 12px; cursor: pointer;
+        }
 
-        /* النافيجيشن */
-        .b-nav { position: fixed; bottom: 0; width: 100%; background: #fff; height: 60px; display: flex; justify-content: space-around; align-items: center; border-top: 1px solid #eee; z-index: 1000; }
+        /* النافيجيشن السفلي بنفس الشكل */
+        .b-nav { 
+            position: fixed; bottom: 0; width: 100%; background: #fff; 
+            height: 70px; display: flex; justify-content: space-around; 
+            align-items: center; border-top: 1px solid #eee; z-index: 1000; 
+        }
         .n-i { text-decoration: none; color: #999; font-size: 11px; text-align: center; }
         .n-i.active { color: var(--p); }
-        .n-i i { font-size: 18px; display: block; margin-bottom: 2px; }
+        .n-i i { font-size: 20px; display: block; margin-bottom: 3px; }
+
+        /* أيقونة السلة العائمة */
+        .cart-icon-top {
+            background: var(--p); width: 45px; height: 45px; 
+            border-radius: 12px; display: flex; align-items: center; 
+            justify-content: center; color: #fff; font-size: 18px;
+        }
     </style>
 </head>
 <body>
 
 <header>
     <div class="logo"><img src="logo.png" alt="Em Medical"></div>
-    <div style="background: var(--p); color:#fff; width:35px; height:35px; border-radius:10px; display:flex; align-items:center; justify-content:center;"><i class="fas fa-shopping-basket"></i></div>
+    <div class="cart-icon-top"><i class="fas fa-shopping-basket"></i></div>
 </header>
 
-<div class="cats-bar" id="cats-bar">
-    <button class="cat-btn active" onclick="filter('الكل', this)">الكل</button>
-    <button class="cat-btn wholesale-btn" onclick="filter('جملة', this)">📦 قسم الجملة</button>
-    <button class="cat-btn" onclick="filter('مساج', this)">مساج</button>
-    <button class="cat-btn" onclick="filter('أجهزة ضغط', this)">أجهزة ضغط</button>
-    <button class="cat-btn" onclick="filter('تنفس', this)">تنفس</button>
+<div class="cats-bar">
+    <button class="cat-btn active">الكل</button>
+    <button class="cat-btn wholesale-btn">📦 جملة</button>
+    <button class="cat-btn">مساج</button>
+    <button class="cat-btn">أجهزة ضغط</button>
+    <button class="cat-btn">تنفس</button>
 </div>
 
 <div class="cnt">
     <div class="grid" id="products-grid">
+        <div class="card">
+            <div class="badge">أكثر مبيعاً</div>
+            <div class="img-h"><img src="https://via.placeholder.com/150" alt="منتج"></div>
+            <h3>جهاز قياس ضغط الدم الناطق</h3>
+            <div class="price">2100 ج.م</div>
+            <div class="card-btns">
+                <button class="viw-btn">عرض</button>
+                <button class="add-btn"><i class="fas fa-plus"></i></button>
+            </div>
         </div>
+
+        <div class="card">
+            <div class="img-h"><img src="https://via.placeholder.com/150" alt="منتج"></div>
+            <h3>وسادة تدفئة كهربائية</h3>
+            <div class="price">850 ج.م</div>
+            <div class="card-btns">
+                <button class="viw-btn">عرض</button>
+                <button class="add-btn"><i class="fas fa-plus"></i></button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <nav class="b-nav">
     <a href="#" class="n-i active"><i class="fas fa-home"></i>المتجر</a>
     <a href="https://t.me/emmedical7" class="n-i"><i class="fab fa-telegram-plane"></i>تليجرام</a>
-    <a href="javascript:void(0)" class="n-i"><i class="fas fa-shopping-basket"></i>السلة</a>
+    <a href="#" class="n-i"><i class="fas fa-shopping-basket"></i>السلة</a>
 </nav>
 
-<script>
-    // مثال لبيانات المنتجات (يفضل تكون في ملف JSON منفصل)
-    const products = [
-        { n: "جهاز قياس ضغط الدم", p: 2100, cat: "أجهزة ضغط", imgs: ["img1.png"], badge: "أكثر مبيعاً" },
-        { n: "كرتونة مساج (جملة)", p: 8500, cat: "جملة", imgs: ["img2.png"], badge: "سعر خاص" }
-    ];
-
-    function render(list) {
-        const grid = document.getElementById('products-grid');
-        grid.innerHTML = list.map(p => `
-            <div class="card">
-                ${p.badge ? `<div class="badge ${p.cat==='جملة'?'wholesale':''}">${p.badge}</div>` : ''}
-                <div class="img-h"><img src="${p.imgs[0]}" alt="${p.n}"></div>
-                <h3>${p.n}</h3>
-                <div class="price">${p.p} ج.م</div>
-                <div class="card-btns">
-                    <button class="viw-btn">التفاصيل</button>
-                    <button class="add-btn"><i class="fas fa-cart-plus"></i></button>
-                </div>
-            </div>
-        `).join('');
-    }
-
-    function filter(cat, btn) {
-        document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        if(cat === 'الكل') render(products);
-        else render(products.filter(p => p.cat === cat));
-    }
-
-    window.onload = () => render(products);
-</script>
 </body>
 </html>
