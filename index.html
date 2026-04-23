@@ -14,6 +14,7 @@
         header { background: #fff; height: 70px; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #eee; }
         .logo img { height: 40px; }
         
+        /* شريط الأقسام */
         .cats-bar { display: flex; gap: 10px; overflow-x: auto; padding: 15px; background: #fff; position: sticky; top: 70px; z-index: 999; border-bottom: 1px solid #eee; scrollbar-width: none; }
         .cats-bar::-webkit-scrollbar { display: none; }
         .cat-btn { background: #eee; color: #555; padding: 8px 20px; border-radius: 20px; border: none; font-weight: 700; white-space: nowrap; cursor: pointer; font-size: 13px; }
@@ -21,27 +22,38 @@
 
         .cnt { padding: 15px; max-width: 1100px; margin: 0 auto; }
         .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-        .card { background: #fff; border-radius: 20px; padding: 12px; display: flex; flex-direction: column; box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden; position: relative; transition: transform 0.2s; }
-        .card:active { transform: scale(0.98); }
+        .card { background: #fff; border-radius: 20px; padding: 12px; display: flex; flex-direction: column; box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden; position: relative; }
 
         /* منطقة الصورة والتظليل */
         .img-h { width: 100%; height: 140px; position: relative; background: #f9f9f9; border-radius: 15px; margin-bottom: 10px; overflow: hidden; display: flex; align-items: center; justify-content: center; z-index: 1; }
         .img-h img { max-width: 90%; max-height: 90%; position: absolute; opacity: 0; transition: opacity 0.5s; z-index: 1; }
         .img-h img.active { opacity: 1; }
 
-        /* طبقة التظليل والوصف (مخفية افتراضياً) */
+        /* طبقة التظليل والوصف */
         .desc-overlay { position: absolute; inset: 0; background: rgba(0, 82, 204, 0.9); color: #fff; padding: 15px; display: flex; align-items: center; justify-content: center; text-align: center; opacity: 0; transition: opacity 0.3s ease; border-radius: 15px; z-index: 2; pointer-events: none; }
-        .desc-overlay p { font-size: 11px; line-height: 1.5; font-weight: 600; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; }
+        .desc-overlay p { font-size: 11px; line-height: 1.5; font-weight: 600; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; }
 
-        /* إظهار التظليل عند التحويم (للكومبيوتر) أو اللمس (للموبايل) */
-        .card:hover .desc-overlay { opacity: 1; }
+        .card:hover .desc-overlay, .card:active .desc-overlay { opacity: 1; }
         
-        /* تحسين النصوص الثابتة */
-        .card h3 { font-size: 13px; font-weight: 800; height: 38px; overflow: hidden; margin-bottom: 5px; color: #333; z-index: 1; }
-        .price { color: var(--p); font-weight: 900; margin-bottom: 10px; font-size: 15px; z-index: 1; }
-        .add-btn { background: #ebf1ff; color: var(--p); border: none; padding: 10px; border-radius: 12px; font-weight: 800; cursor: pointer; z-index: 1; position: relative; }
+        /* تحسين العناوين لتظهر كاملة */
+        .card h3 { 
+            font-size: 12px; 
+            font-weight: 800; 
+            height: 42px; 
+            overflow: hidden; 
+            margin-bottom: 5px; 
+            color: #333; 
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            line-height: 1.3;
+        }
 
-        /* تنسيق السلة */
+        .price { color: var(--p); font-weight: 900; margin-top: auto; margin-bottom: 10px; font-size: 14px; }
+        .add-btn { background: #ebf1ff; color: var(--p); border: none; padding: 10px; border-radius: 12px; font-weight: 800; cursor: pointer; transition: 0.2s; }
+        .add-btn:active { transform: scale(0.95); background: var(--p); color: #fff; }
+
+        /* السلة والشحن */
         .ov { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 2000; backdrop-filter: blur(4px); }
         .pan { background: #fff; width: 100%; position: absolute; bottom: 0; border-radius: 25px 25px 0 0; padding: 25px; max-height: 85vh; overflow-y: auto; }
         .f-btn { background: var(--p); color: #fff; border: none; width: 100%; padding: 15px; border-radius: 15px; font-weight: 800; margin-top: 10px; cursor: pointer; }
@@ -65,7 +77,7 @@
 <div class="cats-bar" id="cats-bar">
     <button class="cat-btn active" onclick="filterProd('الكل', this)">الكل</button>
     <button class="cat-btn" onclick="filterProd('مساج', this)">مساج</button>
-    <button class="cat-btn" onclick="filterProd('ضغط', this)">أجهزة ضغط</button>
+    <button class="cat-btn" onclick="filterProd('أجهزة ضغط', this)">أجهزة ضغط</button>
     <button class="cat-btn" onclick="filterProd('تنفس', this)">تنفس</button>
     <button class="cat-btn" onclick="filterProd('مستلزمات', this)">مستلزمات</button>
 </div>
@@ -120,9 +132,7 @@
                 <div class="card">
                     <div class="img-h">
                         ${imgs}
-                        <div class="desc-overlay">
-                            <p>${p.desc}</p>
-                        </div>
+                        <div class="desc-overlay"><p>${p.desc}</p></div>
                     </div>
                     <h3>${p.n}</h3>
                     <div class="price">${p.p} ج.م</div>
@@ -157,7 +167,7 @@
         let i = cart.find(x => x.n === n);
         if(i) i.q++; else cart.push({n, p, q:1});
         localStorage.setItem('em_medical_cart', JSON.stringify(cart));
-        upUI(); 
+        upUI();
         b.innerText = "تم ✅"; b.style.background="#00a884"; b.style.color="#fff";
         setTimeout(() => { b.innerText = "إضافة"; b.style.background="#ebf1ff"; b.style.color="var(--p)"; }, 800);
     }
