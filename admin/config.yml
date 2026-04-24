@@ -1,6 +1,5 @@
 backend:
-  name: github
-  repo: eslammedhat750-ai/Web
+  name: git-gateway
   branch: main
 
 media_folder: "images/products"
