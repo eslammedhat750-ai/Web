@@ -1,0 +1,18 @@
+backend:
+  name: github
+  repo: eslammedhat750-ai/Web
+  branch: main
+
+media_folder: "images/products"
+public_folder: "/images/products"
+
+collections:
+  - name: "products"
+    label: "منتجات Em Medical"
+    folder: "content/products"
+    create: true
+    fields:
+      - { label: "اسم الجهاز", name: "title", widget: "string" }
+      - { label: "السعر", name: "price", widget: "number" }
+      - { label: "صورة المنتج", name: "image", widget: "image" }
+      - { label: "وصف سريع", name: "body", widget: "markdown" }
