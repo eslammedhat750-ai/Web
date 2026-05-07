@@ -2,6 +2,7 @@ backend:
   name: github
   repo: eslammedhat750-ai/Web
   branch: main
+  base_url: https://api.github.com # السطر ده مهم جداً للـ Login
 
 media_folder: "/"
 public_folder: "/"
