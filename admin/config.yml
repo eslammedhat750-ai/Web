@@ -2,11 +2,8 @@ backend:
   name: github
   repo: eslammedhat750-ai/Web
   branch: main
-  site_domain: emmedical.shop
-  display_url: https://emmedical.shop
-
-local_backend: true
-publish_mode: editorial_workflow
+  auth_type: implicit
+  app_id: 28f60c4a84d436ee7b29
 
 media_folder: "/"
 public_folder: "/"
