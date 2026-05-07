@@ -3,7 +3,7 @@ backend:
   repo: eslammedhat750-ai/Web
   branch: main
 
-media_folder: "PNG" # خليته PNG عشان يرمي الصور مع الصور القديمة بتاعتك
+media_folder: "PNG"
 public_folder: "PNG"
 
 collections:
@@ -12,7 +12,7 @@ collections:
     files:
       - name: "products_list"
         label: "منتجات المتجر"
-        file: "products.json" # هنا بنقوله عدل الملف ده بس
+        file: "products.json"
         fields:
           - name: "products"
             label: "المنتجات"
@@ -22,4 +22,7 @@ collections:
               - { label: "السعر", name: "p", widget: "number" }
               - { label: "القسم", name: "cat", widget: "string" }
               - { label: "وصف سريع", name: "desc", widget: "text" }
-              - { label: "صورة المنتج", name: "imgs", widget: "list", field: { label: "اسم الصورة", widget: "string" } }
+              - name: "imgs"
+                label: "صور المنتج"
+                widget: "list"
+                field: { label: "اسم الصورة", name: "image_name", widget: "string" }
