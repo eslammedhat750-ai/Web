@@ -12,7 +12,7 @@ collections:
     files:
       - name: "products_list"
         label: "منتجات المتجر"
-        file: "./products.json" # لاحظ النقطة قبل المسار للتأكيد
+        file: "products.json"
         fields:
           - name: "products"
             label: "المنتجات"
