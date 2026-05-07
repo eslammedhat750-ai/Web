@@ -1,27 +1,25 @@
 backend:
   name: github
-  repo: eslammedhat750-ai/Web # تأكد أن هذا اسم المستودع الصحيح
+  repo: eslammedhat750-ai/Web
   branch: main
 
-media_folder: "images/products"
-public_folder: "/images/products"
+media_folder: "PNG" # خليته PNG عشان يرمي الصور مع الصور القديمة بتاعتك
+public_folder: "PNG"
 
 collections:
-  - name: "settings"
-    label: "الإعدادات"
-    delete: false
-    editor:
-      preview: false
+  - name: "data"
+    label: "البيانات"
     files:
-      - name: "products"
-        label: "منتجات Em Medical"
-        file: "products.json"
+      - name: "products_list"
+        label: "منتجات المتجر"
+        file: "products.json" # هنا بنقوله عدل الملف ده بس
         fields:
-          - { label: "قائمة المنتجات", name: "products", widget: "list", fields: [
-              { label: "اسم الجهاز", name: "n", widget: "string" },
-              { label: "السعر", name: "p", widget: "number" },
-              { label: "القسم", name: "cat", widget: "string" },
-              { label: "وصف سريع", name: "desc", widget: "text" },
-              { label: "صورة المنتج", name: "imgs", widget: "list", field: { label: "اسم الصورة", widget: "string" } }
-            ]
-          }
+          - name: "products"
+            label: "المنتجات"
+            widget: "list"
+            fields:
+              - { label: "اسم الجهاز", name: "n", widget: "string" }
+              - { label: "السعر", name: "p", widget: "number" }
+              - { label: "القسم", name: "cat", widget: "string" }
+              - { label: "وصف سريع", name: "desc", widget: "text" }
+              - { label: "صورة المنتج", name: "imgs", widget: "list", field: { label: "اسم الصورة", widget: "string" } }
