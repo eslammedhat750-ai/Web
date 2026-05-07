@@ -9,9 +9,10 @@ collections:
   - name: "products"
     label: "المنتجات"
     folder: "public"
-    file: "public/products.json"
+    file: "products.json"
     extension: "json"
     format: "json"
+    identifier_field: "n"
     create: true
     fields:
       - { label: "اسم المنتج", name: "n", widget: "string" }
