@@ -2,8 +2,7 @@ backend:
   name: github
   repo: eslammedhat750-ai/Web
   branch: main
-  auth_type: implicit
-  app_id: 28f60c4a84d436ee7b29
+  auth_type: token
 
 media_folder: "/"
 public_folder: "/"
