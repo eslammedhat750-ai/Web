@@ -2,18 +2,17 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "public/images"
-public_folder: "/images"
+media_folder: "/"
+public_folder: "/"
 
 collections:
   - name: "products"
     label: "المنتجات"
-    folder: "public"
     file: "products.json"
     extension: "json"
     format: "json"
     identifier_field: "n"
-    create: true
+    save_extension: "json"
     fields:
       - { label: "اسم المنتج", name: "n", widget: "string" }
       - { label: "السعر", name: "p", widget: "number" }
