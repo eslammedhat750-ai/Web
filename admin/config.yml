@@ -1,25 +1,44 @@
-backend:
-  name: github
-  repo: eslammedhat750-ai/Web
-  branch: main
-  auth_type: proxy
-  proxy_url: http://localhost:8081 # دي عشان نخدع اللوحة وتفتح لنا خانة التوكن
-
-media_folder: "/"
-public_folder: "/"
-
-collections:
-  - name: "products"
-    label: "المنتجات"
-    folder: "/"
-    file: "products.json"
-    extension: "json"
-    format: "json"
-    identifier_field: "n"
-    create: true
-    fields:
-      - { label: "اسم المنتج", name: "n", widget: "string" }
-      - { label: "السعر", name: "p", widget: "number" }
-      - { label: "القسم", name: "cat", widget: "string" }
-      - { label: "الوصف", name: "desc", widget: "text" }
-      - { label: "صور المنتج", name: "imgs", widget: "list", field: { label: "اختر صورة من الموبايل", name: "img", widget: "image" } }
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Content Manager</title>
+    <link rel="stylesheet" href="https://unpkg.com/@staticcms/core@^4.0.0/dist/static-cms.css" />
+  </head>
+  <body>
+    <script src="https://unpkg.com/@staticcms/core@^4.0.0/dist/static-cms.js"></script>
+    <script>
+      window.CMS_CONFIG = {
+        config: {
+          backend: {
+            name: 'github',
+            repo: 'eslammedhat750-ai/Web',
+            branch: 'main'
+          },
+          media_folder: '/',
+          public_folder: '/',
+          collections: [
+            {
+              name: 'products',
+              label: 'المنتجات',
+              folder: '/',
+              file: 'products.json',
+              extension: 'json',
+              format: 'json',
+              identifier_field: 'n',
+              create: true,
+              fields: [
+                { label: 'اسم المنتج', name: 'n', widget: 'string' },
+                { label: 'السعر', name: 'p', widget: 'number' },
+                { label: 'القسم', name: 'cat', widget: 'string' },
+                { label: 'الوصف', name: 'desc', widget: 'text' },
+                { label: 'صور المنتج', name: 'imgs', widget: 'list', field: { label: 'صورة', name: 'img', widget: 'image' } }
+              ]
+            }
+          ]
+        }
+      };
+    </script>
+  </body>
+</html>
