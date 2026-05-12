@@ -2,23 +2,18 @@ backend:
   name: github
   repo: eslammedhat750-ai/Web
   branch: main
-  auth_type: token
 
-media_folder: "/"
-public_folder: "/"
+media_folder: "images"
+public_folder: "/images"
 
 collections:
   - name: "products"
     label: "المنتجات"
-    folder: "/"
-    file: "products.json"
-    extension: "json"
-    format: "json"
-    identifier_field: "n"
+    folder: "content/products"
     create: true
+    slug: "{{slug}}"
     fields:
-      - { label: "اسم المنتج", name: "n", widget: "string" }
-      - { label: "السعر", name: "p", widget: "number" }
-      - { label: "القسم", name: "cat", widget: "string" }
-      - { label: "الوصف", name: "desc", widget: "text" }
-      - { label: "صور المنتج", name: "imgs", widget: "list", field: { label: "صورة", name: "img", widget: "image" } }
+      - { label: "اسم المنتج", name: "title", widget: "string" }
+      - { label: "السعر", name: "price", widget: "number" }
+      - { label: "الوصف", name: "body", widget: "markdown" }
+      - { label: "صورة المنتج", name: "image", widget: "image" }
