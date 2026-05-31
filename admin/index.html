@@ -1,11 +1,41 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Content Manager</title>
+    <meta charset="UTF-8">
+    <title>لوحة تحكم إم ميديكال</title>
 </head>
 <body>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <h2>إضافة منتج جديد</h2>
+    <input type="text" id="pName" placeholder="اسم المنتج">
+    <input type="number" id="pPrice" placeholder="السعر">
+    <button onclick="addProduct()">حفظ المنتج</button>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+        import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
+
+        // ضع هنا كود الـ firebaseConfig الخاص بك من الصورة 18
+        const firebaseConfig = {
+            apiKey: "AIzaSyAS1b2jbNc7ojvV9Bwxtx4XV...",
+            databaseURL: "https://emmedical-85120-default-rtdb.firebaseio.com",
+            projectId: "emmedical-85120"
+            // أكمل باقي القيم من بياناتك
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        window.addProduct = function() {
+            const name = document.getElementById("pName").value;
+            const price = document.getElementById("pPrice").value;
+            
+            push(ref(db, 'products'), {
+                name: name,
+                price: price
+            }).then(() => {
+                alert("تم إضافة المنتج بنجاح!");
+            });
+        };
+    </script>
 </body>
 </html>
