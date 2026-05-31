@@ -14,6 +14,7 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
         import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
 
+        // بيانات مشروعك المربوطة بـ Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyAS1b2jbNc7ojvV9Bwxtx4XV_G-YBP7YYR0WS",
             authDomain: "emmedical-85120.firebaseapp.com",
@@ -36,7 +37,9 @@
                     name: name,
                     price: price
                 }).then(() => {
-                    alert("تم إضافة المنتج بنجاح!");
+                    alert("تم إضافة المنتج بنجاح إلى قاعدة البيانات!");
+                    document.getElementById("pName").value = "";
+                    document.getElementById("pPrice").value = "";
                 }).catch((error) => {
                     alert("حدث خطأ: " + error.message);
                 });
