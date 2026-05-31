@@ -8,34 +8,42 @@
     <h2>إضافة منتج جديد</h2>
     <input type="text" id="pName" placeholder="اسم المنتج">
     <input type="number" id="pPrice" placeholder="السعر">
-    <button onclick="addProduct()">حفظ المنتج</button>
+    <button id="saveBtn">حفظ المنتج</button>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
         import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
 
-        // ضع هنا كود الـ firebaseConfig الخاص بك من الصورة 18
         const firebaseConfig = {
-            apiKey: "AIzaSyAS1b2jbNc7ojvV9Bwxtx4XV...",
+            apiKey: "AIzaSyAS1b2jbNc7ojvV9Bwxtx4XV_G-YBP7YYR0WS",
+            authDomain: "emmedical-85120.firebaseapp.com",
             databaseURL: "https://emmedical-85120-default-rtdb.firebaseio.com",
-            projectId: "emmedical-85120"
-            // أكمل باقي القيم من بياناتك
+            projectId: "emmedical-85120",
+            storageBucket: "emmedical-85120.appspot.com",
+            messagingSenderId: "122044087462",
+            appId: "1:122044087462:web:669c3a38cb78"
         };
 
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
 
-        window.addProduct = function() {
+        document.getElementById("saveBtn").addEventListener("click", () => {
             const name = document.getElementById("pName").value;
             const price = document.getElementById("pPrice").value;
             
-            push(ref(db, 'products'), {
-                name: name,
-                price: price
-            }).then(() => {
-                alert("تم إضافة المنتج بنجاح!");
-            });
-        };
+            if(name && price) {
+                push(ref(db, 'products'), {
+                    name: name,
+                    price: price
+                }).then(() => {
+                    alert("تم إضافة المنتج بنجاح!");
+                }).catch((error) => {
+                    alert("حدث خطأ: " + error.message);
+                });
+            } else {
+                alert("يرجى ملء جميع الخانات");
+            }
+        });
     </script>
 </body>
 </html>
