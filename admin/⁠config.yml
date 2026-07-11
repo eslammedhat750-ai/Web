@@ -2,22 +2,16 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: ""
-public_folder: ""
+media_folder: "static/assets"
+public_folder: "assets"
 
 collections:
-  - name: "products"
-    label: "قائمة المنتجات"
-    files:
-      - file: "products.json"
-        label: "المنتجات"
-        name: "products"
-        fields:
-          - label: "المنتجات"
-            name: "products"
-            label_singular: "منتج"
-            widget: "list"
-            fields:
-              - {label: "اسم المنتج", name: "name", widget: "string"}
-              - {label: "السعر", name: "price", widget: "string"}
-              - {label: "صورة المنتج", name: "image", widget: "image"}
+  - name: "blog"
+    label: "Blog"
+    folder: "content/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Body", name: "body", widget: "markdown"}
