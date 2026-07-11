@@ -1,25 +1,23 @@
 backend:
   name: git-gateway
-  branch: main 
+  branch: main
 
-media_folder: "images" # المجلد اللي بتتحفظ فيه الصور
-public_folder: "images"
+media_folder: ""
+public_folder: ""
 
 collections:
   - name: "products"
-    label: "Products"
-    folder: "/" # مكان ملف products.json
-    create: true
-    identifier_field: "n"
+    label: "قائمة المنتجات"
     files:
       - file: "products.json"
-        label: "Products File"
+        label: "المنتجات"
         name: "products"
         fields:
-          - {label: "Products List", name: "products", widget: "list", fields: [
-              {label: "Name", name: "n", widget: "string"},
-              {label: "Price", name: "p", widget: "number"},
-              {label: "Category", name: "cat", widget: "string"},
-              {label: "Description", name: "desc", widget: "text"},
-              {label: "Images", name: "imgs", widget: "list"}
-            ]}
+          - label: "المنتجات"
+            name: "products"
+            label_singular: "منتج"
+            widget: "list"
+            fields:
+              - {label: "اسم المنتج", name: "name", widget: "string"}
+              - {label: "السعر", name: "price", widget: "string"}
+              - {label: "صورة المنتج", name: "image", widget: "image"}
