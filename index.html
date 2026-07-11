@@ -189,7 +189,8 @@
         grid.innerHTML = '';
         list.forEach((p, index) => {
             let imgs = p.imgs.map((img, i) => `<img src="${img}" class="${i===0?'active':''}" loading="lazy">`).join('');
-            let badge = index < 2 ? '<div class="badge">أكثر مبيعاً</div>' : '';
+            let badge = p.badge ? '<div class="badge">' + p.badge + '</div>' : '';
+
             grid.innerHTML += `
                 <div class="card" onclick="openPop(${allProd.indexOf(p)})" data-id="${index}">
                     ${badge}
