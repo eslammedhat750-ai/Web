@@ -290,21 +290,14 @@
 
     function closePop() { document.getElementById('pop-ov').classList.remove('active'); stopSlider('popup'); }
 
-    function add(n, p, b) {
+   function add(n, p, b) {
     let i = cart.find(x => x.n === n);
     if(i) i.q++; else cart.push({n: n, p: p, q: 1});
     localStorage.setItem('em_medical_cart', JSON.stringify(cart));
     upUI();
-    b.style.transition = "all 0.3s";
-    b.style.setProperty('background-color', '#00a884', 'important');
-
-    let old = b.innerHTML;
-    b.innerHTML = '<i class="fas fa-check"></i>';
-    setTimeout(() => { 
-        b.innerHTML = old; 
-        b.style.backgroundColor = ""; 
-    }, 1000);
+    alert("تمت الإضافة للسلة");
 }
+
 
 
 
