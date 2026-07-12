@@ -71,14 +71,18 @@
 
         .cnt { padding: 20px; max-width: 1200px; margin: 0 auto; }
         .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
-        
-        .card { 
-            background: var(--w); border-radius: 24px; padding: 15px; 
-            display: flex; flex-direction: column; box-shadow: var(--shd); 
-            transition: 0.3s; position: relative; overflow: hidden; 
-            opacity: 0; transform: translateY(20px);
-        }
-        .card.visible { opacity: 1; transform: translateY(0); }
+
+.card { 
+    background: var(--w); border-radius: 24px; padding: 15px; 
+    display: flex; flex-direction: column; box-shadow: var(--shd); 
+    transition: 0.3s; position: relative; overflow: hidden; 
+    opacity: 1; 
+}
+
+        .card.visible { opacity: 1; }
+
+        .card.visible { opacity: 1; }
+
         
         .badge { 
             position: absolute; top: 12px; right: 12px; 
@@ -316,14 +320,15 @@
     function sf() { document.getElementById('ff').style.display='block'; document.getElementById('cs').style.display='none'; }
     function sw() {
         let n = document.getElementById('un').value, p = document.getElementById('up').value, a = document.getElementById('ua').value;
-        if(!n || !p || !a) return alert("أكمل البيانات");
-        let msg = 'طلب جديد من Em Medical\nالاسم: '+n+'\nالموبايل: '+p+'\nالعنوان: '+a;
-        window.open('https://wa.me/201153951448?text='+encodeURIComponent(msg));
-    }
-    
-    // تشغيل مباشر ببيانات تجريبية لضمان الظهور
+        if(!n || !p || !a) return alert("أكمل البيانات    // تعريف البيانات والتشغيل مرة واحدة
     let allProd = [{"n":"جهاز ضغط","p":500,"cat":"أجهزة ضغط","imgs":["https://via.placeholder.com/150"],"desc":"وصف تجريبي"}];
-    window.onload = () => { render(allProd); upUI(); };
+    
+    window.onload = () => { 
+        render(allProd);
+        upUI();
+    };
+</script>
+
 </script>
 
 <div style="text-align: center; margin-top: 50px; padding: 20px;">
