@@ -316,7 +316,9 @@
             </div>`;
         }).join('');
         document.getElementById('tv').innerText = sum;
-    }
+}
+}
+
 function ch(x, v) { cart[x].q += v; if(cart[x].q < 1) cart.splice(x, 1); localStorage.setItem('em_medical_cart', JSON.stringify(cart)); ren(); upUI(); }
 function tglCart() { let m = document.getElementById('ov'); m.style.display = m.style.display === 'block' ? 'none' : 'block'; ren(); }
 function sf() { document.getElementById('ff').style.display='block'; document.getElementById('cs').style.display='none'; }
@@ -327,11 +329,10 @@ function sw() {
     cart.forEach(i => msg += '• ' + i.n + ' (العدد: ' + i.q + ')\n');
     window.open('https://wa.me/201153951448?text='+encodeURIComponent(msg));
 }
-
-    }
-
-    window.onload = () => { load(); upUI(); }
+window.onload = () => { load(); upUI(); };
 </script>
+
+
     <div style="text-align: center; margin-top: 50px; padding: 20px;">
     <a href="policy.html" style="color: blue; text-decoration: underline;">سياسة الاستبدال والاسترجاع</a>
 </div>
