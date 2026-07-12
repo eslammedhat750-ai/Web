@@ -308,7 +308,8 @@
     function ren() {
         let l = document.getElementById('cl'), sum = 0;
         if(!cart.length) { l.innerHTML = "<div style='text-align:center; padding:20px;'>السلة فاضية</div>"; document.getElementById('tv').innerText=0; return; }
-        l.innerHTML = cart.map((i, x) => {
+        l.innerHTML = (cart || []).map((i, x) => {
+
             sum += (i.p * i.q);
             return `<div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid #f5f5f5;">
                 <div><b>${i.n}</b><br>${i.p} ج.م</div>
@@ -317,7 +318,7 @@
         }).join('');
         document.getElementById('tv').innerText = sum;
 }
-}
+
 
 function ch(x, v) { cart[x].q += v; if(cart[x].q < 1) cart.splice(x, 1); localStorage.setItem('em_medical_cart', JSON.stringify(cart)); ren(); upUI(); }
 function tglCart() { let m = document.getElementById('ov'); m.style.display = m.style.display === 'block' ? 'none' : 'block'; ren(); }
