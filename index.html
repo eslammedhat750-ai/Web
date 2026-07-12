@@ -218,12 +218,16 @@
     let activeIntervals = new Map();
 
     async function load() {
-        try {
-            const res = await fetch('products.json?v=' + Date.now());
-            allProd = await res.json();
-            render(allProd);
-        } catch (e) { console.error("Load failed"); }
+    try {
+        const res = await fetch('products.json?v=' + Date.now());
+        allProd = await res.json();
+    } catch (e) { 
+        console.log("فشل تحميل الملف، جاري استخدام البيانات التجريبية");
+        allProd = [{"n":"جهاز ضغط","p":500,"cat":"أجهزة ضغط","imgs":["https://via.placeholder.com/150"],"desc":"وصف تجريبي"}];
     }
+    render(allProd);
+}
+
 
     function render(list) {
         const grid = document.getElementById('products-grid');
