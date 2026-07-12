@@ -316,14 +316,15 @@
         let l = document.getElementById('cl'), sum = 0;
         if(!cart.length) { l.innerHTML = "<div style='text-align:center; padding:20px;'>السلة فاضية</div>"; document.getElementById('tv').innerText=0; return; }
         l.innerHTML = (cart || []).map((i, x) => {
+        sum += (i.p * i.q);
+        return `<div style="display:flex; justify-content:space-between; align-items:center;">
+            <div><b>${i.n}</b><br>${i.p} ج.م</div>
+            <div><button onclick="ch(${x},-1)">-</button><span style="margin:0 10px;">${i.q}</span><button onclick="ch(${x},1)">+</button></div>
+        </div>`;
+    }).join('');
+    document.getElementById('tv').innerText = sum;
+}
 
-            sum += (i.p * i.q);
-            return `<div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid #f5f5f5;">
-                <div><b>${i.n}</b><br>${i.p} ج.م</div>
-                <div><button onclick="ch(${x},-1)">-</button><span style="margin:0 10px;">${i.q}</span><button onclick="ch(${x},1)">+</button></div>
-            </div>`;
-        }).join('');
-        document.getElementById('tv').innerText = sum;
 }
 
 
