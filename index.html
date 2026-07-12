@@ -295,10 +295,16 @@
     if(i) i.q++; else cart.push({n: n, p: p, q: 1});
     localStorage.setItem('em_medical_cart', JSON.stringify(cart));
     upUI();
+    b.style.transition = "all 0.3s";
+    b.style.backgroundColor = "#00a884";
     let old = b.innerHTML;
-    b.style.background = '#00a884'; // اللون الأخضر عند الإضافة
     b.innerHTML = '<i class="fas fa-check"></i>';
-    setTimeout(() => { b.innerHTML = old; b.style.background = ''; }, 1000);
+    setTimeout(() => { 
+        b.innerHTML = old; 
+        b.style.backgroundColor = ""; 
+    }, 1000);
+}
+
 }
 
 
