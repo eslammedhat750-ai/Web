@@ -25,35 +25,19 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; -webkit-tap-highlight-color: transparent; }
         body { background-color: var(--bg); padding-bottom: 80px; overflow-x: hidden; color: var(--text); }
 
-        header {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    height: 75px;
-    display: flex;
-    justify-content: space-between; /* هذا يحاول توزيع العناصر بالتساوي */
-    align-items: center;
-    padding: 0 10px; /* قللنا البادينج قليلاً لإعطاء مساحة */
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-}
-
-.welcome-text {
-    font-size: 11px;
-    font-weight: bold;
-    color: var(--text);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    margin: 0 5px;
-    flex-grow: 1; /* هذا السطر مهم جداً لجعل النص يأخذ المساحة المتاحة في المنتصف */
-    text-align: center;
-}
-
-
-    
-
+        header { 
+            background: rgba(255, 255, 255, 0.95); 
+            backdrop-filter: blur(10px);
+            height: 75px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 0 20px; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
         .logo img { height: 45px; transition: 0.3s; }
 
         .cats-bar { 
@@ -71,18 +55,14 @@
 
         .cnt { padding: 20px; max-width: 1200px; margin: 0 auto; }
         .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
-
-.card { 
-    background: var(--w); border-radius: 24px; padding: 15px; 
-    display: flex; flex-direction: column; box-shadow: var(--shd); 
-    transition: 0.3s; position: relative; overflow: hidden; 
-    opacity: 1; 
-}
-
-        .card.visible { opacity: 1; }
-
-        .card.visible { opacity: 1; }
-
+        
+        .card { 
+            background: var(--w); border-radius: 24px; padding: 15px; 
+            display: flex; flex-direction: column; box-shadow: var(--shd); 
+            transition: 0.3s; position: relative; overflow: hidden; 
+            opacity: 0; transform: translateY(20px);
+        }
+        .card.visible { opacity: 1; transform: translateY(0); }
         
         .badge { 
             position: absolute; top: 12px; right: 12px; 
@@ -143,30 +123,16 @@
 
 <header>
     <div class="logo"><img src="logo.png" alt="Em Medical"></div>
-    <div class="welcome-text">مرحباً بكم في <span style="color: #0052cc;">Em Medical</span></div>
-    <div class="c-icon" onclick="tglCart()"><i class="fas fa-shopping-cart"></i></div>
+    <div class="c-icon" onclick="tglCart()"><i class="fas fa-shopping-cart"></i><span id="c-badge" style="position:absolute; top:-5px; right:-5px; background:#ff3b30; width:22px; height:22px; border-radius:50%; display:none; align-items:center; justify-content:center; font-size:10px; border:2px solid #fff;">0</span></div>
 </header>
-
-<div class="about-section" style="padding: 20px; background: #fff; text-align: center; border-bottom: 1px solid #eee;">
-    <h2 style="color: #0052cc; margin-bottom: 10px;">عن Em Medical</h2>
-    <p style="color: #65676b; font-size: 14px; line-height: 1.6;">
-        وجهتك الأولى لأحدث المستلزمات الطبية والأجهزة المنزلية بجودة عالية وأسعار تنافسية. نحن هنا لخدمتك وراحتك.
-    </p>
-</div>
-
-
-
-   
 
 <div class="cats-bar" id="cats-bar">
     
     <button class="cat-btn active" onclick="filterProd('الكل', this)">الكل</button>
-<button class="cat-btn" onclick="filterProd('مساج', this)">مساج</button>
-<button class="cat-btn" onclick="filterProd('أجهزة ضغط', this)">أجهزة ضغط</button>
-<button class="cat-btn" onclick="filterProd('تنفس', this)">تنفس</button>
-
-<button class="cat-btn" onclick="filterProd('كرسي متحرك', this)">كرسي متحرك</button>
-
+    <button class="cat-btn " onclick="filterProd('مساج', this)">مساج</button>
+    <button class="cat-btn" onclick="filterProd('أجهزة ضغط', this)">أجهزة ضغط</button>
+    <button class="cat-btn" onclick="filterProd('تنفس', this)">تنفس</button>
+    <button class="cat-btn" onclick="filterProd('كرسي متحرك', this)">كرسي متحرك</button>
 </div>
 
 <div class="cnt">
@@ -193,24 +159,22 @@
 
 <div id="ov" class="ov" onclick="tglCart()">
     <div class="pan" onclick="event.stopPropagation()">
-        <h2>🛒 سلة طلباتك</h2>
+        <h2 style="margin-bottom:20px; font-weight:900;">🛒 سلة طلباتك</h2>
         <div id="cl"></div>
         <div id="cs">
-            <div style="display:flex; justify-content:space-between; margin:20px 0; font-weight:bold;">
-                <span>الإجمالي</span>
-                <span id="tv">0</span><span>ج.م</span>
+            <div style="display:flex; justify-content:space-between; margin:20px 0; font-weight:900; font-size:20px;">
+                <span>الإجمالي</span><span><span id="tv">0</span> ج.م</span>
             </div>
             <button class="f-btn" onclick="sf()">إتمام الطلب</button>
         </div>
         <div id="ff" style="display:none;">
-            <input type="text" id="un" placeholder="الاسم" style="width:100%; padding:10px; margin:5px 0;">
-            <input type="tel" id="up" placeholder="الموبايل" style="width:100%; padding:10px; margin:5px 0;">
-            <textarea id="ua" placeholder="العنوان بالتفصيل" style="width:100%; padding:10px; margin:5px 0;"></textarea>
-            <button class="f-btn" style="background:var(--s)" onclick="sw()">إرسال الطلب</button>
+            <input type="text" id="un" placeholder="الاسم" style="width:100%; padding:18px; margin-bottom:12px; border:1px solid #eee; border-radius:16px;">
+            <input type="tel" id="up" placeholder="الموبايل" style="width:100%; padding:18px; margin-bottom:12px; border:1px solid #eee; border-radius:16px;">
+            <textarea id="ua" placeholder="العنوان بالتفصيل" style="width:100%; padding:18px; margin-bottom:12px; border:1px solid #eee; border-radius:16px; height:100px;"></textarea>
+            <button class="f-btn" style="background:var(--s)" onclick="sw()"><i class="fab fa-whatsapp"></i> إرسال الطلب</button>
         </div>
     </div>
 </div>
-
 
 <script>
     let allProd = [];
@@ -218,19 +182,12 @@
     let activeIntervals = new Map();
 
     async function load() {
-    try {
-        const res = await fetch('products.json?v=' + Date.now());
-        allProd = await res.json();
-    } catch (e) { 
-        console.log("فشل تحميل الملف، جاري استخدام البيانات التجريبية");
-        allProd = [{"n":"جهاز ضغط","p":500,"cat":"أجهزة ضغط","imgs":["https://via.placeholder.com/150"],"desc":"وصف تجريبي"}];
+        try {
+            const res = await fetch('products.json?v=' + Date.now());
+            allProd = await res.json();
+            render(allProd);
+        } catch (e) { console.error("Load failed"); }
     }
-    render(allProd);
-}
-    // تشغيل الدالة بمجرد تحميل الصفحة
-window.onload = load;
-
-
 
     function render(list) {
         const grid = document.getElementById('products-grid');
@@ -286,7 +243,7 @@ window.onload = load;
         activeIntervals.set(id, interval);
     }
 
-        function stopSlider(id) { if (activeIntervals.has(id)) { clearInterval(activeIntervals.get(id)); activeIntervals.delete(id); } }
+    function stopSlider(id) { if (activeIntervals.has(id)) { clearInterval(activeIntervals.get(id)); activeIntervals.delete(id); } }
 
     function openPop(index) {
         const p = allProd[index];
@@ -296,59 +253,54 @@ window.onload = load;
         document.getElementById('pop-price').innerText = p.p;
         document.getElementById('pop-add-btn').onclick = () => { add(p.n, p.p, document.getElementById('pop-add-btn')); closePop(); };
         document.getElementById('pop-ov').classList.add('active');
+        startSlider(document.getElementById('pop-img-grid'), 'popup');
     }
 
-    function closePop() { document.getElementById('pop-ov').classList.remove('active'); }
+    function closePop() { document.getElementById('pop-ov').classList.remove('active'); stopSlider('popup'); }
 
     function add(n, p, b) {
         let i = cart.find(x => x.n === n);
-        if(i) i.q++; else cart.push({n: n, p: p, q: 1});
+        if(i) i.q++; else cart.push({n, p, q:1});
         localStorage.setItem('em_medical_cart', JSON.stringify(cart));
         upUI();
+        let old = b.innerHTML; b.innerHTML = "<i class='fas fa-check'></i>";
+        setTimeout(() => b.innerHTML = old, 1000);
     }
 
     function upUI() {
         let b = document.getElementById('c-badge'), t = cart.reduce((s, i) => s + i.q, 0);
-        if(b) { b.style.display = t > 0 ? 'flex' : 'none'; b.innerText = t; }
+        b.style.display = t > 0 ? 'flex' : 'none'; b.innerText = t;
     }
 
     function ren() {
         let l = document.getElementById('cl'), sum = 0;
         if(!cart.length) { l.innerHTML = "<div style='text-align:center; padding:20px;'>السلة فاضية</div>"; document.getElementById('tv').innerText=0; return; }
-        l.innerHTML = (cart || []).map((i, x) => {
+        l.innerHTML = cart.map((i, x) => {
             sum += (i.p * i.q);
-            return `<div style="display:flex; justify-content:space-between; align-items:center;"><div><b>${i.n}</b><br>${i.p} ج.م</div><div><button onclick="ch(${x},-1)">-</button><span style="margin:0 10px;">${i.q}</span><button onclick="ch(${x},1)">+</button></div></div>`;
+            return `<div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid #f5f5f5;">
+                <div><b>${i.n}</b><br>${i.p} ج.م</div>
+                <div><button onclick="ch(${x},-1)">-</button><span style="margin:0 10px;">${i.q}</span><button onclick="ch(${x},1)">+</button></div>
+            </div>`;
         }).join('');
         document.getElementById('tv').innerText = sum;
     }
 
-    function ch(x, v) { cart[x].q += v; if(cart[x].q < 1) cart.splice(x, 1); localStorage.setItem('em_medical_cart', JSON.stringify(cart)); ren(); upUI(); }
+    function ch(x, v) { cart[x].q += v; if(cart[x].q < 1) cart.splice(x,1); localStorage.setItem('em_medical_cart', JSON.stringify(cart)); upUI(); ren(); }
     function tglCart() { let m = document.getElementById('ov'); m.style.display = m.style.display === 'block' ? 'none' : 'block'; ren(); }
-    function sf() { document.getElementById('ff').style.display='block'; document.getElementById('cs').style.display='none'; }
+    function sf() { document.getElementById('cs').style.display='none'; document.getElementById('ff').style.display='block'; }
     function sw() {
         let n = document.getElementById('un').value, p = document.getElementById('up').value, a = document.getElementById('ua').value;
-        let allProd = [{"n":"جهاز ضغط","p":500,"cat":"أجهزة ضغط","imgs":["https://via.placeholder.com/150"],"desc":"وصف تجريبي"}];
-
-
-window.onload = () => {
-    render(allProd);
-    upUI();
-};
-
-
-    function render(list) {
-        const grid = document.getElementById('products-grid');
-        if (!grid) return; // حماية لو الـ ID مش موجود
-        grid.innerHTML = '';
-        list.forEach((p, index) => {
-            let imgs = p.imgs.map((img, i) => `<img src="${img}" loading="lazy" class="${i===0?'active':''}">`).join('');
-            grid.innerHTML += `
-                <div class="card">
-                    <div class="img-h">${imgs}</div>
-                    <h3>${p.n}</h3>
-                    <div class="price">${p.p} ج.م</div>
-                </div>`;
-        });
+        if(!n || !p || !a) return alert("كمل البيانات");
+        let msg = `طلب جديد من Em Medical%0Aالاسم: ${n}%0Aالموبايل: ${p}%0Aالعنوان: ${a}%0A%0Aالمنتجات:%0A`;
+        cart.forEach(i => msg += `• ${i.n} (العدد: ${i.q})%0A`);
+        window.open(`https://wa.me/201153951440?text=${msg}`);
     }
 
-    
+    window.onload = () => { load(); upUI(); }
+</script>
+    <div style="text-align: center; margin-top: 50px; padding: 20px;">
+    <a href="policy.html" style="color: blue; text-decoration: underline;">سياسة الاستبدال والاسترجاع</a>
+</div>
+
+</body>
+</html>
