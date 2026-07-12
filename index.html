@@ -329,18 +329,26 @@ window.onload = load;
         let n = document.getElementById('un').value, p = document.getElementById('up').value, a = document.getElementById('ua').value;
         if(!n || !p || !a) return alert("أكمل البيانات    // تعريف البيانات والتشغيل مرة واحدة
     let allProd = [{"n":"جهاز ضغط","p":500,"cat":"أجهزة ضغط","imgs":["https://via.placeholder.com/150"],"desc":"وصف تجريبي"}];
+
+window.onload = () => {
+    render(allProd);
+    upUI();
+};
+
+
+    function render(list) {
+        const grid = document.getElementById('products-grid');
+        if (!grid) return; // حماية لو الـ ID مش موجود
+        grid.innerHTML = '';
+        list.forEach((p, index) => {
+            let imgs = p.imgs.map((img, i) => `<img src="${img}" loading="lazy" class="${i===0?'active':''}">`).join('');
+            grid.innerHTML += `
+                <div class="card">
+                    <div class="img-h">${imgs}</div>
+                    <h3>${p.n}</h3>
+                    <div class="price">${p.p} ج.م</div>
+                </div>`;
+        });
+    }
+
     
-    window.onload = () => { 
-        render(allProd);
-        upUI();
-    };
-</script>
-
-</script>
-
-<div style="text-align: center; margin-top: 50px; padding: 20px;">
-    <a href="policy.html" style="color: blue; text-decoration: underline;">سياسة الاستبدال والاسترجاع</a>
-</div>
-
-</body>
-</html>
