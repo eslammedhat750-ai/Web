@@ -294,7 +294,8 @@
         localStorage.setItem('em_medical_cart', JSON.stringify(cart));
         upUI();
         let old = b.innerHTML; b.innerHTML = "<i class='fas fa-check'></i>";
-        setTimeout(() => b.innerHTML = old, 1000);
+        setTimeout(() => { b.innerHTML = old; alert("تمت إضافة المنتج للسلة!"); }, 1000);
+
     }
 
     function upUI() {
@@ -314,16 +315,17 @@
         }).join('');
         document.getElementById('tv').innerText = sum;
     }
+function ch(x, v) { cart[x].q += v; if(cart[x].q < 1) cart.splice(x, 1); localStorage.setItem('em_medical_cart', JSON.stringify(cart)); ren(); upUI(); }
+function tglCart() { let m = document.getElementById('ov'); m.style.display = m.style.display === 'block' ? 'none' : 'block'; ren(); }
+function sf() { document.getElementById('ff').style.display='block'; document.getElementById('cs').style.display='none'; }
+function sw() {
+    let n = document.getElementById('un').value, p = document.getElementById('up').value, a = document.getElementById('ua').value;
+    if(!n || !p || !a) return alert("أكمل البيانات");
+    let msg = 'طلب جديد من Em Medical\nالاسم: '+n+'\nالموبايل: '+p+'\nالعنوان: '+a+'\nالمنتجات: \n';
+    cart.forEach(i => msg += '• ' + i.n + ' (العدد: ' + i.q + ')\n');
+    window.open('https://wa.me/201153951448?text='+encodeURIComponent(msg));
+}
 
-    function ch(x, v) { cart[x].q += v; if(cart[x].q < 1) cart.splice(x,1); localStorage.setItem('em_medical_cart', JSON.stringify(cart)); upUI(); ren(); }
-    function tglCart() { let m = document.getElementById('ov'); m.style.display = m.style.display === 'block' ? 'none' : 'block'; ren(); }
-    function sf() { document.getElementById('cs').style.display='none'; document.getElementById('ff').style.display='block'; }
-    function sw() {
-        let n = document.getElementById('un').value, p = document.getElementById('up').value, a = document.getElementById('ua').value;
-        if(!n || !p || !a) return alert("كمل البيانات");
-        let msg = `طلب جديد من Em Medical%0Aالاسم: ${n}%0Aالموبايل: ${p}%0Aالعنوان: ${a}%0A%0Aالمنتجات:%0A`;
-        cart.forEach(i => msg += `• ${i.n} (العدد: ${i.q})%0A`);
-        window.open(`https://wa.me/201153951440?text=${msg}`);
     }
 
     window.onload = () => { load(); upUI(); }
