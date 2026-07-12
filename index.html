@@ -189,22 +189,24 @@
 
 <div id="ov" class="ov" onclick="tglCart()">
     <div class="pan" onclick="event.stopPropagation()">
-        <h2 style="margin-bottom:20px; font-weight:900;">🛒 سلة طلباتك</h2>
+        <h2>🛒 سلة طلباتك</h2>
         <div id="cl"></div>
         <div id="cs">
-            <div style="display:flex; justify-content:space-between; margin:20px 0; font-weight:900; font-size:20px;">
-                <span>الإجمالي</span><span><span id="tv">0</span> ج.م</span>
+            <div style="display:flex; justify-content:space-between; margin:20px 0; font-weight:bold;">
+                <span>الإجمالي</span>
+                <span id="tv">0</span><span>ج.م</span>
             </div>
             <button class="f-btn" onclick="sf()">إتمام الطلب</button>
         </div>
         <div id="ff" style="display:none;">
-            <input type="text" id="un" placeholder="الاسم" style="width:100%; padding:18px; margin-bottom:12px; border:1px solid #eee; border-radius:16px;">
-            <input type="tel" id="up" placeholder="الموبايل" style="width:100%; padding:18px; margin-bottom:12px; border:1px solid #eee; border-radius:16px;">
-            <textarea id="ua" placeholder="العنوان بالتفصيل" style="width:100%; padding:18px; margin-bottom:12px; border:1px solid #eee; border-radius:16px; height:100px;"></textarea>
-            <button class="f-btn" style="background:var(--s)" onclick="sw()"><i class="fab fa-whatsapp"></i> إرسال الطلب</button>
+            <input type="text" id="un" placeholder="الاسم" style="width:100%; padding:10px; margin:5px 0;">
+            <input type="tel" id="up" placeholder="الموبايل" style="width:100%; padding:10px; margin:5px 0;">
+            <textarea id="ua" placeholder="العنوان بالتفصيل" style="width:100%; padding:10px; margin:5px 0;"></textarea>
+            <button class="f-btn" style="background:var(--s)" onclick="sw()">إرسال الطلب</button>
         </div>
     </div>
 </div>
+
 
 <script>
     let allProd = [];
