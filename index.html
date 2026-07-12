@@ -295,7 +295,17 @@
     if(i) i.q++; else cart.push({n: n, p: p, q: 1});
     localStorage.setItem('em_medical_cart', JSON.stringify(cart));
     upUI();
-    alert("تمت الإضافة للسلة");
+        let b = document.getElementById('c-badge');
+    if(b) {
+        b.style.transition = 'all 0.3s';
+        b.style.transform = 'scale(1.5)';
+        b.style.backgroundColor = 'red';
+        setTimeout(() => {
+            b.style.transform = 'scale(1)';
+            b.style.backgroundColor = ''; 
+        }, 500);
+    }
+
 }
 
 
