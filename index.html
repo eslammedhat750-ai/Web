@@ -4,13 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Em Medical | القوة في الرعاية الصحية</title>
-   <link rel="icon" type="image/png" href="logo.png">
+    <link rel="icon" type="image/png" href="logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="manifest" href="/manifest.json">
     <style>
-
-   
-
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
         
         :root { 
@@ -92,7 +89,6 @@
         .viw-btn { background: #f8f9fa; color: var(--text); border: 1px solid #eee; flex: 1; padding: 12px; border-radius: 14px; font-weight: 700; font-size: 12px; }
         .add-btn-quick { background: var(--p); color: #fff; border: none; width: 45px; border-radius: 14px; cursor: pointer; transition: 0.3s; }
 
-        /* برواز الجملة السفلي (من الصورة) */
         .wholesale-footer-box {
             margin: 30px 20px;
             padding: 25px 20px;
@@ -111,6 +107,13 @@
         .pop-ov.active { display: flex; }
         .pop-pan { background: var(--w); width: 100%; max-width: 500px; border-radius: 30px 30px 0 0; padding: 30px; position: relative; transform: translateY(100%); transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); max-height: 85vh; overflow-y: auto; }
         .pop-ov.active .pop-pan { transform: translateY(0); }
+
+        /* تنسيق معاينة الصور داخل البوب أب والتحكم بها */
+        .pop-img-container { width: 100%; margin-bottom: 15px; text-align: center; }
+        .pop-main-img { width: 100%; height: 220px; object-fit: contain; margin-bottom: 10px; }
+        .pop-thumbs { display: flex; gap: 8px; justify-content: center; }
+        .pop-thumb { width: 50px; height: 50px; object-fit: cover; border-radius: 8px; border: 2px solid #ddd; cursor: pointer; transition: 0.2s; }
+        .pop-thumb.active-thumb { border-color: var(--p); }
 
         .ov { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 2000; }
         .pan { background: var(--w); width: 100%; position: absolute; bottom: 0; border-radius: 30px 30px 0 0; padding: 30px; box-shadow: 0 -10px 40px rgba(0,0,0,0.1); }
@@ -134,12 +137,12 @@
 </div>
 
 <div class="cats-bar" id="cats-bar">
-    
     <button class="cat-btn active" onclick="filterProd('الكل', this)">الكل</button>
-    <button class="cat-btn " onclick="filterProd('مساج', this)">مساج</button>
-    <button class="cat-btn" onclick="filterProd('أجهزة ضغط', this)">أجهزة ضغط</button>
+    <button class="cat-btn" onclick="filterProd('مساج', this)">مساج</button>
+    <button class="cat-btn" onclick="filterProd('ضغط', this)">ضغط</button>
     <button class="cat-btn" onclick="filterProd('تنفس', this)">تنفس</button>
     <button class="cat-btn" onclick="filterProd('كرسي متحرك', this)">كرسي متحرك</button>
+    <button class="cat-btn" onclick="filterProd('مستلزمات', this)">مستلزمات</button>
 </div>
 
 <div class="cnt">
@@ -151,12 +154,19 @@
     <p>تواصل معنا مباشرة للحصول على عرض سعر<br>خاص بالموزعين والصيدليات.</p>
 </div>
 
+<!-- نافذة تفاصيل المنتج مع التحكم في الصور -->
 <div id="pop-ov" class="pop-ov" onclick="closePop()">
     <div class="pop-pan" onclick="event.stopPropagation()">
         <div style="width:50px; height:5px; background:#eee; border-radius:10px; margin: -15px auto 20px;"></div>
-        <div class="pop-img-h" id="pop-img-grid" style="height:250px; margin-bottom:20px; display:flex; align-items:center; justify-content:center; position:relative;"></div>
+        
+        <div class="pop-img-container">
+            <img id="pop-main-img" class="pop-main-img" src="" alt="صورة المنتج">
+            <div id="pop-thumbs" class="pop-thumbs"></div>
+        </div>
+
         <h2 id="pop-title" style="font-size:20px; margin-bottom:15px; font-weight:900;"></h2>
         <div id="pop-desc" class="desc-text" style="color:var(--gray); font-size:14px; line-height:1.7;"></div>
+        
         <div style="display:flex; justify-content:space-between; align-items:center; margin-top:30px; border-top:1px solid #eee; padding-top:20px;">
             <div class="pop-price" style="font-size:24px; font-weight:900; color:var(--p);"><span id="pop-price">0</span> ج.م</div>
             <button class="pop-add-btn" id="pop-add-btn" style="background:var(--p); color:#fff; border:none; padding:15px 30px; border-radius:18px; font-weight:900;">إضافة للسلة</button>
@@ -201,7 +211,6 @@
         grid.innerHTML = '';
         list.forEach((p, index) => {
             let imgs = p.imgs.map((img, i) => `<img src="${img}" loading="lazy" class="${i===0?'active':''}">`).join('');
-
             let badge = p.badge ? '<div class="badge">' + p.badge + '</div>' : '';
 
             grid.innerHTML += `
@@ -252,18 +261,42 @@
 
     function stopSlider(id) { if (activeIntervals.has(id)) { clearInterval(activeIntervals.get(id)); activeIntervals.delete(id); } }
 
+    // فتح نافذة تفاصيل المنتج وتفعيل إمكانية التحكم في تغيير الصور يدوياً
     function openPop(index) {
         const p = allProd[index];
-        document.getElementById('pop-img-grid').innerHTML = p.imgs.map((img, i) => `<img src="${img}" class="${i===0?'active':''}" style="max-width:100%; max-height:100%; object-fit:contain; position:absolute; transition:0.5s;">`).join('');
+        const mainImg = document.getElementById('pop-main-img');
+        const thumbsContainer = document.getElementById('pop-thumbs');
+        
         document.getElementById('pop-title').innerText = p.n;
         document.getElementById('pop-desc').innerText = p.desc;
         document.getElementById('pop-price').innerText = p.p;
         document.getElementById('pop-add-btn').onclick = () => { add(p.n, p.p, document.getElementById('pop-add-btn')); closePop(); };
+        
+        // إعداد الصور للنافذة المنفردة
+        if (p.imgs && p.imgs.length > 0) {
+            mainImg.src = p.imgs[0];
+            thumbsContainer.innerHTML = '';
+            
+            // لو فيه أكتر من صورة، اعرض الصور المصغرة عشان العميل يختار منها
+            if (p.imgs.length > 1) {
+                p.imgs.forEach((imgSrc, idx) => {
+                    const thumb = document.createElement('img');
+                    thumb.src = imgSrc;
+                    thumb.className = `pop-thumb ${idx === 0 ? 'active-thumb' : ''}`;
+                    thumb.onclick = () => {
+                        mainImg.src = imgSrc;
+                        document.querySelectorAll('.pop-thumb').forEach(t => t.classList.remove('active-thumb'));
+                        thumb.classList.add('active-thumb');
+                    };
+                    thumbsContainer.appendChild(thumb);
+                });
+            }
+        }
+
         document.getElementById('pop-ov').classList.add('active');
-        startSlider(document.getElementById('pop-img-grid'), 'popup');
     }
 
-    function closePop() { document.getElementById('pop-ov').classList.remove('active'); stopSlider('popup'); }
+    function closePop() { document.getElementById('pop-ov').classList.remove('active'); }
 
     function add(n, p, b) {
         let i = cart.find(x => x.n === n);
@@ -305,7 +338,7 @@
 
     window.onload = () => { load(); upUI(); }
 </script>
-    <div style="text-align: center; margin-top: 50px; padding: 20px;">
+<div style="text-align: center; margin-top: 50px; padding: 20px;">
     <a href="policy.html" style="color: blue; text-decoration: underline;">سياسة الاستبدال والاسترجاع</a>
 </div>
 
