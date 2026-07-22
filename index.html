@@ -127,30 +127,15 @@
         .add-btn-quick { background: var(--p); color: #fff; border: none; width: 45px; border-radius: 14px; cursor: pointer; transition: 0.3s; }
 
         .trust-badges {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-            padding-top: 10px;
-            border-top: 1px solid #f0f2f5;
-            font-size: 11px;
-            color: var(--gray);
+            display: flex; gap: 10px; margin-top: 10px; padding-top: 10px;
+            border-top: 1px solid #f0f2f5; font-size: 11px; color: var(--gray);
         }
-        .trust-badges span {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-        .trust-badges i {
-            color: var(--s);
-        }
+        .trust-badges span { display: flex; align-items: center; gap: 4px; }
+        .trust-badges i { color: var(--s); }
 
         .wholesale-footer-box {
-            margin: 30px 20px;
-            padding: 25px 20px;
-            background: #fff;
-            border: 2px dashed #d1d9e6;
-            border-radius: 25px;
-            text-align: center;
+            margin: 30px 20px; padding: 25px 20px; background: #fff;
+            border: 2px dashed #d1d9e6; border-radius: 25px; text-align: center;
         }
         .wholesale-footer-box h4 {
             color: var(--p); font-size: 18px; font-weight: 900; margin-bottom: 10px;
@@ -167,21 +152,9 @@
         .pop-main-img { width: 100%; height: 220px; object-fit: contain; margin-bottom: 10px; }
         
         .share-btn {
-            position: absolute;
-            top: 0;
-            left: 0;
-            background: #f0f2f5;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            color: var(--p);
-            font-size: 16px;
-            transition: 0.2s;
+            position: absolute; top: 0; left: 0; background: #f0f2f5; border: none;
+            width: 40px; height: 40px; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; cursor: pointer; color: var(--p); font-size: 16px; transition: 0.2s;
         }
         .share-btn:hover { background: #e4e6eb; }
 
@@ -190,29 +163,17 @@
         .pop-thumb.active-thumb { border-color: var(--p); }
 
         #toast {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: #1c1e21;
-            color: #fff;
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-size: 13px;
-            font-weight: 700;
-            z-index: 4000;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px);
+            background: #1c1e21; color: #fff; padding: 12px 24px; border-radius: 50px;
+            font-size: 13px; font-weight: 700; z-index: 4000; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease; display: flex; align-items: center; gap: 8px;
         }
         #toast.show { transform: translateX(-50%) translateY(0); }
         #toast i { color: var(--s); }
 
         .ov { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 2000; }
         .pan { background: var(--w); width: 100%; position: absolute; bottom: 0; border-radius: 30px 30px 0 0; padding: 30px; box-shadow: 0 -10px 40px rgba(0,0,0,0.1); }
-        .f-btn { background: var(--p); color: #fff; border: none; width: 100%; padding: 18px; border-radius: 18px; font-weight: 900; font-size: 16px; margin-top: 15px; }
+        .f-btn { background: var(--p); color: #fff; border: none; width: 100%; padding: 18px; border-radius: 18px; font-weight: 900; font-size: 16px; margin-top: 15px; cursor: pointer; }
         .c-icon { background: var(--p); width: 50px; height: 50px; border-radius: 16px; display: flex; align-items: center; justify-content: center; color: #fff; cursor: pointer; position: relative; }
 
         @media (max-width: 400px) { .grid { gap: 10px; } .card { padding: 10px; border-radius: 20px; } .img-h { height: 120px; } }
@@ -277,7 +238,7 @@
 
         <div style="display:flex; justify-content:space-between; align-items:center; margin-top:25px; border-top:1px solid #eee; padding-top:20px;">
             <div class="pop-price" style="font-size:24px; font-weight:900; color:var(--p);"><span id="pop-price">0</span> ج.م</div>
-            <button class="pop-add-btn" id="pop-add-btn" style="background:var(--p); color:#fff; border:none; padding:15px 30px; border-radius:18px; font-weight:900;">إضافة للسلة</button>
+            <button class="pop-add-btn" id="pop-add-btn" style="background:var(--p); color:#fff; border:none; padding:15px 30px; border-radius:18px; font-weight:900; cursor:pointer;">إضافة للسلة</button>
         </div>
     </div>
 </div>
@@ -296,7 +257,17 @@
             <input type="text" id="un" placeholder="الاسم" style="width:100%; padding:18px; margin-bottom:12px; border:1px solid #eee; border-radius:16px;">
             <input type="tel" id="up" placeholder="الموبايل" style="width:100%; padding:18px; margin-bottom:12px; border:1px solid #eee; border-radius:16px;">
             <textarea id="ua" placeholder="العنوان بالتفصيل" style="width:100%; padding:18px; margin-bottom:12px; border:1px solid #eee; border-radius:16px; height:100px;"></textarea>
-            <button class="f-btn" style="background:var(--s)" onclick="sw()"><i class="fab fa-whatsapp"></i> إرسال الطلب</button>
+            <button class="f-btn" style="background:var(--s)" onclick="sw()"><i class="fab fa-whatsapp"></i> إرسال الطلب عبر واتساب</button>
+        </div>
+        <!-- نافذة شكراً لطلبك داخل السلة -->
+        <div id="ty-screen" style="display:none; text-align:center; padding: 20px 0;">
+            <div style="font-size: 50px; color: var(--s); margin-bottom: 15px;"><i class="fas fa-check-circle"></i></div>
+            <h3 style="font-size: 22px; font-weight: 900; color: var(--p); margin-bottom: 10px;">تم تسجيل طلبك بنجاح!</h3>
+            <p style="color: var(--gray); font-size: 14px; line-height: 1.6; margin-bottom: 20px;">
+                رقم الطلب: <b id="order-num" style="color: var(--text);">#EM-1001</b><br>
+                شكراً لتسوقك من <b>Em Medical</b>. سيتم توجيهك الآن لواتساب لتأكيد الطلب مع خدمة العملاء.
+            </p>
+            <button class="f-btn" onclick="tglCart(); resetCartState();" style="background: var(--text);">إغلاق العرض</button>
         </div>
     </div>
 </div>
@@ -470,7 +441,11 @@
 
     function ren() {
         let l = document.getElementById('cl'), sum = 0;
-        if(!cart.length) { l.innerHTML = "<div style='text-align:center; padding:20px; color:var(--gray);'>السلة فاضية</div>"; document.getElementById('tv').innerText=0; return; }
+        if(!cart.length) { 
+            l.innerHTML = "<div style='text-align:center; padding:20px; color:var(--gray);'>السلة فاضية</div>"; 
+            document.getElementById('tv').innerText=0; 
+            return; 
+        }
         l.innerHTML = cart.map((i, x) => {
             sum += (i.p * i.q);
             return `<div style="display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid #f5f5f5;">
@@ -486,14 +461,74 @@
     }
 
     function ch(x, v) { cart[x].q += v; if(cart[x].q < 1) cart.splice(x,1); localStorage.setItem('em_medical_cart', JSON.stringify(cart)); upUI(); ren(); }
-    function tglCart() { let m = document.getElementById('ov'); m.style.display = m.style.display === 'block' ? 'none' : 'block'; ren(); }
-    function sf() { document.getElementById('cs').style.display='none'; document.getElementById('ff').style.display='block'; }
+    
+    function tglCart() { 
+        let m = document.getElementById('ov'); 
+        m.style.display = m.style.display === 'block' ? 'none' : 'block'; 
+        if(m.style.display === 'block') {
+            ren();
+            document.getElementById('cs').style.display='block';
+            document.getElementById('ff').style.display='none';
+            document.getElementById('ty-screen').style.display='none';
+            document.getElementById('cl').style.display='block';
+        }
+    }
+
+    function sf() { 
+        if(cart.length === 0) return alert("السلة فارغة!");
+        document.getElementById('cs').style.display='none'; 
+        document.getElementById('ff').style.display='block'; 
+    }
+
     function sw() {
         let n = document.getElementById('un').value, p = document.getElementById('up').value, a = document.getElementById('ua').value;
         if(!n || !p || !a) return alert("برجاء استكمال بيانات الاسم والموبايل والعنوان");
-        let msg = `طلب جديد من Em Medical%0Aالاسم: ${n}%0Aالموبايل: ${p}%0Aالعنوان: ${a}%0A%0Aالمنتجات:%0A`;
-        cart.forEach(i => msg += `• ${i.n} (العدد: ${i.q})%0A`);
-        window.open(`https://wa.me/201153951440?text=${msg}`);
+        
+        let orderId = '#EM-' + Math.floor(1000 + Math.random() * 9000);
+        let totalAmount = 0;
+
+        // تنسيق رسالة واتساب على شكل جدول مرتب ومنسق
+        let msg = `🛒 *طلب جديد عبر متجر Em Medical*%0A`;
+        msg += `🆔 *رقم الطلب:* ${orderId}%0A`;
+        msg += `-----------------------------------%0A`;
+        msg += `👤 *الاسم:* ${n}%0A`;
+        msg += `📞 *الموبايل:* ${p}%0A`;
+        msg += `📍 *العنوان:* ${a}%0A`;
+        msg += `-----------------------------------%0A`;
+        msg += `📦 *تفاصيل المنتجات:*%0A`;
+        
+        cart.forEach((i, index) => {
+            let itemTotal = i.p * i.q;
+            totalAmount += itemTotal;
+            msg += `${index + 1}. *${i.n}*%0A`;
+            msg += `   • الكمية: ${i.q} | السعر: ${i.p} ج.م | الإجمالي: ${itemTotal} ج.م%0A`;
+        });
+        
+        msg += `-----------------------------------%0A`;
+        msg += `💰 *الإجمالي الكلي:* *${totalAmount} ج.م*%0A`;
+        msg += `🚀 *طريقة الشحن:* توصيل سريع`;
+
+        // إظهار شاشة شكراً لطلبك داخل السلة أولاً
+        document.getElementById('ff').style.display = 'none';
+        document.getElementById('cl').style.display = 'none';
+        document.getElementById('order-num').innerText = orderId;
+        document.getElementById('ty-screen').style.display = 'block';
+
+        // تفريغ السلة وتخزين الحالة
+        cart = [];
+        localStorage.removeItem('em_medical_cart');
+        upUI();
+
+        // فتح واتساب بالرسالة المنمقة بعد ثوانٍ قصيرة أو فوراً
+        setTimeout(() => {
+            window.open(`https://wa.me/201153951440?text=${msg}`, '_blank');
+        }, 1500);
+    }
+
+    function resetCartState() {
+        document.getElementById('un').value = '';
+        document.getElementById('up').value = '';
+        document.getElementById('ua').value = '';
     }
 
     window.onload = () => { load(); upUI(); }
