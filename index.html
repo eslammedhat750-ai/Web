@@ -259,16 +259,7 @@
             <textarea id="ua" placeholder="العنوان بالتفصيل" style="width:100%; padding:18px; margin-bottom:12px; border:1px solid #eee; border-radius:16px; height:100px;"></textarea>
             <button class="f-btn" style="background:var(--s)" onclick="sw()"><i class="fab fa-whatsapp"></i> إرسال الطلب عبر واتساب</button>
         </div>
-        <!-- نافذة شكراً لطلبك داخل السلة -->
-        <div id="ty-screen" style="display:none; text-align:center; padding: 20px 0;">
-            <div style="font-size: 50px; color: var(--s); margin-bottom: 15px;"><i class="fas fa-check-circle"></i></div>
-            <h3 style="font-size: 22px; font-weight: 900; color: var(--p); margin-bottom: 10px;">تم تسجيل طلبك بنجاح!</h3>
-            <p style="color: var(--gray); font-size: 14px; line-height: 1.6; margin-bottom: 20px;">
-                رقم الطلب: <b id="order-num" style="color: var(--text);">#EM-1001</b><br>
-                شكراً لتسوقك من <b>Em Medical</b>. سيتم توجيهك الآن لواتساب لتأكيد الطلب مع خدمة العملاء.
-            </p>
-            <button class="f-btn" onclick="tglCart(); resetCartState();" style="background: var(--text);">إغلاق العرض</button>
-        </div>
+        <div id="ty-screen" style="display:none; text-align:center; padding: 20px 0;"></div>
     </div>
 </div>
 
@@ -487,7 +478,6 @@
         let orderId = '#EM-' + Math.floor(1000 + Math.random() * 9000);
         let totalAmount = 0;
 
-        // تنسيق رسالة واتساب على شكل جدول مرتب ومنسق
         let msg = `🛒 *طلب جديد عبر متجر Em Medical*%0A`;
         msg += `🆔 *رقم الطلب:* ${orderId}%0A`;
         msg += `-----------------------------------%0A`;
@@ -508,21 +498,27 @@
         msg += `💰 *الإجمالي الكلي:* *${totalAmount} ج.م*%0A`;
         msg += `🚀 *طريقة الشحن:* توصيل سريع`;
 
-        // إظهار شاشة شكراً لطلبك داخل السلة أولاً
+        window.whatsappLink = `https://wa.me/201153951440?text=${msg}`;
+
         document.getElementById('ff').style.display = 'none';
         document.getElementById('cl').style.display = 'none';
-        document.getElementById('order-num').innerText = orderId;
-        document.getElementById('ty-screen').style.display = 'block';
+        
+        let tyScreen = document.getElementById('ty-screen');
+        tyScreen.innerHTML = `
+            <div style="font-size: 50px; color: var(--s); margin-bottom: 15px;"><i class="fas fa-check-circle"></i></div>
+            <h3 style="font-size: 22px; font-weight: 900; color: var(--p); margin-bottom: 10px;">تم تسجيل طلبك بنجاح!</h3>
+            <p style="color: var(--gray); font-size: 14px; line-height: 1.6; margin-bottom: 20px;">
+                رقم الطلب: <b style="color: var(--text);">${orderId}</b><br>
+                اضغط على الزر أدناه لإرسال تفاصيل طلبك مباشرة عبر واتساب لخدمة العملاء.
+            </p>
+            <button class="f-btn" onclick="window.open(window.whatsappLink, '_blank'); tglCart(); resetCartState();" style="background: var(--s); margin-bottom: 10px;"><i class="fab fa-whatsapp"></i> اضغط هنا لإرسال الطلب عبر واتساب</button>
+            <button class="f-btn" onclick="tglCart(); resetCartState();" style="background: #e4e6eb; color: var(--text);">إغلاق</button>
+        `;
+        tyScreen.style.display = 'block';
 
-        // تفريغ السلة وتخزين الحالة
         cart = [];
         localStorage.removeItem('em_medical_cart');
         upUI();
-
-        // فتح واتساب بالرسالة المنمقة بعد ثوانٍ قصيرة أو فوراً
-        setTimeout(() => {
-            window.open(`https://wa.me/201153951440?text=${msg}`, '_blank');
-        }, 1500);
     }
 
     function resetCartState() {
@@ -540,3 +536,4 @@
 
 </body>
 </html>
+
