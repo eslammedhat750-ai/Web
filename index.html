@@ -40,7 +40,6 @@
         }
         .logo img { height: 45px; transition: 0.3s; }
 
-        /* شريط البحث السريع */
         .search-container {
             padding: 10px 20px;
             background: var(--w);
@@ -127,7 +126,6 @@
         .viw-btn { background: #f8f9fa; color: var(--text); border: 1px solid #eee; flex: 1; padding: 12px; border-radius: 14px; font-weight: 700; font-size: 12px; }
         .add-btn-quick { background: var(--p); color: #fff; border: none; width: 45px; border-radius: 14px; cursor: pointer; transition: 0.3s; }
 
-        /* مميزات الثقة تحت السعر */
         .trust-badges {
             display: flex;
             gap: 10px;
@@ -168,7 +166,6 @@
         .pop-img-container { width: 100%; margin-bottom: 15px; text-align: center; position: relative; }
         .pop-main-img { width: 100%; height: 220px; object-fit: contain; margin-bottom: 10px; }
         
-        /* زرار الشير داخل البوب أب */
         .share-btn {
             position: absolute;
             top: 0;
@@ -192,7 +189,6 @@
         .pop-thumb { width: 50px; height: 50px; object-fit: cover; border-radius: 8px; border: 2px solid #ddd; cursor: pointer; transition: 0.2s; }
         .pop-thumb.active-thumb { border-color: var(--p); }
 
-        /* رسالة التأكيد (Toast Notification) */
         #toast {
             position: fixed;
             bottom: 30px;
@@ -229,7 +225,6 @@
     <div class="c-icon" onclick="tglCart()"><i class="fas fa-shopping-cart"></i><span id="c-badge" style="position:absolute; top:-5px; right:-5px; background:#ff3b30; width:22px; height:22px; border-radius:50%; display:none; align-items:center; justify-content:center; font-size:10px; border:2px solid #fff;">0</span></div>
 </header>
 
-<!-- شريط البحث السريع -->
 <div class="search-container">
     <div class="search-box">
         <input type="text" id="searchInput" placeholder="ابحث عن جهاز، مساج، كرسي متحرك..." oninput="handleSearch()">
@@ -262,7 +257,6 @@
     <p>تواصل معنا مباشرة للحصول على عرض سعر<br>خاص بالموزعين والصيدليات.</p>
 </div>
 
-<!-- نافذة تفاصيل المنتج -->
 <div id="pop-ov" class="pop-ov" onclick="closePop()">
     <div class="pop-pan" onclick="event.stopPropagation()">
         <div style="width:50px; height:5px; background:#eee; border-radius:10px; margin: -15px auto 20px;"></div>
@@ -288,7 +282,6 @@
     </div>
 </div>
 
-<!-- سلة المشتريات -->
 <div id="ov" class="ov" onclick="tglCart()">
     <div class="pan" onclick="event.stopPropagation()">
         <h2 style="margin-bottom:20px; font-weight:900;">🛒 سلة طلباتك</h2>
@@ -308,7 +301,6 @@
     </div>
 </div>
 
-<!-- رسالة التنبيه العائمة (Toast) -->
 <div id="toast"><i class="fas fa-check-circle"></i> <span id="toast-msg">تم إضافة المنتج للسلة بنجاح</span></div>
 
 <script>
