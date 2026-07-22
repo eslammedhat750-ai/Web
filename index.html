@@ -40,14 +40,50 @@
         }
         .logo img { height: 45px; transition: 0.3s; }
 
+        /* شريط البحث السريع */
+        .search-container {
+            padding: 10px 20px;
+            background: var(--w);
+            position: sticky;
+            top: 75px;
+            z-index: 998;
+            border-bottom: 1px solid #eee;
+        }
+        .search-box {
+            position: relative;
+            width: 100%;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px 12px 45px;
+            border-radius: 50px;
+            border: 1px solid #e1e8ed;
+            background: #f0f2f5;
+            font-size: 14px;
+            outline: none;
+            transition: 0.3s;
+        }
+        .search-box input:focus {
+            border-color: var(--p);
+            background: #fff;
+            box-shadow: 0 4px 12px rgba(0, 82, 204, 0.15);
+        }
+        .search-box i {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+        }
+
         .cats-bar { 
-            display: flex; gap: 12px; overflow-x: auto; padding: 15px 20px; 
-            background: var(--w); position: sticky; top: 75px; z-index: 999; 
+            display: flex; gap: 12px; overflow-x: auto; padding: 12px 20px; 
+            background: var(--w); position: sticky; top: 135px; z-index: 997; 
             scrollbar-width: none; border-bottom: 1px solid #eee;
         }
         .cats-bar::-webkit-scrollbar { display: none; }
         .cat-btn { 
-            background: #f0f2f5; color: var(--gray); padding: 10px 22px; 
+            background: #f0f2f5; color: var(--gray); padding: 8px 20px; 
             border-radius: 50px; border: none; font-weight: 700; 
             white-space: nowrap; cursor: pointer; font-size: 13px; transition: 0.3s;
         }
@@ -91,6 +127,25 @@
         .viw-btn { background: #f8f9fa; color: var(--text); border: 1px solid #eee; flex: 1; padding: 12px; border-radius: 14px; font-weight: 700; font-size: 12px; }
         .add-btn-quick { background: var(--p); color: #fff; border: none; width: 45px; border-radius: 14px; cursor: pointer; transition: 0.3s; }
 
+        /* مميزات الثقة تحت السعر */
+        .trust-badges {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #f0f2f5;
+            font-size: 11px;
+            color: var(--gray);
+        }
+        .trust-badges span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .trust-badges i {
+            color: var(--s);
+        }
+
         .wholesale-footer-box {
             margin: 30px 20px;
             padding: 25px 20px;
@@ -110,11 +165,54 @@
         .pop-pan { background: var(--w); width: 100%; max-width: 500px; border-radius: 30px 30px 0 0; padding: 30px; position: relative; transform: translateY(100%); transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); max-height: 85vh; overflow-y: auto; }
         .pop-ov.active .pop-pan { transform: translateY(0); }
 
-        .pop-img-container { width: 100%; margin-bottom: 15px; text-align: center; }
+        .pop-img-container { width: 100%; margin-bottom: 15px; text-align: center; position: relative; }
         .pop-main-img { width: 100%; height: 220px; object-fit: contain; margin-bottom: 10px; }
+        
+        /* زرار الشير داخل البوب أب */
+        .share-btn {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #f0f2f5;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--p);
+            font-size: 16px;
+            transition: 0.2s;
+        }
+        .share-btn:hover { background: #e4e6eb; }
+
         .pop-thumbs { display: flex; gap: 8px; justify-content: center; }
         .pop-thumb { width: 50px; height: 50px; object-fit: cover; border-radius: 8px; border: 2px solid #ddd; cursor: pointer; transition: 0.2s; }
         .pop-thumb.active-thumb { border-color: var(--p); }
+
+        /* رسالة التأكيد (Toast Notification) */
+        #toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #1c1e21;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            z-index: 4000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        #toast.show { transform: translateX(-50%) translateY(0); }
+        #toast i { color: var(--s); }
 
         .ov { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 2000; }
         .pan { background: var(--w); width: 100%; position: absolute; bottom: 0; border-radius: 30px 30px 0 0; padding: 30px; box-shadow: 0 -10px 40px rgba(0,0,0,0.1); }
@@ -130,10 +228,19 @@
     <div class="logo"><img src="logo.png" alt="Em Medical"></div>
     <div class="c-icon" onclick="tglCart()"><i class="fas fa-shopping-cart"></i><span id="c-badge" style="position:absolute; top:-5px; right:-5px; background:#ff3b30; width:22px; height:22px; border-radius:50%; display:none; align-items:center; justify-content:center; font-size:10px; border:2px solid #fff;">0</span></div>
 </header>
-<div style="padding: 20px; background: #fff; text-align: center; border-bottom: 1px solid #eee;">
-    <h2 style="color: #0052cc; margin-bottom: 10px;">مرحباً بكم في Em Medical</h2>
-    <p style="color: #65676b; font-size: 14px; line-height: 1.6;">
-        وجهتك الأولى لأحدث المستلزمات الطبية والأجهزة المنزلية بجودة عالية وأسعار تنافسية. نحن هنا لخدمتك وراحتك.
+
+<!-- شريط البحث السريع -->
+<div class="search-container">
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="ابحث عن جهاز، مساج، كرسي متحرك..." oninput="handleSearch()">
+        <i class="fas fa-search"></i>
+    </div>
+</div>
+
+<div style="padding: 15px 20px 0; background: #fff; text-align: center;">
+    <h2 style="color: #0052cc; margin-bottom: 5px; font-size: 18px;">مرحباً بكم في Em Medical</h2>
+    <p style="color: #65676b; font-size: 13px; line-height: 1.5;">
+        وجهتك الأولى لأحدث المستلزمات الطبية والأجهزة المنزلية بجودة عالية.
     </p>
 </div>
 
@@ -155,11 +262,13 @@
     <p>تواصل معنا مباشرة للحصول على عرض سعر<br>خاص بالموزعين والصيدليات.</p>
 </div>
 
+<!-- نافذة تفاصيل المنتج -->
 <div id="pop-ov" class="pop-ov" onclick="closePop()">
     <div class="pop-pan" onclick="event.stopPropagation()">
         <div style="width:50px; height:5px; background:#eee; border-radius:10px; margin: -15px auto 20px;"></div>
         
         <div class="pop-img-container">
+            <button class="share-btn" onclick="shareProduct()" title="مشاركة المنتج"><i class="fas fa-share-alt"></i></button>
             <img id="pop-main-img" class="pop-main-img" src="" alt="صورة المنتج">
             <div id="pop-thumbs" class="pop-thumbs"></div>
         </div>
@@ -167,13 +276,19 @@
         <h2 id="pop-title" style="font-size:20px; margin-bottom:15px; font-weight:900;"></h2>
         <div id="pop-desc" class="desc-text" style="color:var(--gray); font-size:14px; line-height:1.7;"></div>
         
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:30px; border-top:1px solid #eee; padding-top:20px;">
+        <div class="trust-badges" style="margin-top: 15px;">
+            <span><i class="fas fa-check-circle"></i> ضمان جودة أصلية</span>
+            <span><i class="fas fa-shipping-fast"></i> توصيل سريع</span>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:25px; border-top:1px solid #eee; padding-top:20px;">
             <div class="pop-price" style="font-size:24px; font-weight:900; color:var(--p);"><span id="pop-price">0</span> ج.م</div>
             <button class="pop-add-btn" id="pop-add-btn" style="background:var(--p); color:#fff; border:none; padding:15px 30px; border-radius:18px; font-weight:900;">إضافة للسلة</button>
         </div>
     </div>
 </div>
 
+<!-- سلة المشتريات -->
 <div id="ov" class="ov" onclick="tglCart()">
     <div class="pan" onclick="event.stopPropagation()">
         <h2 style="margin-bottom:20px; font-weight:900;">🛒 سلة طلباتك</h2>
@@ -193,10 +308,14 @@
     </div>
 </div>
 
+<!-- رسالة التنبيه العائمة (Toast) -->
+<div id="toast"><i class="fas fa-check-circle"></i> <span id="toast-msg">تم إضافة المنتج للسلة بنجاح</span></div>
+
 <script>
     let allProd = [];
     let cart = JSON.parse(localStorage.getItem('em_medical_cart')) || [];
     let activeIntervals = new Map();
+    let currentSelectedProduct = null;
 
     async function load() {
         try {
@@ -209,6 +328,10 @@
     function render(list) {
         const grid = document.getElementById('products-grid');
         grid.innerHTML = '';
+        if(list.length === 0) {
+            grid.innerHTML = '<div style="grid-column: span 2; text-align: center; padding: 30px; color: var(--gray);">لا توجد منتجات مطابقة للبحث</div>';
+            return;
+        }
         list.forEach((p, index) => {
             let imgs = p.imgs.map((img, i) => `<img src="${img}" loading="lazy" class="${i===0?'active':''}">`).join('');
             let badge = p.badge ? '<div class="badge">' + p.badge + '</div>' : '';
@@ -219,7 +342,11 @@
                     <div class="img-h">${imgs}</div>
                     <h3>${p.n}</h3>
                     <div class="price">${p.p} ج.م</div>
-                    <div class="card-btns">
+                    <div class="trust-badges">
+                        <span><i class="fas fa-shield-alt"></i> أصلي</span>
+                        <span><i class="fas fa-truck"></i> سريع</span>
+                    </div>
+                    <div class="card-btns" style="margin-top: 10px;">
                         <button class="viw-btn">عرض</button>
                         <button class="add-btn-quick" onclick="event.stopPropagation(); add('${p.n}', ${p.p}, this)"><i class="fas fa-cart-plus"></i></button>
                     </div>
@@ -232,7 +359,23 @@
     function filterProd(cat, btn) {
         document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        render(cat === 'الكل' ? allProd : allProd.filter(p => p.cat === cat));
+        const query = document.getElementById('searchInput').value.toLowerCase();
+        let filtered = cat === 'الكل' ? allProd : allProd.filter(p => p.cat === cat);
+        if(query) {
+            filtered = filtered.filter(p => p.n.toLowerCase().includes(query) || p.desc.toLowerCase().includes(query));
+        }
+        render(filtered);
+    }
+
+    function handleSearch() {
+        const query = document.getElementById('searchInput').value.toLowerCase();
+        const activeCat = document.querySelector('.cat-btn.active').innerText;
+        let filtered = activeCat === 'الكل' ? allProd : allProd.filter(p => p.cat === activeCat);
+        
+        if(query) {
+            filtered = filtered.filter(p => p.n.toLowerCase().includes(query) || p.desc.toLowerCase().includes(query));
+        }
+        render(filtered);
     }
 
     function initSmartSlider() {
@@ -263,6 +406,7 @@
 
     function openPop(index) {
         const p = allProd[index];
+        currentSelectedProduct = p;
         const mainImg = document.getElementById('pop-main-img');
         const thumbsContainer = document.getElementById('pop-thumbs');
         
@@ -295,11 +439,34 @@
 
     function closePop() { document.getElementById('pop-ov').classList.remove('active'); }
 
+    function shareProduct() {
+        if(!currentSelectedProduct) return;
+        const shareData = {
+            title: currentSelectedProduct.n,
+            text: `إليك هذا المنتج المميز من Em Medical: ${currentSelectedProduct.n} بسعر ${currentSelectedProduct.p} ج.م`,
+            url: window.location.href
+        };
+        if (navigator.share) {
+            navigator.share(shareData).catch(() => {});
+        } else {
+            navigator.clipboard.writeText(`${shareData.text} - ${shareData.url}`);
+            showToast("تم نسخ رابط ومواصفات المنتج للحافظة!");
+        }
+    }
+
+    function showToast(msg) {
+        const toast = document.getElementById('toast');
+        document.getElementById('toast-msg').innerText = msg;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2500);
+    }
+
     function add(n, p, b) {
         let i = cart.find(x => x.n === n);
         if(i) i.q++; else cart.push({n, p, q:1});
         localStorage.setItem('em_medical_cart', JSON.stringify(cart));
         upUI();
+        showToast("تم إضافة المنتج للسلة بنجاح");
         let old = b.innerHTML; b.innerHTML = "<i class='fas fa-check'></i>";
         setTimeout(() => b.innerHTML = old, 1000);
     }
@@ -311,12 +478,16 @@
 
     function ren() {
         let l = document.getElementById('cl'), sum = 0;
-        if(!cart.length) { l.innerHTML = "<div style='text-align:center; padding:20px;'>السلة فاضية</div>"; document.getElementById('tv').innerText=0; return; }
+        if(!cart.length) { l.innerHTML = "<div style='text-align:center; padding:20px; color:var(--gray);'>السلة فاضية</div>"; document.getElementById('tv').innerText=0; return; }
         l.innerHTML = cart.map((i, x) => {
             sum += (i.p * i.q);
-            return `<div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid #f5f5f5;">
-                <div><b>${i.n}</b><br>${i.p} ج.م</div>
-                <div><button onclick="ch(${x},-1)">-</button><span style="margin:0 10px;">${i.q}</span><button onclick="ch(${x},1)">+</button></div>
+            return `<div style="display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid #f5f5f5;">
+                <div><b>${i.n}</b><br><span style="color:var(--p); font-weight:700;">${i.p} ج.م</span></div>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <button onclick="ch(${x},-1)" style="width:28px; height:28px; border-radius:8px; border:1px solid #ddd; background:#fff; cursor:pointer; font-weight:bold;">-</button>
+                    <span style="font-weight:900; width:20px; text-align:center;">${i.q}</span>
+                    <button onclick="ch(${x},1)" style="width:28px; height:28px; border-radius:8px; border:1px solid #ddd; background:#fff; cursor:pointer; font-weight:bold;">+</button>
+                </div>
             </div>`;
         }).join('');
         document.getElementById('tv').innerText = sum;
@@ -327,7 +498,7 @@
     function sf() { document.getElementById('cs').style.display='none'; document.getElementById('ff').style.display='block'; }
     function sw() {
         let n = document.getElementById('un').value, p = document.getElementById('up').value, a = document.getElementById('ua').value;
-        if(!n || !p || !a) return alert("كمل البيانات");
+        if(!n || !p || !a) return alert("برجاء استكمال بيانات الاسم والموبايل والعنوان");
         let msg = `طلب جديد من Em Medical%0Aالاسم: ${n}%0Aالموبايل: ${p}%0Aالعنوان: ${a}%0A%0Aالمنتجات:%0A`;
         cart.forEach(i => msg += `• ${i.n} (العدد: ${i.q})%0A`);
         window.open(`https://wa.me/201153951440?text=${msg}`);
@@ -335,8 +506,9 @@
 
     window.onload = () => { load(); upUI(); }
 </script>
+
 <div style="text-align: center; margin-top: 50px; padding: 20px;">
-    <a href="policy.html" style="color: blue; text-decoration: underline;">سياسة الاستبدال والاسترجاع</a>
+    <a href="policy.html" style="color: var(--p); text-decoration: underline; font-weight: 700;">سياسة الاستبدال والاسترجاع</a>
 </div>
 
 </body>
