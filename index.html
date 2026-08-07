@@ -528,8 +528,8 @@
         });
         
         msg += `-----------------------------------%0A`;
-        msg += `💰 *الإجمالي الكلي:* *${totalAmount} ج.م*%0A`;
-        msg += `🚀 *طريقة الشحن:* توصيل سريع`;
+        msg += `💰 *إجمالي المنتجات:* *${totalAmount} ج.م*%0A`;
+        msg += `🚚 *مصاريف الشحن:* تُحدد وتُضاف حسب شركة الشحن / العنوان وتُؤكد عبر الواتساب`;
 
         window.whatsappLink = `https://wa.me/201153951440?text=${msg}`;
 
@@ -542,7 +542,7 @@
             <h3 style="font-size: 22px; font-weight: 900; color: var(--p); margin-bottom: 10px;">تم تسجيل طلبك بنجاح!</h3>
             <p style="color: var(--gray); font-size: 14px; line-height: 1.6; margin-bottom: 20px;">
                 رقم الطلب: <b style="color: var(--text);">${orderId}</b><br>
-                اضغط على الزر أدناه لإرسال تفاصيل طلبك مباشرة عبر واتساب لخدمة العملاء.
+                اضغط على الزر أدناه لإرسال تفاصيل طلبك مباشرة عبر واتساب لخدمة العملاء لتأكيد تكلفة الشحن وإتمام الطلب.
             </p>
             <button class="f-btn" onclick="window.open(window.whatsappLink, '_blank'); tglCart(); resetCartState();" style="background: var(--s); margin-bottom: 10px;"><i class="fab fa-whatsapp"></i> اضغط هنا لإرسال الطلب عبر واتساب</button>
             <button class="f-btn" onclick="tglCart(); resetCartState();" style="background: #e4e6eb; color: var(--text);">إغلاق</button>
