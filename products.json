@@ -81,14 +81,14 @@
     "imgs": ["phonix1.jpg"]
   },
   {
-    "n": "EM Electric Wheelchair",
+    "n": "كرسي متحرك كهربائي (EM Medical)",
     "p": 17000,
     "cat": "كرسي متحرك",
     "desc": "كرسي متحرك كهربائي متطور وعالي التحمل من EM Medical لتسهيل الحركة اليومية والتنقل.",
     "imgs": ["Electric Wheelchair1.jpg", "Electric Wheelchair2.jpg"]
   },
   {
-    "n": "Electric Hot Water Bottle",
+    "n": "قربة تدفئة كهربائية (أصلية)",
     "p": 150,
     "cat": "مستلزمات",
     "desc": "قربة تدفئة كهربائية أصلية من EM Medical لتوفير الدفء والراحة الشخصية بجميع الأوقات.",
