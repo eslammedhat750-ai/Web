@@ -340,7 +340,44 @@
             const res = await fetch('products.json?v=' + Date.now());
             allProd = await res.json();
             render(allProd);
+            generateProductSchemas(allProd); // توليد سكيما الأسعار والمنتجات تلقائياً لمحركات البحث
         } catch (e) { console.error("Load failed"); }
+    }
+
+    // دالة لتوليد كود الـ Schema الديناميكي لكل منتج من ملف JSON بالأسعار
+    function generateProductSchemas(products) {
+        document.querySelectorAll('script.dynamic-product-schema').forEach(el => el.remove());
+
+        products.forEach(p => {
+            const schemaData = {
+                "@context": "https://schema.org/",
+                "@type": "Product",
+                "name": p.n,
+                "image": p.imgs && p.imgs.length > 0 ? `https://emmedical.shop/${p.imgs[0]}` : "https://emmedical.shop/logo.jpg",
+                "description": p.desc,
+                "brand": {
+                    "@type": "Brand",
+                    "name": "Em Medical"
+                },
+                "offers": {
+                    "@type": "Offer",
+                    "url": "https://emmedical.shop",
+                    "priceCurrency": "EGP",
+                    "price": p.p,
+                    "availability": "https://schema.org/InStock",
+                    "seller": {
+                        "@type": "Organization",
+                        "name": "Em Medical"
+                    }
+                }
+            };
+
+            const scriptTag = document.createElement('script');
+            scriptTag.type = 'application/ld+json';
+            scriptTag.className = 'dynamic-product-schema';
+            scriptTag.text = JSON.stringify(schemaData);
+            document.head.appendChild(scriptTag);
+        });
     }
 
     function render(list) {
@@ -600,4 +637,3 @@
 
 </body>
 </html>
-
