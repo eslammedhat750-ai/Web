@@ -340,11 +340,10 @@
             const res = await fetch('products.json?v=' + Date.now());
             allProd = await res.json();
             render(allProd);
-            generateProductSchemas(allProd); // توليد سكيما الأسعار والمنتجات تلقائياً لمحركات البحث
+            generateProductSchemas(allProd);
         } catch (e) { console.error("Load failed"); }
     }
 
-    // دالة لتوليد كود الـ Schema الديناميكي لكل منتج من ملف JSON بالأسعار
     function generateProductSchemas(products) {
         document.querySelectorAll('script.dynamic-product-schema').forEach(el => el.remove());
 
@@ -579,7 +578,14 @@
         let orderId = '#EM-' + Math.floor(1000 + Math.random() * 9000);
         let totalAmount = 0;
 
+        // التحقق الذكي: هل الزائر جاي من محرك بحث جوجل؟ (عبر الـ referrer أو بارامتر بحث)
+        let referrer = document.referrer.toLowerCase();
+        let urlParams = new URLSearchParams(window.location.search);
+        let isFromGoogle = referrer.includes('google.') || urlParams.get('utm_source') === 'google';
+        let sourceText = isFromGoogle ? "🔍 [جايلك من بحث جوجل مباشرة]" : "📱 [جايلك من السوشيال/الموقع المباشر]";
+
         let msg = `🛒 *طلب جديد عبر متجر Em Medical*%0A`;
+        msg += `📌 *المصدر:* ${sourceText}%0A`;
         msg += `🆔 *رقم الطلب:* ${orderId}%0A`;
         msg += `-----------------------------------%0A`;
         msg += `👤 *الاسم:* ${n}%0A`;
@@ -659,4 +665,3 @@
 
 </body>
 </html>
-
