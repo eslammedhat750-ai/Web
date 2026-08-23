@@ -635,7 +635,7 @@
     <a href="policy.html" style="color: var(--p); text-decoration: underline; font-weight: 700;">سياسة الاستبدال والاسترجاع</a>
 </div>
 
-<!-- زرار واتساب العائم (تم استخدام دالة برمجية آمنة 100% لتكوين النص بدلاً من الترميز اليدوي المعقد) -->
+<!-- زرار واتساب العائم (النص مكتوب ومرمز بـ encodeURIComponent بالأسفل لضمان عمله 100%) -->
 <a id="float-wa-btn" href="#" target="_blank" style="
     position: fixed;
     bottom: 25px;
@@ -658,7 +658,7 @@
 </a>
 
 <script>
-    // ربط الزر العائم برمجياً بترميز آمن يضمن ظهور الرسالة صحيحة دائماً
+    // تم ضبط الرابط برمجياً لضمان عدم حدوث أي خطأ في ظهور الرسالة
     document.getElementById('float-wa-btn').href = "https://wa.me/201153951440?text=" + encodeURIComponent("استفسار جديد عبر متجر EM Medical 🛒");
 </script>
 
