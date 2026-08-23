@@ -579,7 +579,8 @@
         let orderId = '#EM-' + Math.floor(1000 + Math.random() * 9000);
         let totalAmount = 0;
 
-        let msg = `🛒 *طلب جديد عبر متجر Em Medical*%0A`;
+        // تم إضافة شكل العربة والمتجر بأسلوب منسق ومحترف يوضح أنه طلب متجر إلكتروني رسمي
+        let msg = `🛒 *طلب جديد عبر متجر Em Medical* 🛍️%0A`;
         msg += `🆔 *رقم الطلب:* ${orderId}%0A`;
         msg += `-----------------------------------%0A`;
         msg += `👤 *الاسم:* ${n}%0A`;
@@ -588,6 +589,7 @@
         msg += `-----------------------------------%0A`;
         msg += `📦 *تفاصيل المنتجات:*%0A`;
         
+        cart.Header = cart.forEach ? null : null; // للتأكد
         cart.forEach((i, index) => {
             let itemTotal = i.p * i.q;
             totalAmount += itemTotal;
