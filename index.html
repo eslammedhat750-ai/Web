@@ -336,24 +336,6 @@
     let activeIntervals = new Map();
     let currentSelectedProduct = null;
 
-    // حفظ مصدر الزيارة في الذاكرة المؤقتة فور فتح الموقع (مخفي تماماً عن العميل) وتحديث زرار الواتساب العائم
-    (function detectSource() {
-        let referrer = document.referrer.toLowerCase();
-        let urlParams = new URLSearchParams(window.location.search);
-        let isFromGoogle = referrer.includes('google.') || urlParams.get('utm_source') === 'google';
-        let sourceText = isFromGoogle ? "🔍 [جايلك من بحث جوجل مباشرة]" : "📱 [جايلك من السوشيال/الموقع المباشر]";
-        localStorage.setItem('em_traffic_source', sourceText);
-
-        // تحديث زرار الواتساب العائم ليقرا المصدر سراً
-        window.addEventListener('DOMContentLoaded', () => {
-            let floatBtn = document.getElementById('float-wa-btn');
-            if (floatBtn) {
-                let welcomeMsg = `السلام عليكم، استفسار بخصوص منتجات Em Medical. %0A📌 *المصدر:* ${sourceText}`;
-                floatBtn.href = `https://wa.me/201153951440?text=${welcomeMsg}`;
-            }
-        });
-    })();
-
     async function load() {
         try {
             const res = await fetch('products.json?v=' + Date.now());
@@ -597,11 +579,7 @@
         let orderId = '#EM-' + Math.floor(1000 + Math.random() * 9000);
         let totalAmount = 0;
 
-        // جلب المصدر المخفي في الذاكرة المؤقتة
-        let sourceText = localStorage.getItem('em_traffic_source') || "📱 [زيارة مباشرة]";
-
         let msg = `🛒 *طلب جديد عبر متجر Em Medical*%0A`;
-        msg += `📌 *المصدر:* ${sourceText}%0A`;
         msg += `🆔 *رقم الطلب:* ${orderId}%0A`;
         msg += `-----------------------------------%0A`;
         msg += `👤 *الاسم:* ${n}%0A`;
@@ -657,7 +635,7 @@
     <a href="policy.html" style="color: var(--p); text-decoration: underline; font-weight: 700;">سياسة الاستبدال والاسترجاع</a>
 </div>
 
-<!-- زرار واتساب خدمة العملاء العائم (مع التتبع الذكي) -->
+<!-- زرار واتساب خدمة العملاء العائم -->
 <a id="float-wa-btn" href="https://wa.me/201153951440" target="_blank" style="
     position: fixed;
     bottom: 25px;
