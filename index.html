@@ -579,7 +579,6 @@
         let orderId = '#EM-' + Math.floor(1000 + Math.random() * 9000);
         let totalAmount = 0;
 
-        // تم إضافة شكل العربة والمتجر بأسلوب منسق ومحترف يوضح أنه طلب متجر إلكتروني رسمي
         let msg = `🛒 *طلب جديد عبر متجر Em Medical* 🛍️%0A`;
         msg += `🆔 *رقم الطلب:* ${orderId}%0A`;
         msg += `-----------------------------------%0A`;
@@ -589,7 +588,6 @@
         msg += `-----------------------------------%0A`;
         msg += `📦 *تفاصيل المنتجات:*%0A`;
         
-        cart.Header = cart.forEach ? null : null; // للتأكد
         cart.forEach((i, index) => {
             let itemTotal = i.p * i.q;
             totalAmount += itemTotal;
@@ -637,8 +635,8 @@
     <a href="policy.html" style="color: var(--p); text-decoration: underline; font-weight: 700;">سياسة الاستبدال والاسترجاع</a>
 </div>
 
-<!-- زرار واتساب خدمة العملاء العائم -->
-<a id="float-wa-btn" href="https://wa.me/201153951440" target="_blank" style="
+<!-- زرار واتساب خدمة العملاء العائم (يبعت EM Medical 🛒) -->
+<a id="float-wa-btn" href="https://wa.me/201153951440?text=EM%20Medical%20🛒" target="_blank" style="
     position: fixed;
     bottom: 25px;
     right: 25px;
