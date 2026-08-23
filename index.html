@@ -59,7 +59,8 @@
         { "@type": "ListItem", "position": 10, "name": "قُفاز تأهيل حركة اليد" },
         { "@type": "ListItem", "position": 11, "name": "جهاز مساج فونكس" },
         { "@type": "ListItem", "position": 12, "name": "EM Electric Wheelchair" },
-        { "@type": "ListItem", "position": 13, "name": "Electric Hot Water Bottle" }
+        { "@type": "ListItem", "position": 13, "name": "Electric Hot Water Bottle" },
+        { "@type": "ListItem", "position": 14, "name": "جهاز مساج فاشيال گان (Fascial Gun)" }
       ]
     }
     </script>
@@ -335,6 +336,15 @@
     let activeIntervals = new Map();
     let currentSelectedProduct = null;
 
+    // حفظ مصدر الزيارة في الذاكرة المؤقتة فور فتح الموقع (مخفي تماماً عن العميل)
+    (function detectSource() {
+        let referrer = document.referrer.toLowerCase();
+        let urlParams = new URLSearchParams(window.location.search);
+        let isFromGoogle = referrer.includes('google.') || urlParams.get('utm_source') === 'google';
+        let sourceText = isFromGoogle ? "🔍 [جايلك من بحث جوجل مباشرة]" : "📱 [جايلك من السوشيال/الموقع المباشر]";
+        localStorage.setItem('em_traffic_source', sourceText);
+    })();
+
     async function load() {
         try {
             const res = await fetch('products.json?v=' + Date.now());
@@ -578,11 +588,8 @@
         let orderId = '#EM-' + Math.floor(1000 + Math.random() * 9000);
         let totalAmount = 0;
 
-        // التحقق الذكي: هل الزائر جاي من محرك بحث جوجل؟ (عبر الـ referrer أو بارامتر بحث)
-        let referrer = document.referrer.toLowerCase();
-        let urlParams = new URLSearchParams(window.location.search);
-        let isFromGoogle = referrer.includes('google.') || urlParams.get('utm_source') === 'google';
-        let sourceText = isFromGoogle ? "🔍 [جايلك من بحث جوجل مباشرة]" : "📱 [جايلك من السوشيال/الموقع المباشر]";
+        // جلب المصدر المخفي في الذاكرة المؤقتة (من غير ما يظهر للعميل في الحقول نهائياً)
+        let sourceText = localStorage.getItem('em_traffic_source') || "📱 [زيارة مباشرة]";
 
         let msg = `🛒 *طلب جديد عبر متجر Em Medical*%0A`;
         msg += `📌 *المصدر:* ${sourceText}%0A`;
