@@ -635,8 +635,8 @@
     <a href="policy.html" style="color: var(--p); text-decoration: underline; font-weight: 700;">سياسة الاستبدال والاسترجاع</a>
 </div>
 
-<!-- شارة التوصيل السريع الفخمة بلون متجرك (أزرق في أخضر) -->
-<div id="em-delivery-badge" style="position: fixed; bottom: 25px; left: 25px; z-index: 9998; background: linear-gradient(135deg, #0052cc 0%, #00a884 100%); padding: 10px 16px; border-radius: 50px; box-shadow: 0 6px 20px rgba(0, 82, 204, 0.3); display: flex; align-items: center; gap: 10px; font-family: 'Cairo', sans-serif; border: 2px solid #ffffff;">
+<!-- شارة التوصيل السريع بخلفية متدرجة (z-index منخفض عشان ما تغطيش على الـ Popups) -->
+<div id="em-delivery-badge" style="position: fixed; bottom: 25px; left: 25px; z-index: 100; background: linear-gradient(135deg, #0052cc 0%, #00a884 100%); padding: 10px 16px; border-radius: 50px; box-shadow: 0 6px 20px rgba(0, 82, 204, 0.3); display: flex; align-items: center; gap: 10px; font-family: 'Cairo', sans-serif; border: 2px solid #ffffff;">
   <span style="font-size: 20px; animation: driveCar 2s infinite ease-in-out; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));">🚐</span>
   <span style="font-size: 13px; font-weight: 900; color: #ffffff; letter-spacing: -0.3px;">توصيل سريع للقاهرة والجيزة</span>
 </div>
@@ -653,8 +653,8 @@
 }
 </style>
 
-<!-- زرار واتساب العائم في اليمين -->
-<a href="https://wa.me/201153951440?text=%D8%A7%D8%B3%D8%AA%D8%B1%D8%AC%D8%A7%D8%B9%20%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%AC%D8%AF%D9%8A%D8%AF%20%D8%B9%D8%A8%D8%B1%20%D9%85%D8%AA%D8%AC%D8%B1%20EM%20Medical%20🛒" target="_blank" style="
+<!-- زرار واتساب العائم (z-index منخفض برضه عشان الـ Popups) -->
+<a href="https://wa.me/201153951440?text=%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%AC%D8%AF%D9%8A%D8%AF%20%D8%B9%D8%A8%D8%B1%20%D9%85%D8%AA%D8%AC%D8%B1%20EM%20Medical%20🛒" target="_blank" style="
     position: fixed;
     bottom: 25px;
     right: 25px;
@@ -668,7 +668,7 @@
     justify-content: center;
     font-size: 30px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    z-index: 9999;
+    z-index: 100;
     text-decoration: none;
     transition: transform 0.3s ease;
 ">
