@@ -635,7 +635,25 @@
     <a href="policy.html" style="color: var(--p); text-decoration: underline; font-weight: 700;">سياسة الاستبدال والاسترجاع</a>
 </div>
 
-<!-- زرار واتساب العائم -->
+<!-- شارة التوصيل السريع المتحركة في الزاوية اليسرى -->
+<div id="em-delivery-badge" style="position: fixed; bottom: 25px; left: 25px; z-index: 9998; background: #ffffff; padding: 8px 14px; border-radius: 50px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 8px; font-family: 'Cairo', sans-serif; border: 2px solid #00a884;">
+  <span style="font-size: 20px; animation: driveTruck 2s infinite ease-in-out;">🚚</span>
+  <span style="font-size: 12px; font-weight: bold; color: #333;">توصيل سريع للقاهرة والجيزة</span>
+</div>
+
+<style>
+@keyframes driveTruck {
+  0% { transform: translateX(0px); }
+  50% { transform: translateX(4px); }
+  100% { transform: translateX(0px); }
+}
+@media (max-width: 480px) {
+  #em-delivery-badge { bottom: 20px; left: 15px; padding: 6px 10px; }
+  #em-delivery-badge span:nth-child(2) { font-size: 10px; }
+}
+</style>
+
+<!-- زرار واتساب العائم في اليمين -->
 <a href="https://wa.me/201153951440?text=%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%AC%D8%AF%D9%8A%D8%AF%20%D8%B9%D8%A8%D8%B1%20%D9%85%D8%AA%D8%AC%D8%B1%20EM%20Medical%20🛒" target="_blank" style="
     position: fixed;
     bottom: 25px;
